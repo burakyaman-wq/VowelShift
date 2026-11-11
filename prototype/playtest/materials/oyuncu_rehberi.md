@@ -21,6 +21,8 @@ Cümle düzeni Türkçedeki gibi: yapan — etkilenen — fiil. Fiilsiz cümle "
    `python3 masa.py <adın> kural "gh -> kh" eskiKelime:yeniKelime eskiKelime:yeniKelime`
 3. **Kopyala:** Kartlarını istediğin sırayla tablete diz; masa her kelimeye kartları soldan sağa uygular ve kopyayı yazar. Bu çağın dilinde olmayan bir kelime çıkarsa kopya rafa konmaz.
    `python3 masa.py <adın> kopyala "kartadi1,kartadi2"`
+   Masa izin verirse kelimelerin sırasını da değiştirebilirsin: `kopyala "kartlar" "3,4,1,2,5"` (numaralar eski metindeki kelime sırası).
+   Ses kaybını yazmak için: `kural "-s -> ∅" ...`
 4. **Not düş (isteğe bağlı):** Rafa konan kopyanın kenarına bir not bırakabilirsin; sonraki kâtipler okur.
    `python3 masa.py <adın> not "notun"`
 5. **Cevapla:** Talep sahibi bir soru sorar; seçeneklerden birini seç.

@@ -116,7 +116,7 @@ def doc_page(d):
 <div class="req"><b>{d['who']}:</b> “{re.sub(r'[*]([^*]+)[*]', lambda m: '<i>' + m.group(1) + '</i>', d['says'])}”</div>{('<p class="small"><b>Kapıda bir söylenti</b> (yönetici, Belge 2 kopyasına göre okur).</p>' if d['no'] == 3 else '')}
 <p class="small">Masadaki eski metin:</p>
 <div class="ms">{d['old']}</div>
-<p><b>Kart sıran:</b> ______________________ &nbsp; <b>Masanın yazdığı kopya:</b></p>
+<p><b>Kart sıran:</b> ______________________ &nbsp; <b>Masanın yazdığı kopya:</b></p>{('<p class="small">Bu belgede kelimelerin sırasını da değiştirebilirsin; yeni sırayı numaralarla yaz: ________</p>' if d.get('reorder') else '')}
 <div class="lines"><div></div><div></div></div>
 <p style="margin-top:6mm"><b>Soru:</b> {d['ask']}</p>
 <p>{' &nbsp; '.join(f'☐ {o}' for o in d['options'])}</p>""")

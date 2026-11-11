@@ -75,10 +75,14 @@
       "era": 3,
       "kind": "consonant",
       "name_tr": "Sondaki s ve m düşer",
-      "note_tr": "-s, -m → ∅ (kelime sonunda)",
+      "note_tr": "-s → ∅, -m → ∅ (kelime sonunda)",
       "subs": [
         [
-          "[sm]$",
+          "s$",
+          ""
+        ],
+        [
+          "m$",
           ""
         ]
       ]

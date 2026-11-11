@@ -78,8 +78,9 @@ def visible_old(st, d):
     """Old forms the player can actually see: this document, plus the previous era's dictionary."""
     s = set(words_of(d["old"]))
     if d["era"] >= 2:
-        for f, _ in C.LEX1:
-            s |= C.inflections(f)
+        prev = C.era_ids(d["era"] - 1)
+        for r, _ in C.LEX_ROOTS:
+            s |= C.inflections(C.apply(prev, r))
     return s
 
 
@@ -107,6 +108,8 @@ def show_doc(st, d):
     print(f"{d['who']}: “{d['says']}”")
     print(f"\nMasadaki eski metin:\n    {d['old']}\n")
     print("Eski metni sözlükle eşleştir, ses değişimlerini kanıtla (kural), sonra kart sırasını ver (kopyala). Kopyayı masa yazar.")
+    if d.get("reorder"):
+        print("Bu belgede istersen kelimelerin sırasını da değiştirebilirsin: kopyala \"kartlar\" \"3,4,1,2,5\" (numaralar eski metindeki kelime sırası).")
 
 
 def main():
@@ -144,7 +147,7 @@ def main():
     if cmd == "durum":
         if done:
             print("Bütün belgeler kopyalandı. Son:")
-            print(C.epilogue(st["copies"].get("2", ""), st["answers"], st["notes"]))
+            print(C.epilogue(st["copies"].get("2", ""), st["answers"], st["notes"], st["copies"].get("4", "")))
             return
         print(f"Belge {st['doc']}, aşama: {st['phase']}. Kartların:")
         for c in st["cards"]:
@@ -159,11 +162,17 @@ def main():
         if len(args) < 3:
             print("Kural için değişimi ve İKİ örnek çifti ver: kural \"gh -> kh\" eski:yeni eski:yeni")
             return
-        m = re.match(r"\s*(\S+)\s*->\s*(\S+)\s*", norm(args[0]))
+        m = re.match(r"\s*(\S+)\s*->\s*(\S*)\s*", norm(args[0]))
         if not m:
             print("Biçim: \"x -> y\"")
             return
         frm, to = m.group(1), m.group(2)
+        if to in ("", "∅", "Ø", "-", "0", "hiç"):
+            to = ""
+        if frm.startswith("-"):
+            frm = frm[1:] + "$"
+        elif to == "" and not frm.endswith("$"):
+            frm = frm + "$"
         pairs = [tuple(norm(a).lower().strip(".,").split(":", 1)) for a in args[1:3] if ":" in a]
         cur = C.era_ids(d["era"])
         new_ids = cur[len(C.era_ids(d["era"] - 1)):]
@@ -184,8 +193,8 @@ def main():
                 problems.append(f"'{old}' masada görünen eski bir kelime değil")
             elif new not in vn:
                 problems.append(f"'{new}' henüz bu çağda duyduğun ya da sözlüğünde olan bir kelime değil")
-            elif frm not in old:
-                problems.append(f"'{old}' içinde '{frm}' yok")
+            elif not re.search(frm, old):
+                problems.append(f"'{old}' içinde '{frm.rstrip('$')}' yok")
             elif C.apply(new_ids, old) != new:
                 res = C.apply(new_ids, old)
                 if strip_macrons(res) == strip_macrons(new):
@@ -231,9 +240,25 @@ def main():
             return
         order = [C.KEY2ID[k] for k in keys]
         copy = apply_cards(st, order, d["old"])
+        if len(args) > 1 and args[1].strip():
+            if not d.get("reorder"):
+                print("Bu belgede kelimelerin sırasını değiştiremezsin.")
+                return
+            ws = copy.rstrip(".").split()
+            try:
+                idx = [int(x) for x in args[1].split(",")]
+                assert sorted(idx) == list(range(1, len(ws) + 1))
+            except (ValueError, AssertionError):
+                print(f"Sıra, 1'den {len(ws)}'e kadar her numarayı bir kez içermeli (ör. 3,4,1,2,5).")
+                return
+            copy = " ".join(ws[i - 1] for i in idx) + "."
         real = C.real_words(d["era"])
         res = [(w, w in real) for w in words_of(copy)]
         print(f"Masa yazdı:  {copy}")
+        olds = [w.strip(".") for w in d["old"].split()]
+        changed = [f"{o} → {n}" for o, n in zip(olds, [w.strip(".") for w in apply_cards(st, order, d["old"]).split()]) if o != n]
+        if changed:
+            print("  Değişenler: " + " · ".join(changed))
         bad = [w for w, ok in res if not ok]
         log(action="kopyala", order=keys, copy=copy, accepted=not bad, rejected=bad)
         if bad:
@@ -273,7 +298,7 @@ def main():
             show_doc(st, nd)
         else:
             print("\n=== Son ===")
-            print(C.epilogue(st["copies"].get("2", ""), st["answers"], st["notes"]))
+            print(C.epilogue(st["copies"].get("2", ""), st["answers"], st["notes"], st["copies"].get("4", "")))
             print("\n=== Test bitti. ===")
         return
     print(__doc__)
