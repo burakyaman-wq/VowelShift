@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "notes": "Patterns are Python/GDScript-compatible regexes applied left to right on the whole word. V = vowel class. Order in this file is the canonical (correct) order.",
+  "classes": {
+    "V": "[aeiouāēīōū]",
+    "FRONT": "[eiēī]"
+  },
+  "rules": [
+    {
+      "id": "R1",
+      "era": 1,
+      "kind": "consonant",
+      "name_tr": "Aspiratlar sertleşir",
+      "note_tr": "bh → ph, dh → th, gh → kh",
+      "subs": [
+        [
+          "bh",
+          "ph"
+        ],
+        [
+          "dh",
+          "th"
+        ],
+        [
+          "gh",
+          "kh"
+        ]
+      ]
+    },
+    {
+      "id": "R2",
+      "era": 1,
+      "kind": "vowel",
+      "name_tr": "Çift ünlüler kaynaşır",
+      "note_tr": "ei → ī, eu → ō",
+      "subs": [
+        [
+          "ei",
+          "ī"
+        ],
+        [
+          "eu",
+          "ō"
+        ]
+      ]
+    },
+    {
+      "id": "R3",
+      "era": 2,
+      "kind": "vowel",
+      "name_tr": "Uzun ē yükselir",
+      "note_tr": "ē → ī",
+      "subs": [
+        [
+          "ē",
+          "ī"
+        ]
+      ]
+    },
+    {
+      "id": "R4",
+      "era": 2,
+      "kind": "vowel",
+      "name_tr": "Uzun ā öne kayar",
+      "note_tr": "ā → ē",
+      "subs": [
+        [
+          "ā",
+          "ē"
+        ]
+      ]
+    },
+    {
+      "id": "R5",
+      "era": 3,
+      "kind": "consonant",
+      "name_tr": "Sondaki s ve m düşer",
+      "note_tr": "-s, -m → ∅ (kelime sonunda)",
+      "subs": [
+        [
+          "[sm]$",
+          ""
+        ]
+      ]
+    },
+    {
+      "id": "R6",
+      "era": 3,
+      "kind": "consonant",
+      "name_tr": "Damaklaşma",
+      "note_tr": "kh → ş, k → ç, g → c (e, i önünde)",
+      "subs": [
+        [
+          "kh(?={FRONT})",
+          "ş"
+        ],
+        [
+          "k(?={FRONT})",
+          "ç"
+        ],
+        [
+          "g(?={FRONT})",
+          "c"
+        ]
+      ]
+    },
+    {
+      "id": "R7",
+      "era": 4,
+      "kind": "consonant",
+      "name_tr": "Sürtünmeliler",
+      "note_tr": "ph → f, th → t",
+      "subs": [
+        [
+          "ph",
+          "f"
+        ],
+        [
+          "th",
+          "t"
+        ]
+      ]
+    },
+    {
+      "id": "R8",
+      "era": 4,
+      "kind": "vowel",
+      "name_tr": "Son ünlü düşer",
+      "note_tr": "-o, -e → ∅ (tek ünsüzden sonra, kelime sonunda)",
+      "subs": [
+        [
+          "(?<={V}[^aeiouāēīōū])[oe]$",
+          ""
+        ]
+      ]
+    }
+  ]
+}
