@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "notes": "Patterns are Python/GDScript-compatible regexes applied left to right on the whole word. V = vowel class. Order in this file is the canonical (correct) order.",
+  "notes": "Patterns are Python/GDScript-compatible regexes applied left to right on the whole word. V = vowel class. Order in this file is the canonical (correct) order. Verbs (-eti) are intentionally untouched by all rules: the deed stays readable, the doer is lost. Era-3 Institute anomaly: one word keeps 'kw' (see narrative doc).",
   "classes": {
     "V": "[aeiouāēīōū]",
     "FRONT": "[eiēī]"
@@ -109,7 +109,7 @@
       "era": 4,
       "kind": "consonant",
       "name_tr": "Sürtünmeliler",
-      "note_tr": "ph → f, th → t",
+      "note_tr": "ph → f, th → t, kw → p",
       "subs": [
         [
           "ph",
@@ -118,6 +118,10 @@
         [
           "th",
           "t"
+        ],
+        [
+          "kw",
+          "p"
         ]
       ]
     },

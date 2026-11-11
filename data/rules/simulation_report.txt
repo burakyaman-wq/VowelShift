@@ -4,7 +4,7 @@ bhāgos        phāgos        phēgos        phēgo         fēg
 ghrebheti     khrepheti     khrepheti     khrepheti     khrefeti    
 legeti        legeti        legeti        leceti        leceti      
 leukos        lōkos         lōkos         lōko          lōk         
-wōkwos        wōkwos        wōkwos        wōkwo         wōkwo       
+wōkwos        wōkwos        wōkwos        wōkwo         wōp         
 enōmos        enōmos        enōmos        enōmo         enōm        
 weideti       wīdeti        wīdeti        wīdeti        wīdeti      
 ghrobhos      khrophos      khrophos      khropho       khrof       
@@ -13,7 +13,7 @@ domos         domos         domos         domo          dom
 akmos         akmos         akmos         akmo          akmo        
 dōneti        dōneti        dōneti        dōneti        dōneti      
 emeti         emeti         emeti         emeti         emeti       
-pekwos        pekwos        pekwos        pekwo         pekwo       
+pekwos        pekwos        pekwos        pekwo         pep         
 argos         argos         argos         argo          argo        
 dhētos        thētos        thītos        thīto         tīt         
 rēgos         rēgos         rīgos         rīgo          rīg         
@@ -33,7 +33,7 @@ patēros       patēros       patīros       patīro        patīr
 bhrātēros     phrātēros     phrētīros     phrētīro      frētīr      
 ghesros       khesros       khesros       şesro         şesro       
 kerdos        kerdos        kerdos        çerdo         çerdo       
-okwos         okwos         okwos         okwo          okwo        
+okwos         okwos         okwos         okwo          op          
 deiwos        dīwos         dīwos         dīwo          dīw         
 mereti        mereti        mereti        mereti        mereti      
 bhāneti       phāneti       phēneti       phēneti       fēneti      
@@ -72,4 +72,4 @@ Kerdāgros     Kerdāgros     Kerdēgros     Çerdēgro      Çerdēgro
 - Mīr: Meiros:nom_sg, Meiros:acc_sg, Meiros:nom_pl, Meiros:acc_pl, Mēros:nom_sg, Mēros:acc_sg, Mēros:nom_pl, Mēros:acc_pl
 - Mīresyo: Meiros:gen_pl, Mēros:gen_pl
 - Mīrosyo: Meiros:gen_sg, Mēros:gen_sg
-Çağ 4: aynı kelimenin hâl/sayı ayrımı kayboldu: 48 biçim
+Çağ 4: aynı kelimenin hâl/sayı ayrımı kayboldu: 45 biçim
