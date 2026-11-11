@@ -1,0 +1,649 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "id": 1,
+      "root": "melnos",
+      "stem": "meln",
+      "meaning_tr": "mürekkep (kara)",
+      "pos": "noun",
+      "domain": "scriptorium",
+      "etymon": "*mel-n- kara",
+      "forms": {
+        "nom_sg": "melnos",
+        "acc_sg": "melnom",
+        "gen_sg": "melnosyo",
+        "nom_pl": "melnes",
+        "acc_pl": "melnem",
+        "gen_pl": "melnesyo"
+      }
+    },
+    {
+      "id": 2,
+      "root": "kolmos",
+      "stem": "kolm",
+      "meaning_tr": "kamış kalem",
+      "pos": "noun",
+      "domain": "scriptorium",
+      "etymon": "*kolH-m- sap",
+      "forms": {
+        "nom_sg": "kolmos",
+        "acc_sg": "kolmom",
+        "gen_sg": "kolmosyo",
+        "nom_pl": "kolmes",
+        "acc_pl": "kolmem",
+        "gen_pl": "kolmesyo"
+      }
+    },
+    {
+      "id": 3,
+      "root": "bhāgos",
+      "stem": "bhāg",
+      "meaning_tr": "kitap (kayın tahtası)",
+      "pos": "noun",
+      "domain": "scriptorium",
+      "etymon": "*bʰeh₂ǵos kayın",
+      "forms": {
+        "nom_sg": "bhāgos",
+        "acc_sg": "bhāgom",
+        "gen_sg": "bhāgosyo",
+        "nom_pl": "bhāges",
+        "acc_pl": "bhāgem",
+        "gen_pl": "bhāgesyo"
+      }
+    },
+    {
+      "id": 4,
+      "root": "ghrebheti",
+      "stem": "ghrebh",
+      "meaning_tr": "yazar (kazır)",
+      "pos": "verb",
+      "domain": "scriptorium",
+      "etymon": "*gʰrebʰ- kazımak",
+      "forms": {
+        "3sg": "ghrebheti",
+        "imp": "ghrebhe"
+      }
+    },
+    {
+      "id": 5,
+      "root": "legeti",
+      "stem": "leg",
+      "meaning_tr": "okur (toplar)",
+      "pos": "verb",
+      "domain": "scriptorium",
+      "etymon": "*leǵ- toplamak",
+      "forms": {
+        "3sg": "legeti",
+        "imp": "lege"
+      }
+    },
+    {
+      "id": 6,
+      "root": "leukos",
+      "stem": "leuk",
+      "meaning_tr": "ışık, kandil",
+      "pos": "noun",
+      "domain": "scriptorium",
+      "etymon": "*lewk- parlamak",
+      "forms": {
+        "nom_sg": "leukos",
+        "acc_sg": "leukom",
+        "gen_sg": "leukosyo",
+        "nom_pl": "leukes",
+        "acc_pl": "leukem",
+        "gen_pl": "leukesyo"
+      }
+    },
+    {
+      "id": 7,
+      "root": "wōkwos",
+      "stem": "wōkw",
+      "meaning_tr": "söz, ses",
+      "pos": "noun",
+      "domain": "scriptorium",
+      "etymon": "*wekʷ- söylemek",
+      "forms": {
+        "nom_sg": "wōkwos",
+        "acc_sg": "wōkwom",
+        "gen_sg": "wōkwosyo",
+        "nom_pl": "wōkwes",
+        "acc_pl": "wōkwem",
+        "gen_pl": "wōkwesyo"
+      }
+    },
+    {
+      "id": 8,
+      "root": "enōmos",
+      "stem": "enōm",
+      "meaning_tr": "ad",
+      "pos": "noun",
+      "domain": "scriptorium",
+      "etymon": "*h₁nómn̥ ad",
+      "forms": {
+        "nom_sg": "enōmos",
+        "acc_sg": "enōmom",
+        "gen_sg": "enōmosyo",
+        "nom_pl": "enōmes",
+        "acc_pl": "enōmem",
+        "gen_pl": "enōmesyo"
+      }
+    },
+    {
+      "id": 9,
+      "root": "weideti",
+      "stem": "weid",
+      "meaning_tr": "bilir, görür",
+      "pos": "verb",
+      "domain": "scriptorium",
+      "etymon": "*weyd- görmek",
+      "forms": {
+        "3sg": "weideti",
+        "imp": "weide"
+      }
+    },
+    {
+      "id": 10,
+      "root": "ghrobhos",
+      "stem": "ghrobh",
+      "meaning_tr": "kâtip",
+      "pos": "noun",
+      "domain": "scriptorium",
+      "etymon": "*gʰrebʰ- (ablaut)",
+      "forms": {
+        "nom_sg": "ghrobhos",
+        "acc_sg": "ghrobhom",
+        "gen_sg": "ghrobhosyo",
+        "nom_pl": "ghrobhes",
+        "acc_pl": "ghrobhem",
+        "gen_pl": "ghrobhesyo"
+      }
+    },
+    {
+      "id": 11,
+      "root": "āgros",
+      "stem": "āgr",
+      "meaning_tr": "tarla",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "*h₂éǵros tarla",
+      "forms": {
+        "nom_sg": "āgros",
+        "acc_sg": "āgrom",
+        "gen_sg": "āgrosyo",
+        "nom_pl": "āgres",
+        "acc_pl": "āgrem",
+        "gen_pl": "āgresyo"
+      }
+    },
+    {
+      "id": 12,
+      "root": "domos",
+      "stem": "dom",
+      "meaning_tr": "ev",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "*dṓm ev",
+      "forms": {
+        "nom_sg": "domos",
+        "acc_sg": "domom",
+        "gen_sg": "domosyo",
+        "nom_pl": "domes",
+        "acc_pl": "domem",
+        "gen_pl": "domesyo"
+      }
+    },
+    {
+      "id": 13,
+      "root": "akmos",
+      "stem": "akm",
+      "meaning_tr": "sınır taşı",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "*h₂eḱmō taş",
+      "forms": {
+        "nom_sg": "akmos",
+        "acc_sg": "akmom",
+        "gen_sg": "akmosyo",
+        "nom_pl": "akmes",
+        "acc_pl": "akmem",
+        "gen_pl": "akmesyo"
+      }
+    },
+    {
+      "id": 14,
+      "root": "dōneti",
+      "stem": "dōn",
+      "meaning_tr": "verir",
+      "pos": "verb",
+      "domain": "property",
+      "etymon": "*deh₃- vermek",
+      "forms": {
+        "3sg": "dōneti",
+        "imp": "dōne"
+      }
+    },
+    {
+      "id": 15,
+      "root": "emeti",
+      "stem": "em",
+      "meaning_tr": "alır",
+      "pos": "verb",
+      "domain": "property",
+      "etymon": "*h₁em- almak",
+      "forms": {
+        "3sg": "emeti",
+        "imp": "eme"
+      }
+    },
+    {
+      "id": 16,
+      "root": "pekwos",
+      "stem": "pekw",
+      "meaning_tr": "sürü, servet",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "*péḱu sürü",
+      "forms": {
+        "nom_sg": "pekwos",
+        "acc_sg": "pekwom",
+        "gen_sg": "pekwosyo",
+        "nom_pl": "pekwes",
+        "acc_pl": "pekwem",
+        "gen_pl": "pekwesyo"
+      }
+    },
+    {
+      "id": 17,
+      "root": "argos",
+      "stem": "arg",
+      "meaning_tr": "gümüş",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "*h₂erǵ- parlak",
+      "forms": {
+        "nom_sg": "argos",
+        "acc_sg": "argom",
+        "gen_sg": "argosyo",
+        "nom_pl": "arges",
+        "acc_pl": "argem",
+        "gen_pl": "argesyo"
+      }
+    },
+    {
+      "id": 18,
+      "root": "dhētos",
+      "stem": "dhēt",
+      "meaning_tr": "borç",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "*dʰeh₁- koymak",
+      "forms": {
+        "nom_sg": "dhētos",
+        "acc_sg": "dhētom",
+        "gen_sg": "dhētosyo",
+        "nom_pl": "dhētes",
+        "acc_pl": "dhētem",
+        "gen_pl": "dhētesyo"
+      }
+    },
+    {
+      "id": 19,
+      "root": "rēgos",
+      "stem": "rēg",
+      "meaning_tr": "bey, kral",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "*h₃rḗǵs yöneten",
+      "forms": {
+        "nom_sg": "rēgos",
+        "acc_sg": "rēgom",
+        "gen_sg": "rēgosyo",
+        "nom_pl": "rēges",
+        "acc_pl": "rēgem",
+        "gen_pl": "rēgesyo"
+      }
+    },
+    {
+      "id": 20,
+      "root": "mētos",
+      "stem": "mēt",
+      "meaning_tr": "ölçü",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "*meh₁- ölçmek",
+      "forms": {
+        "nom_sg": "mētos",
+        "acc_sg": "mētom",
+        "gen_sg": "mētosyo",
+        "nom_pl": "mētes",
+        "acc_pl": "mētem",
+        "gen_pl": "mētesyo"
+      }
+    },
+    {
+      "id": 21,
+      "root": "wedos",
+      "stem": "wed",
+      "meaning_tr": "su",
+      "pos": "noun",
+      "domain": "nature",
+      "etymon": "*wédōr su",
+      "forms": {
+        "nom_sg": "wedos",
+        "acc_sg": "wedom",
+        "gen_sg": "wedosyo",
+        "nom_pl": "wedes",
+        "acc_pl": "wedem",
+        "gen_pl": "wedesyo"
+      }
+    },
+    {
+      "id": 22,
+      "root": "agnos",
+      "stem": "agn",
+      "meaning_tr": "ateş",
+      "pos": "noun",
+      "domain": "nature",
+      "etymon": "*h₁n̥gʷnis ateş",
+      "forms": {
+        "nom_sg": "agnos",
+        "acc_sg": "agnom",
+        "gen_sg": "agnosyo",
+        "nom_pl": "agnes",
+        "acc_pl": "agnem",
+        "gen_pl": "agnesyo"
+      }
+    },
+    {
+      "id": 23,
+      "root": "dhūmos",
+      "stem": "dhūm",
+      "meaning_tr": "duman",
+      "pos": "noun",
+      "domain": "nature",
+      "etymon": "*dʰuh₂mós duman",
+      "forms": {
+        "nom_sg": "dhūmos",
+        "acc_sg": "dhūmom",
+        "gen_sg": "dhūmosyo",
+        "nom_pl": "dhūmes",
+        "acc_pl": "dhūmem",
+        "gen_pl": "dhūmesyo"
+      }
+    },
+    {
+      "id": 24,
+      "root": "grānos",
+      "stem": "grān",
+      "meaning_tr": "tahıl, buğday",
+      "pos": "noun",
+      "domain": "nature",
+      "etymon": "*ǵr̥h₂nóm tane",
+      "forms": {
+        "nom_sg": "grānos",
+        "acc_sg": "grānom",
+        "gen_sg": "grānosyo",
+        "nom_pl": "grānes",
+        "acc_pl": "grānem",
+        "gen_pl": "grānesyo"
+      }
+    },
+    {
+      "id": 25,
+      "root": "peistos",
+      "stem": "peist",
+      "meaning_tr": "ekmek",
+      "pos": "noun",
+      "domain": "nature",
+      "etymon": "*peys- dövmek",
+      "forms": {
+        "nom_sg": "peistos",
+        "acc_sg": "peistom",
+        "gen_sg": "peistosyo",
+        "nom_pl": "peistes",
+        "acc_pl": "peistem",
+        "gen_pl": "peistesyo"
+      }
+    },
+    {
+      "id": 26,
+      "root": "melitos",
+      "stem": "melit",
+      "meaning_tr": "bal",
+      "pos": "noun",
+      "domain": "nature",
+      "etymon": "*mélit bal",
+      "forms": {
+        "nom_sg": "melitos",
+        "acc_sg": "melitom",
+        "gen_sg": "melitosyo",
+        "nom_pl": "melites",
+        "acc_pl": "melitem",
+        "gen_pl": "melitesyo"
+      }
+    },
+    {
+      "id": 27,
+      "root": "salos",
+      "stem": "sal",
+      "meaning_tr": "tuz",
+      "pos": "noun",
+      "domain": "nature",
+      "etymon": "*seh₂l- tuz",
+      "forms": {
+        "nom_sg": "salos",
+        "acc_sg": "salom",
+        "gen_sg": "salosyo",
+        "nom_pl": "sales",
+        "acc_pl": "salem",
+        "gen_pl": "salesyo"
+      }
+    },
+    {
+      "id": 28,
+      "root": "edeti",
+      "stem": "ed",
+      "meaning_tr": "yer",
+      "pos": "verb",
+      "domain": "nature",
+      "etymon": "*h₁ed- yemek",
+      "forms": {
+        "3sg": "edeti",
+        "imp": "ede"
+      }
+    },
+    {
+      "id": 29,
+      "root": "pibeti",
+      "stem": "pib",
+      "meaning_tr": "içer",
+      "pos": "verb",
+      "domain": "nature",
+      "etymon": "*pi-ph₃- içmek",
+      "forms": {
+        "3sg": "pibeti",
+        "imp": "pibe"
+      }
+    },
+    {
+      "id": 30,
+      "root": "sāwelos",
+      "stem": "sāwel",
+      "meaning_tr": "güneş",
+      "pos": "noun",
+      "domain": "nature",
+      "etymon": "*sóh₂wl̥ güneş",
+      "forms": {
+        "nom_sg": "sāwelos",
+        "acc_sg": "sāwelom",
+        "gen_sg": "sāwelosyo",
+        "nom_pl": "sāweles",
+        "acc_pl": "sāwelem",
+        "gen_pl": "sāwelesyo"
+      }
+    },
+    {
+      "id": 31,
+      "root": "mātēros",
+      "stem": "mātēr",
+      "meaning_tr": "anne",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*meh₂tḗr anne",
+      "forms": {
+        "nom_sg": "mātēros",
+        "acc_sg": "mātērom",
+        "gen_sg": "mātērosyo",
+        "nom_pl": "mātēres",
+        "acc_pl": "mātērem",
+        "gen_pl": "mātēresyo"
+      }
+    },
+    {
+      "id": 32,
+      "root": "patēros",
+      "stem": "patēr",
+      "meaning_tr": "baba",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*ph₂tḗr baba",
+      "forms": {
+        "nom_sg": "patēros",
+        "acc_sg": "patērom",
+        "gen_sg": "patērosyo",
+        "nom_pl": "patēres",
+        "acc_pl": "patērem",
+        "gen_pl": "patēresyo"
+      }
+    },
+    {
+      "id": 33,
+      "root": "bhrātēros",
+      "stem": "bhrātēr",
+      "meaning_tr": "kardeş",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*bʰréh₂tēr kardeş",
+      "forms": {
+        "nom_sg": "bhrātēros",
+        "acc_sg": "bhrātērom",
+        "gen_sg": "bhrātērosyo",
+        "nom_pl": "bhrātēres",
+        "acc_pl": "bhrātērem",
+        "gen_pl": "bhrātēresyo"
+      }
+    },
+    {
+      "id": 34,
+      "root": "ghesros",
+      "stem": "ghesr",
+      "meaning_tr": "el",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*ǵʰésr̥ el",
+      "forms": {
+        "nom_sg": "ghesros",
+        "acc_sg": "ghesrom",
+        "gen_sg": "ghesrosyo",
+        "nom_pl": "ghesres",
+        "acc_pl": "ghesrem",
+        "gen_pl": "ghesresyo"
+      }
+    },
+    {
+      "id": 35,
+      "root": "kerdos",
+      "stem": "kerd",
+      "meaning_tr": "yürek",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*ḱḗr yürek",
+      "forms": {
+        "nom_sg": "kerdos",
+        "acc_sg": "kerdom",
+        "gen_sg": "kerdosyo",
+        "nom_pl": "kerdes",
+        "acc_pl": "kerdem",
+        "gen_pl": "kerdesyo"
+      }
+    },
+    {
+      "id": 36,
+      "root": "okwos",
+      "stem": "okw",
+      "meaning_tr": "göz",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*h₃ekʷ- görmek",
+      "forms": {
+        "nom_sg": "okwos",
+        "acc_sg": "okwom",
+        "gen_sg": "okwosyo",
+        "nom_pl": "okwes",
+        "acc_pl": "okwem",
+        "gen_pl": "okwesyo"
+      }
+    },
+    {
+      "id": 37,
+      "root": "deiwos",
+      "stem": "deiw",
+      "meaning_tr": "tanrı",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*deywós göksel",
+      "forms": {
+        "nom_sg": "deiwos",
+        "acc_sg": "deiwom",
+        "gen_sg": "deiwosyo",
+        "nom_pl": "deiwes",
+        "acc_pl": "deiwem",
+        "gen_pl": "deiwesyo"
+      }
+    },
+    {
+      "id": 38,
+      "root": "mereti",
+      "stem": "mer",
+      "meaning_tr": "ölür",
+      "pos": "verb",
+      "domain": "kin_body_faith",
+      "etymon": "*mer- ölmek",
+      "forms": {
+        "3sg": "mereti",
+        "imp": "mere"
+      }
+    },
+    {
+      "id": 39,
+      "root": "bhāneti",
+      "stem": "bhān",
+      "meaning_tr": "bildirir (kehanet)",
+      "pos": "verb",
+      "domain": "kin_body_faith",
+      "etymon": "*bʰeh₂- söylemek",
+      "forms": {
+        "3sg": "bhāneti",
+        "imp": "bhāne"
+      }
+    },
+    {
+      "id": 40,
+      "root": "ghewos",
+      "stem": "ghew",
+      "meaning_tr": "adak, sunu",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*ǵʰew- dökmek",
+      "forms": {
+        "nom_sg": "ghewos",
+        "acc_sg": "ghewom",
+        "gen_sg": "ghewosyo",
+        "nom_pl": "ghewes",
+        "acc_pl": "ghewem",
+        "gen_pl": "ghewesyo"
+      }
+    }
+  ]
+}

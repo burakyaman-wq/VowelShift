@@ -1,0 +1,13 @@
+40 words -> data/words/words.json
+
+Identical forms already in era 0: 0
+
+Stems one sound apart (likely to merge after a shift):
+  bhāgos ~ bhāneti
+  ghrebheti ~ ghrobhos
+  weideti ~ wedos
+  emeti ~ edeti
+  dhētos ~ mētos
+  wedos ~ edeti
+
+Sound inventory (26): a b bh d dh e g gh i k kw l m n o p r s t u w y ā ē ō ū
