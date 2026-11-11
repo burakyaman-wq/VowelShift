@@ -21,8 +21,9 @@ içinde; bu dosya neyin bittiğini ve neyin kaldığını tutar.
 - **Karar: belge bir önceki çağın ekolünde.** Beğenmezsen `Art.document_era` tek satır.
 - **Hareket ve ince işler.** Mürekkebin yazılışı, mühür basılması, pusulanın girişi; yalnız zamanlama ve görsel.
 - **IV. çağ oyunda henüz yok** (dilimde belgeler I, II, II, III. çağda). Sprite'lar hazır; `era_look = 4` ile görülür.
-- **Web export boyutu.** Dört plaka ve okuma sayfaları büyük; itch.io taslağında yükleme süresine bakılacak.
-- **Kapak.** `style/dort_cag.png` itch.io kapağının temeli olabilir.
+- **itch.io gizli taslağı.** Web build alındı ve başsız Chrome'da denendi (`tools/web_build.sh`,
+  `tests/web_smoke.js`): 15,5 MB zip, motor yerelde 3 saniyede açılıyor. Yüklemeyi Burak yapacak.
+- **Kapak.** Taslak hazır: `style/kapak.png` (1260×1000) ve `kapak_630.png`; `tools/art/kapak.py` üretir.
 
 ## Komutlar
 
