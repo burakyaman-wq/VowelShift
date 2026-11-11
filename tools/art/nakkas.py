@@ -118,8 +118,8 @@ def lobed(cx, cy, r, lobes, depth=0.14, n=None, phase=0.0, point=0.0):
 
 
 # ---------------------------------------------------------------- display list
-def el(tag, role, fill=None, stroke=None, sw=0.0, cap="round", **attrs):
-    return {"tag": tag, "role": role, "fill": fill, "stroke": stroke, "sw": sw, "cap": cap, "a": attrs}
+def el(tag, role, fill=None, stroke=None, sw=0.0, cap="round", join="round", **attrs):
+    return {"tag": tag, "role": role, "fill": fill, "stroke": stroke, "sw": sw, "cap": cap, "join": join, "a": attrs}
 
 
 def G(gid, items, t=""):
@@ -153,8 +153,8 @@ def holed(outer, holes, color, line=LINE, lc=None):
     return out
 
 
-def stroke(pts, w=LINE, color=None, role="ink", closed=False, cap="round"):
-    return [el("path", role, stroke=color or INK, sw=w, cap=cap, d=d_of(pts, closed))]
+def stroke(pts, w=LINE, color=None, role="ink", closed=False, cap="round", join="round"):
+    return [el("path", role, stroke=color or INK, sw=w, cap=cap, join=join, d=d_of(pts, closed))]
 
 
 def brush(pts, w, color=None, taper=(0.35, 0.35), role="ink", wmin=0.12, breath=0.0, seed=0):
@@ -193,18 +193,18 @@ def rrect(x, y, w, h, color, line=LINE, r=0.0, lc=None, role="paint"):
     return out
 
 
-def _emit(items, mode):
+def _emit(items, mode, ls=1.0):
     out = []
     for it in items:
         if it is None:
             continue
         if isinstance(it, (list, tuple)):
-            out.append(_emit(it, mode))
+            out.append(_emit(it, mode, ls))
             continue
         if "g" in it:
             gid = f' id="{it["g"]}"' if it["g"] and mode == "all" else ""
             t = f' transform="{it["t"]}"' if it["t"] else ""
-            out.append(f"<g{gid}{t}>{_emit(it['items'], mode)}</g>")
+            out.append(f"<g{gid}{t}>{_emit(it['items'], mode, ls)}</g>")
             continue
         role, fl, st = it["role"], it["fill"], it["stroke"]
         if mode == "paint" and role != "paint":
@@ -216,22 +216,23 @@ def _emit(items, mode):
                 fl, st = ("#000" if fl else None), ("#000" if st else None)
         att = "".join(f' {k}="{v}"' for k, v in it["a"].items()) + f' fill="{fl or "none"}"'
         if st:
-            att += f' stroke="{st}" stroke-width="{it["sw"]:.2f}" stroke-linejoin="round" stroke-linecap="{it["cap"]}"'
+            sw = it["sw"] * (ls if role == "ink" else 1.0)
+            att += f' stroke="{st}" stroke-width="{sw:.2f}" stroke-linejoin="{it["join"]}" stroke-linecap="{it["cap"]}"'
         out.append(f'<{it["tag"]}{att}/>')
     return "".join(out)
 
 
-def svg(items, w, h, pad=0, mode="all", scale=1):
+def svg(items, w, h, pad=0, mode="all", scale=1, ls=1.0):
     vb = (-pad, -pad, w + 2 * pad, h + 2 * pad)
     bg = "" if mode in ("all", "paint") else f'<rect x="{vb[0]}" y="{vb[1]}" width="{vb[2]}" height="{vb[3]}" fill="#fff"/>'
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{vb[2] * scale}" height="{vb[3] * scale}" '
-            f'viewBox="{vb[0]} {vb[1]} {vb[2]} {vb[3]}">{bg}{_emit(items, mode)}</svg>')
+            f'viewBox="{vb[0]} {vb[1]} {vb[2]} {vb[3]}">{bg}{_emit(items, mode, ls)}</svg>')
 
 
-def _raster(items, w, h, pad, mode, scale):
+def _raster(items, w, h, pad, mode, scale, ls=1.0):
     with tempfile.TemporaryDirectory() as tmp:
         src, dst = Path(tmp) / "a.svg", Path(tmp) / "a.png"
-        src.write_text(svg(items, w, h, pad, mode, scale))
+        src.write_text(svg(items, w, h, pad, mode, scale, ls))
         subprocess.run(["rsvg-convert", "-o", str(dst), str(src)], check=True)
         return np.asarray(Image.open(dst).convert("RGBA")).astype(np.float32) / 255.0
 
@@ -261,9 +262,17 @@ def streaks(h, w, across, along, seed, angle=0.0):
 
 
 # ---------------------------------------------------------------- the painting
-def pigment(paint, inkc, inka, S=2, seed=1, wobble=1.0, age=0.0, stamp=0.0):
+def pigment(paint, inkc, inka, S=2, seed=1, wobble=1.0, age=0.0, stamp=0.0, slip=1.0, spill=0.0, breathe=1.0, grain=1.0):
     """Lay the colour and draw the line. Arrays are at S times the final size:
-    paint RGBA, the ink colour render and the ink coverage render."""
+    paint RGBA, the ink colour render and the ink coverage render.
+
+    wobble   the tremor of the hand, shared by paint and line
+    slip     how far the line misses the paint it outlines
+    spill    how far the paint wanders on its own (a hurried or unsure hand)
+    breathe  how much the line swells and thins
+    grain    how coarse the pigment and the wash are
+    age      toning and foxing of paper toward its edges
+    stamp    for a seal: how much of the ink fails to print"""
     H, W = inka.shape[:2]
     a = paint[..., 3]
     pm = paint[..., :3] * a[..., None]
@@ -275,10 +284,12 @@ def pigment(paint, inkc, inka, S=2, seed=1, wobble=1.0, age=0.0, stamp=0.0):
         dx = (field(H, W, 30 * S, seed + 1) * 0.85 + field(H, W, 7 * S, seed + 2) * 0.28) * S * wobble
         dy = (field(H, W, 30 * S, seed + 3) * 0.85 + field(H, W, 7 * S, seed + 4) * 0.28) * S * wobble
         co = [yy + dy, xx + dx]
-        pm = np.stack([ndi.map_coordinates(pm[..., i], co, order=1, mode="nearest") for i in range(3)], -1)
-        a = ndi.map_coordinates(a, co, order=1, mode="nearest")
+        pc = co if spill <= 0 else [co[0] + field(H, W, 16 * S, seed + 7) * spill * S, co[1] + field(H, W, 16 * S, seed + 8) * spill * S]
+        pm = np.stack([ndi.map_coordinates(pm[..., i], pc, order=1, mode="nearest") for i in range(3)], -1)
+        a = ndi.map_coordinates(a, pc, order=1, mode="nearest")
         # the line is drawn afterwards and does not sit exactly on the paint
-        co = [co[0] + field(H, W, 70 * S, seed + 5) * 0.3 * S * wobble, co[1] + field(H, W, 70 * S, seed + 6) * 0.3 * S * wobble]
+        k = 0.3 * S * wobble * slip
+        co = [co[0] + field(H, W, 70 * S, seed + 5) * k, co[1] + field(H, W, 70 * S, seed + 6) * k]
         ipm = np.stack([ndi.map_coordinates(ipm[..., i], co, order=1, mode="nearest") for i in range(3)], -1)
         ia = ndi.map_coordinates(ia, co, order=1, mode="nearest")
         del yy, xx, co
@@ -311,12 +322,11 @@ def pigment(paint, inkc, inka, S=2, seed=1, wobble=1.0, age=0.0, stamp=0.0):
     blot = field(H, W, 24 * S, seed + 12)
     big = field(H, W, 110 * S, seed + 13)
     drag = streaks(H, W, 1.1 * S, 34 * S, seed + 14)
-    tex = (1
-           + w_blue * (0.050 * fine + 0.045 * mid + 0.045 * blot + 0.030 * big + 0.02 * drag - 0.17 * pool)
+    tex = (w_blue * (0.050 * fine + 0.045 * mid + 0.045 * blot + 0.030 * big + 0.02 * drag - 0.17 * pool)
            + w_red * (0.018 * fine + 0.026 * mid + 0.032 * blot + 0.022 * big + 0.025 * drag - 0.13 * pool)
            + w_dark * (0.028 * fine + 0.034 * mid + 0.045 * blot + 0.035 * big + 0.045 * drag - 0.14 * pool)
            + w_paper * (0.008 * fine + 0.009 * mid + 0.009 * blot + 0.012 * big - 0.028 * pool))
-    tex = np.clip(tex, 0.62, 1.22)
+    tex = np.clip(1 + grain * tex, 0.6, 1.25)
     rgb = rgb * tex[..., None]
     # ground lapis is never even: pale crystals catch
     fleck = np.clip(fine - 1.7, 0, 1.5) * w_blue * 0.07
@@ -331,7 +341,7 @@ def pigment(paint, inkc, inka, S=2, seed=1, wobble=1.0, age=0.0, stamp=0.0):
     rgb = np.clip(rgb, 0, 1)
 
     # the line: a reed that swells and thins, an ink that is not everywhere black
-    breath = np.clip(field(H, W, 45 * S, seed + 20) * 0.55, -1, 1) * 0.85
+    breath = np.clip(field(H, W, 45 * S, seed + 20) * 0.55 * breathe, -1, 1) * 0.85
     wide, thin = ndi.grey_dilation(ia, size=S + 1), ndi.grey_erosion(ia, size=S + 1)
     line = np.where(breath > 0, ia + (wide - ia) * breath, ia + (thin - ia) * -breath)
     line = 0.82 * line + 0.18 * ndi.gaussian_filter(line, 0.55 * S)
@@ -357,13 +367,17 @@ def pigment(paint, inkc, inka, S=2, seed=1, wobble=1.0, age=0.0, stamp=0.0):
     return np.clip(out, 0, 1)
 
 
-def paint_png(items, w, h, path, pad=0, S=2, seed=1, wobble=1.0, age=0.0, stamp=0.0, src=None):
-    """Draw a display list as a painted PNG; optionally keep its layered SVG."""
+def paint_png(items, w, h, path, pad=0, S=2, seed=1, src=None, line=1.0, post=None, **how):
+    """Draw a display list as a painted PNG; optionally keep its layered SVG.
+    `line` scales every ink line; `how` goes to pigment(); `post` may rework
+    the finished RGBA array (shadows, light)."""
     if src:
         Path(src).parent.mkdir(parents=True, exist_ok=True)
-        Path(src).write_text(svg(items, w, h, pad))
-    layers = [_raster(items, w, h, pad, mode, S) for mode in ("paint", "inkc", "inka")]
-    out = pigment(*layers, S=S, seed=seed, wobble=wobble, age=age, stamp=stamp)
+        Path(src).write_text(svg(items, w, h, pad, ls=line))
+    layers = [_raster(items, w, h, pad, mode, S, line) for mode in ("paint", "inkc", "inka")]
+    out = pigment(*layers, S=S, seed=seed, **how)
+    if post:
+        out = post(out)
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     Image.fromarray((out * 255 + 0.5).astype(np.uint8), "RGBA").save(path)
     return out

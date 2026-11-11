@@ -2,13 +2,13 @@ class_name RuleTray
 extends Control
 ## The wooden rule tray: five slots, applied left to right.
 
-const SPRITES := "res://assets/art/sprites/"
 const SLOTS := 5
 const SLOT_W := 162.0
 const SLOT_H := 212.0
 const PAD := 8.0
 
 var model := TrayModel.new(SLOTS)
+var era := 2                # set before the tray enters the tree
 
 
 func _ready() -> void:
@@ -16,7 +16,7 @@ func _ready() -> void:
 	size = Vector2(SLOTS * SLOT_W + 24, SLOT_H + 24)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var bg := TextureRect.new()
-	bg.texture = load(SPRITES + "tepsi.png")
+	bg.texture = Art.tex("tepsi.png", era)
 	bg.position = Vector2(-PAD, -PAD)
 	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(bg)

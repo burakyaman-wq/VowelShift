@@ -8,11 +8,9 @@ extends Control
 signal picked(tile: RuleTile)
 signal dropped(tile: RuleTile)
 
-const SPRITES := "res://assets/art/sprites/"
 const SIZE := Vector2(150, 200)
 const PAD := 8.0
 const INK := Color("2a1b14")
-const LAPIS_DK := Color("1e3171")
 const STEPS := 4.0
 
 var rule_id := ""
@@ -25,7 +23,10 @@ var _lines: Array[Label] = []
 var _font: Font
 
 
-func setup(rule: SoundRule, proven_idx: Array, font: Font) -> void:
+## `desk_era` is the era of the desk the tile lies on: it decides the hover
+## mark and whether the tile casts a shadow. The tile itself keeps the look
+## of the era that found its rule.
+func setup(rule: SoundRule, proven_idx: Array, font: Font, desk_era: int = 2) -> void:
 	rule_id = rule.id
 	_font = font
 	name = "Karo_" + rule.id
@@ -34,9 +35,12 @@ func setup(rule: SoundRule, proven_idx: Array, font: Font) -> void:
 	pivot_offset = SIZE / 2
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	_add_texture("karo_cerceve.png")
-	_add_texture("picto_%s.png" % rule.id)
-	var title := _label(_two_lines(rule.name_tr, 15, SIZE.x - 54), 15, LAPIS_DK)
+	var frame := Art.tex("karo_cerceve.png", rule.era)
+	if Art.casts_shadow(desk_era):
+		add_child(Art.shadow_of(frame, Vector2(-PAD, -PAD)))
+	_add_texture(frame)
+	_add_texture(Art.tex("picto_%s.png" % rule.id))
+	var title := _label(_two_lines(rule.name_tr, 15, SIZE.x - 54), 15, Art.TILE_INK.get(rule.era, Art.TILE_INK[2]))
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_constant_override("line_spacing", -7)
 	title.position = Vector2(14, 14)
@@ -47,7 +51,7 @@ func setup(rule: SoundRule, proven_idx: Array, font: Font) -> void:
 		_lines.append(l)
 	set_proven(RuleText.proven_lines(rule, proven_idx))
 	_hover = TextureRect.new()
-	_hover.texture = load(SPRITES + "durak.png")
+	_hover.texture = Art.tex("durak.png", desk_era)
 	_hover.position = Vector2(SIZE.x - 10, -18)
 	_hover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_hover.visible = false
@@ -119,9 +123,9 @@ func _two_lines(text: String, font_size: int, width: float) -> String:
 	return text if best < 0 else text.substr(0, best) + "\n" + text.substr(best + 1)
 
 
-func _add_texture(file: String) -> void:
+func _add_texture(texture: Texture2D) -> void:
 	var t := TextureRect.new()
-	t.texture = load(SPRITES + file)
+	t.texture = texture
 	t.position = Vector2(-PAD, -PAD)
 	t.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(t)

@@ -47,6 +47,7 @@ func _one(order: int) -> void:
 	var desk: Node = load("res://scenes/desk.tscn").instantiate()
 	desk.doc_order = order
 	desk.dev_cards = true
+	desk.era_look = int(OS.get_environment("ERA")) if OS.get_environment("ERA") != "" else 0
 	root.add_child(desk)
 	await create_timer(0.3).timeout
 	await _save("belge%d" % order)

@@ -18,7 +18,6 @@ signal copy_changed(text: String)
 signal copy_written(result: Dictionary)
 signal pair_made(result: Dictionary)
 
-const SPRITES := "res://assets/art/sprites/"
 const FONT := preload("res://assets/fonts/Katip-Regular.ttf")
 const INK := Color("2a1b14")
 const RED := Color("b33a29")
@@ -34,6 +33,7 @@ const PER_PAGE := 12
 
 @export var doc_order := 1
 @export var dev_cards := false          # hand over every rule up to the era, for tests
+@export var era_look := 0               # paint the desk as this era whatever the document's; 0 = the document's
 
 var engine: RuleEngine
 var lib: ManuscriptLibrary
@@ -130,7 +130,7 @@ func answer_question(i: int) -> bool:
 	if not state.answer(doc, i):
 		return false
 	_advance = true
-	var stamp := _tex(_slip, "muhur.png", Vector2(300, 74 + i * 32), -10.0)
+	var stamp := _tex(_slip, "muhur.png", Vector2(300, 74 + i * 32), -10.0, false)
 	stamp.scale = Vector2(0.42, 0.42)
 	var tw := create_tween()
 	tw.tween_interval(1.4)
@@ -166,7 +166,7 @@ func open_reading() -> void:
 	page.pivot_offset = page.size / 2
 	page.mouse_filter = Control.MOUSE_FILTER_STOP
 	_reading.add_child(page)
-	_tex(page, "belge_okuma.png", Vector2(-8, -8), 0.0)
+	_tex(page, "belge_okuma.png", Vector2(-8, -8), 0.0, true, Art.document_era(era()))
 	_title(page, Vector2(610, 47), 30)
 	_reading_words = _write_words(page, 1520 - 52 - 200, 120, Vector2(90, 120), 580.0)
 	var tw := create_tween()
@@ -225,9 +225,9 @@ func _node(node_name: String) -> Control:
 
 func _build() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
-	_tex(self, "masa_cag2.png", Vector2.ZERO, 0.0)
+	_tex(self, "masa.png", Vector2.ZERO, 0.0, false)
 
-	var page := _sheet("Belge", "belge_kagit.png", Vector2(610, 150), Vector2(680, 440), -1.2)
+	var page := _sheet("Belge", "belge_kagit.png", Vector2(610, 150), Vector2(680, 440), -1.2, 8.0, Art.document_era(era()))
 	_clickable(page, open_reading, Vector2(664, -12))
 	_title(page, Vector2(190, 47), 28)
 	_write_words(page, 680 - 52 - 110, 64, Vector2(60, 108), 300.0)
@@ -249,7 +249,7 @@ func _build() -> void:
 		ink.add_theme_color_override("default_color", INK)
 		sheet.add_child(ink)
 		_ink_lines.append(ink)
-	_seal = _tex(sheet, "muhur.png", Vector2(300, 392), -12.0)
+	_seal = _tex(sheet, "muhur.png", Vector2(300, 392), -12.0, false)
 	_seal.visible = false
 
 	var pen := Control.new()
@@ -286,6 +286,7 @@ func _build() -> void:
 	says.size = Vector2(324, 186)
 
 	tray = RuleTray.new()
+	tray.era = era()
 	tray.position = Vector2(600, 790)
 	add_child(tray)
 
@@ -299,7 +300,7 @@ func _build() -> void:
 
 	_grain = TextureRect.new()
 	_grain.name = "SayfaDokusu"
-	_grain.texture = load(SPRITES + "sayfa_doku.png")
+	_grain.texture = Art.tex("sayfa_doku.png")
 	_grain.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var mat := CanvasItemMaterial.new()
 	mat.blend_mode = CanvasItemMaterial.BLEND_MODE_MUL
@@ -402,8 +403,9 @@ func _draw_pairs() -> void:
 		c.queue_free()
 	if pairs.is_empty() and _bad == "":
 		var hint := _label(_pairs_box, "Belgeden bir kelime seç, sonra %s karşılığını." % ("sözlükte" if doc.era == 1 else "duyduklarında"), 16, PENCIL)
-		hint.size = Vector2(214, 80)
 		hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		hint.custom_minimum_size = Vector2(214, 0)
+		hint.size = Vector2(214, 80)
 		return
 	var shown := pairs.slice(maxi(0, pairs.size() - 7))
 	var y := 0.0
@@ -461,7 +463,7 @@ func _add_tile(rid: String, arriving: bool) -> void:
 	var i := tiles.size()
 	var t := RuleTile.new()
 	tiles_layer.add_child(t)
-	t.setup(engine.by_id[rid], state.proven.get(rid, []), FONT)
+	t.setup(engine.by_id[rid], state.proven.get(rid, []), FONT, era())
 	var spot := Vector2(80 + (i % 4) * 112 + (i / 4) * 56, 786 + (i % 2) * 14 + (i / 4) * 40)
 	var rot: float = [-4.0, 3.0, -2.0, 5.0][i % 4]
 	_rest[rid] = [spot, rot]
@@ -567,7 +569,7 @@ func _show_question() -> void:
 
 
 func _show_ending() -> void:
-	var page := _sheet("Son", "belge_okuma.png", Vector2(200, 160), Vector2(1520, 760), 0.0)
+	var page := _sheet("Son", "belge_okuma.png", Vector2(200, 160), Vector2(1520, 760), 0.0, 8.0, Art.document_era(era()))
 	move_child(page, _grain.get_index())
 	var r := _rich(page, narrative.epilogue(state), 30)
 	r.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -585,7 +587,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _clickable(node: Control, action: Callable, mark_at: Vector2) -> void:
 	node.mouse_filter = Control.MOUSE_FILTER_STOP
 	node.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	var mark := _tex(node, "durak.png", mark_at, 0.0)
+	var mark := _tex(node, "durak.png", mark_at, 0.0, false)
 	mark.visible = false
 	node.mouse_entered.connect(func() -> void: mark.visible = true)
 	node.mouse_exited.connect(func() -> void: mark.visible = false)
@@ -602,7 +604,12 @@ func _title(page: Control, pos: Vector2, size_px: int) -> void:
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 
 
-func _sheet(node_name: String, file: String, pos: Vector2, sz: Vector2, rot: float, pad: float = 8.0) -> Control:
+## The era the desk is painted in.
+func era() -> int:
+	return era_look if era_look > 0 else doc.era
+
+
+func _sheet(node_name: String, file: String, pos: Vector2, sz: Vector2, rot: float, pad: float = 8.0, look: int = 0) -> Control:
 	var c := Control.new()
 	c.name = node_name
 	c.position = pos
@@ -611,16 +618,20 @@ func _sheet(node_name: String, file: String, pos: Vector2, sz: Vector2, rot: flo
 	c.rotation_degrees = rot
 	c.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(c)
-	_tex(c, file, Vector2(-pad, -pad), 0.0)
+	_tex(c, file, Vector2(-pad, -pad), 0.0, true, look)
 	return c
 
 
-func _tex(parent: Node, file: String, pos: Vector2, rot: float) -> TextureRect:
+## A sprite in the school of the desk's era (or of `look`). Loose things on
+## the desk cast a shadow once shadows have entered painting.
+func _tex(parent: Node, file: String, pos: Vector2, rot: float, loose: bool = true, look: int = 0) -> TextureRect:
 	var t := TextureRect.new()
-	t.texture = load(SPRITES + file)
+	t.texture = Art.tex(file, look if look > 0 else era())
 	t.position = pos
 	t.rotation_degrees = rot
 	t.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if loose and Art.casts_shadow(era()):
+		parent.add_child(Art.shadow_of(t.texture, pos))
 	parent.add_child(t)
 	return t
 
