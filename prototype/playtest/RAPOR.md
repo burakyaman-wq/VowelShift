@@ -31,3 +31,30 @@
 
 ## Puan ortalamaları (11 oyuncu)
 Eğlence 6.3 · anlaşılırlık 6.8 · devam isteği 6.6. Jam oylayıcısı: Gameplay 3/5, Innovation 5/5, Theme 5/5.
+
+---
+
+# 2. tur — prototip v2 (masa kopyayı yazar, söylenti + son, seçmeli cevap)
+
+## Belge 2
+Ters sıra: 7/12 (biri bilerek: elestirmen2). Fark etme anı: kopyayı görünce 3, söylentide 2, Belge 3 reddinde/Son'da 1. Doğru sıra: 5/12 — beşi de söylenti ve Son metniyle "doğru kopya bile yanlış okunur" trajedisini yaşadı.
+
+## Puan ortalamaları (11 oyuncu)
+| | 1. tur | 2. tur |
+|---|---|---|
+| Eğlence | 6.3 | 7.4 |
+| Anlaşılırlık | 6.8 | 6.6 |
+| Devam isteği | 6.6 | 7.7 |
+Jam oylayıcısı: Gameplay 3/5, Innovation 5/5, Theme 5/5 (değişmedi).
+
+## Kapanan açıklar
+Uydurma örnek, kartsız/boş kopya, aynı çiftin iki kez verilmesi artık reddediliyor. Cevap adımı söylentiye bağlanınca "anlamlı" bulundu.
+
+## Kalan sorunlar
+1. Ek uyumu kuralı yazılı değil; ret mesajı nedenini söylemiyor (8 oyuncu takıldı). Sözlükte olmayan çekimli biçim (khewom) kabul ediliyor, rehber "sözlükten" diyor.
+2. Kartlar kanıtlanmamış alt kuralları da veriyor (eu→ū, dh→th).
+3. Sıra kararı kör: Belge 2'de sırayı gösteren kanıt zayıf (yalnızca grēnos), güçlü kanıt (mētīros) Belge 3'te geliyor.
+4. İki kardeşin adı birleşiyor ("Mīros Mīrom ageti") — oyuncuların en çok konuştuğu an, oyun kullanmıyor.
+5. Belge 3 yeni kural istemiyor; bulmaca olarak boş.
+6. Kopyadan önce önizleme ve söylentiye karşı bir eylem (kenar notu) isteniyor.
+7. Küçükler: aynı kart iki kez veriliyor; örnek kelimede makron hatası için "Neredeyse" uyarısı yok; Belge 1/3'te yanlış cevabın sonucu yok.
