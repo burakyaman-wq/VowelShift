@@ -43,8 +43,49 @@ func _init() -> void:
 
 	_play_through(engine, lib)
 
+
+## The desk scene needs a running tree, so its tests wait for the first frame.
+func _initialize() -> void:
+	_finish()
+
+
+func _finish() -> void:
+	await process_frame
+	_desk_tests()
 	print("%d checks, %d failures" % [checks, failures])
 	quit(1 if failures > 0 else 0)
+
+
+func _desk_tests() -> void:
+	var engine := RuleEngine.new()
+	_expect(RuleText.sub_text(engine.by_id["R1"], 0) == "bh → ph", "tile text R1")
+	_expect(RuleText.sub_text(engine.by_id["R5"], 1) == "-m → ∅", "tile text R5 (word-final, deleted)")
+	_expect(RuleText.sub_text(engine.by_id["R6"], 0) == "kh → ş", "tile text R6 (condition left to the pictogram)")
+	_expect(RuleText.sub_text(engine.by_id["R8"], 0) == "-o/-e → ∅", "tile text R8 (character class)")
+	_expect(",".join(RuleText.proven_lines(engine.by_id["R1"], [2])) == "gh → kh", "only proven lines are inked")
+
+	var m := TrayModel.new(5)
+	m.place("R3", 0)
+	m.place("R4", 1)
+	_expect(",".join(m.order()) == "R3,R4", "tray reads left to right")
+	_expect(m.place("R4", 0) == "", "moving within the tray swaps")
+	_expect(",".join(m.order()) == "R4,R3", "swap reverses the order")
+	_expect(m.place("R1", 1) == "R3", "a tile from the desk pushes the occupant out")
+	m.remove("R4")
+	_expect(",".join(m.order()) == "R1", "removing leaves the rest")
+
+	var desk: Node = load("res://scenes/desk.tscn").instantiate()
+	root.add_child(desk)
+	_expect(desk.tiles.size() == 4, "doc 2 desk lays out R1-R4")
+	_expect(desk.copy_text() == "Mīros Mērom ageti. Mēros nākos.", "empty tray copies letter for letter")
+	desk.place_rule("R3", 0)
+	desk.place_rule("R4", 1)
+	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nēkos.", "R3 then R4 gives the right copy")
+	desk.place_rule("R4", 0)
+	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nīkos.", "swapping the tiles changes the copy (the trap)")
+	desk.take_out("R4")
+	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nākos.", "a tile taken out stops applying")
+	desk.queue_free()
 
 
 func _expect(ok: bool, msg: String) -> void:

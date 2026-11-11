@@ -258,6 +258,10 @@ PICTO = {
     "R2": "two",
     "R3": [[(-58, 26), (-14, 26)], [(14, -22), (58, -22)], [(-36, 14), (-6, -12), (22, -22)]],
     "R4": [[(-58, 14), (-12, 14)], [(12, -8), (58, -8)], [(-6, 4), (14, -4)]],
+    "R5": [[(-60, -14), (28, -14), (28, 22)], [(46, 6), (52, 16)]],
+    "R6": [[(-62, -20), (-40, 18), (-18, -20)], "curl"],
+    "R7": [[(-60, 6), (-8, 6)], [(6, 6), (16, -6), (28, 6), (40, -6), (52, 6)]],
+    "R8": [[(-60, -10), (20, -10)], [(36, 0), (40, 14)]],
 }
 
 
@@ -267,6 +271,18 @@ def tulip(x, y, a, s=1.0):
     pts = [(x, y), (x + (ux * 6 + px * 6) * s, y + (uy * 6 + py * 6) * s), (x + (ux * 13 + px * 3) * s, y + (uy * 13 + py * 3) * s),
            (x + ux * 9 * s, y + uy * 9 * s), (x + (ux * 13 - px * 3) * s, y + (uy * 13 - py * 3) * s), (x + (ux * 6 - px * 6) * s, y + (uy * 6 - py * 6) * s)]
     return poly(pts, C["red"], 1.0)
+
+
+def tile_frame(w=150, h=200):
+    out = [rect(0, 0, w, h, C["glaze"], LINE, r=6), rect(9, 9, w - 18, h - 18, "none", 3.0, r=3, stroke=C["lapis"])]
+    for x, y, a in ((16, 16, math.pi / 4), (w - 16, 16, 3 * math.pi / 4), (16, h - 16, -math.pi / 4), (w - 16, h - 16, -3 * math.pi / 4)):
+        out.append(tulip(x, y, a, 0.9))
+    return out
+
+
+def picto_only(rule, w=150, h=200):
+    full = tile(rule, "", [], w, h)
+    return full[7:]          # drop the frame, the empty name and the four tulips
 
 
 def tile(rule, name, lines, w=150, h=200):
@@ -282,9 +298,16 @@ def tile(rule, name, lines, w=150, h=200):
                 line([(cx - 4, cy), (cx + 14, cy)], 4, C["lapis"]), line([(cx + 26, cy), (cx + 58, cy)], 9, C["lapis"])]
     elif p:
         for path in p:
-            pts = [(cx + x * 0.9, cy + y * 0.9) for x, y in path]
+            if path == "curl":
+                pts = [(cx + 30 + 26 * math.cos(a) * (1 - a / 9), cy + 26 * math.sin(a) * (1 - a / 9)) for a in np.linspace(0, 7.5, 40)]
+            else:
+                pts = [(cx + x * 0.9, cy + y * 0.9) for x, y in path]
             out.append(line(pts, 8.0, C["lapis_dk"]))
             out.append(line(pts, 5.0, C["lapis"]))
+        if rule == "R5":
+            out.append(circle(cx + 50, cy + 30, 6, C["lapis"], 1.2))
+        if rule == "R8":
+            out.append(circle(cx + 44, cy + 22, 5, C["lapis"], 1.2))
     for i, ln in enumerate(lines):
         out.append(text(ln, 22, 136 + i * 26, 21))
     return out
@@ -408,6 +431,63 @@ def reading_view():
     return parts
 
 
+def sprite(name, parts, w, h, pad=8):
+    """One object on a transparent ground, for the game."""
+    out = ROOT / "assets/art/sprites"
+    out.mkdir(parents=True, exist_ok=True)
+    flt = ('<defs><filter id="el" x="-5%" y="-5%" width="110%" height="110%">'
+           '<feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/>'
+           '<feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>'
+           '</filter></defs>')
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w + 2 * pad}" height="{h + 2 * pad}" '
+           f'viewBox="{-pad} {-pad} {w + 2 * pad} {h + 2 * pad}">' + flt + '<g filter="url(#el)">' + "".join(parts) + "</g></svg>")
+    src = OUT / "sprites_src"
+    src.mkdir(parents=True, exist_ok=True)
+    (src / f"{name}.svg").write_text(svg)
+    subprocess.run(["rsvg-convert", "-o", str(out / f"{name}.png"), str(src / f"{name}.svg")], check=True)
+
+
+def desk_plate():
+    """The desk with its fixed things: lamp and flame, pen case, inkwell, pens, cloth and scroll."""
+    return [desk(),
+            group("kandil_govde", lamp(), place(140, 160, -18)),
+            group("kandil", [flame_halo(0, 0, 66)], place(212, 140)),
+            group("kalemdan", pen_case(), place(720, 88, 1)),
+            group("hokka", inkwell(), place(1330, 140)),
+            group("kalem1", pen(), place(1300, 800 - 40, -12)),
+            group("bohca", bohca(190) + [group("rulo", scroll(156, 18), place(-78, -6, -18))], place(1838, 168))]
+
+
+def export_sprites():
+    OUT.mkdir(parents=True, exist_ok=True)
+    out = ROOT / "assets/art/sprites"
+    out.mkdir(parents=True, exist_ok=True)
+    plate = OUT / "sprites_src" / "masa_cag2.svg"
+    plate.parent.mkdir(parents=True, exist_ok=True)
+    plate.write_text(svg_doc(desk_plate()))
+    subprocess.run(["rsvg-convert", "-w", str(W), "-h", str(H), "-o", str(out / "masa_cag2.png"), str(plate)], check=True)
+    sprite("karo_cerceve", tile_frame(), 150, 200)
+    for r in ("R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8"):
+        sprite(f"picto_{r}", picto_only(r), 150, 200)
+    tr, tw, th = tray()
+    sprite("tepsi", tr, tw, th)
+    sprite("durak", [durak(14, 14, 13)], 28, 28, 2)
+    sprite("belge_kagit", document_page(680, 440, "", ["x"], 10)[:8], 680, 440)
+    sprite("kopya_kagit", copy_sheet(420, 500, [], 40), 420, 500)
+    sprite("pusula", slip(360, 250, []), 360, 250)
+    sprite("defter", notebook(470, 350), 470, 350, 20)
+    from tex_core import fbm
+    grain_path = OUT / "kagit_doku.png"
+    if not grain_path.exists():
+        g, _ = paper(W, H, 9, tone=(236, 226, 204), age=0.6, laid=False)
+        Image.fromarray(np.clip(g, 0, 255).astype(np.uint8)).save(grain_path)
+    grain = np.asarray(Image.open(grain_path).convert("RGB")).astype(np.float32) / 255
+    rel = np.clip(grain / grain.mean(axis=(0, 1), keepdims=True), 0.75, 1.1) ** 0.8
+    mottle = 1 + 0.08 * (fbm(W, H, 5, 6, 0.6, 21) - 0.5)[..., None] + 0.06 * (fbm(W, H, 3, 160, 0.6, 22) - 0.5)[..., None]
+    mult = np.clip(rel * mottle, 0, 1)
+    Image.fromarray((mult * 255).astype(np.uint8)).save(out / "sayfa_doku.png")
+
+
 def svg_doc(parts):
     flt = ('<defs><filter id="el" x="-2%" y="-2%" width="104%" height="104%">'
            '<feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/>'
@@ -440,5 +520,10 @@ def render(name, parts):
 
 
 if __name__ == "__main__":
-    print(render("cag2_masa", era2_desk()))
-    print(render("cag2_okuma", reading_view()))
+    import sys
+    if "--sprites" in sys.argv:
+        export_sprites()
+        print("sprites written")
+    else:
+        print(render("cag2_masa", era2_desk()))
+        print(render("cag2_okuma", reading_view()))

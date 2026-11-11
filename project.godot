@@ -12,17 +12,24 @@ config_version=5
 
 config/name="VowelShift"
 config/description="Ses Kayması — a scribe deciphers manuscripts as the language shifts across centuries. GitHub Game Off 2026 (theme: SHIFT)."
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/desk.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
+
+[gui]
+
+theme/custom_font="res://assets/fonts/Katip-Regular.ttf"
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.12, 0.06, 0.04, 1)
