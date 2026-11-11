@@ -16,3 +16,4 @@ Thumbs.db
 *.tmp
 .vscode/
 prototype/playtest/logs/
+assets/art/bible/*.png

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ses Kayması Görsel Kitabı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a night scriptorium. Dark walnut ground, parchment text, gold only where gold would be.
+   Wide plates for renders, a 65ch column for words, chapter numbers in the margin like a manuscript's folio marks. */
+:root {
+  --night: #15100c;
+  --desk: #211912;
+  --paper: #eadcc0;
+  --dim: #a8947a;
+  --gold: #c9a556;
+  --lapis: #6f8fd6;
+  --rubric: #c0584a;
+  --rule: #3a2d22;
+  --display: "Katip", "EB Garamond", Georgia, serif;
+  --body: "EB Garamond", Georgia, "Times New Roman", serif;
+  color-scheme: dark;
+}
+@font-face { font-family: "Katip"; src: url("fonts/Katip-Regular.ttf") format("truetype"); font-display: swap; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--night); color: var(--paper); }
+body { font-family: var(--body); font-size: 19px; line-height: 1.55; }
+a { color: var(--lapis); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.col { max-width: 66ch; }
+header.hero { padding: 48px 0 28px; }
+.hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 7vw, 86px); line-height: 1.05; margin: 0 0 8px; text-wrap: balance; }
+.hero .sub { color: var(--dim); font-style: italic; margin: 0 0 22px; }
+.hero .thesis { font-size: 23px; max-width: 46ch; margin: 0 0 28px; }
+.plate { border: 1px solid var(--rule); background: #000; }
+figure { margin: 0; display: grid; gap: 10px; }
+figcaption { color: var(--dim); font-size: 16px; font-style: italic; }
+section { padding: 56px 0 8px; border-top: 1px solid var(--rule); margin-top: 48px; }
+.head { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: baseline; margin-bottom: 18px; }
+.folio { font-family: var(--display); color: var(--gold); font-size: 30px; }
+h2 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4vw, 44px); margin: 0; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 400; font-size: 26px; margin: 26px 0 6px; color: var(--gold); }
+p { margin: 0 0 14px; }
+.principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px 28px; margin-top: 10px; }
+.principles div { border-left: 2px solid var(--gold); padding: 2px 0 2px 14px; }
+.principles b { font-family: var(--display); font-weight: 400; font-size: 23px; display: block; color: var(--paper); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 22px; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.specs { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; font-size: 17px; margin: 8px 0 16px; }
+.specs dt { color: var(--gold); }
+.specs dd { margin: 0; }
+.era h3 { margin-top: 4px; }
+.era p { font-size: 17px; }
+table { border-collapse: collapse; width: 100%; font-size: 17px; }
+.tablewrap { overflow-x: auto; }
+th, td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { color: var(--gold); font-weight: 500; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.note { border: 1px solid var(--rule); background: var(--desk); padding: 14px 18px; font-size: 17px; }
+.note b { color: var(--gold); font-weight: 500; }
+code { font-size: 15px; background: var(--desk); padding: 1px 5px; border: 1px solid var(--rule); }
+/* motion demo */
+.stage { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #000; border: 1px solid var(--rule); }
+.stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.6s ease-in-out; }
+.stage .light { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light;
+  background: radial-gradient(circle at 6% 6%, rgba(255,190,110,.9), rgba(255,150,70,.35) 28%, rgba(0,0,0,0) 62%); }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.stage .dim { position: absolute; inset: 0; background: #000; opacity: 0; transition: opacity 1.2s ease-in-out; pointer-events: none; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 12px; }
+button { font: inherit; font-size: 17px; color: var(--night); background: var(--gold); border: 0; padding: 8px 16px; cursor: pointer; }
+button.ghost { background: transparent; color: var(--paper); border: 1px solid var(--rule); }
+.era-label { font-family: var(--display); font-size: 22px; color: var(--gold); }
+.sources li { margin-bottom: 6px; }
+footer { color: var(--dim); font-size: 15px; padding: 48px 0 64px; }
+@media (max-width: 520px) {
+  body { font-size: 17px; }
+  .head { grid-template-columns: 40px 1fr; }
+  .grid2 { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage img, .stage .dim { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>Ses Kayması</h1>
+  <p class="sub">Görsel kitap · ilk sürüm · 11 Kasım 2026</p>
+  <p class="thesis">Bir masa, bir kandil, dört çağ. Dil kayar, masa yerinde durur. Her yüzey kullanılmıştır ve sahnedeki tek ışık bir alevden gelir.</p>
+  <figure>
+    <img class="plate" src="img/era2.jpg" width="1600" height="900" alt="İkinci çağın masası: tezhipli sayfa, kopya kâğıdı, kural karoları ve kandil ışığı">
+    <figcaption>II. çağ, saray. Kandil solda, kapı karşıda; saray görevlisinin kemha yeni sağdan giriyor, mühürlü rulo masada.</figcaption>
+  </figure>
+</header>
+
+<section id="ilkeler">
+  <div class="head"><span class="folio">1</span><h2>İlkeler</h2></div>
+  <div class="principles">
+    <div><b>Gerçek malzeme, yaşanmış yüzey</b>Kâğıt, kil, varak, sır ve deri gerçek malzemenin kurallarına uyar. Her yüzeyde iz var: mürekkep lekesi, parmak kiri, kurt yeniği, yanık.</div>
+    <div><b>Tek ışık</b>Sahneyi bir kandil aydınlatır. Kapı aralığından sızan soğuk gün ışığı dışında kaynak yok. Gölge anlatının parçası.</div>
+    <div><b>Arayüz yok, masa var</b>Kart karo, sözlük defter, kural sırası tepsi, menü kitap kapağı. Ekranın üstünde ayrı bir katman bulunmaz.</div>
+    <div><b>İnsanı göstermeyiz</b>İstekte bulunan kişi kol ucu, elinin gölgesi ve masaya bıraktığı nesneyle var olur.</div>
+    <div><b>Çağı nesne anlatır</b>Işık, kamera ve masa sabit kalır. Dört çağı masadaki nesneler ve belgenin malzemesi ayırır.</div>
+    <div><b>Üretilmiş görsel yok</b>Her şey koddan, Blender'dan, telifsiz taramalardan ya da elden çıkar. Yapay zekâ yardımı oyunun sayfasında açıkça yazılır.</div>
+  </div>
+</section>
+
+<section id="kamera">
+  <div class="head"><span class="folio">2</span><h2>Kamera ve ışık</h2></div>
+  <div class="grid2">
+    <figure>
+      <svg viewBox="0 0 640 300" width="100%" role="img" aria-label="Yandan görünüş: kâtibin gözü, masa, kandil ve karşıdaki kapı" style="background:#1b140f;border:1px solid #3a2d22">
+        <line x1="20" y1="250" x2="620" y2="250" stroke="#5a4636" stroke-width="2"/>
+        <rect x="70" y="196" width="190" height="10" fill="#7a5233"/>
+        <rect x="80" y="206" width="170" height="44" fill="#3d2a1b"/>
+        <rect x="560" y="120" width="34" height="130" fill="#2a1d13" stroke="#5a4636"/>
+        <rect x="558" y="246" width="38" height="4" fill="#9fb6ff"/>
+        <circle cx="40" cy="140" r="7" fill="#eadcc0"/>
+        <path d="M40 140 L262 196 M40 140 L620 104" stroke="#c9a556" stroke-width="1.4" stroke-dasharray="5 4" fill="none"/>
+        <line x1="96" y1="196" x2="96" y2="120" stroke="#b08a4a" stroke-width="3"/>
+        <circle cx="96" cy="114" r="5" fill="#ffb867"/>
+        <circle cx="96" cy="114" r="16" fill="none" stroke="#ffb867" stroke-opacity=".35"/>
+        <text x="18" y="128" fill="#a8947a" font-size="13" font-family="Georgia">göz · masadan 50 cm</text>
+        <text x="92" y="100" fill="#ffb867" font-size="13" font-family="Georgia">kandil · 1850 K</text>
+        <text x="120" y="226" fill="#a8947a" font-size="13" font-family="Georgia">masa · 140 × 80 cm</text>
+        <text x="470" y="96" fill="#9fb6ff" font-size="13" font-family="Georgia">kapı aralığı · soğuk</text>
+        <text x="300" y="150" fill="#c9a556" font-size="13" font-family="Georgia">21 mm · eğim 27°</text>
+        <text x="380" y="272" fill="#a8947a" font-size="13" font-family="Georgia">kapıya 4,1 m</text>
+      </svg>
+      <figcaption>Yandan görünüş. Masa görüntünün altını doldurur, kapının alt yarısı üst bantta kalır.</figcaption>
+    </figure>
+    <div class="col">
+      <dl class="specs">
+        <dt>Masa görünümü</dt><dd>21 mm (yatayda ~81°), göz masanın 50 cm üstünde ve 80 cm gerisinde, 27° aşağı. Odak masanın ortasında (86 cm), f/5,6; kapı yumuşak flu.</dd>
+        <dt>Okuma görünümü</dt><dd>Belge tıklanınca tam üstten, düz bakış. Kandil yine sol üstte; belgenin çevresinde masa görünür.</dd>
+        <dt>Yakın plan</dt><dd>Tepsi ve karolar için 50 mm, f/8.</dd>
+        <dt>Kandil</dt><dd>Solda pirinç ayaklı kandil, alev masanın 44 cm üstünde, 1850 K. Gölgeler sağa ve öne düşer; sağ elle yazan kâtibin eli satırı kapatmaz.</dd>
+        <dt>Kapı</dt><dd>Aralıktan 6500 K soğuk sızıntı. Sıcak-soğuk karşıtlığı derinliği verir.</dd>
+        <dt>Dolgu</dt><dd>Tavandan çok zayıf, sıcak bir yansıma. Varak altının parlayabilmesi için gerekli; gözle fark edilmez.</dd>
+        <dt>Ton</dt><dd>AgX, orta-yüksek kontrast. Köşeler karanlıkta kalır.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="malzeme">
+  <div class="head"><span class="folio">3</span><h2>Malzemeler</h2></div>
+  <figure>
+    <img class="plate" src="img/sheet_materials.jpg" width="1672" height="612" alt="On dört malzeme örneği">
+    <figcaption>Hepsi koddan üretildi; ilk sıradakiler belgelerin, ikinci sıradakiler nesnelerin ve kumaşların malzemesi.</figcaption>
+  </figure>
+  <div class="col">
+    <p>Her doku bir renk haritasıyla birlikte pürüzlülük, kabartma ve gerektiğinde saydamlık ile metallik haritası taşır. Böylece aynı sayfa hem masada hem okuma görünümünde ışığa aynı tepkiyi verir. Varak altın metal olarak işlenir ve kandili yansıtır; mürekkep kâğıttan biraz daha parlaktır, sır en parlak yüzeydir.</p>
+    <p>Yaşanmışlık kuralları: kâğıdın kenarları kararır, okuyucunun başparmağı hep aynı köşeyi kirletir, yeşil boya zamanla kâğıdı yer, kurt yolları alt kenarda toplanır. Masanın lekeleri çağdan çağa birikir; üçüncü çağda sol tarafta yanık izi kalır.</p>
+  </div>
+</section>
+
+<section id="susleme">
+  <div class="head"><span class="folio">4</span><h2>Süsleme</h2></div>
+  <div class="grid2">
+    <figure>
+      <img class="plate" src="img/read2.jpg" width="1600" height="900" alt="Tezhipli sayfanın üstten görünüşü">
+      <figcaption>Kurucuların kaydı, okuma görünümü. Serlevha düzeni: başlık kartuşu, bulut içinde satırlar, yan panellerde ogee madalyonlar.</figcaption>
+    </figure>
+    <figure>
+      <img class="plate" src="img/sheet_ornament.jpg" width="1700" height="1080" alt="Süsleme sözlüğü">
+      <figcaption>Süsleme sözlüğü: bulut kartuş, helezon zemin, zencerek ve tığ, durak gülü, saray mührü, cilt şemsesi.</figcaption>
+    </figure>
+  </div>
+  <div class="col">
+    <p>Burak'ın gönderdiği üç örnekten çıkan kurallar: kenar boşlukları geniş; altın zemin tek düz yüzey değil, küçük çiçekli sarmallarla dolu; her renkli alanın çevresinde koyu bir kontur var; lapis derin ve tanecikli. Sayfa dışına taşan mavi tığlar ve zencerek bordür sayfayı nesne gibi çerçeveler.</p>
+    <div class="note"><b>Çevre ipucu, karar senin.</b> Sayfanın başlığı eski dille <i>Kerdāgros</i>, saray mührü yeni dille <i>Kerdēgros</i> yazıyor. Dikkatli oyuncu ā → ē kaymasını mühürden okuyabilir. Bulmacayı kolaylaştırırsa mührü sade bırakırız.</div>
+  </div>
+</section>
+
+<section id="yazi">
+  <div class="head"><span class="folio">5</span><h2>Yazı: Katip</h2></div>
+  <figure>
+    <img class="plate" src="img/sheet_typography.jpg" width="1800" height="1320" alt="Katip yazı tipi örnekleri">
+    <figcaption>Belge metni, Türkçe harfler, kural karosu işaretleri, oyuncunun kenar notu ve kırmızı uzun ünlü seçeneği.</figcaption>
+  </figure>
+  <div class="col">
+    <p>Hazır yazı tiplerinden hiçbiri hem Arap hattının ritmini hem makronlu ünlüleri taşımadı. Bu yüzden kendi yazı tipimizi ürettik. Aref Ruqaa'nın Latin harflerinin iskeleti çıkarıldı ve 70° tutulmuş bir kamış kalemle yeniden çizildi. Sonuçta yataylar kalın, dikeyler ince, noktalar eşkenar dörtgen; Nesih'teki gibi. Uzun ünlülerin çizgisi de yatay olduğu için kalın düşer ve uzaktan okunur.</p>
+    <dl class="specs">
+      <dt>Dosya</dt><dd><code>assets/fonts/Katip-Regular.ttf</code>, 136 glif, SIL OFL 1.1 (kaynak yazı tipinin lisansı geçerli).</dd>
+      <dt>Kapsam</dt><dd>Latin, Türkçe, ā ē ī ō ū, â î û, → ve ∅.</dd>
+      <dt>Boyut (720p)</dt><dd>Belge 28–36 px, defter 20–24 px, karo 18–20 px.</dd>
+      <dt>Mürekkep</dt><dd>Belgeler is mürekkebi siyahı, oyuncunun notları kahverengi.</dd>
+      <dt>Erişilebilirlik</dt><dd>İsteğe bağlı: uzun ünlüler kırmızı mürekkeple. Godot'ta tek satırlık BBCode rengi.</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="cag">
+  <div class="head"><span class="folio">6</span><h2>Dört çağ</h2></div>
+  <div class="col"><p>Kamera, kandil, kapı ve raf hiç değişmez. Değişen masadaki nesneler, belgenin malzemesi ve kimin geldiği.</p></div>
+  <div class="grid2">
+    <figure class="era"><img class="plate" src="img/era1.jpg" width="1600" height="900" alt="Birinci çağ masası">
+      <figcaption><span class="era-label">I · Temel taşı</span><br>Topraklı kil tablet, parşömen kopya (kuru kalem cetveli, iğne delikleri), iki karo. Rahibenin keten yeni.</figcaption></figure>
+    <figure class="era"><img class="plate" src="img/era2.jpg" width="1600" height="900" alt="İkinci çağ masası">
+      <figcaption><span class="era-label">II · Saray</span><br>Tezhipli sayfa, aharlı kâğıt kopya, borç senedi, mühürlü rulo; tepside dört karo. Saray görevlisinin kemha yeni.</figcaption></figure>
+    <figure class="era"><img class="plate" src="img/era3.jpg" width="1600" height="900" alt="Üçüncü çağ masası">
+      <figcaption><span class="era-label">III · Yangından sonra</span><br>Yanık ve yamalı belge deri dürüm üstünde, Argos'un yarısı yanık defteri, yangından kalan tek karo. Dağlı elçinin keçe yeni.</figcaption></figure>
+    <figure class="era"><img class="plate" src="img/era4.jpg" width="1600" height="900" alt="Dördüncü çağ masası">
+      <figcaption><span class="era-label">IV · Arşiv</span><br>Ebru kaplı arşiv kutuları ve etiketleri, açık kutuda eski kopyalar, Melno'nun fişi; karolar aşınmış.</figcaption></figure>
+  </div>
+</section>
+
+<section id="insan">
+  <div class="head"><span class="folio">7</span><h2>İnsanlar: kol ucu, gölge, nesne</h2></div>
+  <div class="grid3">
+    <figure><img class="plate" src="img/sleeve1.jpg" width="800" height="500" alt="Rahibenin keten yeni"><figcaption>Rahibe · keten, çivit ve kök boya kenar.</figcaption></figure>
+    <figure><img class="plate" src="img/sleeve2.jpg" width="800" height="500" alt="Saray görevlisinin kemha yeni"><figcaption>Saray görevlisi · kırmızı kemha, altın çintemani.</figcaption></figure>
+    <figure><img class="plate" src="img/sleeve3.jpg" width="800" height="500" alt="Dağlı elçinin keçe yeni"><figcaption>Dağlı elçi · isli keçe, işlemeli kenar.</figcaption></figure>
+  </div>
+  <div class="col" style="margin-top:18px">
+    <p>Kol kadrajın sağından girer, el uzun yenin içinde kalır. Masaya elin gölgesi düşer ama el görünmez. Bu bilinçli ve biraz tekinsiz: geçmişin insanları yalnızca izleriyle var. Kişi gidince masada nesnesi kalır: tablet, mühürlü rulo, deri dürüm.</p>
+    <figure><img class="plate" src="img/sheet_fabrics.jpg" width="1280" height="470" alt="Üç kumaş dokusu"><figcaption>Kumaşlar ayrıca karakterin çağını da söyler.</figcaption></figure>
+  </div>
+</section>
+
+<section id="minyatur">
+  <div class="head"><span class="folio">8</span><h2>Minyatür kolajı</h2></div>
+  <div class="col">
+    <p>Figürleri biz çizmiyoruz. Telifsiz müze taramalarından kesip yeni sahneler kuruyoruz. Kolaj da çağdan çağa kopyalanır ve her kopyada biraz kayar: renk solar, bir figürün yeri değişir, bir ayrıntı kaybolur. Dil gibi resim de kayar.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Adım</th><th>Kim</th><th>Ne</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Burak</td><td>Aşağıdaki kaynaklardan yüksek çözünürlüklü taramaları indirir. Sayfada CC0 ya da Open Access yazdığını kontrol eder.</td></tr>
+        <tr><td class="num">2</td><td>Burak</td><td>Photoshop'ta figürleri saydam PNG olarak keser: 6–10 figür, birkaç ağaç ve kaya.</td></tr>
+        <tr><td class="num">3</td><td>Kod</td><td>Figürleri ortak palete eşler, sahneyi kurar, altın gökyüzünü ve çerçeveyi ekler.</td></tr>
+        <tr><td class="num">4</td><td>Kod</td><td>Belgenin eskitmesini aynı geçişle uygular, böylece tarama ile kod ayırt edilmez.</td></tr>
+        <tr><td class="num">5</td><td>Kod</td><td>Her çağ için kopyayı üretir: bir değişiklik, biraz daha solgunluk.</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:14px">Önerilen yerler: Belge 2'deki kurucular kaydına iki kardeş, Belge 4'teki dağ belgesine aynı sahnenin dağlıların anlattığı hali.</p>
+    <h3>Kaynak önerileri</h3>
+    <ul class="sources">
+      <li><a href="https://art.thewalters.org/object/W.666.28A">Walters W.666.28A</a>, Osmanlı, 1721: IV. Murad tebaasını kabul ediyor. Kalabalık figür, kaftan ve sarık.</li>
+      <li><a href="https://art.thewalters.org/object/W.628.2A/">Walters W.628.2A</a>: avlu, doğancı ve hizmetkârlar. Ayakta duran tekil figürler.</li>
+      <li><a href="https://art.thewalters.org/object/W.606.2A">Walters W.606.2A</a>: kraliyet köşkü ve hediye yüklü atlar.</li>
+      <li><a href="https://art.thewalters.org/object/W.583.1B">Walters W.583.1B</a>: Osmanlı serlevhası. Süsleme karşılaştırması için.</li>
+      <li><a href="https://www.metmuseum.org/art/collection/search/452013">Met 452013</a>: Şah Tahmasp Şehnamesi'nden Sade Bayramı. Kaya ve gökyüzü için.</li>
+      <li><a href="https://www.metmuseum.org/art/collection/search/451411">Met 451411</a>: Behram Gur ve Azade. Hareketli figür.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="arayuz">
+  <div class="head"><span class="folio">9</span><h2>Masadaki arayüz</h2></div>
+  <div class="grid2">
+    <figure><img class="plate" src="img/tray.jpg" width="1600" height="900" alt="Kural tepsisi ve çini karolar yakından"><figcaption>Kural tepsisi: beş yuva, sıra soldan sağa uygulanır.</figcaption></figure>
+    <figure><img class="plate" src="img/sheet_tiles.jpg" width="1520" height="520" alt="Karonun beş durumu"><figcaption>Bir karonun durumları: boş, kısmi, tam, önceki çağdan miras, yangından kalan.</figcaption></figure>
+  </div>
+  <div class="tablewrap" style="margin-top:18px"><table>
+    <thead><tr><th>Bileşen</th><th>Nesne</th><th>Davranış</th></tr></thead>
+    <tbody>
+      <tr><td>Kural kartı</td><td>Çini karo</td><td>Kobalt piktogram ve ad sırın altında, değişmez. Kanıtlanan eşleşmeleri kâtip mürekkeple üstüne yazar; oyuncu kanıtladıkça satırlar belirir.</td></tr>
+      <tr><td>Kural sırası</td><td>Ahşap tepsi</td><td>Karo sürüklenince havaya kalkar, gölgesi uzar ve yumuşar. Yuvaya düşünce kısa bir tık sesi.</td></tr>
+      <tr><td>Sözlük</td><td>Defter</td><td>Sol sayfa sözlük, sağ sayfa "Duyduklarım". Çağ değişince yeni defter ya da ustadan kalan defter.</td></tr>
+      <tr><td>Kenar notu</td><td>Kopyanın kenarı</td><td>Oyuncunun notu sayfa kenarına çapraz yazılır, eski yazmalardaki hâşiye gibi. Kahverengi mürekkep.</td></tr>
+      <tr><td>Kopya</td><td>Kâğıt</td><td>Masa yazar: satır satır, kelime kelime. Gerçek kelime olmayan biçim kazınmış gibi silik kalır.</td></tr>
+      <tr><td>Soru</td><td>İstek pusulası</td><td>Seçenekler pusulada yazılı; cevap mühür basılarak verilir.</td></tr>
+      <tr><td>Yeni istek</td><td>Kapı</td><td>Kapı vurulur, aralıktaki ışık genişler, kol ucu girer.</td></tr>
+      <tr><td>Menü</td><td>Kapalı kitap</td><td>Ayraçlar: Başla, Devam, Ayarlar, Çık. Kitap açılınca oyun başlar.</td></tr>
+    </tbody>
+  </table></div>
+  <figure style="margin-top:22px"><img class="plate" src="img/menu.jpg" width="1600" height="900" alt="Menü: masadaki kapalı kitap ve ayraçlar"><figcaption>Menü. Cilt şemsesinin ortasında oyunun adı, alt kenardan çıkan dört ayraç.</figcaption></figure>
+</section>
+
+<section id="hareket">
+  <div class="head"><span class="folio">10</span><h2>Hareket: sakin ve ağır</h2></div>
+  <div class="stage" id="stage" aria-label="Kandil titremesi, toz ve çağ geçişi önizlemesi">
+    <img src="img/era1.jpg" width="1600" height="900" alt="" data-era="I · Temel taşı">
+    <img src="img/era2.jpg" width="1600" height="900" alt="" data-era="II · Saray" style="opacity:0">
+    <img src="img/era3.jpg" width="1600" height="900" alt="" data-era="III · Yangından sonra" style="opacity:0">
+    <img src="img/era4.jpg" width="1600" height="900" alt="" data-era="IV · Arşiv" style="opacity:0">
+    <div class="light" id="light"></div>
+    <canvas id="dust"></canvas>
+    <div class="dim" id="dim"></div>
+  </div>
+  <div class="controls">
+    <button id="next" type="button">Yüz yıl geçsin</button>
+    <button id="pause" type="button" class="ghost">Titremeyi durdur</button>
+    <span class="era-label" id="eraName">I · Temel taşı</span>
+  </div>
+  <p style="color:var(--dim);font-size:16px;margin-top:8px">Önizleme tarayıcıda; oyunda aynısı Godot'ta ışık katmanıyla yapılır.</p>
+  <div class="tablewrap" style="margin-top:12px"><table>
+    <thead><tr><th>Hareket</th><th>Değer</th></tr></thead>
+    <tbody>
+      <tr><td>Kandil titremesi</td><td>Parlaklık %92–100, 0,5–3 Hz düzgün gürültü; alev 1–2 px kayar.</td></tr>
+      <tr><td>Toz</td><td>40–60 zerre, yalnızca ışık konisinde, saniyede 4–8 px yukarı ve sağa.</td></tr>
+      <tr><td>Karo kaldırma</td><td>120 ms; gölge ofseti 2 → 10 px, bulanıklık 2 → 8 px. Bırakınca 180 ms.</td></tr>
+      <tr><td>Kopya yazılışı</td><td>Satır satır açılır, kelime başına 250–400 ms. Mürekkep 1 sn içinde parlaktan mata döner.</td></tr>
+      <tr><td>Kapı</td><td>1,2 sn'de aralanır; kol ucu 0,8 sn'de girer, 1 sn'de çekilir.</td></tr>
+      <tr><td>Çağ geçişi</td><td>Kandil söner (1,2 sn), nesneler tek tek solar ve yenileri belirir (2 sn), kandil yeniden yanar (1,5 sn). Yumuşak giriş-çıkış.</td></tr>
+      <tr><td>Hareket azaltma</td><td>Titreme ve toz kapanır, geçişler anlık olur.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="ekranlar">
+  <div class="head"><span class="folio">11</span><h2>Okuma görünümleri ve final</h2></div>
+  <div class="grid3">
+    <figure><img class="plate" src="img/read1.jpg" width="1600" height="900" alt="Kil tablet üstten"><figcaption>Belge 1: temel taşı tableti. Harfler kile kazınmış, oyukların içinde toprak.</figcaption></figure>
+    <figure><img class="plate" src="img/read3.jpg" width="1600" height="900" alt="Yanık belge üstten"><figcaption>Belge 4: dağdan gelen belge. Yanık kenar, yama, dikiş, dağlıların kare mührü.</figcaption></figure>
+    <figure><img class="plate" src="img/final.jpg" width="1600" height="900" alt="Melno'nun arşiv fişi"><figcaption>Final: Melno'nun fişi. Sonsöz masada okunur; köşedeki soluk damga Institute'ün tek izi.</figcaption></figure>
+  </div>
+</section>
+
+<section id="uretim">
+  <div class="head"><span class="folio">12</span><h2>Üretim hattı</h2></div>
+  <div class="col">
+    <dl class="specs">
+      <dt>Sahne</dt><dd><code>tools/art/desk_scene.py</code>: Blender'ı Python modülü olarak çalıştırır, masayı, kandili, odayı ve çağ nesnelerini koddan kurar, Cycles ile render alır.</dd>
+      <dt>Dokular</dt><dd><code>tools/art/tex_*.py</code>: belgeler, karolar, kapak, kumaşlar. Gerçek bulmaca metinleri <code>data/</code> klasöründen.</dd>
+      <dt>Yazı tipi</dt><dd><code>tools/art/katip_font.py</code></dd>
+      <dt>Godot'a</dt><dd>Her çağ için 1920×1080 masa plakası (etkileşimsiz her şey). Karolar, kopya, defter, kapı ve kol ayrı sprite. Metinler canlı: Katip ile RichTextLabel, üstünde mürekkep gölgelendiricisi. Kandil titremesi bir ışık katmanında.</dd>
+      <dt>Bütçe</dt><dd>Web derlemesinde görseller toplam 40 MB altında; plakalar kayıplı WebP, karolar 512 px.</dd>
+    </dl>
+    <h3>Sıradakiler</h3>
+    <p>Minyatür taramaları (Burak) · plakaları sprite'lara ayırma · kandil titremesini ve karo sürüklemeyi Godot'ta kurma · dördüncü çağın belgeleri.</p>
+    <h3>Senin kararın</h3>
+    <p>Kırmızı uzun ünlüler varsayılan mı olsun, seçenek mi? Saray mührü ipucu olarak kalsın mı? Görünmeyen elin gölgesi doğru tonu veriyor mu?</p>
+  </div>
+</section>
+
+<footer>
+  Ses Kayması · GitHub Game Off 2026 · görseller kod ve Blender ile üretildi; Katip yazı tipi SIL OFL 1.1.
+</footer>
+</div>
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var plates = Array.prototype.slice.call(stage.querySelectorAll('img'));
+  var light = document.getElementById('light');
+  var dim = document.getElementById('dim');
+  var canvas = document.getElementById('dust');
+  var ctx = canvas.getContext('2d');
+  var eraName = document.getElementById('eraName');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var running = !reduce;
+  var era = 0;
+  var busy = false;
+  var motes = [];
+
+  function size() {
+    var r = stage.getBoundingClientRect();
+    canvas.width = Math.round(r.width * (window.devicePixelRatio || 1));
+    canvas.height = Math.round(r.height * (window.devicePixelRatio || 1));
+  }
+  function seed() {
+    motes = [];
+    for (var i = 0; i < 52; i++) {
+      motes.push({ x: Math.random() * 0.6, y: Math.random() * 0.8, r: 0.6 + Math.random() * 1.4, v: 0.004 + Math.random() * 0.006, p: Math.random() * 6.28 });
+    }
+  }
+  function noise(t) {
+    return 0.5 * Math.sin(t * 2.1) + 0.3 * Math.sin(t * 5.3 + 1.7) + 0.2 * Math.sin(t * 11.9 + 0.4);
+  }
+  function frame(ms) {
+    var t = ms / 1000;
+    if (running) {
+      var n = noise(t);
+      light.style.opacity = (0.78 + 0.16 * n).toFixed(3);
+      plates[era].style.filter = 'brightness(' + (0.96 + 0.04 * n).toFixed(3) + ')';
+      var w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < motes.length; i++) {
+        var m = motes[i];
+        m.y -= m.v / 60;
+        m.x += (m.v * 0.6 + 0.002 * Math.sin(t + m.p)) / 60;
+        if (m.y < -0.02 || m.x > 0.75) { m.y = 0.85; m.x = Math.random() * 0.45; }
+        var d = Math.hypot(m.x - 0.06, m.y - 0.06);
+        var a = Math.max(0, 0.55 - d) * (0.7 + 0.3 * Math.sin(t * 3 + m.p));
+        ctx.fillStyle = 'rgba(255,214,160,' + a.toFixed(3) + ')';
+        ctx.beginPath();
+        ctx.arc(m.x * w, m.y * h, m.r * (window.devicePixelRatio || 1), 0, 6.283);
+        ctx.fill();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  function nextEra() {
+    if (busy) return;
+    busy = true;
+    var from = era, to = (era + 1) % plates.length;
+    dim.style.opacity = reduce ? 0 : 0.88;
+    setTimeout(function () {
+      plates[to].style.opacity = 1;
+      plates[from].style.opacity = 0;
+      plates[from].style.filter = '';
+      era = to;
+      eraName.textContent = plates[to].getAttribute('data-era');
+      setTimeout(function () { dim.style.opacity = 0; busy = false; }, reduce ? 0 : 1700);
+    }, reduce ? 0 : 1200);
+  }
+  document.getElementById('next').addEventListener('click', nextEra);
+  document.getElementById('pause').addEventListener('click', function () {
+    running = !running;
+    this.textContent = running ? 'Titremeyi durdur' : 'Titremeyi başlat';
+    if (!running) { ctx.clearRect(0, 0, canvas.width, canvas.height); light.style.opacity = 0.8; plates[era].style.filter = ''; }
+  });
+  if (reduce) document.getElementById('pause').textContent = 'Titremeyi başlat';
+  window.addEventListener('resize', size);
+  size();
+  seed();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
