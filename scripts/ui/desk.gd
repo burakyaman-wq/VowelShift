@@ -254,12 +254,12 @@ func _build() -> void:
 
 	var pen := Control.new()
 	pen.name = "Kalem"
-	pen.position = Vector2(1296, 772)
-	pen.size = Vector2(230, 12)
+	pen.position = Vector2(1290, 768)
+	pen.size = Vector2(250, 18)
 	pen.rotation_degrees = -12.0
 	add_child(pen)
 	_tex(pen, "kalem.png", Vector2(-8, -8), 0.0)
-	_clickable(pen, func() -> void: write_copy(), Vector2(222, -30))
+	_clickable(pen, func() -> void: write_copy(), Vector2(240, -30))
 
 	_book = _sheet("Defter", "defter.png", Vector2(64, 330), Vector2(520, 420), 1.5, 20.0)
 	_label(_book, "Sözlük" if doc.era == 1 else "Eski sözlük", 24, RED).position = Vector2(22, 10)
