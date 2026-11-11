@@ -43,9 +43,12 @@ def apply_rule(word, rule):
 
 
 def apply_chain(word, rules):
+    # Proper nouns: rules work on lowercase, the capital is restored after.
+    proper = word[:1].isupper()
+    word = word.lower()
     for r in rules:
         word = apply_rule(word, r)
-    return word
+    return word[:1].upper() + word[1:] if proper else word
 
 
 def all_forms():

@@ -644,6 +644,57 @@
         "acc_pl": "ghewem",
         "gen_pl": "ghewesyo"
       }
+    },
+    {
+      "id": 41,
+      "root": "Meiros",
+      "stem": "Meir",
+      "meaning_tr": "kurucu kardeş (büyük)",
+      "pos": "noun",
+      "domain": "proper",
+      "etymon": "ad",
+      "forms": {
+        "nom_sg": "Meiros",
+        "acc_sg": "Meirom",
+        "gen_sg": "Meirosyo",
+        "nom_pl": "Meires",
+        "acc_pl": "Meirem",
+        "gen_pl": "Meiresyo"
+      }
+    },
+    {
+      "id": 42,
+      "root": "Mēros",
+      "stem": "Mēr",
+      "meaning_tr": "kurucu kardeş (küçük)",
+      "pos": "noun",
+      "domain": "proper",
+      "etymon": "ad",
+      "forms": {
+        "nom_sg": "Mēros",
+        "acc_sg": "Mērom",
+        "gen_sg": "Mērosyo",
+        "nom_pl": "Mēres",
+        "acc_pl": "Mērem",
+        "gen_pl": "Mēresyo"
+      }
+    },
+    {
+      "id": 43,
+      "root": "Kerdāgros",
+      "stem": "Kerdāgr",
+      "meaning_tr": "\"yürek tarlası\", ülkenin adı",
+      "pos": "noun",
+      "domain": "proper",
+      "etymon": "*ḱḗr + *h₂éǵros",
+      "forms": {
+        "nom_sg": "Kerdāgros",
+        "acc_sg": "Kerdāgrom",
+        "gen_sg": "Kerdāgrosyo",
+        "nom_pl": "Kerdāgres",
+        "acc_pl": "Kerdāgrem",
+        "gen_pl": "Kerdāgresyo"
+      }
     }
   ]
 }
