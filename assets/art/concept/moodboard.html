@@ -1,0 +1,100 @@
+<html><head><meta charset="utf-8"><style>
+@font-face{font-family:'EBG';src:url('file:///tmp/fonts/node_modules/@fontsource/eb-garamond/files/eb-garamond-latin-400-normal.woff2');font-weight:400;font-style:normal}@font-face{font-family:'EBG';src:url('file:///tmp/fonts/node_modules/@fontsource/eb-garamond/files/eb-garamond-latin-500-normal.woff2');font-weight:500;font-style:normal}@font-face{font-family:'EBG';src:url('file:///tmp/fonts/node_modules/@fontsource/eb-garamond/files/eb-garamond-latin-400-italic.woff2');font-weight:400;font-style:italic}@font-face{font-family:'EBGX';src:url('file:///tmp/fonts/node_modules/@fontsource/eb-garamond/files/eb-garamond-latin-ext-400-normal.woff2');font-weight:400;font-style:normal}@font-face{font-family:'EBGX';src:url('file:///tmp/fonts/node_modules/@fontsource/eb-garamond/files/eb-garamond-latin-ext-500-normal.woff2');font-weight:500;font-style:normal}@font-face{font-family:'EBGX';src:url('file:///tmp/fonts/node_modules/@fontsource/eb-garamond/files/eb-garamond-latin-ext-400-italic.woff2');font-weight:400;font-style:italic}@font-face{font-family:'COR';src:url('file:///tmp/fonts/node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2');font-weight:600;font-style:normal}@font-face{font-family:'CORX';src:url('file:///tmp/fonts/node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-ext-600-normal.woff2');font-weight:600;font-style:normal}@font-face{font-family:'FELL';src:url('file:///tmp/fonts/node_modules/@fontsource/im-fell-english/files/im-fell-english-latin-400-italic.woff2');font-weight:400;font-style:italic}
+@page { size: 2400px 1500px; margin: 0 }
+body { margin:0; width:2400px; height:1500px; position:relative; font-family:'EBG','EBGX',serif; overflow:hidden }
+.desk { position:absolute; left:0; top:0; width:1600px; height:1500px;
+  background: radial-gradient(ellipse 900px 700px at 800px 330px, rgba(255,196,110,.55), rgba(255,170,80,.12) 55%, rgba(0,0,0,0) 75%),
+              repeating-linear-gradient(92deg, #3a2618 0px, #3a2618 14px, #34221a 15px, #3d2a1b 36px, #33211a 37px),
+              #2e1f15; }
+.vign { position:absolute; left:0; top:0; width:1600px; height:1500px; background: radial-gradient(ellipse 1100px 900px at 800px 650px, rgba(0,0,0,0) 55%, rgba(8,4,2,.75) 100%) }
+.label { position:absolute; left:60px; top:48px; color:#e3c27a; font-family:'COR','CORX'; font-size:30px; letter-spacing:.18em }
+.label span { color:#b99a63; font-size:22px; letter-spacing:.08em; margin-left:18px; font-family:'EBG','EBGX'; font-style:italic }
+.ms { position:absolute; left:470px; top:190px; width:660px; height:900px; background: radial-gradient(ellipse 420px 520px at 330px 420px, #f1e3c2, #e2cc9e 70%, #c9ac74 100%);
+  box-shadow: 0 30px 60px rgba(0,0,0,.6); }
+.ms .frame { position:absolute; left:26px; top:26px; right:26px; bottom:26px; border:3px solid #b8913f; }
+.ms .frame2 { position:absolute; left:38px; top:38px; right:38px; bottom:38px; border:1.5px solid #1f3a6b; }
+.ms .t { position:absolute; left:0; right:0; top:92px; text-align:center; font-family:'COR','CORX'; font-size:34px; color:#7a1f24; letter-spacing:.12em }
+.ms .old { position:absolute; left:70px; right:70px; top:190px; text-align:center; font-size:58px; line-height:1.5; color:#2b1d14 }
+.ms .rule { position:absolute; left:120px; right:120px; top:470px; height:30px; text-align:center; color:#b8913f; font-size:26px; letter-spacing:.6em }
+.ms .lab { position:absolute; left:0; right:0; top:540px; text-align:center; font-style:italic; color:#6d5638; font-size:24px }
+.ms .copy { position:absolute; left:70px; right:70px; top:590px; text-align:center; font-size:46px; line-height:1.5; color:#1f3a6b }
+.ms .copy b { font-weight:500; color:#a6512f; border-bottom:2px solid #a6512f }
+.note { position:absolute; left:820px; top:965px; width:230px; transform:rotate(-4deg); font-family:'FELL','EBGX'; font-style:italic; color:#5a3a1e; font-size:30px; line-height:1.2 }
+.note:before { content:''; position:absolute; left:-30px; top:16px; width:22px; height:2px; background:#5a3a1e }
+.lexbook { position:absolute; left:58px; top:250px; width:380px; height:760px; background: repeating-linear-gradient(180deg, #efe2c4 0, #efe2c4 49px, #d9c69e 50px); transform:rotate(-2.5deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,.55); border-left:14px solid #6b2a20 }
+.lexbook h3 { margin:0; padding:26px 0 10px 30px; font-family:'COR','CORX'; color:#6b2a20; font-size:30px; letter-spacing:.1em; font-weight:600 }
+.lexrow { height:50px; display:block; padding-left:24px; position:relative }
+.lexrow svg { position:absolute; left:24px; top:4px }
+.lw { position:absolute; left:80px; top:6px; font-size:30px; color:#2b1d14 }
+.lm { position:absolute; left:220px; top:10px; font-size:22px; font-style:italic; color:#6d5638 }
+.door { position:absolute; left:1190px; top:170px; width:330px; height:560px }
+.speech { position:absolute; left:1170px; top:700px; width:370px; background:#ead9b0; padding:22px 26px; font-size:24px; line-height:1.4; color:#2b1d14; box-shadow:0 16px 30px rgba(0,0,0,.5); border-top:6px solid #7a1f24 }
+.speech i { color:#7a1f24 }
+.speech .who { font-family:'COR','CORX'; font-size:22px; letter-spacing:.14em; color:#7a1f24; margin-bottom:8px }
+.tray { position:absolute; left:450px; top:1150px; width:700px; height:300px; background: linear-gradient(180deg,#5a3a22,#3f2816); border-radius:10px; box-shadow: inset 0 6px 18px rgba(0,0,0,.6), 0 16px 30px rgba(0,0,0,.5) }
+.tray .tl { position:absolute; left:24px; top:14px; font-family:'COR','CORX'; color:#d9b66a; letter-spacing:.2em; font-size:22px }
+.arrow { position:absolute; left:780px; top:1270px; color:#e3c27a; font-size:60px }
+.card { position:absolute; width:210px; height:250px; background:#f0e4c8; border-radius:8px; box-shadow:0 12px 24px rgba(0,0,0,.55) }
+.cardin { position:absolute; left:12px; top:12px; right:12px; bottom:12px; border:6px solid #2f6f8f; border-radius:4px; background: radial-gradient(circle at 50% 40%, #f7eedb, #e8d6ae) }
+.cr { position:absolute; left:0; right:0; top:62px; text-align:center; font-size:56px; color:#1f3a6b }
+.cn { position:absolute; left:0; right:0; bottom:22px; text-align:center; font-size:22px; font-style:italic; color:#6d5638 }
+.panel { position:absolute; left:1600px; top:0; width:800px; height:1500px; background:#f1e6cf; color:#2b1d14 }
+.panel h1 { margin:0; position:absolute; left:64px; top:56px; font-family:'COR','CORX'; font-size:62px; font-weight:600; color:#2b1d14 }
+.panel .sub { position:absolute; left:66px; top:138px; font-style:italic; font-size:26px; color:#6d5638 }
+.panel .p { position:absolute; left:64px; width:680px }
+.panel h2 { margin:0 0 14px; font-family:'COR','CORX'; font-size:30px; letter-spacing:.14em; color:#7a1f24; font-weight:600 }
+.panel li { font-size:23px; line-height:1.35; margin-bottom:8px }
+.panel ul { margin:0; padding-left:24px }
+.era { height:62px; position:relative; margin-bottom:6px }
+.en { position:absolute; left:0; top:4px; font-size:24px; width:330px }
+.en span { display:block; font-size:18px; font-style:italic; color:#6d5638 }
+.sw { position:absolute; left:340px; top:2px }
+.sw i { display:inline-block; width:62px; height:52px; margin-right:6px; border-radius:3px }
+.ty div { margin-bottom:12px; font-size:22px }
+.ty .a { font-size:40px } .ty .b { font-family:'COR','CORX'; font-size:40px; font-weight:600 } .ty .c { font-family:'FELL','EBGX'; font-style:italic; font-size:36px; color:#5a3a1e }
+.ty span { font-size:18px; color:#6d5638; font-style:italic; font-family:'EBG','EBGX'; margin-left:14px }
+</style></head><body>
+<div class="desk"></div><div class="vign"></div>
+<div class="label">ÇAĞ II<span>Kerdēgros · saray yazıhanesi</span></div>
+<div class="lexbook"><h3>SÖZLÜK</h3><div class="lexrow"><svg width="40" height="40" viewBox="0 0 40 40"><path d="M6 30 L34 30 M8 24 L32 24 M12 18 L28 18" stroke="#3b2a1c" stroke-width="2.5" fill="none"/><path d="M20 6 L20 16" stroke="#3b2a1c" stroke-width="2.5"/></svg><span class="lw">ēgros</span><span class="lm">tarla</span></div><div class="lexrow"><svg width="40" height="40" viewBox="0 0 40 40"><path d="M20 34 L20 8" stroke="#3b2a1c" stroke-width="2.5"/><ellipse cx="15" cy="14" rx="4" ry="7" fill="none" stroke="#3b2a1c" stroke-width="2"/><ellipse cx="25" cy="18" rx="4" ry="7" fill="none" stroke="#3b2a1c" stroke-width="2"/><ellipse cx="15" cy="25" rx="4" ry="6" fill="none" stroke="#3b2a1c" stroke-width="2"/></svg><span class="lw">grēnos</span><span class="lm">tahıl</span></div><div class="lexrow"><svg width="40" height="40" viewBox="0 0 40 40"><path d="M8 28 L8 14 L14 20 L20 8 L26 20 L32 14 L32 28 Z" fill="none" stroke="#3b2a1c" stroke-width="2.5"/></svg><span class="lw">rīgos</span><span class="lm">bey</span></div><div class="lexrow"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="11" fill="none" stroke="#3b2a1c" stroke-width="2.5"/><path d="M20 13 L20 27 M15 17 L25 17" stroke="#3b2a1c" stroke-width="2"/></svg><span class="lw">thītos</span><span class="lm">borç</span></div><div class="lexrow"><svg width="40" height="40" viewBox="0 0 40 40"><path d="M6 30 L34 30" stroke="#3b2a1c" stroke-width="2"/><path d="M12 30 L18 14 L24 30" fill="none" stroke="#3b2a1c" stroke-width="2.5"/><path d="M26 12 L34 12 M30 8 L34 12 L30 16" fill="none" stroke="#3b2a1c" stroke-width="2"/></svg><span class="lw">?</span><span class="lm">sürgün</span></div><div class="lexrow"><svg width="40" height="40" viewBox="0 0 40 40"><path d="M12 32 L12 14 Q20 4 28 14 L28 32 Z" fill="none" stroke="#3b2a1c" stroke-width="2.5"/><path d="M20 16 L20 26 M16 20 L24 20" stroke="#3b2a1c" stroke-width="2"/></svg><span class="lw">?</span><span class="lm">ölü</span></div></div>
+<div class="ms"><div class="frame"></div><div class="frame2"></div>
+<svg style="position:absolute;left:10px;top:10px" width="70" height="70" viewBox="0 0 70 70"><polygon points="63.0,35.0 53.6,42.7 54.8,54.8 42.7,53.6 35.0,63.0 27.3,53.6 15.2,54.8 16.4,42.7 7.0,35.0 16.4,27.3 15.2,15.2 27.3,16.4 35.0,7.0 42.7,16.4 54.8,15.2 53.6,27.3" fill="#c9a24a" stroke="#1f3a6b" stroke-width="3"/><circle cx="35" cy="35" r="9" fill="#1f3a6b"/></svg><svg style="position:absolute;left:580px;top:10px" width="70" height="70" viewBox="0 0 70 70"><polygon points="63.0,35.0 53.6,42.7 54.8,54.8 42.7,53.6 35.0,63.0 27.3,53.6 15.2,54.8 16.4,42.7 7.0,35.0 16.4,27.3 15.2,15.2 27.3,16.4 35.0,7.0 42.7,16.4 54.8,15.2 53.6,27.3" fill="#c9a24a" stroke="#1f3a6b" stroke-width="3"/><circle cx="35" cy="35" r="9" fill="#1f3a6b"/></svg><svg style="position:absolute;left:10px;top:820px" width="70" height="70" viewBox="0 0 70 70"><polygon points="63.0,35.0 53.6,42.7 54.8,54.8 42.7,53.6 35.0,63.0 27.3,53.6 15.2,54.8 16.4,42.7 7.0,35.0 16.4,27.3 15.2,15.2 27.3,16.4 35.0,7.0 42.7,16.4 54.8,15.2 53.6,27.3" fill="#c9a24a" stroke="#1f3a6b" stroke-width="3"/><circle cx="35" cy="35" r="9" fill="#1f3a6b"/></svg><svg style="position:absolute;left:580px;top:820px" width="70" height="70" viewBox="0 0 70 70"><polygon points="63.0,35.0 53.6,42.7 54.8,54.8 42.7,53.6 35.0,63.0 27.3,53.6 15.2,54.8 16.4,42.7 7.0,35.0 16.4,27.3 15.2,15.2 27.3,16.4 35.0,7.0 42.7,16.4 54.8,15.2 53.6,27.3" fill="#c9a24a" stroke="#1f3a6b" stroke-width="3"/><circle cx="35" cy="35" r="9" fill="#1f3a6b"/></svg>
+<div class="t">KURUCULARIN KAYDI</div>
+<div class="old">Mīros Mērom ageti.<br>Mēros nākos.</div>
+<div class="rule">✦ ✦ ✦</div>
+<div class="lab">masanın kopyası</div>
+<div class="copy">Mīros M<b>ī</b>rom ageti.<br>M<b>ī</b>ros n<b>ē</b>kos.</div>
+</div>
+<div class="note">sürgün, ölü değil.</div>
+<svg class="door" viewBox="0 0 330 560"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#120b07"/><stop offset="1" stop-color="#2a1a10"/></linearGradient></defs>
+<path d="M20 560 L20 230 Q20 90 165 20 Q310 90 310 230 L310 560 Z" fill="#c9a24a"/>
+<path d="M44 560 L44 236 Q44 116 165 50 Q286 116 286 236 L286 560 Z" fill="url(#g)"/>
+<path d="M44 236 Q44 116 165 50 Q286 116 286 236" fill="none" stroke="#2f7f7a" stroke-width="5"/>
+<path d="M165 200 Q128 205 124 255 Q122 290 132 312 Q100 330 92 380 L80 560 L250 560 L238 380 Q230 330 198 312 Q208 290 206 255 Q202 205 165 200 Z" fill="#0a0604"/><path d="M165 222 Q146 228 145 258 Q146 282 165 290 Q184 282 185 258 Q184 228 165 222 Z" fill="#1c120c"/></svg>
+<div class="speech"><div class="who">SARAY GÖREVLİSİ</div>“<i>Rīgos</i> kurucuların kaydını istiyor. Eski defterlerde <i>grānos</i> yazıyor, biz artık <i>grēnos</i> diyoruz…”</div>
+<div class="tray"><div class="tl">KURAL TABLETİ</div></div>
+<div class="card" style="left:500px;top:1190px;transform:rotate(-1.5deg);opacity:1">
+<div class="cardin"><div class="cr">ē → ī</div><div class="cn">ē yükselir</div></div></div>
+<div class="arrow">→</div>
+<div class="card" style="left:880px;top:1190px;transform:rotate(1.2deg);opacity:1">
+<div class="cardin"><div class="cr">ā → ē</div><div class="cn">ā kayar</div></div></div>
+<div class="card" style="left:1230px;top:1225px;transform:rotate(8deg);opacity:.9">
+<div class="cardin"><div class="cr">kh → ş</div><div class="cn">damaklaşma</div></div></div>
+<div class="panel">
+<h1>Ses Kayması</h1><div class="sub">görsel yön taslağı · bir yazıhane masası, dört çağ</div>
+<div class="p" style="top:210px"><h2>İLKELER</h2><ul>
+<li><b>Mum ışığında tek masa.</b> Bütün oyun aynı masada geçer; çağ değişince masa değil ışık, renk ve kâğıt değişir.</li>
+<li><b>Geometri çerçeve olur.</b> Selçuklu yıldızı ve tezhip kenarları süs değil: belgeyi, kartları ve kapıyı çerçeveler.</li>
+<li><b>Yazı kahramandır.</b> Uzun ünlüler büyük ve okunur; kopyada değişen harf kırmızı aşı boyasıyla işaretlenir.</li>
+<li><b>Kapı, dış dünyadır.</b> Talep sahipleri yalnızca kemerli kapıda siluet; tarih içeri sözle girer.</li></ul></div>
+<div class="p" style="top:590px"><h2>ÇAĞ PALETLERİ</h2><div class="era"><div class="en">Çağ I · Tapınak<span>lapis, altın, kandil</span></div><div class="sw"><i style="background:#1f3a6b"></i><i style="background:#c9a24a"></i><i style="background:#ead9b0"></i><i style="background:#a6512f"></i><i style="background:#2b1d14"></i></div></div><div class="era"><div class="en">Çağ II · Saray<span>lal kırmızısı, aşı boyası, firuze</span></div><div class="sw"><i style="background:#7a1f24"></i><i style="background:#c48a2c"></i><i style="background:#e6d2a6"></i><i style="background:#2f7f7a"></i><i style="background:#2b1d14"></i></div></div><div class="era"><div class="en">Çağ III · Savaş<span>is, kül, kor</span></div><div class="sw"><i style="background:#3a3633"></i><i style="background:#8d877d"></i><i style="background:#cfc3a8"></i><i style="background:#b4532a"></i><i style="background:#1d1a18"></i></div></div><div class="era"><div class="en">Çağ IV · Yeni düzen<span>çivit, arduvaz, soğuk kâğıt</span></div><div class="sw"><i style="background:#22304a"></i><i style="background:#5b6b7a"></i><i style="background:#e4e1d6"></i><i style="background:#4f8f7f"></i><i style="background:#151515"></i></div></div></div>
+<div class="p ty" style="top:975px"><h2>YAZI</h2>
+<div class="a">Mīros nēkos <span>metin · EB Garamond</span></div>
+<div class="b">KURUCULARIN KAYDI <span>başlık · Cormorant Garamond</span></div>
+<div class="c">sürgün, ölü değil <span>kenar notu · IM Fell</span></div></div>
+<div class="p" style="top:1225px"><h2>MOTİF</h2>
+<div style="position:absolute;left:0;top:50px"><svg width="300" height="180" viewBox="0 0 300 180"><rect width="300" height="180" fill="#e6d2a6"/><polygon points="42.0,0.0 27.9,11.6 29.7,29.7 11.6,27.9 0.0,42.0 -11.6,27.9 -29.7,29.7 -27.9,11.6 -42.0,0.0 -27.9,-11.6 -29.7,-29.7 -11.6,-27.9 -0.0,-42.0 11.6,-27.9 29.7,-29.7 27.9,-11.6" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="50.0" cy="50.0" r="12.0" fill="#1f3a6b"/><polygon points="142.0,0.0 127.9,11.6 129.7,29.7 111.6,27.9 100.0,42.0 88.4,27.9 70.3,29.7 72.1,11.6 58.0,0.0 72.1,-11.6 70.3,-29.7 88.4,-27.9 100.0,-42.0 111.6,-27.9 129.7,-29.7 127.9,-11.6" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="150.0" cy="50.0" r="12.0" fill="#1f3a6b"/><polygon points="242.0,0.0 227.9,11.6 229.7,29.7 211.6,27.9 200.0,42.0 188.4,27.9 170.3,29.7 172.1,11.6 158.0,0.0 172.1,-11.6 170.3,-29.7 188.4,-27.9 200.0,-42.0 211.6,-27.9 229.7,-29.7 227.9,-11.6" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="250.0" cy="50.0" r="12.0" fill="#1f3a6b"/><polygon points="342.0,0.0 327.9,11.6 329.7,29.7 311.6,27.9 300.0,42.0 288.4,27.9 270.3,29.7 272.1,11.6 258.0,0.0 272.1,-11.6 270.3,-29.7 288.4,-27.9 300.0,-42.0 311.6,-27.9 329.7,-29.7 327.9,-11.6" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="350.0" cy="50.0" r="12.0" fill="#1f3a6b"/><polygon points="42.0,100.0 27.9,111.6 29.7,129.7 11.6,127.9 0.0,142.0 -11.6,127.9 -29.7,129.7 -27.9,111.6 -42.0,100.0 -27.9,88.4 -29.7,70.3 -11.6,72.1 -0.0,58.0 11.6,72.1 29.7,70.3 27.9,88.4" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="50.0" cy="150.0" r="12.0" fill="#1f3a6b"/><polygon points="142.0,100.0 127.9,111.6 129.7,129.7 111.6,127.9 100.0,142.0 88.4,127.9 70.3,129.7 72.1,111.6 58.0,100.0 72.1,88.4 70.3,70.3 88.4,72.1 100.0,58.0 111.6,72.1 129.7,70.3 127.9,88.4" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="150.0" cy="150.0" r="12.0" fill="#1f3a6b"/><polygon points="242.0,100.0 227.9,111.6 229.7,129.7 211.6,127.9 200.0,142.0 188.4,127.9 170.3,129.7 172.1,111.6 158.0,100.0 172.1,88.4 170.3,70.3 188.4,72.1 200.0,58.0 211.6,72.1 229.7,70.3 227.9,88.4" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="250.0" cy="150.0" r="12.0" fill="#1f3a6b"/><polygon points="342.0,100.0 327.9,111.6 329.7,129.7 311.6,127.9 300.0,142.0 288.4,127.9 270.3,129.7 272.1,111.6 258.0,100.0 272.1,88.4 270.3,70.3 288.4,72.1 300.0,58.0 311.6,72.1 329.7,70.3 327.9,88.4" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="350.0" cy="150.0" r="12.0" fill="#1f3a6b"/><polygon points="42.0,200.0 27.9,211.6 29.7,229.7 11.6,227.9 0.0,242.0 -11.6,227.9 -29.7,229.7 -27.9,211.6 -42.0,200.0 -27.9,188.4 -29.7,170.3 -11.6,172.1 -0.0,158.0 11.6,172.1 29.7,170.3 27.9,188.4" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="50.0" cy="250.0" r="12.0" fill="#1f3a6b"/><polygon points="142.0,200.0 127.9,211.6 129.7,229.7 111.6,227.9 100.0,242.0 88.4,227.9 70.3,229.7 72.1,211.6 58.0,200.0 72.1,188.4 70.3,170.3 88.4,172.1 100.0,158.0 111.6,172.1 129.7,170.3 127.9,188.4" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="150.0" cy="250.0" r="12.0" fill="#1f3a6b"/><polygon points="242.0,200.0 227.9,211.6 229.7,229.7 211.6,227.9 200.0,242.0 188.4,227.9 170.3,229.7 172.1,211.6 158.0,200.0 172.1,188.4 170.3,170.3 188.4,172.1 200.0,158.0 211.6,172.1 229.7,170.3 227.9,188.4" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="250.0" cy="250.0" r="12.0" fill="#1f3a6b"/><polygon points="342.0,200.0 327.9,211.6 329.7,229.7 311.6,227.9 300.0,242.0 288.4,227.9 270.3,229.7 272.1,211.6 258.0,200.0 272.1,188.4 270.3,170.3 288.4,172.1 300.0,158.0 311.6,172.1 329.7,170.3 327.9,188.4" fill="#c9a24a" stroke="#1f3a6b" stroke-width="2"/><circle cx="350.0" cy="250.0" r="12.0" fill="#1f3a6b"/></svg></div>
+<div style="position:absolute;left:330px;top:50px;width:350px;font-size:21px;line-height:1.35;color:#3b2a1c">Sekiz kollu yıldız: kart kenarları, kapı kemeri ve belge köşeleri. Referanslar: Pentiment'in sayfa dili, Heaven's Vault'un yazı odağı, Selçuklu çini geometrisi.</div></div>
+</div>
+</body></html>
