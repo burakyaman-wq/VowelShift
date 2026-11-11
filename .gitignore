@@ -1,8 +1,9 @@
 # Godot 4 cache (keep *.import files next to assets — they belong in git)
 .godot/
 
-# Export output
-build/
+# Export output (build/.gdignore stays: it keeps Godot from importing its own export)
+build/*
+!build/.gdignore
 *.zip
 
 # Python tools
