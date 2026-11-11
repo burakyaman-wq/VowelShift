@@ -19,6 +19,7 @@ var rule_id := ""
 var dragging := false
 var locked := false        # set once the copy is shelved
 var _grab := Vector2.ZERO
+var _tween: Tween
 var _hover: TextureRect
 var _lines: Array[Label] = []
 var _font: Font
@@ -85,7 +86,10 @@ func _gui_input(event: InputEvent) -> void:
 func slide_to(pos: Vector2, rot_deg: float, duration: float = 0.16) -> void:
 	var from_pos := position
 	var from_rot := rotation_degrees
+	if _tween and _tween.is_valid():
+		_tween.kill()
 	var tw := create_tween()
+	_tween = tw
 	tw.tween_method(func(t: float) -> void:
 		var k := floorf(t * STEPS) / STEPS
 		position = from_pos.lerp(pos, k)

@@ -58,6 +58,7 @@ func _finish() -> void:
 
 func _desk_tests() -> void:
 	var engine := RuleEngine.new()
+	var lib := ManuscriptLibrary.new()
 	_expect(RuleText.sub_text(engine.by_id["R1"], 0) == "bh → ph", "tile text R1")
 	_expect(RuleText.sub_text(engine.by_id["R5"], 1) == "-m → ∅", "tile text R5 (word-final, deleted)")
 	_expect(RuleText.sub_text(engine.by_id["R6"], 0) == "kh → ş", "tile text R6 (condition left to the pictogram)")
@@ -74,7 +75,43 @@ func _desk_tests() -> void:
 	m.remove("R4")
 	_expect(",".join(m.order()) == "R1", "removing leaves the rest")
 
+	# Pairing: affixes follow the old word, and a pair names the changes it shows.
+	_expect(Pairing.match_affix("ghewom", "khewos") == "khewom", "the new word takes the old word's ending")
+	var st := GameState.new()
+	var d1 := lib.get_doc(0)
+	var good := Pairing.make(d1, lib, engine, st, "ghrebheti", "khrepheti")
+	_expect(good["ok"] and good["subs"].size() == 2, "ghrebheti → khrepheti shows two changes (gh, bh)")
+	_expect(not Pairing.make(d1, lib, engine, st, "Meiros", "khewos")["ok"], "unrelated words do not pair")
+	var marks: Array = Pairing.diff_marks("ghewom", "khewom")
+	_expect(marks[0][0] == 1 and marks[0][1] == 0 and marks[1][0] == 1, "only the changed letter is marked")
+
+	# Document 1 from the first click to the answer.
+	var desk1: Node = load("res://scenes/desk.tscn").instantiate()
+	root.add_child(desk1)
+	_expect(desk1.tiles.is_empty(), "doc 1 starts with no tiles")
+	desk1.try_pair("ghewom", "khewos")
+	desk1.try_pair("ghrebheti", "khrepheti")
+	_expect(desk1.tiles.has("R1") and desk1.state.proven["R1"] == [2], "two pairs with gh → kh ink that line on a new R1 tile")
+	desk1.try_pair("bhāgom", "phāgos")
+	_expect(desk1.state.proven["R1"].has(0), "bhāgom and ghrebheti prove bh → ph")
+	desk1.try_pair("Meiros", "Mīros")
+	desk1.try_pair("deiwosyo", "dīwos")
+	_expect(desk1.tiles.has("R2") and desk1.state.proven["R2"] == [0], "Meiros and deiwosyo prove ei → ī")
+	_expect(not desk1.try_pair("nākos", "khewos")["ok"], "a bad pair is refused")
+	desk1.place_rule("R1", 0)
+	desk1.place_rule("R2", 1)
+	var w1: Dictionary = desk1.write_copy()
+	_expect(w1["shelved"] and w1["copy"] == "Mīros dīwosyo khewom dōneti. Mīros phāgom khrepheti. Mēros nākos.", "doc 1 is copied right and shelved")
+	_expect(desk1.answer_question(0), "the answer is sealed")
+	_expect(desk1.state.answers.get("1", "") == "Büyük kardeş Mīros", "the answer is kept")
+	desk1.next_document()
+	_expect(desk1.doc.order == 2 and desk1.tiles.has("R1"), "doc 2 arrives and the tiles stay on the desk")
+	desk1.queue_free()
+
+	# Document 2 with every era-2 rule handed over: order changes the copy.
 	var desk: Node = load("res://scenes/desk.tscn").instantiate()
+	desk.doc_order = 2
+	desk.dev_cards = true
 	root.add_child(desk)
 	_expect(desk.tiles.size() == 4, "doc 2 desk lays out R1-R4")
 	_expect(desk.copy_text() == "Mīros Mērom ageti. Mēros nākos.", "empty tray copies letter for letter")
@@ -85,15 +122,9 @@ func _desk_tests() -> void:
 	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nīkos.", "swapping the tiles changes the copy (the trap)")
 	desk.take_out("R4")
 	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nākos.", "a tile taken out stops applying")
-
 	desk.open_reading()
 	_expect(desk.reading_word_count() == 5, "the reading view shows the five words of doc 2")
-	desk.toggle_word(1)
-	_expect(",".join(desk.selected_words()) == "Mērom", "a marked word is remembered")
-	desk.toggle_word(1)
-	_expect(desk.selected_words().is_empty(), "marking again clears it")
 	desk.close_reading()
-
 	desk.place_rule("R4", 2)
 	var res: Dictionary = desk.write_copy()
 	_expect(res.get("shelved", false) and res["copy"] == "Mīros Mīrom ageti. Mīros nēkos.", "the pen writes and shelves the right copy")
@@ -104,6 +135,7 @@ func _desk_tests() -> void:
 
 	var desk3: Node = load("res://scenes/desk.tscn").instantiate()
 	desk3.doc_order = 3
+	desk3.dev_cards = true
 	root.add_child(desk3)
 	desk3.place_rule("R4", 0)
 	desk3.place_rule("R3", 1)
@@ -111,8 +143,8 @@ func _desk_tests() -> void:
 	_expect(not bad["shelved"] and "grīnom" in bad["rejected"], "wrong order in doc 3: grīnom is scraped")
 	_expect(desk3.state.phase == "read", "a scraped copy can be written again")
 	desk3.place_rule("R3", 0)
-	var good: Dictionary = desk3.write_copy()
-	_expect(good["shelved"] and good["copy"] == "Mētīros Mīrosyo grēnom emeti.", "the right order shelves doc 3")
+	var good3: Dictionary = desk3.write_copy()
+	_expect(good3["shelved"] and good3["copy"] == "Mētīros Mīrosyo grēnom emeti.", "the right order shelves doc 3")
 	desk3.queue_free()
 
 

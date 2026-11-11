@@ -325,8 +325,8 @@ def notebook(w=460, h=330, left=(), right=()):
     out = [rect(-14, -14, w + 28, h + 28, C["red"], LINE, r=6),
            rect(-8, -8, w + 16, h + 16, "none", 2.0, r=4, stroke=C["red_pale"]),
            rect(0, 0, w / 2, h, C["paper"]), rect(w / 2, 0, w / 2, h, C["paper"])]
-    for i in range(1, 10):
-        y = 52 + (i - 1) * 31
+    for i in range(1, int((h - 40) / 27) + 1):
+        y = 46 + (i - 1) * 27
         out.append(line([(16, y + 6), (w / 2 - 14, y + 6)], 0.7, C["paper2"]))
         out.append(line([(w / 2 + 14, y + 6), (w - 16, y + 6)], 0.7, C["paper2"]))
     out.append(line([(w / 2, 0), (w / 2, h)], 2.2))
@@ -482,7 +482,7 @@ def export_sprites():
         seal_parts.append(circle(40 + 12 * math.cos(a), 40 + 12 * math.sin(a), 5, C["red_pale"], 1.0))
     seal_parts.append(circle(40, 40, 5, C["red"], 1.0))
     sprite("muhur", seal_parts, 80, 80)
-    sprite("defter", notebook(470, 350), 470, 350, 20)
+    sprite("defter", notebook(520, 420), 520, 420, 20)
     from tex_core import fbm
     grain_path = OUT / "kagit_doku.png"
     if not grain_path.exists():
