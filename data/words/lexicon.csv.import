@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://caet16ggr2gfh"
+
+[deps]
+
+files=["res://data/words/lexicon.root.translation", "res://data/words/lexicon.meaning.translation", "res://data/words/lexicon.pos.translation", "res://data/words/lexicon.domain.translation", "res://data/words/lexicon.etymon.translation"]
+
+source_file="res://data/words/lexicon.csv"
+dest_files=["res://data/words/lexicon.root.translation", "res://data/words/lexicon.meaning.translation", "res://data/words/lexicon.pos.translation", "res://data/words/lexicon.domain.translation", "res://data/words/lexicon.etymon.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

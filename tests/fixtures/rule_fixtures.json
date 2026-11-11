@@ -1,0 +1,2214 @@
+{
+ "forms": [
+  {
+   "form": "melnos",
+   "eras": {
+    "1": "melnos",
+    "2": "melnos",
+    "3": "melno",
+    "4": "melno"
+   }
+  },
+  {
+   "form": "melnom",
+   "eras": {
+    "1": "melnom",
+    "2": "melnom",
+    "3": "melno",
+    "4": "melno"
+   }
+  },
+  {
+   "form": "melnosyo",
+   "eras": {
+    "1": "melnosyo",
+    "2": "melnosyo",
+    "3": "melnosyo",
+    "4": "melnosyo"
+   }
+  },
+  {
+   "form": "melnes",
+   "eras": {
+    "1": "melnes",
+    "2": "melnes",
+    "3": "melne",
+    "4": "melne"
+   }
+  },
+  {
+   "form": "melnem",
+   "eras": {
+    "1": "melnem",
+    "2": "melnem",
+    "3": "melne",
+    "4": "melne"
+   }
+  },
+  {
+   "form": "melnesyo",
+   "eras": {
+    "1": "melnesyo",
+    "2": "melnesyo",
+    "3": "melnesyo",
+    "4": "melnesyo"
+   }
+  },
+  {
+   "form": "kolmos",
+   "eras": {
+    "1": "kolmos",
+    "2": "kolmos",
+    "3": "kolmo",
+    "4": "kolmo"
+   }
+  },
+  {
+   "form": "kolmom",
+   "eras": {
+    "1": "kolmom",
+    "2": "kolmom",
+    "3": "kolmo",
+    "4": "kolmo"
+   }
+  },
+  {
+   "form": "kolmosyo",
+   "eras": {
+    "1": "kolmosyo",
+    "2": "kolmosyo",
+    "3": "kolmosyo",
+    "4": "kolmosyo"
+   }
+  },
+  {
+   "form": "kolmes",
+   "eras": {
+    "1": "kolmes",
+    "2": "kolmes",
+    "3": "kolme",
+    "4": "kolme"
+   }
+  },
+  {
+   "form": "kolmem",
+   "eras": {
+    "1": "kolmem",
+    "2": "kolmem",
+    "3": "kolme",
+    "4": "kolme"
+   }
+  },
+  {
+   "form": "kolmesyo",
+   "eras": {
+    "1": "kolmesyo",
+    "2": "kolmesyo",
+    "3": "kolmesyo",
+    "4": "kolmesyo"
+   }
+  },
+  {
+   "form": "bhāgos",
+   "eras": {
+    "1": "phāgos",
+    "2": "phēgos",
+    "3": "phēgo",
+    "4": "fēg"
+   }
+  },
+  {
+   "form": "bhāgom",
+   "eras": {
+    "1": "phāgom",
+    "2": "phēgom",
+    "3": "phēgo",
+    "4": "fēg"
+   }
+  },
+  {
+   "form": "bhāgosyo",
+   "eras": {
+    "1": "phāgosyo",
+    "2": "phēgosyo",
+    "3": "phēgosyo",
+    "4": "fēgosyo"
+   }
+  },
+  {
+   "form": "bhāges",
+   "eras": {
+    "1": "phāges",
+    "2": "phēges",
+    "3": "phēce",
+    "4": "fēc"
+   }
+  },
+  {
+   "form": "bhāgem",
+   "eras": {
+    "1": "phāgem",
+    "2": "phēgem",
+    "3": "phēce",
+    "4": "fēc"
+   }
+  },
+  {
+   "form": "bhāgesyo",
+   "eras": {
+    "1": "phāgesyo",
+    "2": "phēgesyo",
+    "3": "phēcesyo",
+    "4": "fēcesyo"
+   }
+  },
+  {
+   "form": "ghrebheti",
+   "eras": {
+    "1": "khrepheti",
+    "2": "khrepheti",
+    "3": "khrepheti",
+    "4": "khrefeti"
+   }
+  },
+  {
+   "form": "ghrebhe",
+   "eras": {
+    "1": "khrephe",
+    "2": "khrephe",
+    "3": "khrephe",
+    "4": "khref"
+   }
+  },
+  {
+   "form": "legeti",
+   "eras": {
+    "1": "legeti",
+    "2": "legeti",
+    "3": "leceti",
+    "4": "leceti"
+   }
+  },
+  {
+   "form": "lege",
+   "eras": {
+    "1": "lege",
+    "2": "lege",
+    "3": "lece",
+    "4": "lec"
+   }
+  },
+  {
+   "form": "leukos",
+   "eras": {
+    "1": "lūkos",
+    "2": "lūkos",
+    "3": "lūko",
+    "4": "lūk"
+   }
+  },
+  {
+   "form": "leukom",
+   "eras": {
+    "1": "lūkom",
+    "2": "lūkom",
+    "3": "lūko",
+    "4": "lūk"
+   }
+  },
+  {
+   "form": "leukosyo",
+   "eras": {
+    "1": "lūkosyo",
+    "2": "lūkosyo",
+    "3": "lūkosyo",
+    "4": "lūkosyo"
+   }
+  },
+  {
+   "form": "leukes",
+   "eras": {
+    "1": "lūkes",
+    "2": "lūkes",
+    "3": "lūçe",
+    "4": "lūç"
+   }
+  },
+  {
+   "form": "leukem",
+   "eras": {
+    "1": "lūkem",
+    "2": "lūkem",
+    "3": "lūçe",
+    "4": "lūç"
+   }
+  },
+  {
+   "form": "leukesyo",
+   "eras": {
+    "1": "lūkesyo",
+    "2": "lūkesyo",
+    "3": "lūçesyo",
+    "4": "lūçesyo"
+   }
+  },
+  {
+   "form": "wōkwos",
+   "eras": {
+    "1": "wōkwos",
+    "2": "wōkwos",
+    "3": "wōkwo",
+    "4": "wōp"
+   }
+  },
+  {
+   "form": "wōkwom",
+   "eras": {
+    "1": "wōkwom",
+    "2": "wōkwom",
+    "3": "wōkwo",
+    "4": "wōp"
+   }
+  },
+  {
+   "form": "wōkwosyo",
+   "eras": {
+    "1": "wōkwosyo",
+    "2": "wōkwosyo",
+    "3": "wōkwosyo",
+    "4": "wōposyo"
+   }
+  },
+  {
+   "form": "wōkwes",
+   "eras": {
+    "1": "wōkwes",
+    "2": "wōkwes",
+    "3": "wōkwe",
+    "4": "wōp"
+   }
+  },
+  {
+   "form": "wōkwem",
+   "eras": {
+    "1": "wōkwem",
+    "2": "wōkwem",
+    "3": "wōkwe",
+    "4": "wōp"
+   }
+  },
+  {
+   "form": "wōkwesyo",
+   "eras": {
+    "1": "wōkwesyo",
+    "2": "wōkwesyo",
+    "3": "wōkwesyo",
+    "4": "wōpesyo"
+   }
+  },
+  {
+   "form": "enōmos",
+   "eras": {
+    "1": "enōmos",
+    "2": "enōmos",
+    "3": "enōmo",
+    "4": "enōm"
+   }
+  },
+  {
+   "form": "enōmom",
+   "eras": {
+    "1": "enōmom",
+    "2": "enōmom",
+    "3": "enōmo",
+    "4": "enōm"
+   }
+  },
+  {
+   "form": "enōmosyo",
+   "eras": {
+    "1": "enōmosyo",
+    "2": "enōmosyo",
+    "3": "enōmosyo",
+    "4": "enōmosyo"
+   }
+  },
+  {
+   "form": "enōmes",
+   "eras": {
+    "1": "enōmes",
+    "2": "enōmes",
+    "3": "enōme",
+    "4": "enōm"
+   }
+  },
+  {
+   "form": "enōmem",
+   "eras": {
+    "1": "enōmem",
+    "2": "enōmem",
+    "3": "enōme",
+    "4": "enōm"
+   }
+  },
+  {
+   "form": "enōmesyo",
+   "eras": {
+    "1": "enōmesyo",
+    "2": "enōmesyo",
+    "3": "enōmesyo",
+    "4": "enōmesyo"
+   }
+  },
+  {
+   "form": "weideti",
+   "eras": {
+    "1": "wīdeti",
+    "2": "wīdeti",
+    "3": "wīdeti",
+    "4": "wīdeti"
+   }
+  },
+  {
+   "form": "weide",
+   "eras": {
+    "1": "wīde",
+    "2": "wīde",
+    "3": "wīde",
+    "4": "wīd"
+   }
+  },
+  {
+   "form": "ghrobhos",
+   "eras": {
+    "1": "khrophos",
+    "2": "khrophos",
+    "3": "khropho",
+    "4": "khrof"
+   }
+  },
+  {
+   "form": "ghrobhom",
+   "eras": {
+    "1": "khrophom",
+    "2": "khrophom",
+    "3": "khropho",
+    "4": "khrof"
+   }
+  },
+  {
+   "form": "ghrobhosyo",
+   "eras": {
+    "1": "khrophosyo",
+    "2": "khrophosyo",
+    "3": "khrophosyo",
+    "4": "khrofosyo"
+   }
+  },
+  {
+   "form": "ghrobhes",
+   "eras": {
+    "1": "khrophes",
+    "2": "khrophes",
+    "3": "khrophe",
+    "4": "khrof"
+   }
+  },
+  {
+   "form": "ghrobhem",
+   "eras": {
+    "1": "khrophem",
+    "2": "khrophem",
+    "3": "khrophe",
+    "4": "khrof"
+   }
+  },
+  {
+   "form": "ghrobhesyo",
+   "eras": {
+    "1": "khrophesyo",
+    "2": "khrophesyo",
+    "3": "khrophesyo",
+    "4": "khrofesyo"
+   }
+  },
+  {
+   "form": "āgros",
+   "eras": {
+    "1": "āgros",
+    "2": "ēgros",
+    "3": "ēgro",
+    "4": "ēgro"
+   }
+  },
+  {
+   "form": "āgrom",
+   "eras": {
+    "1": "āgrom",
+    "2": "ēgrom",
+    "3": "ēgro",
+    "4": "ēgro"
+   }
+  },
+  {
+   "form": "āgrosyo",
+   "eras": {
+    "1": "āgrosyo",
+    "2": "ēgrosyo",
+    "3": "ēgrosyo",
+    "4": "ēgrosyo"
+   }
+  },
+  {
+   "form": "āgres",
+   "eras": {
+    "1": "āgres",
+    "2": "ēgres",
+    "3": "ēgre",
+    "4": "ēgre"
+   }
+  },
+  {
+   "form": "āgrem",
+   "eras": {
+    "1": "āgrem",
+    "2": "ēgrem",
+    "3": "ēgre",
+    "4": "ēgre"
+   }
+  },
+  {
+   "form": "āgresyo",
+   "eras": {
+    "1": "āgresyo",
+    "2": "ēgresyo",
+    "3": "ēgresyo",
+    "4": "ēgresyo"
+   }
+  },
+  {
+   "form": "domos",
+   "eras": {
+    "1": "domos",
+    "2": "domos",
+    "3": "domo",
+    "4": "dom"
+   }
+  },
+  {
+   "form": "domom",
+   "eras": {
+    "1": "domom",
+    "2": "domom",
+    "3": "domo",
+    "4": "dom"
+   }
+  },
+  {
+   "form": "domosyo",
+   "eras": {
+    "1": "domosyo",
+    "2": "domosyo",
+    "3": "domosyo",
+    "4": "domosyo"
+   }
+  },
+  {
+   "form": "domes",
+   "eras": {
+    "1": "domes",
+    "2": "domes",
+    "3": "dome",
+    "4": "dom"
+   }
+  },
+  {
+   "form": "domem",
+   "eras": {
+    "1": "domem",
+    "2": "domem",
+    "3": "dome",
+    "4": "dom"
+   }
+  },
+  {
+   "form": "domesyo",
+   "eras": {
+    "1": "domesyo",
+    "2": "domesyo",
+    "3": "domesyo",
+    "4": "domesyo"
+   }
+  },
+  {
+   "form": "akmos",
+   "eras": {
+    "1": "akmos",
+    "2": "akmos",
+    "3": "akmo",
+    "4": "akmo"
+   }
+  },
+  {
+   "form": "akmom",
+   "eras": {
+    "1": "akmom",
+    "2": "akmom",
+    "3": "akmo",
+    "4": "akmo"
+   }
+  },
+  {
+   "form": "akmosyo",
+   "eras": {
+    "1": "akmosyo",
+    "2": "akmosyo",
+    "3": "akmosyo",
+    "4": "akmosyo"
+   }
+  },
+  {
+   "form": "akmes",
+   "eras": {
+    "1": "akmes",
+    "2": "akmes",
+    "3": "akme",
+    "4": "akme"
+   }
+  },
+  {
+   "form": "akmem",
+   "eras": {
+    "1": "akmem",
+    "2": "akmem",
+    "3": "akme",
+    "4": "akme"
+   }
+  },
+  {
+   "form": "akmesyo",
+   "eras": {
+    "1": "akmesyo",
+    "2": "akmesyo",
+    "3": "akmesyo",
+    "4": "akmesyo"
+   }
+  },
+  {
+   "form": "dōneti",
+   "eras": {
+    "1": "dōneti",
+    "2": "dōneti",
+    "3": "dōneti",
+    "4": "dōneti"
+   }
+  },
+  {
+   "form": "dōne",
+   "eras": {
+    "1": "dōne",
+    "2": "dōne",
+    "3": "dōne",
+    "4": "dōn"
+   }
+  },
+  {
+   "form": "emeti",
+   "eras": {
+    "1": "emeti",
+    "2": "emeti",
+    "3": "emeti",
+    "4": "emeti"
+   }
+  },
+  {
+   "form": "eme",
+   "eras": {
+    "1": "eme",
+    "2": "eme",
+    "3": "eme",
+    "4": "em"
+   }
+  },
+  {
+   "form": "pekwos",
+   "eras": {
+    "1": "pekwos",
+    "2": "pekwos",
+    "3": "pekwo",
+    "4": "pep"
+   }
+  },
+  {
+   "form": "pekwom",
+   "eras": {
+    "1": "pekwom",
+    "2": "pekwom",
+    "3": "pekwo",
+    "4": "pep"
+   }
+  },
+  {
+   "form": "pekwosyo",
+   "eras": {
+    "1": "pekwosyo",
+    "2": "pekwosyo",
+    "3": "pekwosyo",
+    "4": "peposyo"
+   }
+  },
+  {
+   "form": "pekwes",
+   "eras": {
+    "1": "pekwes",
+    "2": "pekwes",
+    "3": "pekwe",
+    "4": "pep"
+   }
+  },
+  {
+   "form": "pekwem",
+   "eras": {
+    "1": "pekwem",
+    "2": "pekwem",
+    "3": "pekwe",
+    "4": "pep"
+   }
+  },
+  {
+   "form": "pekwesyo",
+   "eras": {
+    "1": "pekwesyo",
+    "2": "pekwesyo",
+    "3": "pekwesyo",
+    "4": "pepesyo"
+   }
+  },
+  {
+   "form": "argos",
+   "eras": {
+    "1": "argos",
+    "2": "argos",
+    "3": "argo",
+    "4": "argo"
+   }
+  },
+  {
+   "form": "argom",
+   "eras": {
+    "1": "argom",
+    "2": "argom",
+    "3": "argo",
+    "4": "argo"
+   }
+  },
+  {
+   "form": "argosyo",
+   "eras": {
+    "1": "argosyo",
+    "2": "argosyo",
+    "3": "argosyo",
+    "4": "argosyo"
+   }
+  },
+  {
+   "form": "arges",
+   "eras": {
+    "1": "arges",
+    "2": "arges",
+    "3": "arce",
+    "4": "arce"
+   }
+  },
+  {
+   "form": "argem",
+   "eras": {
+    "1": "argem",
+    "2": "argem",
+    "3": "arce",
+    "4": "arce"
+   }
+  },
+  {
+   "form": "argesyo",
+   "eras": {
+    "1": "argesyo",
+    "2": "argesyo",
+    "3": "arcesyo",
+    "4": "arcesyo"
+   }
+  },
+  {
+   "form": "dhētos",
+   "eras": {
+    "1": "thētos",
+    "2": "thītos",
+    "3": "thīto",
+    "4": "tīt"
+   }
+  },
+  {
+   "form": "dhētom",
+   "eras": {
+    "1": "thētom",
+    "2": "thītom",
+    "3": "thīto",
+    "4": "tīt"
+   }
+  },
+  {
+   "form": "dhētosyo",
+   "eras": {
+    "1": "thētosyo",
+    "2": "thītosyo",
+    "3": "thītosyo",
+    "4": "tītosyo"
+   }
+  },
+  {
+   "form": "dhētes",
+   "eras": {
+    "1": "thētes",
+    "2": "thītes",
+    "3": "thīte",
+    "4": "tīt"
+   }
+  },
+  {
+   "form": "dhētem",
+   "eras": {
+    "1": "thētem",
+    "2": "thītem",
+    "3": "thīte",
+    "4": "tīt"
+   }
+  },
+  {
+   "form": "dhētesyo",
+   "eras": {
+    "1": "thētesyo",
+    "2": "thītesyo",
+    "3": "thītesyo",
+    "4": "tītesyo"
+   }
+  },
+  {
+   "form": "rēgos",
+   "eras": {
+    "1": "rēgos",
+    "2": "rīgos",
+    "3": "rīgo",
+    "4": "rīg"
+   }
+  },
+  {
+   "form": "rēgom",
+   "eras": {
+    "1": "rēgom",
+    "2": "rīgom",
+    "3": "rīgo",
+    "4": "rīg"
+   }
+  },
+  {
+   "form": "rēgosyo",
+   "eras": {
+    "1": "rēgosyo",
+    "2": "rīgosyo",
+    "3": "rīgosyo",
+    "4": "rīgosyo"
+   }
+  },
+  {
+   "form": "rēges",
+   "eras": {
+    "1": "rēges",
+    "2": "rīges",
+    "3": "rīce",
+    "4": "rīc"
+   }
+  },
+  {
+   "form": "rēgem",
+   "eras": {
+    "1": "rēgem",
+    "2": "rīgem",
+    "3": "rīce",
+    "4": "rīc"
+   }
+  },
+  {
+   "form": "rēgesyo",
+   "eras": {
+    "1": "rēgesyo",
+    "2": "rīgesyo",
+    "3": "rīcesyo",
+    "4": "rīcesyo"
+   }
+  },
+  {
+   "form": "mētos",
+   "eras": {
+    "1": "mētos",
+    "2": "mītos",
+    "3": "mīto",
+    "4": "mīt"
+   }
+  },
+  {
+   "form": "mētom",
+   "eras": {
+    "1": "mētom",
+    "2": "mītom",
+    "3": "mīto",
+    "4": "mīt"
+   }
+  },
+  {
+   "form": "mētosyo",
+   "eras": {
+    "1": "mētosyo",
+    "2": "mītosyo",
+    "3": "mītosyo",
+    "4": "mītosyo"
+   }
+  },
+  {
+   "form": "mētes",
+   "eras": {
+    "1": "mētes",
+    "2": "mītes",
+    "3": "mīte",
+    "4": "mīt"
+   }
+  },
+  {
+   "form": "mētem",
+   "eras": {
+    "1": "mētem",
+    "2": "mītem",
+    "3": "mīte",
+    "4": "mīt"
+   }
+  },
+  {
+   "form": "mētesyo",
+   "eras": {
+    "1": "mētesyo",
+    "2": "mītesyo",
+    "3": "mītesyo",
+    "4": "mītesyo"
+   }
+  },
+  {
+   "form": "wedos",
+   "eras": {
+    "1": "wedos",
+    "2": "wedos",
+    "3": "wedo",
+    "4": "wed"
+   }
+  },
+  {
+   "form": "wedom",
+   "eras": {
+    "1": "wedom",
+    "2": "wedom",
+    "3": "wedo",
+    "4": "wed"
+   }
+  },
+  {
+   "form": "wedosyo",
+   "eras": {
+    "1": "wedosyo",
+    "2": "wedosyo",
+    "3": "wedosyo",
+    "4": "wedosyo"
+   }
+  },
+  {
+   "form": "wedes",
+   "eras": {
+    "1": "wedes",
+    "2": "wedes",
+    "3": "wede",
+    "4": "wed"
+   }
+  },
+  {
+   "form": "wedem",
+   "eras": {
+    "1": "wedem",
+    "2": "wedem",
+    "3": "wede",
+    "4": "wed"
+   }
+  },
+  {
+   "form": "wedesyo",
+   "eras": {
+    "1": "wedesyo",
+    "2": "wedesyo",
+    "3": "wedesyo",
+    "4": "wedesyo"
+   }
+  },
+  {
+   "form": "agnos",
+   "eras": {
+    "1": "agnos",
+    "2": "agnos",
+    "3": "agno",
+    "4": "agno"
+   }
+  },
+  {
+   "form": "agnom",
+   "eras": {
+    "1": "agnom",
+    "2": "agnom",
+    "3": "agno",
+    "4": "agno"
+   }
+  },
+  {
+   "form": "agnosyo",
+   "eras": {
+    "1": "agnosyo",
+    "2": "agnosyo",
+    "3": "agnosyo",
+    "4": "agnosyo"
+   }
+  },
+  {
+   "form": "agnes",
+   "eras": {
+    "1": "agnes",
+    "2": "agnes",
+    "3": "agne",
+    "4": "agne"
+   }
+  },
+  {
+   "form": "agnem",
+   "eras": {
+    "1": "agnem",
+    "2": "agnem",
+    "3": "agne",
+    "4": "agne"
+   }
+  },
+  {
+   "form": "agnesyo",
+   "eras": {
+    "1": "agnesyo",
+    "2": "agnesyo",
+    "3": "agnesyo",
+    "4": "agnesyo"
+   }
+  },
+  {
+   "form": "dhūmos",
+   "eras": {
+    "1": "thūmos",
+    "2": "thūmos",
+    "3": "thūmo",
+    "4": "tūm"
+   }
+  },
+  {
+   "form": "dhūmom",
+   "eras": {
+    "1": "thūmom",
+    "2": "thūmom",
+    "3": "thūmo",
+    "4": "tūm"
+   }
+  },
+  {
+   "form": "dhūmosyo",
+   "eras": {
+    "1": "thūmosyo",
+    "2": "thūmosyo",
+    "3": "thūmosyo",
+    "4": "tūmosyo"
+   }
+  },
+  {
+   "form": "dhūmes",
+   "eras": {
+    "1": "thūmes",
+    "2": "thūmes",
+    "3": "thūme",
+    "4": "tūm"
+   }
+  },
+  {
+   "form": "dhūmem",
+   "eras": {
+    "1": "thūmem",
+    "2": "thūmem",
+    "3": "thūme",
+    "4": "tūm"
+   }
+  },
+  {
+   "form": "dhūmesyo",
+   "eras": {
+    "1": "thūmesyo",
+    "2": "thūmesyo",
+    "3": "thūmesyo",
+    "4": "tūmesyo"
+   }
+  },
+  {
+   "form": "grānos",
+   "eras": {
+    "1": "grānos",
+    "2": "grēnos",
+    "3": "grēno",
+    "4": "grēn"
+   }
+  },
+  {
+   "form": "grānom",
+   "eras": {
+    "1": "grānom",
+    "2": "grēnom",
+    "3": "grēno",
+    "4": "grēn"
+   }
+  },
+  {
+   "form": "grānosyo",
+   "eras": {
+    "1": "grānosyo",
+    "2": "grēnosyo",
+    "3": "grēnosyo",
+    "4": "grēnosyo"
+   }
+  },
+  {
+   "form": "grānes",
+   "eras": {
+    "1": "grānes",
+    "2": "grēnes",
+    "3": "grēne",
+    "4": "grēn"
+   }
+  },
+  {
+   "form": "grānem",
+   "eras": {
+    "1": "grānem",
+    "2": "grēnem",
+    "3": "grēne",
+    "4": "grēn"
+   }
+  },
+  {
+   "form": "grānesyo",
+   "eras": {
+    "1": "grānesyo",
+    "2": "grēnesyo",
+    "3": "grēnesyo",
+    "4": "grēnesyo"
+   }
+  },
+  {
+   "form": "peistos",
+   "eras": {
+    "1": "pīstos",
+    "2": "pīstos",
+    "3": "pīsto",
+    "4": "pīsto"
+   }
+  },
+  {
+   "form": "peistom",
+   "eras": {
+    "1": "pīstom",
+    "2": "pīstom",
+    "3": "pīsto",
+    "4": "pīsto"
+   }
+  },
+  {
+   "form": "peistosyo",
+   "eras": {
+    "1": "pīstosyo",
+    "2": "pīstosyo",
+    "3": "pīstosyo",
+    "4": "pīstosyo"
+   }
+  },
+  {
+   "form": "peistes",
+   "eras": {
+    "1": "pīstes",
+    "2": "pīstes",
+    "3": "pīste",
+    "4": "pīste"
+   }
+  },
+  {
+   "form": "peistem",
+   "eras": {
+    "1": "pīstem",
+    "2": "pīstem",
+    "3": "pīste",
+    "4": "pīste"
+   }
+  },
+  {
+   "form": "peistesyo",
+   "eras": {
+    "1": "pīstesyo",
+    "2": "pīstesyo",
+    "3": "pīstesyo",
+    "4": "pīstesyo"
+   }
+  },
+  {
+   "form": "melitos",
+   "eras": {
+    "1": "melitos",
+    "2": "melitos",
+    "3": "melito",
+    "4": "melit"
+   }
+  },
+  {
+   "form": "melitom",
+   "eras": {
+    "1": "melitom",
+    "2": "melitom",
+    "3": "melito",
+    "4": "melit"
+   }
+  },
+  {
+   "form": "melitosyo",
+   "eras": {
+    "1": "melitosyo",
+    "2": "melitosyo",
+    "3": "melitosyo",
+    "4": "melitosyo"
+   }
+  },
+  {
+   "form": "melites",
+   "eras": {
+    "1": "melites",
+    "2": "melites",
+    "3": "melite",
+    "4": "melit"
+   }
+  },
+  {
+   "form": "melitem",
+   "eras": {
+    "1": "melitem",
+    "2": "melitem",
+    "3": "melite",
+    "4": "melit"
+   }
+  },
+  {
+   "form": "melitesyo",
+   "eras": {
+    "1": "melitesyo",
+    "2": "melitesyo",
+    "3": "melitesyo",
+    "4": "melitesyo"
+   }
+  },
+  {
+   "form": "salos",
+   "eras": {
+    "1": "salos",
+    "2": "salos",
+    "3": "salo",
+    "4": "sal"
+   }
+  },
+  {
+   "form": "salom",
+   "eras": {
+    "1": "salom",
+    "2": "salom",
+    "3": "salo",
+    "4": "sal"
+   }
+  },
+  {
+   "form": "salosyo",
+   "eras": {
+    "1": "salosyo",
+    "2": "salosyo",
+    "3": "salosyo",
+    "4": "salosyo"
+   }
+  },
+  {
+   "form": "sales",
+   "eras": {
+    "1": "sales",
+    "2": "sales",
+    "3": "sale",
+    "4": "sal"
+   }
+  },
+  {
+   "form": "salem",
+   "eras": {
+    "1": "salem",
+    "2": "salem",
+    "3": "sale",
+    "4": "sal"
+   }
+  },
+  {
+   "form": "salesyo",
+   "eras": {
+    "1": "salesyo",
+    "2": "salesyo",
+    "3": "salesyo",
+    "4": "salesyo"
+   }
+  },
+  {
+   "form": "edeti",
+   "eras": {
+    "1": "edeti",
+    "2": "edeti",
+    "3": "edeti",
+    "4": "edeti"
+   }
+  },
+  {
+   "form": "ede",
+   "eras": {
+    "1": "ede",
+    "2": "ede",
+    "3": "ede",
+    "4": "ed"
+   }
+  },
+  {
+   "form": "pibeti",
+   "eras": {
+    "1": "pibeti",
+    "2": "pibeti",
+    "3": "pibeti",
+    "4": "pibeti"
+   }
+  },
+  {
+   "form": "pibe",
+   "eras": {
+    "1": "pibe",
+    "2": "pibe",
+    "3": "pibe",
+    "4": "pib"
+   }
+  },
+  {
+   "form": "sāwelos",
+   "eras": {
+    "1": "sāwelos",
+    "2": "sēwelos",
+    "3": "sēwelo",
+    "4": "sēwel"
+   }
+  },
+  {
+   "form": "sāwelom",
+   "eras": {
+    "1": "sāwelom",
+    "2": "sēwelom",
+    "3": "sēwelo",
+    "4": "sēwel"
+   }
+  },
+  {
+   "form": "sāwelosyo",
+   "eras": {
+    "1": "sāwelosyo",
+    "2": "sēwelosyo",
+    "3": "sēwelosyo",
+    "4": "sēwelosyo"
+   }
+  },
+  {
+   "form": "sāweles",
+   "eras": {
+    "1": "sāweles",
+    "2": "sēweles",
+    "3": "sēwele",
+    "4": "sēwel"
+   }
+  },
+  {
+   "form": "sāwelem",
+   "eras": {
+    "1": "sāwelem",
+    "2": "sēwelem",
+    "3": "sēwele",
+    "4": "sēwel"
+   }
+  },
+  {
+   "form": "sāwelesyo",
+   "eras": {
+    "1": "sāwelesyo",
+    "2": "sēwelesyo",
+    "3": "sēwelesyo",
+    "4": "sēwelesyo"
+   }
+  },
+  {
+   "form": "mātēros",
+   "eras": {
+    "1": "mātēros",
+    "2": "mētīros",
+    "3": "mētīro",
+    "4": "mētīr"
+   }
+  },
+  {
+   "form": "mātērom",
+   "eras": {
+    "1": "mātērom",
+    "2": "mētīrom",
+    "3": "mētīro",
+    "4": "mētīr"
+   }
+  },
+  {
+   "form": "mātērosyo",
+   "eras": {
+    "1": "mātērosyo",
+    "2": "mētīrosyo",
+    "3": "mētīrosyo",
+    "4": "mētīrosyo"
+   }
+  },
+  {
+   "form": "mātēres",
+   "eras": {
+    "1": "mātēres",
+    "2": "mētīres",
+    "3": "mētīre",
+    "4": "mētīr"
+   }
+  },
+  {
+   "form": "mātērem",
+   "eras": {
+    "1": "mātērem",
+    "2": "mētīrem",
+    "3": "mētīre",
+    "4": "mētīr"
+   }
+  },
+  {
+   "form": "mātēresyo",
+   "eras": {
+    "1": "mātēresyo",
+    "2": "mētīresyo",
+    "3": "mētīresyo",
+    "4": "mētīresyo"
+   }
+  },
+  {
+   "form": "patēros",
+   "eras": {
+    "1": "patēros",
+    "2": "patīros",
+    "3": "patīro",
+    "4": "patīr"
+   }
+  },
+  {
+   "form": "patērom",
+   "eras": {
+    "1": "patērom",
+    "2": "patīrom",
+    "3": "patīro",
+    "4": "patīr"
+   }
+  },
+  {
+   "form": "patērosyo",
+   "eras": {
+    "1": "patērosyo",
+    "2": "patīrosyo",
+    "3": "patīrosyo",
+    "4": "patīrosyo"
+   }
+  },
+  {
+   "form": "patēres",
+   "eras": {
+    "1": "patēres",
+    "2": "patīres",
+    "3": "patīre",
+    "4": "patīr"
+   }
+  },
+  {
+   "form": "patērem",
+   "eras": {
+    "1": "patērem",
+    "2": "patīrem",
+    "3": "patīre",
+    "4": "patīr"
+   }
+  },
+  {
+   "form": "patēresyo",
+   "eras": {
+    "1": "patēresyo",
+    "2": "patīresyo",
+    "3": "patīresyo",
+    "4": "patīresyo"
+   }
+  },
+  {
+   "form": "bhrātēros",
+   "eras": {
+    "1": "phrātēros",
+    "2": "phrētīros",
+    "3": "phrētīro",
+    "4": "frētīr"
+   }
+  },
+  {
+   "form": "bhrātērom",
+   "eras": {
+    "1": "phrātērom",
+    "2": "phrētīrom",
+    "3": "phrētīro",
+    "4": "frētīr"
+   }
+  },
+  {
+   "form": "bhrātērosyo",
+   "eras": {
+    "1": "phrātērosyo",
+    "2": "phrētīrosyo",
+    "3": "phrētīrosyo",
+    "4": "frētīrosyo"
+   }
+  },
+  {
+   "form": "bhrātēres",
+   "eras": {
+    "1": "phrātēres",
+    "2": "phrētīres",
+    "3": "phrētīre",
+    "4": "frētīr"
+   }
+  },
+  {
+   "form": "bhrātērem",
+   "eras": {
+    "1": "phrātērem",
+    "2": "phrētīrem",
+    "3": "phrētīre",
+    "4": "frētīr"
+   }
+  },
+  {
+   "form": "bhrātēresyo",
+   "eras": {
+    "1": "phrātēresyo",
+    "2": "phrētīresyo",
+    "3": "phrētīresyo",
+    "4": "frētīresyo"
+   }
+  },
+  {
+   "form": "ghesros",
+   "eras": {
+    "1": "khesros",
+    "2": "khesros",
+    "3": "şesro",
+    "4": "şesro"
+   }
+  },
+  {
+   "form": "ghesrom",
+   "eras": {
+    "1": "khesrom",
+    "2": "khesrom",
+    "3": "şesro",
+    "4": "şesro"
+   }
+  },
+  {
+   "form": "ghesrosyo",
+   "eras": {
+    "1": "khesrosyo",
+    "2": "khesrosyo",
+    "3": "şesrosyo",
+    "4": "şesrosyo"
+   }
+  },
+  {
+   "form": "ghesres",
+   "eras": {
+    "1": "khesres",
+    "2": "khesres",
+    "3": "şesre",
+    "4": "şesre"
+   }
+  },
+  {
+   "form": "ghesrem",
+   "eras": {
+    "1": "khesrem",
+    "2": "khesrem",
+    "3": "şesre",
+    "4": "şesre"
+   }
+  },
+  {
+   "form": "ghesresyo",
+   "eras": {
+    "1": "khesresyo",
+    "2": "khesresyo",
+    "3": "şesresyo",
+    "4": "şesresyo"
+   }
+  },
+  {
+   "form": "kerdos",
+   "eras": {
+    "1": "kerdos",
+    "2": "kerdos",
+    "3": "çerdo",
+    "4": "çerdo"
+   }
+  },
+  {
+   "form": "kerdom",
+   "eras": {
+    "1": "kerdom",
+    "2": "kerdom",
+    "3": "çerdo",
+    "4": "çerdo"
+   }
+  },
+  {
+   "form": "kerdosyo",
+   "eras": {
+    "1": "kerdosyo",
+    "2": "kerdosyo",
+    "3": "çerdosyo",
+    "4": "çerdosyo"
+   }
+  },
+  {
+   "form": "kerdes",
+   "eras": {
+    "1": "kerdes",
+    "2": "kerdes",
+    "3": "çerde",
+    "4": "çerde"
+   }
+  },
+  {
+   "form": "kerdem",
+   "eras": {
+    "1": "kerdem",
+    "2": "kerdem",
+    "3": "çerde",
+    "4": "çerde"
+   }
+  },
+  {
+   "form": "kerdesyo",
+   "eras": {
+    "1": "kerdesyo",
+    "2": "kerdesyo",
+    "3": "çerdesyo",
+    "4": "çerdesyo"
+   }
+  },
+  {
+   "form": "okwos",
+   "eras": {
+    "1": "okwos",
+    "2": "okwos",
+    "3": "okwo",
+    "4": "op"
+   }
+  },
+  {
+   "form": "okwom",
+   "eras": {
+    "1": "okwom",
+    "2": "okwom",
+    "3": "okwo",
+    "4": "op"
+   }
+  },
+  {
+   "form": "okwosyo",
+   "eras": {
+    "1": "okwosyo",
+    "2": "okwosyo",
+    "3": "okwosyo",
+    "4": "oposyo"
+   }
+  },
+  {
+   "form": "okwes",
+   "eras": {
+    "1": "okwes",
+    "2": "okwes",
+    "3": "okwe",
+    "4": "op"
+   }
+  },
+  {
+   "form": "okwem",
+   "eras": {
+    "1": "okwem",
+    "2": "okwem",
+    "3": "okwe",
+    "4": "op"
+   }
+  },
+  {
+   "form": "okwesyo",
+   "eras": {
+    "1": "okwesyo",
+    "2": "okwesyo",
+    "3": "okwesyo",
+    "4": "opesyo"
+   }
+  },
+  {
+   "form": "deiwos",
+   "eras": {
+    "1": "dīwos",
+    "2": "dīwos",
+    "3": "dīwo",
+    "4": "dīw"
+   }
+  },
+  {
+   "form": "deiwom",
+   "eras": {
+    "1": "dīwom",
+    "2": "dīwom",
+    "3": "dīwo",
+    "4": "dīw"
+   }
+  },
+  {
+   "form": "deiwosyo",
+   "eras": {
+    "1": "dīwosyo",
+    "2": "dīwosyo",
+    "3": "dīwosyo",
+    "4": "dīwosyo"
+   }
+  },
+  {
+   "form": "deiwes",
+   "eras": {
+    "1": "dīwes",
+    "2": "dīwes",
+    "3": "dīwe",
+    "4": "dīw"
+   }
+  },
+  {
+   "form": "deiwem",
+   "eras": {
+    "1": "dīwem",
+    "2": "dīwem",
+    "3": "dīwe",
+    "4": "dīw"
+   }
+  },
+  {
+   "form": "deiwesyo",
+   "eras": {
+    "1": "dīwesyo",
+    "2": "dīwesyo",
+    "3": "dīwesyo",
+    "4": "dīwesyo"
+   }
+  },
+  {
+   "form": "mereti",
+   "eras": {
+    "1": "mereti",
+    "2": "mereti",
+    "3": "mereti",
+    "4": "mereti"
+   }
+  },
+  {
+   "form": "mere",
+   "eras": {
+    "1": "mere",
+    "2": "mere",
+    "3": "mere",
+    "4": "mer"
+   }
+  },
+  {
+   "form": "bhāneti",
+   "eras": {
+    "1": "phāneti",
+    "2": "phēneti",
+    "3": "phēneti",
+    "4": "fēneti"
+   }
+  },
+  {
+   "form": "bhāne",
+   "eras": {
+    "1": "phāne",
+    "2": "phēne",
+    "3": "phēne",
+    "4": "fēn"
+   }
+  },
+  {
+   "form": "ghewos",
+   "eras": {
+    "1": "khewos",
+    "2": "khewos",
+    "3": "şewo",
+    "4": "şew"
+   }
+  },
+  {
+   "form": "ghewom",
+   "eras": {
+    "1": "khewom",
+    "2": "khewom",
+    "3": "şewo",
+    "4": "şew"
+   }
+  },
+  {
+   "form": "ghewosyo",
+   "eras": {
+    "1": "khewosyo",
+    "2": "khewosyo",
+    "3": "şewosyo",
+    "4": "şewosyo"
+   }
+  },
+  {
+   "form": "ghewes",
+   "eras": {
+    "1": "khewes",
+    "2": "khewes",
+    "3": "şewe",
+    "4": "şew"
+   }
+  },
+  {
+   "form": "ghewem",
+   "eras": {
+    "1": "khewem",
+    "2": "khewem",
+    "3": "şewe",
+    "4": "şew"
+   }
+  },
+  {
+   "form": "ghewesyo",
+   "eras": {
+    "1": "khewesyo",
+    "2": "khewesyo",
+    "3": "şewesyo",
+    "4": "şewesyo"
+   }
+  },
+  {
+   "form": "Meiros",
+   "eras": {
+    "1": "Mīros",
+    "2": "Mīros",
+    "3": "Mīro",
+    "4": "Mīr"
+   }
+  },
+  {
+   "form": "Meirom",
+   "eras": {
+    "1": "Mīrom",
+    "2": "Mīrom",
+    "3": "Mīro",
+    "4": "Mīr"
+   }
+  },
+  {
+   "form": "Meirosyo",
+   "eras": {
+    "1": "Mīrosyo",
+    "2": "Mīrosyo",
+    "3": "Mīrosyo",
+    "4": "Mīrosyo"
+   }
+  },
+  {
+   "form": "Meires",
+   "eras": {
+    "1": "Mīres",
+    "2": "Mīres",
+    "3": "Mīre",
+    "4": "Mīr"
+   }
+  },
+  {
+   "form": "Meirem",
+   "eras": {
+    "1": "Mīrem",
+    "2": "Mīrem",
+    "3": "Mīre",
+    "4": "Mīr"
+   }
+  },
+  {
+   "form": "Meiresyo",
+   "eras": {
+    "1": "Mīresyo",
+    "2": "Mīresyo",
+    "3": "Mīresyo",
+    "4": "Mīresyo"
+   }
+  },
+  {
+   "form": "Mēros",
+   "eras": {
+    "1": "Mēros",
+    "2": "Mīros",
+    "3": "Mīro",
+    "4": "Mīr"
+   }
+  },
+  {
+   "form": "Mērom",
+   "eras": {
+    "1": "Mērom",
+    "2": "Mīrom",
+    "3": "Mīro",
+    "4": "Mīr"
+   }
+  },
+  {
+   "form": "Mērosyo",
+   "eras": {
+    "1": "Mērosyo",
+    "2": "Mīrosyo",
+    "3": "Mīrosyo",
+    "4": "Mīrosyo"
+   }
+  },
+  {
+   "form": "Mēres",
+   "eras": {
+    "1": "Mēres",
+    "2": "Mīres",
+    "3": "Mīre",
+    "4": "Mīr"
+   }
+  },
+  {
+   "form": "Mērem",
+   "eras": {
+    "1": "Mērem",
+    "2": "Mīrem",
+    "3": "Mīre",
+    "4": "Mīr"
+   }
+  },
+  {
+   "form": "Mēresyo",
+   "eras": {
+    "1": "Mēresyo",
+    "2": "Mīresyo",
+    "3": "Mīresyo",
+    "4": "Mīresyo"
+   }
+  },
+  {
+   "form": "Kerdāgros",
+   "eras": {
+    "1": "Kerdāgros",
+    "2": "Kerdēgros",
+    "3": "Çerdēgro",
+    "4": "Çerdēgro"
+   }
+  },
+  {
+   "form": "Kerdāgrom",
+   "eras": {
+    "1": "Kerdāgrom",
+    "2": "Kerdēgrom",
+    "3": "Çerdēgro",
+    "4": "Çerdēgro"
+   }
+  },
+  {
+   "form": "Kerdāgrosyo",
+   "eras": {
+    "1": "Kerdāgrosyo",
+    "2": "Kerdēgrosyo",
+    "3": "Çerdēgrosyo",
+    "4": "Çerdēgrosyo"
+   }
+  },
+  {
+   "form": "Kerdāgres",
+   "eras": {
+    "1": "Kerdāgres",
+    "2": "Kerdēgres",
+    "3": "Çerdēgre",
+    "4": "Çerdēgre"
+   }
+  },
+  {
+   "form": "Kerdāgrem",
+   "eras": {
+    "1": "Kerdāgrem",
+    "2": "Kerdēgrem",
+    "3": "Çerdēgre",
+    "4": "Çerdēgre"
+   }
+  },
+  {
+   "form": "Kerdāgresyo",
+   "eras": {
+    "1": "Kerdāgresyo",
+    "2": "Kerdēgresyo",
+    "3": "Çerdēgresyo",
+    "4": "Çerdēgresyo"
+   }
+  },
+  {
+   "form": "nākos",
+   "eras": {
+    "1": "nākos",
+    "2": "nēkos",
+    "3": "nēko",
+    "4": "nēk"
+   }
+  },
+  {
+   "form": "nākom",
+   "eras": {
+    "1": "nākom",
+    "2": "nēkom",
+    "3": "nēko",
+    "4": "nēk"
+   }
+  },
+  {
+   "form": "nākosyo",
+   "eras": {
+    "1": "nākosyo",
+    "2": "nēkosyo",
+    "3": "nēkosyo",
+    "4": "nēkosyo"
+   }
+  },
+  {
+   "form": "nākes",
+   "eras": {
+    "1": "nākes",
+    "2": "nēkes",
+    "3": "nēçe",
+    "4": "nēç"
+   }
+  },
+  {
+   "form": "nākem",
+   "eras": {
+    "1": "nākem",
+    "2": "nēkem",
+    "3": "nēçe",
+    "4": "nēç"
+   }
+  },
+  {
+   "form": "nākesyo",
+   "eras": {
+    "1": "nākesyo",
+    "2": "nēkesyo",
+    "3": "nēçesyo",
+    "4": "nēçesyo"
+   }
+  },
+  {
+   "form": "nēkos",
+   "eras": {
+    "1": "nēkos",
+    "2": "nīkos",
+    "3": "nīko",
+    "4": "nīk"
+   }
+  },
+  {
+   "form": "nēkom",
+   "eras": {
+    "1": "nēkom",
+    "2": "nīkom",
+    "3": "nīko",
+    "4": "nīk"
+   }
+  },
+  {
+   "form": "nēkosyo",
+   "eras": {
+    "1": "nēkosyo",
+    "2": "nīkosyo",
+    "3": "nīkosyo",
+    "4": "nīkosyo"
+   }
+  },
+  {
+   "form": "nēkes",
+   "eras": {
+    "1": "nēkes",
+    "2": "nīkes",
+    "3": "nīçe",
+    "4": "nīç"
+   }
+  },
+  {
+   "form": "nēkem",
+   "eras": {
+    "1": "nēkem",
+    "2": "nīkem",
+    "3": "nīçe",
+    "4": "nīç"
+   }
+  },
+  {
+   "form": "nēkesyo",
+   "eras": {
+    "1": "nēkesyo",
+    "2": "nīkesyo",
+    "3": "nīçesyo",
+    "4": "nīçesyo"
+   }
+  },
+  {
+   "form": "ageti",
+   "eras": {
+    "1": "ageti",
+    "2": "ageti",
+    "3": "aceti",
+    "4": "aceti"
+   }
+  },
+  {
+   "form": "age",
+   "eras": {
+    "1": "age",
+    "2": "age",
+    "3": "ace",
+    "4": "ac"
+   }
+  },
+  {
+   "form": "gheneti",
+   "eras": {
+    "1": "kheneti",
+    "2": "kheneti",
+    "3": "şeneti",
+    "4": "şeneti"
+   }
+  },
+  {
+   "form": "ghene",
+   "eras": {
+    "1": "khene",
+    "2": "khene",
+    "3": "şene",
+    "4": "şen"
+   }
+  }
+ ],
+ "swaps": [
+  {
+   "word": "nākos",
+   "order": [
+    "R1",
+    "R2",
+    "R3",
+    "R4"
+   ],
+   "expect": "nēkos"
+  },
+  {
+   "word": "nākos",
+   "order": [
+    "R1",
+    "R2",
+    "R4",
+    "R3"
+   ],
+   "expect": "nīkos"
+  },
+  {
+   "word": "ghesros",
+   "order": [
+    "R1",
+    "R6"
+   ],
+   "expect": "şesros"
+  },
+  {
+   "word": "ghesros",
+   "order": [
+    "R6",
+    "R1"
+   ],
+   "expect": "khesros"
+  },
+  {
+   "word": "domos",
+   "order": [
+    "R5",
+    "R8"
+   ],
+   "expect": "dom"
+  },
+  {
+   "word": "domos",
+   "order": [
+    "R8",
+    "R5"
+   ],
+   "expect": "domo"
+  },
+  {
+   "word": "Kerdāgros",
+   "order": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8"
+   ],
+   "expect": "Çerdēgro"
+  }
+ ]
+}
