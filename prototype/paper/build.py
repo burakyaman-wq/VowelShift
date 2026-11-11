@@ -55,19 +55,19 @@ pages.append(page(f"""
 <h1>Ses Kayması — kâğıt prototip</h1>
 <p><b>Test edilen döngü:</b> Oku → Kopyala → Cevapla. Sen <b>masa</b>sın: kural kanıtlarını onaylar, kartı verir, oyuncunun dizdiği sırayla kopyayı <b>sen yazarsın</b> ve kelimelerin gerçek olup olmadığını söylersin. Süre: 20–30 dakika, tek oyuncu.</p>
 <h2>Hazırlık</h2>
-<ul><li>Kural kartlarını (s. 3) kes, ters çevir, oyuncuya gösterme. Boş kartları ve kural tabletini (s. 4) masaya koy.</li>
-<li>Oyuncuya ver: Dilbilgisi kartı (s. 2), Çağ 1 sözlüğü (s. 5). Belgeleri sırayla ver.</li>
-<li>Çağ 2 sözlüğünü (s. 7) Belge 2 başlarken ver.</li></ul>
+<ul><li>Kural kartlarını kes, ters çevir, oyuncuya gösterme. Boş kartları ve kural tabletini masaya koy.</li>
+<li>Oyuncuya ver: Dilbilgisi kartı, Çağ 1 sözlüğü. Belgeleri sırayla ver.</li>
+<li>Çağ 2 sözlüğünü Belge 2 başlarken ver.</li></ul>
 <h2>Her belgede</h2>
 <ol>
 <li><b>Talep:</b> Talep sahibinin repliğini sesli oku. İtalik kelimeler bugünün dilinden; oyuncu bunları sözlükle karşılaştırabilir.</li>
 <li><b>Oku:</b> Oyuncu eski metindeki kelimeleri sözlükle eşleştirir. Bir ses değişimini <b>iki örnek çiftle</b> söylerse kartı ver. Örneklerin eski hâli masadaki metinden ya da eski sözlükten, yeni hâli sözlükten ya da talep sahibinin repliğinden olmalı; uydurma kelime kabul etme.</li>
 <li><b>Kopyala:</b> Oyuncu kartları tablete <b>istediği sırayla</b> dizer. Kartları her kelimeye soldan sağa <b>sen</b> uygula ve kopyayı yaz.</li>
-<li><b>Masa denetimi:</b> Yazdığın her kelimeye bak. Cevap anahtarındaki (s. 10–11) “gerçek kelime” listesindeyse “masa kabul etti” de; değilse yalnızca “masa bu kelimeyi tanımıyor” de, nedenini söyleme.</li>
-<li><b>Cevapla:</b> Soruyu sor; oyuncu seçeneklerden birini işaretler. Belge 3'ün başında, Belge 2'nin kopyasına ve cevabına göre “Kapıda bir söylenti” satırını oku (s. 10). Testin sonunda Son metnini oku.</li></ol>
+<li><b>Masa denetimi:</b> Yazdığın her kelimeye bak. Cevap anahtarındaki “gerçek kelime” listesindeyse “masa kabul etti” de; değilse yalnızca “masa bu kelimeyi tanımıyor” de, nedenini söyleme.</li>
+<li><b>Cevapla:</b> Soruyu sor; oyuncu seçeneklerden birini işaretler. Belge 3'ün başında, Belge 2'nin kopyasına ve cevabına göre “Kapıda bir söylenti” satırını oku. Testin sonunda Son metnini oku.</li></ol>
 <h2><span class="warn">Gizli kural: Belge 2</span></h2>
 <p>Oyuncu R4'ü R3'ten önce dizerse <i>nākos</i> → <b>nīkos</b> olur. Bu gerçek bir kelimedir (“ölü”), <b>kabul et ve hiçbir şey söyleme.</b> Sırayı not et. Belge 3'te aynı yanlış sıra reddedilecek; oyuncunun Belge 2'ye geri dönüp dönmediğini gözle. Sonuç, Belge 3'ün söylentisinde ve Son metninde ortaya çıkar.</p>
-<h2>Gözlem formu (s. 12)</h2>
+<h2>Gözlem formu</h2>
 <p class="small">Sessiz kal, ipucu verme. Oyuncu takılırsa 2 dakika bekle, sonra yalnızca “sözlükteki hangi kelime buna benziyor?” diye sor.</p>
 """))
 
@@ -113,7 +113,7 @@ def doc_page(d):
     return page(f"""
 <span class="tag">Oyuncu · Çağ {d['era']} · Belge {d['no']}</span>
 <h1>{d['title']}</h1>
-<div class="req"><b>{d['who']}:</b> “{re.sub(r'[*]([^*]+)[*]', lambda m: '<i>' + m.group(1) + '</i>', d['says'])}”</div>{('<p class="small"><b>Kapıda bir söylenti</b> (yönetici, Belge 2 kopyasına göre okur; s. 10).</p>' if d['no'] == 3 else '')}
+<div class="req"><b>{d['who']}:</b> “{re.sub(r'[*]([^*]+)[*]', lambda m: '<i>' + m.group(1) + '</i>', d['says'])}”</div>{('<p class="small"><b>Kapıda bir söylenti</b> (yönetici, Belge 2 kopyasına göre okur).</p>' if d['no'] == 3 else '')}
 <p class="small">Masadaki eski metin:</p>
 <div class="ms">{d['old']}</div>
 <p><b>Kart sıran:</b> ______________________ &nbsp; <b>Masanın yazdığı kopya:</b></p>
@@ -133,6 +133,8 @@ pages.append(page('<span class="tag">Oyuncu · Çağ 2</span><h1>Sözlük — ye
 
 pages.append(doc_page(DOCS[1]))
 pages.append(doc_page(DOCS[2]))
+pages.append(page('<span class="tag">Oyuncu · Çağ 3</span><h1>Çağ 3</h1><p>' + DOCS[3]['intro'] + '</p><p>Kartları sana yönetici verir. Ustanın defterinde: <span class="form">Mīros</span> (iki kardeş), <span class="form">kheneti</span> (öldürür).</p>'))
+pages.append(doc_page(DOCS[3]))
 
 # 10 Answer key
 def keyrow(d):

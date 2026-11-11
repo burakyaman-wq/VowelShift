@@ -17,11 +17,13 @@ Cümle düzeni Türkçedeki gibi: yapan — etkilenen — fiil. Fiilsiz cümle "
 
 ## Her belgede işin
 1. **Oku:** Eski metnin kelimelerini sözlüğündeki bugünkü kelimelerle eşleştir. Talep sahibinin konuşmasındaki *italik* kelimeler bugünün dilinden.
-2. **Kural kanıtla:** Bir ses değişimini fark edince masaya söyle. Masa ancak İKİ örnek çiftle kanıtlarsan kartı verir. Örnekler senin gördüğün kelimelerden olmalı: eski kelime masadaki metinden (ya da eski sözlüğünden), yeni kelime sözlüğünden ya da talep sahibinden.
+2. **Kural kanıtla:** Bir ses değişimini fark edince masaya söyle. Masa ancak İKİ örnek çiftle kanıtlarsan kartı verir. Örnekler senin gördüğün kelimelerden olmalı: eski kelime masadaki metinden (ya da eski sözlüğünden), yeni kelime sözlüğünden ya da talep sahibinden. **Örnek çiftte ekler aynı olmalı:** eski kelime -om ile bitiyorsa yeni kelime de -om ile bitmeli (`ghewom:khewom`); sözlükteki kelimeye dilbilgisi kartındaki eki kendin ekleyebilirsin. Kart yalnızca kanıtladığın değişimi içerir; aynı kartın başka bir değişimini ayrıca kanıtlarsan kart güncellenir.
    `python3 masa.py <adın> kural "gh -> kh" eskiKelime:yeniKelime eskiKelime:yeniKelime`
 3. **Kopyala:** Kartlarını istediğin sırayla tablete diz; masa her kelimeye kartları soldan sağa uygular ve kopyayı yazar. Bu çağın dilinde olmayan bir kelime çıkarsa kopya rafa konmaz.
    `python3 masa.py <adın> kopyala "kartadi1,kartadi2"`
-4. **Cevapla:** Talep sahibi bir soru sorar; seçeneklerden birini seç.
+4. **Not düş (isteğe bağlı):** Rafa konan kopyanın kenarına bir not bırakabilirsin; sonraki kâtipler okur.
+   `python3 masa.py <adın> not "notun"`
+5. **Cevapla:** Talep sahibi bir soru sorar; seçeneklerden birini seç.
    `python3 masa.py <adın> cevap <numara>`
 
 Durumu görmek için: `python3 masa.py <adın> durum`

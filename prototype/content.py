@@ -59,6 +59,8 @@ CARDS = {
     "R2": {"key": "teklesme", "name": "Çift ünlüler tekleşir", "rule": "ei → ī · eu → ū"},
     "R3": {"key": "yukselme", "name": "ē yükselir", "rule": "ē → ī"},
     "R4": {"key": "kayma", "name": "ā kayar", "rule": "ā → ē"},
+    "R5": {"key": "dusme", "name": "Sondaki s ve m düşer", "rule": "-s → ∅ · -m → ∅"},
+    "R6": {"key": "damak", "name": "Damaklaşma", "rule": "kh → ş · k → ç · g → c (e, i önünde)"},
 }
 KEY2ID = {c["key"]: rid for rid, c in CARDS.items()}
 
@@ -92,8 +94,17 @@ DOCS = [
      "who": "Tüccar kadın",
      "says": "Bu senet annemden kaldı. Ben ona *mētīros* derdim, siz eski yazıda başka türlü yazıyorsunuz. Tahıl kimden kime geçmiş, bilmem lazım.",
      "heard": ["mētīros"],
-     "ask": "Tahılı kim aldı?",
-     "options": ["Annem aldı", "Mīros aldı", "Tüccar aldı", "Tanrıya adandı"]},
+     "ask": "Bu tahıl hangi kardeşin tahılıydı?",
+     "options": ["Büyük kardeş Mīros'un", "Küçük kardeş Mēros'un", "Yazıdan anlaşılmıyor", "Annemin"]},
+    {"no": 4, "era": 3, "title": "Dağdan gelen belge",
+     "old": "Mīros Mīrom kheneti.",
+     "who": "Dağlardan gelen elçi",
+     "inherit": ["R5", "R6"],
+     "intro": "Yüz yıl daha geçti. Savaş yazıhaneyi yaktı; ustan Argos'tan geriye yarım bir defter ve iki kural kartı kaldı: «Sondaki s ve m düşer» ile «Damaklaşma». Artık Çağ 3'tesin.",
+     "says": "Atalarımız dağlara sürülmedi; kaçtılar. Bu belge bizim arşivimizden. Burada atamızın öldürüldüğü yazıyor. Senin yazınla kopyala ki şehirde herkes okusun.",
+     "heard": [],
+     "ask": "Elçi soruyor: Bu belgeye göre hangisi öldürdü?",
+     "options": ["Büyük kardeş, küçüğü öldürdü", "Küçük kardeş, büyüğü öldürdü", "Yazıdan anlaşılmıyor"]},
 ]
 for _d in DOCS:
     _prev = era_ids(_d["era"] - 1)
@@ -117,7 +128,26 @@ def reaction_doc3(copy2, answer2):
     return line
 
 
-def epilogue(copy2):
+def epilogue(copy2, answers=None, notes=None):
+    answers, notes = answers or {}, notes or {}
+    text = _epilogue_core(copy2)
+    a4 = answers.get("4")
+    if a4 == "Büyük kardeş, küçüğü öldürdü":
+        text += " Elçiler senin okumanla şehre girdi: büyük kardeşin soyu katil sayıldı."
+    elif a4 == "Küçük kardeş, büyüğü öldürdü":
+        text += " Senin okumanla dağlılar suçlu ilan edildi; savaş bir kuşak daha sürdü."
+    elif a4 == "Yazıdan anlaşılmıyor":
+        text += " Elçiye 'yazı söylemiyor' dedin. Bunu kimse kaydetmedi; tarih, cevabı olanların yazdığı şey oldu."
+    for no, note in sorted(notes.items(), key=lambda kv: int(kv[0])):
+        if no == "2":
+            text += (f" Kurucuların kaydının kenarına şunu yazmıştın: “{note}” Yüz yıl sonra Melno o notu buldu. "
+                     "Kimin yazdığını bilmeden ona inanmadı; ama arşivde kardeşin akıbetine dair söylentiye uymayan tek satır oydu.")
+        else:
+            text += f" Belge {no} kopyasının kenarına şunu yazmıştın: “{note}” Melno onu yüz yıl sonra buldu ve bir dua sandı."
+    return text
+
+
+def _epilogue_core(copy2):
     if KEY_WORD_WRONG in copy2:
         return ("Yüz yıl sonra. Okullarda kurucunun kardeşinin öldüğü öğretiliyor; dayanak, senin rafa koyduğun kopya: "
                 "'Mīros nīkos.' Temel taşındaki eski tablette ise 'Mēros nākos' yazıyordu: Mēros sürgündür. "
