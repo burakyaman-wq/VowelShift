@@ -454,7 +454,6 @@ def desk_plate():
             group("kandil", [flame_halo(0, 0, 66)], place(212, 140)),
             group("kalemdan", pen_case(), place(720, 88, 1)),
             group("hokka", inkwell(), place(1330, 140)),
-            group("kalem1", pen(), place(1300, 800 - 40, -12)),
             group("bohca", bohca(190) + [group("rulo", scroll(156, 18), place(-78, -6, -18))], place(1838, 168))]
 
 
@@ -475,6 +474,14 @@ def export_sprites():
     sprite("belge_kagit", document_page(680, 440, "", ["x"], 10)[:8], 680, 440)
     sprite("kopya_kagit", copy_sheet(420, 500, [], 40), 420, 500)
     sprite("pusula", slip(360, 250, []), 360, 250)
+    sprite("kalem", pen(), 230, 10, 8)
+    sprite("belge_okuma", document_page(1520, 760, "", ["x"], 10)[:8], 1520, 760)
+    seal_parts = [circle(40, 40, 36, C["red"]), circle(40, 40, 27, "none", 1.4, C["red_pale"])]
+    for k in range(8):
+        a = math.pi * k / 4
+        seal_parts.append(circle(40 + 12 * math.cos(a), 40 + 12 * math.sin(a), 5, C["red_pale"], 1.0))
+    seal_parts.append(circle(40, 40, 5, C["red"], 1.0))
+    sprite("muhur", seal_parts, 80, 80)
     sprite("defter", notebook(470, 350), 470, 350, 20)
     from tex_core import fbm
     grain_path = OUT / "kagit_doku.png"

@@ -305,8 +305,8 @@ def build():
     })
     fb.setupOS2(sTypoAscender=1050, sTypoDescender=-360, sTypoLineGap=80,
                 usWinAscent=1150, usWinDescent=420, sxHeight=XH + 20, sCapHeight=CAP + 20,
-                achVendID="VWSH", fsType=0)
-    fb.setupPost()
+                achVendID="VWSH", fsType=0, yStrikeoutSize=46, yStrikeoutPosition=250)
+    fb.setupPost(underlinePosition=-110, underlineThickness=46)
     fb.save(OUT)
     print(f"wrote {OUT.relative_to(ROOT)} with {len(order)} glyphs")
 

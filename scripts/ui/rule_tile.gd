@@ -17,6 +17,7 @@ const STEPS := 4.0
 
 var rule_id := ""
 var dragging := false
+var locked := false        # set once the copy is shelved
 var _grab := Vector2.ZERO
 var _hover: TextureRect
 var _lines: Array[Label] = []
@@ -50,7 +51,7 @@ func setup(rule: SoundRule, proven_idx: Array, font: Font) -> void:
 	_hover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_hover.visible = false
 	add_child(_hover)
-	mouse_entered.connect(func() -> void: _hover.visible = not dragging)
+	mouse_entered.connect(func() -> void: _hover.visible = not dragging and not locked)
 	mouse_exited.connect(func() -> void: _hover.visible = false)
 
 
@@ -61,6 +62,8 @@ func set_proven(lines: PackedStringArray) -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
+	if locked:
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			dragging = true

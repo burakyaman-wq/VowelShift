@@ -85,7 +85,35 @@ func _desk_tests() -> void:
 	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nīkos.", "swapping the tiles changes the copy (the trap)")
 	desk.take_out("R4")
 	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nākos.", "a tile taken out stops applying")
+
+	desk.open_reading()
+	_expect(desk.reading_word_count() == 5, "the reading view shows the five words of doc 2")
+	desk.toggle_word(1)
+	_expect(",".join(desk.selected_words()) == "Mērom", "a marked word is remembered")
+	desk.toggle_word(1)
+	_expect(desk.selected_words().is_empty(), "marking again clears it")
+	desk.close_reading()
+
+	desk.place_rule("R4", 2)
+	var res: Dictionary = desk.write_copy()
+	_expect(res.get("shelved", false) and res["copy"] == "Mīros Mīrom ageti. Mīros nēkos.", "the pen writes and shelves the right copy")
+	_expect(desk.state.phase == "answer", "a shelved copy moves on to the question")
+	_expect(desk.tiles["R3"].locked, "tiles are put away once the copy is shelved")
+	_expect(desk.write_copy().is_empty(), "nothing more is written after shelving")
 	desk.queue_free()
+
+	var desk3: Node = load("res://scenes/desk.tscn").instantiate()
+	desk3.doc_order = 3
+	root.add_child(desk3)
+	desk3.place_rule("R4", 0)
+	desk3.place_rule("R3", 1)
+	var bad: Dictionary = desk3.write_copy()
+	_expect(not bad["shelved"] and "grīnom" in bad["rejected"], "wrong order in doc 3: grīnom is scraped")
+	_expect(desk3.state.phase == "read", "a scraped copy can be written again")
+	desk3.place_rule("R3", 0)
+	var good: Dictionary = desk3.write_copy()
+	_expect(good["shelved"] and good["copy"] == "Mētīros Mīrosyo grēnom emeti.", "the right order shelves doc 3")
+	desk3.queue_free()
 
 
 func _expect(ok: bool, msg: String) -> void:
