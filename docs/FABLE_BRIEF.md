@@ -1,6 +1,6 @@
 # Brif: Görsel dilin Fable 5.2 ile elden geçirilmesi
 
-Bu belge, Burak'ın kendi bilgisayarında Claude Code + Fable 5.2 ile açacağı oturum içindir.
+Bu belge görsel elden geçirme işinin brifidir; iş bu sohbette (claude.ai/code) yürür.
 Oturum bu dosyayı ve aşağıda adı geçen dosyaları okuyarak başlar; önceki sohbetleri bilmez.
 
 ## Başlatma
@@ -32,8 +32,10 @@ claude --model claude-fable-5-2 --effort xhigh
 
 ## Değişmeyecekler (sözleşme)
 
-- **AI görsel üretimi yok.** Görüntü üreten araç (Figma generate_image, difüzyon modelleri vb.) kullanılmaz.
-  Her şey kodla çizilir (SVG → `rsvg-convert` → PNG); Burak Illustrator'da rötuşlar. AI beyanı açık kalır.
+- **AI görsel üretimi serbest (Burak'ın kararı, 11 Kasım 2026).** Görüntü üreten araçlar kullanılabilir;
+  çıktılar üslup kurallarına uymalı ve oyunda tek elden çıkmış görünmeli. Kod (SVG) ve Burak'ın
+  Illustrator rötuşu yine kullanılır. **AI beyanı açık kalır:** itch.io sayfasında ve README'de hangi
+  asset'lerin AI ile üretildiği yazılır (`assets/art/AI_LOG.md`).
 - Üslup kuralları (`STYLE.md`): tam üstten, düz boya, ince tahrir, altın yok, ışık yok, kişi yok,
   belgelerde yazı önce, her yerde Katip.
 - Sprite **dosya adları ve piksel boyutları** aynı kalır (aşağıdaki tablo). Değişmesi gerekirse

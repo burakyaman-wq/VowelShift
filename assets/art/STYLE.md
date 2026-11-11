@@ -36,6 +36,8 @@ Her görsel aynı elden çıkmış gibi görünmeli; bunu aşağıdaki kurallar 
 ## Üretim
 
 - Kod çizer: katmanlı SVG, grup adları Illustrator'da katman adı olur. Metinler Katip ile dış hatta çevrilir.
+- AI görsel üretimi serbest (11 Kasım 2026). Çıktı bu kurallara uyar; her AI asset'i `AI_LOG.md`'ye
+  yazılır (araç, model, istem, düzenleme). AI beyanı itch.io sayfasında açık kalır.
 - Burak istediği nesneye Illustrator'da dokunur; değişen nesne koda geri işlenir ki kurallar korunsun.
 - PNG: `rsvg-convert`, ardından ortak kâğıt dokusu ve boya dalgalanması.
 
