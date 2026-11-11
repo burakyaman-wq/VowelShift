@@ -58,11 +58,8 @@ def apply_cards(st, order, text):
 
 
 def card_text(st, rid):
-    subs = C.R[rid]["subs"]
-    shown = [f"{subs[i][0]} → {subs[i][1] or '∅'}" for i in st["proven"].get(rid, [])]
-    if rid in ("R5", "R6"):
-        return C.CARDS[rid]["rule"]
-    return " · ".join(shown)
+    parts = C.CARDS[rid]["rule"].split(" · ")
+    return " · ".join(parts[i] for i in sorted(st["proven"].get(rid, [])))
 
 
 def load(p):
@@ -138,6 +135,8 @@ def main():
             print("Henüz rafa konmuş bir kopya yok ya da not boş.")
             return
         last = shelved[-1]
+        if last in st["notes"]:
+            print(f"(Belge {last} kopyasının kenarında zaten bir not vardı; yenisi üstüne yazıldı.)")
         st["notes"][last] = " ".join(args)
         log(action="not", doc=last, text=st["notes"][last])
         save(p, st)
@@ -258,7 +257,9 @@ def main():
         olds = [w.strip(".") for w in d["old"].split()]
         changed = [f"{o} → {n}" for o, n in zip(olds, [w.strip(".") for w in apply_cards(st, order, d["old"]).split()]) if o != n]
         if changed:
-            print("  Değişenler: " + " · ".join(changed))
+            print("  Değişenler:")
+            for c in changed:
+                print(f"    {c}")
         bad = [w for w, ok in res if not ok]
         log(action="kopyala", order=keys, copy=copy, accepted=not bad, rejected=bad)
         if bad:

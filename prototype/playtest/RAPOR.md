@@ -85,3 +85,33 @@ Ret mesajları (ek farkı, uzun ünlü, tanınmayan kelime) isabetli; deneme-yan
 5. Cevaplar kopyadan değil kaynaktan verilebiliyor; bilgi testi gibi.
 6. Erişilebilirlik: kopyada değişen harfleri vurgulama, uzun ünlüleri kalın gösterme istendi.
 7. Prototipe özgü: ileriki sözlük dosyaları baştan görünüyor; fazladan değişim içeren örnek çift kabul ediliyor.
+
+---
+
+# 4. tur — prototip v4 (Çağ 3 söz dizimi, Belge 4 gerçek bulmaca)
+
+## Belge 2 ve Belge 4
+- Belge 2 ters sıra: 6/12 (biri bilerek).
+- Belge 4: 11/12 kelimeleri yeniden sıraladı (anlama sadakat); 1 oyuncu (dikkatsiz) Argos'un notunu okumadan harfi korudu ve anlamı tersine çevirdi. Hepsi elçiye kaynağın eklerine göre doğru cevabı verdi.
+
+## Puan ortalamaları (11 oyuncu)
+| | 1. tur | 2. tur | 3. tur | 4. tur |
+|---|---|---|---|---|
+| Eğlence | 6.3 | 7.4 | 7.5 | 7.9 |
+| Anlaşılırlık | 6.8 | 6.6 | 7.3 | 6.7 |
+| Devam isteği | 6.6 | 7.7 | 7.5 | 8.2 |
+Jam oylayıcısı: Gameplay 4/5 (ilk kez), Innovation 5/5, Theme 5/5. Eleştirel tasarımcı: "Döngü baştan sona çalışıyor; Godot'ya geçmek için çekirdek hazır."
+
+## Tur içinde ve sonrasında düzeltilenler
+- Kart, kanıtlanmamış alt kuralı (-m) gösteriyordu; artık yalnız kanıtlananlar görünüyor.
+- -m kanıt boşluğu: elçi artık *nēko* diyor; rehbere "ek düşüyorsa ek uyumu aranmaz" eklendi.
+- Belge 4'e sırayı açıklayan kenar notu yazan oyuncu Son'da sahtecilikle değil çevirmenlikle anılıyor.
+- Not üstüne yazılırken uyarı; "Değişenler" listesi kelime başına bir satır.
+
+## Godot / içerik aşamasına devredilenler
+1. Anlaşılırlık hâlâ 6.7: kanıt kuralı (iki örnek, ek uyumu, ek düşmesi istisnası) yeni oyuncuya ağır. Öneri: oyunun başında 10 saniyelik etkileşimli mini örnek.
+2. Belge 3 dolgu gibi; Çağ 2'nin içerik aşamasında her belge yeni bir şey getirmeli.
+3. Kenar notlarının akıbeti notun içeriğine değil varlığına bağlı.
+4. Cevap soruları çoğu zaman bariz; "Yazıdan anlaşılmıyor" seçeneğinin anlamlı olduğu bir belge yazılmalı.
+5. Erişilebilirlik: uzun ünlüleri görsel olarak ayırma (renk/kalınlık), kart adlarının kuralla birlikte görünmesi.
+6. Belge 4'te yeniden sıralama çok bariz (11/12); masa ipucu satırı oyunda daha örtük verilebilir.

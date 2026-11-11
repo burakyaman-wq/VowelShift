@@ -102,8 +102,8 @@ DOCS = [
      "inherit": ["R6"],
      "intro": ("Yüz yıl daha geçti. Savaş yazıhaneyi yaktı; ustan Argos'tan geriye yarım bir defter ve tek bir kural kartı kaldı: «Damaklaşma». "
                "Defterin son sayfasında Argos'un kenar notu var: “Kelime sonları düşmeye başladı; halk artık kimin yaptığını eklerden değil sıradan anlıyor. Önce gelen yapandır.”"),
-     "says": "Biz *Mīro*'nun soyundanız. Sizin *rīgo* bize ne *ēgro* bıraktı ne *grēno*. Atamız dağlara sürülmedi, öldürüldü; bu belge bizim arşivimizden. Senin yazınla kopyala ki şehirde herkes okusun.",
-     "heard": ["Mīro", "rīgo", "ēgro", "grēno"],
+     "says": "Biz *Mīro*'nun soyundanız; bize *nēko* dediniz, sürgün. Sizin *rīgo* bize ne *ēgro* bıraktı ne *grēno*. Atamız dağlara sürülmedi, öldürüldü; bu belge bizim arşivimizden. Senin yazınla kopyala ki şehirde herkes okusun.",
+     "heard": ["Mīro", "rīgo", "ēgro", "grēno", "nēko"],
      "reorder": True,
      "ask": "Bu belgeye göre kim kimi öldürdü?",
      "options": ["Bey Mīros, sürgün Mīros'u öldürdü", "Sürgün Mīros, bey Mīros'u öldürdü", "Yazıdan anlaşılmıyor"]},
@@ -148,8 +148,11 @@ def epilogue(copy2, answers=None, notes=None, copy4=""):
             parts.append("Dağdan gelen belgeyi kelimesi kelimesine kopyaladın. Şehir onu yeni dille, sıradan okudu: önce sürgün geliyordu, "
                          "demek ki sürgün beyi öldürmüştü. Harfi korudun, anlamı kaybettin; dağlılar kendi belgeleriyle suçlu ilan edildi.")
         else:
-            parts.append("Dağdan gelen belgenin kelimelerini yeniden sıraladın; şehir onu yazıldığı gibi anladı: bey sürgünü öldürmüş. "
-                         "Anlamı korudun, harfi değiştirdin. Yüz yıl sonra yeni düzenin ölü dil uzmanı Melno, kopyanın aslına uymadığını fark edip seni sahtecilikle andı.")
+            parts.append("Dağdan gelen belgenin kelimelerini yeniden sıraladın; şehir onu yazıldığı gibi anladı: bey sürgünü öldürmüş. Anlamı korudun, harfi değiştirdin.")
+            if "4" in notes:
+                parts.append("Yüz yıl sonra yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti; ama kenardaki notunu okuyunca neden sıraladığını anladı ve seni sahtecilikle değil, çevirmenlikle andı.")
+            else:
+                parts.append("Yüz yıl sonra yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti; neden böyle yaptığını açıklayan tek satır bırakmamıştın ve seni sahtecilikle andı.")
     a4 = answers.get("4")
     if a4 == "Yazıdan anlaşılmıyor":
         parts.append("Elçiye 'yazı söylemiyor' dedin; oysa eski yazının ekleri söylüyordu.")
@@ -159,7 +162,7 @@ def epilogue(copy2, answers=None, notes=None, copy4=""):
         "1": "Rahibe notunu tabletin yanına iliştirdi; tapınak yandığında ikisi birlikte kayboldu.",
         "2": "Yeni düzenin ölü dil uzmanı Melno arşivi tararken kurucuların kaydındaki notunu buldu. Kimin yazdığını bilmeden ona inanmadı; ama söylentiye uymayan tek satır oydu.",
         "3": "Tüccar kadının torunları notunu senetle birlikte sakladı; hangi Mīros olduğu yalnızca o ailede bilindi.",
-        "4": "Notun dağlıların arşivine de kopyalandı; iki taraf da onu kendi lehine okudu.",
+        "4": "Notun dağlıların arşivine de kopyalandı; iki taraf da onu kendi lehine okudu, ama Melno onu senin savunman olarak okudu.",
     }
     for no, note in sorted(notes.items(), key=lambda kv: int(kv[0])):
         parts.append(f"Belge {no} kopyasının kenarına “{note}” yazmıştın. {fates.get(no, '')}")
