@@ -1,4 +1,4 @@
-43 words -> data/words/words.json
+47 words -> data/words/words.json
 
 Identical forms already in era 0: 0
 
@@ -7,7 +7,11 @@ Stems one sound apart (likely to merge after a shift):
   ghrebheti ~ ghrobhos
   weideti ~ wedos
   emeti ~ edeti
+  argos ~ ageti
   dhētos ~ mētos
   wedos ~ edeti
+  agnos ~ ageti
+  ghewos ~ gheneti
+  nākos ~ nēkos
 
 Sound inventory (28): K M a b bh d dh e g gh i k kw l m n o p r s t u w y ā ē ō ū

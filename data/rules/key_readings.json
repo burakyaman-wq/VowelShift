@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "notes": "Persistent readings. The player's produced form is copied into the next era; both branches must stay solvable (verify with the simulator).",
+  "keys": [
+    {"id": "K1", "era": 2, "source_word": "nākos", "meaning_tr": "sürgün",
+     "correct_chain": ["R3", "R4"], "correct_form": "nēkos",
+     "error_chain": ["R4", "R3"], "error_form": "nīkos", "error_reads_as": "nēkos (ölü)",
+     "sentence": "Mēros nākos → Mīros nēkos (sürgün) | Mīros nīkos (ölü)"},
+    {"id": "K2", "era": 3, "kind": "subject_choice", "sentence": "Mīro Mīro şeneti",
+     "options": ["elder (Meiros) killed", "younger (Mēros) killed"],
+     "clue": "a nearby genitive Mīrosyo survives case erosion"}
+  ],
+  "finale": "Era-4 text varies by K1 x K2 (4 variants). The PW8012 archive copy shows the unshifted nākos."
+}

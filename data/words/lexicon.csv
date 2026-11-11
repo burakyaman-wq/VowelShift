@@ -42,3 +42,7 @@ id,root,meaning,pos,domain,etymon,note
 41,Meiros,kurucu kardeş (büyük),noun,proper,ad,
 42,Mēros,kurucu kardeş (küçük),noun,proper,ad,
 43,Kerdāgros,"""yürek tarlası"", ülkenin adı",noun,proper,*ḱḗr + *h₂éǵros,
+44,nākos,sürgün (kişi),noun,kin_body_faith,invented (key word 1),
+45,nēkos,ölü,noun,kin_body_faith,*neḱ- ölüm,
+46,ageti,"sürer, kovar",verb,property,*h₂eǵ- sürmek,
+47,gheneti,öldürür,verb,kin_body_faith,*gʷʰen- vurmak,

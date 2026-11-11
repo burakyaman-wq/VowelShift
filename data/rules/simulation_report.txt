@@ -41,13 +41,17 @@ ghewos        khewos        khewos        şewo          şew
 Meiros        Mīros         Mīros         Mīro          Mīr         
 Mēros         Mēros         Mīros         Mīro          Mīr         
 Kerdāgros     Kerdāgros     Kerdēgros     Çerdēgro      Çerdēgro    
+nākos         nākos         nēkos         nēko          nēk         
+nēkos         nēkos         nīkos         nīko          nīk         
+ageti         ageti         ageti         aceti         aceti       
+gheneti       kheneti       kheneti       şeneti        şeneti      
 
 ## Sıraya duyarlı kural çiftleri
-- R1 (Aspiratlar sertleşir) × R6 (Damaklaşma): 12 form, ör. ghesros: R1→R6 = şesros, R6→R1 = khesros
+- R1 (Aspiratlar sertleşir) × R6 (Damaklaşma): 14 form, ör. ghesros: R1→R6 = şesros, R6→R1 = khesros
 - R1 (Aspiratlar sertleşir) × R7 (Sürtünmeliler): 34 form, ör. bhāgos: R1→R7 = fāgos, R7→R1 = phāgos
-- R3 (Uzun ē yükselir) × R4 (Uzun ā öne kayar): 44 form, ör. bhāgos: R3→R4 = bhēgos, R4→R3 = bhīgos
-- R5 (Sondaki s ve m düşer) × R8 (Son ünlü düşer): 81 form, ör. bhāgos: R5→R8 = bhāg, R8→R5 = bhāgo
-- R6 (Damaklaşma) × R8 (Son ünlü düşer): 1 form, ör. lege: R6→R8 = lec, R8→R6 = leg
+- R3 (Uzun ē yükselir) × R4 (Uzun ā öne kayar): 50 form, ör. bhāgos: R3→R4 = bhēgos, R4→R3 = bhīgos
+- R5 (Sondaki s ve m düşer) × R8 (Son ünlü düşer): 89 form, ör. bhāgos: R5→R8 = bhāg, R8→R5 = bhāgo
+- R6 (Damaklaşma) × R8 (Son ünlü düşer): 2 form, ör. lege: R6→R8 = lec, R8→R6 = leg
 
 ## Çağ 1: farklı kelimeler birleşiyor (0)
 Çağ 1: aynı kelimenin hâl/sayı ayrımı kayboldu: 0 biçim
@@ -66,10 +70,10 @@ Kerdāgros     Kerdāgros     Kerdēgros     Çerdēgro      Çerdēgro
 - Mīresyo: Meiros:gen_pl, Mēros:gen_pl
 - Mīro: Meiros:nom_sg, Meiros:acc_sg, Mēros:nom_sg, Mēros:acc_sg
 - Mīrosyo: Meiros:gen_sg, Mēros:gen_sg
-Çağ 3: aynı kelimenin hâl/sayı ayrımı kayboldu: 64 biçim
+Çağ 3: aynı kelimenin hâl/sayı ayrımı kayboldu: 68 biçim
 
 ## Çağ 4: farklı kelimeler birleşiyor (3)
 - Mīr: Meiros:nom_sg, Meiros:acc_sg, Meiros:nom_pl, Meiros:acc_pl, Mēros:nom_sg, Mēros:acc_sg, Mēros:nom_pl, Mēros:acc_pl
 - Mīresyo: Meiros:gen_pl, Mēros:gen_pl
 - Mīrosyo: Meiros:gen_sg, Mēros:gen_sg
-Çağ 4: aynı kelimenin hâl/sayı ayrımı kayboldu: 45 biçim
+Çağ 4: aynı kelimenin hâl/sayı ayrımı kayboldu: 49 biçim

@@ -695,6 +695,66 @@
         "acc_pl": "Kerdāgrem",
         "gen_pl": "Kerdāgresyo"
       }
+    },
+    {
+      "id": 44,
+      "root": "nākos",
+      "stem": "nāk",
+      "meaning_tr": "sürgün (kişi)",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "invented (key word 1)",
+      "forms": {
+        "nom_sg": "nākos",
+        "acc_sg": "nākom",
+        "gen_sg": "nākosyo",
+        "nom_pl": "nākes",
+        "acc_pl": "nākem",
+        "gen_pl": "nākesyo"
+      }
+    },
+    {
+      "id": 45,
+      "root": "nēkos",
+      "stem": "nēk",
+      "meaning_tr": "ölü",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*neḱ- ölüm",
+      "forms": {
+        "nom_sg": "nēkos",
+        "acc_sg": "nēkom",
+        "gen_sg": "nēkosyo",
+        "nom_pl": "nēkes",
+        "acc_pl": "nēkem",
+        "gen_pl": "nēkesyo"
+      }
+    },
+    {
+      "id": 46,
+      "root": "ageti",
+      "stem": "ag",
+      "meaning_tr": "sürer, kovar",
+      "pos": "verb",
+      "domain": "property",
+      "etymon": "*h₂eǵ- sürmek",
+      "forms": {
+        "3sg": "ageti",
+        "imp": "age"
+      }
+    },
+    {
+      "id": 47,
+      "root": "gheneti",
+      "stem": "ghen",
+      "meaning_tr": "öldürür",
+      "pos": "verb",
+      "domain": "kin_body_faith",
+      "etymon": "*gʷʰen- vurmak",
+      "forms": {
+        "3sg": "gheneti",
+        "imp": "ghene"
+      }
     }
   ]
 }
