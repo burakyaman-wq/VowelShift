@@ -131,6 +131,15 @@ func _desk_tests() -> void:
 	_expect(desk.state.phase == "answer", "a shelved copy moves on to the question")
 	_expect(desk.tiles["R3"].locked, "tiles are put away once the copy is shelved")
 	_expect(desk.write_copy().is_empty(), "nothing more is written after shelving")
+	_expect(not desk.move_word(0, 1), "words stay where they are in a document that does not let them move")
+	_expect(not desk.add_note("  "), "an empty margin note is not kept")
+	_expect(desk.add_note("nēkos: sürgün, ölü değil") and desk.state.notes.get("2", "") == "nēkos: sürgün, ölü değil", "a margin note is kept with the shelved copy")
+	_expect(desk.answer_question(0), "doc 2 is answered")
+	desk.next_document()
+	_expect(desk.doc.order == 3 and desk.interlude_text().contains("Sarayda senin kopyanı okudular"), "doc 3 opens on what the palace made of the copy")
+	_expect(not desk.get_node("Belge").visible, "the new document waits behind the page")
+	desk.dismiss_interlude()
+	_expect(desk.get_node("Belge").visible and desk.get_node_or_null("Ara") == null or desk.get_node("Ara").is_queued_for_deletion(), "a click puts the page away and the document arrives")
 	desk.queue_free()
 
 	var desk3: Node = load("res://scenes/desk.tscn").instantiate()
@@ -146,6 +155,36 @@ func _desk_tests() -> void:
 	var good3: Dictionary = desk3.write_copy()
 	_expect(good3["shelved"] and good3["copy"] == "Mētīros Mīrosyo grēnom emeti.", "the right order shelves doc 3")
 	desk3.queue_free()
+
+	# Document 4: the endings have worn off, so the order of the words now says who did it.
+	var desk4: Node = load("res://scenes/desk.tscn").instantiate()
+	desk4.doc_order = 4
+	desk4.dev_cards = true
+	root.add_child(desk4)
+	_expect(desk4.interlude_text().contains("Önce gelen yapandır"), "doc 4 opens on the master's note about word order")
+	desk4.dismiss_interlude()
+	desk4.place_rule("R5", 0)
+	desk4.place_rule("R6", 1)
+	_expect(desk4.copy_text() == "Mīro nēko Mīro rīgo şeneti.", "doc 4 copies word for word at first")
+	var loose := desk4.get_node("Kopya/Fisler").get_children().filter(func(c: Node) -> bool: return c is WordSlip)
+	_expect(loose.size() == 5, "the draft lies on five loose slips")
+	_expect(desk4.move_word(2, 0) and desk4.move_word(3, 1), "two words are carried to the front")
+	_expect(desk4.copy_text() == "Mīro rīgo Mīro nēko şeneti.", "the draft reads in the new order")
+	_expect(not desk4.move_word(0, 9), "a word cannot be carried off the line")
+	var slips: Node = desk4.get_node("Kopya/Fisler")
+	var first: WordSlip = slips.get_child(0)
+	first.position += Vector2(2000, 1000)
+	desk4._on_slip_dropped(first)
+	_expect(desk4.copy_text() == "rīgo Mīro nēko şeneti Mīro.", "a slip dropped past all the others goes to the end")
+	desk4.move_word(4, 0)
+	_expect(desk4.copy_text() == "Mīro rīgo Mīro nēko şeneti.", "and can be carried back")
+	var res4: Dictionary = desk4.write_copy()
+	_expect(res4.get("shelved", false) and res4["copy"] == "Mīro rīgo Mīro nēko şeneti.", "the reordered copy is written and shelved")
+	_expect(desk4.narrative.city_reading_doc4(desk4.state) == desk4.narrative.t["doc4"]["subject_first"], "the city reads the first noun as the doer")
+	_expect(desk4.get_node("Kopya/Fisler").get_child_count() == 0, "the slips are gone once the copy is in ink")
+	_expect(desk4.add_note("Sırayı ben değiştirdim; anlam aynı."), "the scribe can say why in the margin")
+	_expect(desk4.narrative.epilogue(desk4.state).contains("çevirmenlikle"), "and the epilogue remembers the note")
+	desk4.queue_free()
 
 
 func _expect(ok: bool, msg: String) -> void:

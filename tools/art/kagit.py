@@ -191,6 +191,16 @@ def slip(w=360, h=250):
     return out
 
 
+def word_slip(w=120, h=44):
+    """One word of the copy on its own slip, where a document's words may be
+    put in another order: a strip of paper, its short ends torn. Stretched
+    sideways in the game to the width of its word."""
+    g = np.random.default_rng(5)
+    left = [(g.uniform(0, 2.6), y) for y in np.linspace(h, 0, 7)]
+    right = [(w - g.uniform(0, 2.6), y) for y in np.linspace(0, h, 7)]
+    return fill(left + right, C["paper"], 1.2)
+
+
 def notebook(w=520, h=420):
     """The scribe's own book lying open: leather boards, the edges of the
     leaves, the sewing in the gutter, headbands, a ribbon. In the third era

@@ -13,6 +13,11 @@ extends Control
 ##    words of this era are scraped; change the order and write again.
 ## 4. A copy of real words is shelved. The slip turns into the requester's
 ##    question; seal an answer and the next document arrives.
+##
+## Where a document allows it, the copy's words lie on loose slips and can be
+## put in another order before the pen writes. A shelved copy takes a note in
+## its margin. Between documents a page tells what the years, or the street,
+## made of the last copy.
 
 signal copy_changed(text: String)
 signal copy_written(result: Dictionary)
@@ -30,6 +35,10 @@ const WORD_STEP := 0.32
 const COPY_WIDTH := 330.0
 const DESK := Rect2(70, 64, 1780, 952)
 const PER_PAGE := 12
+const SLIP_ORIGIN := Vector2(44, 40)
+const SLIP_ROW := 54.0
+const SLIP_GAP := 8.0
+const SLIP_WIDTH := 348.0
 
 @export var doc_order := 1
 @export var dev_cards := false          # hand over every rule up to the era, for tests
@@ -59,6 +68,10 @@ var _pick := {}              # {"word", "role", "label"} waiting for its partner
 var _bad := ""               # the last pair that did not hold, shown struck
 var _page := 0
 var _advance := false
+var _word_order: Array = []   # 1-based order of the copy's words once the player has moved any; empty = as written
+var _slips: Control
+var _note: LineEdit
+var _interlude: Control
 
 
 func _ready() -> void:
@@ -73,7 +86,30 @@ func _ready() -> void:
 # --- what tests and other scenes call -----------------------------------------
 
 func copy_text() -> String:
-	return engine.apply_text(doc.old_text, tray.model.order(), state.proven)
+	var text := engine.apply_text(doc.old_text, tray.model.order(), state.proven)
+	if _word_order.is_empty():
+		return text
+	var ws := text.trim_suffix(".").split(" ", false)
+	if ws.size() != _word_order.size():
+		return text
+	var out := PackedStringArray()
+	for i in _word_order:
+		out.append(ws[int(i) - 1])
+	return " ".join(out) + "."
+
+
+## Take the word at one place in the copy and put it at another (0-based).
+## Only where the document lets its words be reordered, and before it is written.
+func move_word(from_pos: int, to_pos: int) -> bool:
+	var n := doc.old_words().size()
+	if not doc.allow_reorder or state.phase != "read" or mini(from_pos, to_pos) < 0 or maxi(from_pos, to_pos) >= n:
+		return false
+	if _word_order.is_empty():
+		_word_order = range(1, n + 1)
+	var w: int = _word_order.pop_at(from_pos)
+	_word_order.insert(to_pos, w)
+	_refresh()
+	return true
 
 
 func place_rule(rule_id: String, slot: int) -> void:
@@ -112,21 +148,26 @@ func try_pair(old: String, nw: String) -> Dictionary:
 func write_copy() -> Dictionary:
 	if state.phase != "read":
 		return {}
-	var res := state.make_copy(doc, engine, tray.model.order())
+	var moved := not _word_order.is_empty() and _word_order != range(1, _word_order.size() + 1)
+	var res := state.make_copy(doc, engine, tray.model.order(), _word_order if moved else [])
 	if res["error"] != "":
 		return res
+	_lay_slips("")
 	_ink(res)
 	if res["shelved"]:
 		for t in tiles.values():
 			t.locked = true
 		_seal.visible = true
 		_show_question()
+		_show_note_field()
 	copy_written.emit(res)
 	return res
 
 
 ## Seal one of the requester's answers. The next document follows.
 func answer_question(i: int) -> bool:
+	if i >= 0 and i < doc.options.size() and _note and _note.text.strip_edges() != "":
+		state.add_note(doc, _note.text)         # a note still being written goes in with the answer
 	if not state.answer(doc, i):
 		return false
 	_advance = true
@@ -146,6 +187,35 @@ func next_document() -> void:
 		_show_ending()
 		return
 	_start_doc(true)
+
+
+## A line in the margin of the shelved copy. Whoever opens the archive later
+## will read it beside the text. Writing again replaces it.
+func add_note(text: String) -> bool:
+	if not state.add_note(doc, text):
+		return false
+	if _note:
+		_note.add_theme_color_override("font_color", RED)
+	return true
+
+
+## What the scribe learns before this document: what the years did, or what
+## the street made of the last copy. Empty when there is nothing to tell.
+func interlude_text() -> String:
+	var parts := PackedStringArray()
+	if doc.intro != "":
+		parts.append(doc.intro)
+	if doc.order == 3 and state.copies.has("2"):
+		parts.append(narrative.rumour_doc3(state))
+	return "\n\n".join(parts)
+
+
+func dismiss_interlude() -> void:
+	if not _interlude:
+		return
+	_interlude.queue_free()
+	_interlude = null
+	_arrive()
 
 
 func open_reading() -> void:
@@ -201,6 +271,9 @@ func _start_doc(arrive: bool) -> void:
 	_bad = ""
 	_page = 0
 	_reading = null
+	_interlude = null
+	_note = null
+	_word_order = []
 	for c in get_children():
 		remove_child(c)
 		c.queue_free()
@@ -210,13 +283,58 @@ func _start_doc(arrive: bool) -> void:
 	_ink_lines.clear()
 	_build()
 	_refresh()
-	if arrive:
+	var told := interlude_text()
+	if told != "":
 		for n in [_node("Belge"), _node("Kopya"), _slip]:
-			var to: Vector2 = n.position
-			n.position = to - Vector2(0, 900)
-			var tw := create_tween()
-			tw.tween_method(func(t: float) -> void:
-				n.position = (to - Vector2(0, 900)).lerp(to, floorf(t * 6.0) / 6.0), 0.0, 1.0, 0.42)
+			n.visible = false
+		_show_interlude(told, "Aradan geçen zaman" if doc.intro != "" else "Kapıda duyduğun")
+	elif arrive:
+		_arrive()
+
+
+## The document, the blank sheet and the requester's slip slide in from the top edge.
+func _arrive() -> void:
+	for n in [_node("Belge"), _node("Kopya"), _slip]:
+		var to: Vector2 = n.position
+		n.visible = true
+		n.position = to - Vector2(0, 900)
+		var tw := create_tween()
+		tw.tween_method(func(t: float) -> void:
+			n.position = (to - Vector2(0, 900)).lerp(to, floorf(t * 6.0) / 6.0), 0.0, 1.0, 0.42)
+
+
+## A page laid over the desk between two documents; a click puts it away.
+func _show_interlude(text: String, heading: String) -> void:
+	_interlude = Control.new()
+	_interlude.name = "Ara"
+	_interlude.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_interlude.mouse_filter = Control.MOUSE_FILTER_STOP
+	_interlude.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	_interlude.gui_input.connect(func(e: InputEvent) -> void:
+		if e is InputEventMouseButton and e.pressed:
+			dismiss_interlude())
+	add_child(_interlude)
+	move_child(_interlude, _grain.get_index())
+	var page := Control.new()
+	page.position = Vector2(200, 160)
+	page.size = Vector2(1520, 760)
+	page.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_interlude.add_child(page)
+	_tex(page, "belge_okuma.png", Vector2(-8, -8), 0.0)
+	_title(page, Vector2(610, 47), 30, heading)
+	var r := _rich(page, _red_marks(text), 30)
+	r.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	r.position = Vector2(150, 150)
+	r.size = Vector2(1220, 500)
+	var go := _label(page, "devam etmek için tıkla", 20, PENCIL)
+	go.position = Vector2(1150, 668)
+
+
+## *words* of today's language, as the data marks them, in red.
+static func _red_marks(text: String) -> String:
+	var rx := RegEx.new()
+	rx.compile("\\*([^*]+)\\*")
+	return rx.sub(text, "[color=%s]$1[/color]" % RED_HEX, true)
 
 
 func _node(node_name: String) -> Control:
@@ -249,6 +367,10 @@ func _build() -> void:
 		ink.add_theme_color_override("default_color", INK)
 		sheet.add_child(ink)
 		_ink_lines.append(ink)
+	_slips = Control.new()
+	_slips.name = "Fisler"
+	_slips.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	sheet.add_child(_slips)
 	_seal = _tex(sheet, "muhur.png", Vector2(300, 392), -12.0, false)
 	_seal.visible = false
 
@@ -507,14 +629,103 @@ func _refresh() -> void:
 	var copy := copy_text()
 	var lines := _sentences(copy)
 	var drafting := state.phase == "read"
+	var loose := drafting and doc.allow_reorder
 	var cfs := _fit(lines, COPY_WIDTH, 38)
 	for i in _copy_lines.size():
-		_copy_lines[i].text = lines[i] if i < lines.size() and drafting else ""
+		_copy_lines[i].text = lines[i] if i < lines.size() and drafting and not loose else ""
 		_copy_lines[i].add_theme_font_size_override("font_size", cfs)
+	_lay_slips(copy if loose else "")
 	if drafting:
 		for ink in _ink_lines:
 			ink.text = ""
 	copy_changed.emit(copy)
+
+
+## The draft as loose slips, one word each, in the order they now stand.
+func _lay_slips(copy: String) -> void:
+	for c in _slips.get_children():
+		_slips.remove_child(c)
+		c.queue_free()
+	if copy == "":
+		return
+	var ws := copy.trim_suffix(".").split(" ", false)
+	var at := SLIP_ORIGIN
+	for k in ws.size():
+		var slip := WordSlip.new()
+		_slips.add_child(slip)
+		slip.setup(ws[k], int(_word_order[k]) if _word_order.size() == ws.size() else k + 1, FONT, 30, PENCIL, era())
+		if at.x > SLIP_ORIGIN.x and at.x + slip.size.x > SLIP_ORIGIN.x + SLIP_WIDTH:
+			at = Vector2(SLIP_ORIGIN.x, at.y + SLIP_ROW)
+		slip.position = at
+		slip.rotation_degrees = [-1.2, 0.8, -0.5, 1.1][k % 4]
+		slip.dropped.connect(_on_slip_dropped)
+		at.x += slip.size.x + SLIP_GAP
+	_label(_slips, ".", 30, PENCIL).position = at + Vector2(-4, 0)
+	var hint := _label(_slips, "Fişleri sürükle; yazı o sırayla yazılır.", 16, PENCIL)
+	hint.position = Vector2(SLIP_ORIGIN.x, at.y + SLIP_ROW + 4)
+
+
+## A slip let go: the words now read in the order the slips lie, row by row.
+func _on_slip_dropped(_slip: WordSlip) -> void:
+	var slips: Array = []
+	for c in _slips.get_children():
+		if c is WordSlip:
+			slips.append(c)
+	slips.sort_custom(func(a: WordSlip, b: WordSlip) -> bool:
+		var ra := roundi((a.center().y - SLIP_ORIGIN.y - WordSlip.HEIGHT / 2) / SLIP_ROW)
+		var rb := roundi((b.center().y - SLIP_ORIGIN.y - WordSlip.HEIGHT / 2) / SLIP_ROW)
+		return ra < rb if ra != rb else a.center().x < b.center().x)
+	_word_order = slips.map(func(s: WordSlip) -> int: return s.index)
+	_refresh()
+
+
+## Once the copy is shelved its margin takes a line: pencil while it is being
+## written, red ink once it is entered.
+func _show_note_field() -> void:
+	var sheet := _node("Kopya")
+	var rule := ColorRect.new()
+	rule.color = Color(PENCIL, 0.35)
+	rule.position = Vector2(36, 484)
+	rule.size = Vector2(246, 1.5)
+	rule.rotation_degrees = -2.0
+	rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	sheet.add_child(rule)
+	_note = LineEdit.new()
+	_note.name = "KenarNotu"
+	_note.placeholder_text = "kenara not düş"
+	_note.max_length = 40
+	_note.position = Vector2(34, 446)
+	_note.size = Vector2(250, 40)
+	_note.rotation_degrees = -2.0
+	_note.context_menu_enabled = false
+	for box in ["normal", "focus", "read_only"]:
+		_note.add_theme_stylebox_override(box, StyleBoxEmpty.new())
+	_note.add_theme_font_override("font", FONT)
+	_note.add_theme_font_size_override("font_size", 22)
+	_note.add_theme_color_override("font_color", PENCIL)
+	_note.add_theme_color_override("font_placeholder_color", Color(PENCIL, 0.6))
+	_note.add_theme_color_override("caret_color", INK)
+	_note.text_changed.connect(_on_note_typed)
+	_note.text_submitted.connect(func(t: String) -> void:
+		add_note(t)
+		_note.release_focus())
+	_note.focus_exited.connect(func() -> void:
+		if _note:
+			add_note(_note.text))
+	sheet.add_child(_note)
+
+
+## Only what the reed can write: letters the hand has no shape for are dropped.
+func _on_note_typed(typed: String) -> void:
+	var clean := ""
+	for ch in typed:
+		if FONT.has_char(ch.unicode_at(0)):
+			clean += ch
+	if clean != typed:
+		var caret := _note.caret_column
+		_note.text = clean
+		_note.caret_column = mini(caret, clean.length())
+	_note.add_theme_color_override("font_color", PENCIL)
 
 
 ## Write the copy word by word in wet ink; real words dry, others are scraped.
@@ -571,6 +782,7 @@ func _show_question() -> void:
 func _show_ending() -> void:
 	var page := _sheet("Son", "belge_okuma.png", Vector2(200, 160), Vector2(1520, 760), 0.0, 8.0, Art.document_era(era()))
 	move_child(page, _grain.get_index())
+	_title(page, Vector2(610, 47), 30, "Yüz yıl sonra")
 	var r := _rich(page, narrative.epilogue(state), 30)
 	r.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	r.position = Vector2(120, 140)
@@ -580,7 +792,9 @@ func _show_ending() -> void:
 # --- helpers ---------------------------------------------------------------
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _reading and event.is_action_pressed("ui_cancel"):
+	if _interlude and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_accept")):
+		dismiss_interlude()
+	elif _reading and event.is_action_pressed("ui_cancel"):
 		close_reading()
 
 
@@ -596,8 +810,8 @@ func _clickable(node: Control, action: Callable, mark_at: Vector2) -> void:
 			action.call())
 
 
-func _title(page: Control, pos: Vector2, size_px: int) -> void:
-	var title := _label(page, doc.title, size_px, PAPER)
+func _title(page: Control, pos: Vector2, size_px: int, text: String = "") -> void:
+	var title := _label(page, text if text != "" else doc.title, size_px, PAPER)
 	title.position = pos
 	title.size = Vector2(300, 46)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

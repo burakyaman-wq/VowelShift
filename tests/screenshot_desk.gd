@@ -50,7 +50,39 @@ func _one(order: int) -> void:
 	desk.era_look = int(OS.get_environment("ERA")) if OS.get_environment("ERA") != "" else 0
 	root.add_child(desk)
 	await create_timer(0.3).timeout
+	if desk.interlude_text() != "":
+		await _save("belge%d_ara" % order)
+		desk.dismiss_interlude()
+		await create_timer(0.8).timeout
 	await _save("belge%d" % order)
 	desk.open_reading()
 	await create_timer(0.4).timeout
 	await _save("belge%d_okuma" % order)
+	desk.close_reading()
+	if order == 2:          # shelve the copy, leave a note, answer: the next document opens on the rumour
+		desk.place_rule("R3", 0)
+		desk.place_rule("R4", 1)
+		desk.write_copy()
+		await create_timer(3.5).timeout
+		desk.get_node("Kopya/KenarNotu").text = "nēkos: sürgün, ölü değil"
+		desk.add_note("nēkos: sürgün, ölü değil")
+		await _save("belge2_not")
+		desk.answer_question(1)
+		desk.next_document()
+		await create_timer(0.3).timeout
+		await _save("belge3_ara")
+	if order == 4:          # the words on loose slips, then carried into a new order
+		desk.place_rule("R5", 0)
+		desk.place_rule("R6", 1)
+		await create_timer(0.5).timeout
+		await _save("belge4_fisler")
+		desk.move_word(2, 0)
+		desk.move_word(3, 1)
+		await _save("belge4_sirali")
+		desk.write_copy()
+		await create_timer(3.0).timeout
+		desk.add_note("Sırayı ben değiştirdim; anlam aynı.")
+		desk.answer_question(0)
+		desk.next_document()
+		await create_timer(0.3).timeout
+		await _save("son")

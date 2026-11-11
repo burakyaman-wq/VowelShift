@@ -85,6 +85,7 @@ def painters():
         "durak": lambda: sprite("durak", karo.durak(), 28, 28, 2, seed=18, wobble=0.4),
         "muhur": lambda: sprite("muhur", karo.seal(), 80, 80, seed=19, wobble=0.6, stamp=0.75),
         "kalem": lambda: sprite("kalem", [G("kalem", pen, place(0, 9))], 250, 18, seed=20, wobble=0.6),
+        "kelime_fisi": lambda: sprite("kelime_fisi", kagit.word_slip(), 120, 44, 6, seed=21, wobble=0.5, age=0.4 * age),
     }
     return todo
 
