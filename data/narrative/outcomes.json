@@ -1,0 +1,30 @@
+{
+  "key_word_wrong": "nīkos",
+  "reaction_doc3": {
+    "dead": "Sarayda senin kopyanı okudular: kurucunun kardeşi ölmüş. Mezarını arıyorlar.",
+    "exiled": "Sarayda senin kopyanı okudular: kardeş sürgün edilmiş. Ama yaşlılar eski dille okuyor; onlara göre *nēkos* 'ölü' demek. Çarşıda kardeşin öldürüldüğü konuşuluyor.",
+    "contradiction": "Görevliye başka, kâğıda başka yazmışsın; hangisine inanacaklarını bilmiyorlar."
+  },
+  "epilogue": {
+    "doc2_dead": "Yüz yıl sonra. Okullarda kurucunun kardeşinin öldüğü öğretiliyor; dayanak, senin rafa koyduğun kopya: 'Mīros nīkos.' Temel taşındaki eski tablette ise 'Mēros nākos' yazıyordu: Mēros sürgündür. Kâğıt üstünde bir kardeşi sen öldürdün.",
+    "doc2_exiled": "Yüz yıl sonra. Saray kayıtları kardeşin sürgün edildiğini söylüyor; senin kopyan doğruydu: 'Mīros nēkos.' Ama eski dili bilenler aynı kelimeyi 'ölü' diye okudu ve söylenti kayıttan güçlü çıktı. Bugün herkes kardeşin öldürüldüğünü biliyor.",
+    "doc4_literal": "Dağdan gelen belgeyi kelimesi kelimesine kopyaladın. Şehir onu yeni dille, sıradan okudu: önce sürgün geliyordu, demek ki sürgün beyi öldürmüştü. Harfi korudun, anlamı kaybettin; dağlılar kendi belgeleriyle suçlu ilan edildi.",
+    "doc4_reordered": "Dağdan gelen belgenin kelimelerini yeniden sıraladın; şehir onu yazıldığı gibi anladı: bey sürgünü öldürmüş. Anlamı korudun, harfi değiştirdin.",
+    "doc4_reordered_with_note": "Yüz yıl sonra yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti; ama kenardaki notunu okuyunca neden sıraladığını anladı ve seni sahtecilikle değil, çevirmenlikle andı.",
+    "doc4_reordered_no_note": "Yüz yıl sonra yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti; neden böyle yaptığını açıklayan tek satır bırakmamıştın ve seni sahtecilikle andı.",
+    "doc4_answer_unclear": "Elçiye 'yazı söylemiyor' dedin; oysa eski yazının ekleri söylüyordu.",
+    "doc4_answer_mismatch": "Elçiye söylediğinle şehrin okuduğu birbirini tutmadı; iki taraf da seni yalancılıkla suçladı.",
+    "note_prefix": "Belge {no} kopyasının kenarına “{note}” yazmıştın.",
+    "note_fates": {
+      "1": "Rahibe notunu tabletin yanına iliştirdi; tapınak yandığında ikisi birlikte kayboldu.",
+      "2": "Yeni düzenin ölü dil uzmanı Melno arşivi tararken kurucuların kaydındaki notunu buldu. Kimin yazdığını bilmeden ona inanmadı; ama söylentiye uymayan tek satır oydu.",
+      "3": "Tüccar kadının torunları notunu senetle birlikte sakladı; hangi Mīros olduğu yalnızca o ailede bilindi.",
+      "4": "Notun dağlıların arşivine de kopyalandı; iki taraf da onu kendi lehine okudu, ama Melno onu senin savunman olarak okudu."
+    }
+  },
+  "doc4": {
+    "subject_first": "Bey Mīros, sürgün Mīros'u öldürdü",
+    "object_first": "Sürgün Mīros, bey Mīros'u öldürdü",
+    "unclear_option": "Yazıdan anlaşılmıyor"
+  }
+}
