@@ -103,7 +103,7 @@ DOCS = [
      "intro": "Yüz yıl daha geçti. Savaş yazıhaneyi yaktı; ustan Argos'tan geriye yarım bir defter ve iki kural kartı kaldı: «Sondaki s ve m düşer» ile «Damaklaşma». Artık Çağ 3'tesin.",
      "says": "Atalarımız dağlara sürülmedi; kaçtılar. Bu belge bizim arşivimizden. Burada atamızın öldürüldüğü yazıyor. Senin yazınla kopyala ki şehirde herkes okusun.",
      "heard": [],
-     "ask": "Elçi soruyor: Bu belgeye göre hangisi öldürdü?",
+     "ask": "Bu belgeye göre hangisi öldürdü?",
      "options": ["Büyük kardeş, küçüğü öldürdü", "Küçük kardeş, büyüğü öldürdü", "Yazıdan anlaşılmıyor"]},
 ]
 for _d in DOCS:

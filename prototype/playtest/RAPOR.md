@@ -58,3 +58,30 @@ Uydurma örnek, kartsız/boş kopya, aynı çiftin iki kez verilmesi artık redd
 5. Belge 3 yeni kural istemiyor; bulmaca olarak boş.
 6. Kopyadan önce önizleme ve söylentiye karşı bir eylem (kenar notu) isteniyor.
 7. Küçükler: aynı kart iki kez veriliyor; örnek kelimede makron hatası için "Neredeyse" uyarısı yok; Belge 1/3'te yanlış cevabın sonucu yok.
+
+---
+
+# 3. tur — prototip v3 (4. belge, kenar notu, yalnız kanıtlanan kart, açık ret mesajları)
+
+## Belge 2
+Ters sıra 6/12 (acemi3, denemeci3, hizci3, dikkatsiz3, lise3, disleksi3). Fark etme: kopyayı görünce 4, söylentide 2. Hepsi Belge 2'ye düzeltme notu düştü.
+
+## Puan ortalamaları (11 oyuncu)
+| | 1. tur | 2. tur | 3. tur |
+|---|---|---|---|
+| Eğlence | 6.3 | 7.4 | 7.5 |
+| Anlaşılırlık | 6.8 | 6.6 | 7.3 |
+| Devam isteği | 6.6 | 7.7 | 7.5 |
+Jam oylayıcısı: Gameplay 3/5, Innovation 5/5, Theme 5/5 (üç turdur aynı).
+
+## Çalışanlar
+Ret mesajları (ek farkı, uzun ünlü, tanınmayan kelime) isabetli; deneme-yanılmacı 12 farklı istismar denemesinin hepsinde reddedildi. Belge 2 notunun Son'da "söylentiye uymayan tek satır" olarak dönmesi ödül gibi hissedildi. Belge 3'ün "hangi kardeşin tahılı" sorusu eski metni okumaya zorladı.
+
+## Kalan sorunlar
+1. (Düzeltildi) Belge 4'te "Elçi soruyor:" tekrarı; boş not kabul ediliyordu.
+2. Kenar notlarının karşılığı şablon ("bir dua sandı"); yalnız Belge 2 notu anlam taşıyor. Melno tanıtılmıyor.
+3. Belge 4 mekanik olarak boş: kartlar hazır, sıra önemsiz.
+4. "Yazıdan anlaşılmıyor" cezalandırılıyor; bir kısmı anlamlı buldu, bir kısmı haksız. İki oyuncu kendiliğinden "ek eriyince söz dizimi katılaşır, ilk ad öznedir" fikrine ulaştı: Çağ 3 için yeni bir kural/ipucu adayı.
+5. Cevaplar kopyadan değil kaynaktan verilebiliyor; bilgi testi gibi.
+6. Erişilebilirlik: kopyada değişen harfleri vurgulama, uzun ünlüleri kalın gösterme istendi.
+7. Prototipe özgü: ileriki sözlük dosyaları baştan görünüyor; fazladan değişim içeren örnek çift kabul ediliyor.

@@ -131,7 +131,7 @@ def main():
 
     if cmd == "not":
         shelved = sorted(st["copies"], key=int)
-        if not shelved or not args:
+        if not shelved or not args or not " ".join(args).strip():
             print("Henüz rafa konmuş bir kopya yok ya da not boş.")
             return
         last = shelved[-1]
