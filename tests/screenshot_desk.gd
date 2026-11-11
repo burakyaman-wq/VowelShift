@@ -24,6 +24,10 @@ func _shoot() -> void:
 	root.add_child(desk)
 	await process_frame
 	await _save("masa")
+	desk.try_pair("Meiros", "khewos")
+	await _save("ogretici_hata")
+	desk.try_pair("ghewom", "khewos")
+	await _save("ogretici_1")
 	for p in [["ghewom", "khewos"], ["ghrebheti", "khrepheti"], ["bhāgom", "phāgos"], ["Meiros", "Mīros"], ["deiwosyo", "dīwos"], ["nākos", "khewos"]]:
 		desk.try_pair(p[0], p[1])
 	desk.place_rule("R1", 0)

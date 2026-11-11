@@ -72,6 +72,8 @@ var _word_order: Array = []   # 1-based order of the copy's words once the playe
 var _slips: Control
 var _note: LineEdit
 var _interlude: Control
+var tutor: Tutor
+var _hints_done := {}         # one-time hints already followed, kept across documents
 
 
 func _ready() -> void:
@@ -136,11 +138,15 @@ func try_pair(old: String, nw: String) -> Dictionary:
 		if not dup:
 			pairs.append(res)
 		_bad = ""
+		var before := _proven_count()
 		_prove_what_pairs_show()
+		_tell_pair(res, _proven_count() > before)
 	else:
 		_bad = "%s → %s" % [res["old"], res["new"]]
+		_tell_bad_pair(res)
 	_draw_pairs()
 	pair_made.emit(res)
+	_guide()
 	return res
 
 
@@ -154,12 +160,17 @@ func write_copy() -> Dictionary:
 		return res
 	_lay_slips("")
 	_ink(res)
+	if not res["shelved"]:
+		tutor.tell("Üstü çizili kelimeler [color=%s]bu çağın dilinde yok[/color]. Eksik bir kural mı var, yoksa karoların sırası mı yanlış? Düzelt ve kalemi yeniden tıkla." % RED_HEX)
+	else:
+		tutor.tell("Kopya rafa kondu.")
 	if res["shelved"]:
 		for t in tiles.values():
 			t.locked = true
 		_seal.visible = true
 		_show_question()
 		_show_note_field()
+	_guide()
 	copy_written.emit(res)
 	return res
 
@@ -216,6 +227,7 @@ func dismiss_interlude() -> void:
 	_interlude.queue_free()
 	_interlude = null
 	_arrive()
+	_guide()
 
 
 func open_reading() -> void:
@@ -290,6 +302,7 @@ func _start_doc(arrive: bool) -> void:
 		_show_interlude(told, "Aradan geçen zaman" if doc.intro != "" else "Kapıda duyduğun")
 	elif arrive:
 		_arrive()
+	_guide()
 
 
 ## The document, the blank sheet and the requester's slip slide in from the top edge.
@@ -420,6 +433,10 @@ func _build() -> void:
 	for rid in state.cards:
 		_add_tile(rid, false)
 
+	tutor = Tutor.new()
+	add_child(tutor)
+	tutor.setup(FONT, era())
+
 	_grain = TextureRect.new()
 	_grain.name = "SayfaDokusu"
 	_grain.texture = Art.tex("sayfa_doku.png")
@@ -503,6 +520,7 @@ func _on_pick(word: String, role: String, l: Label) -> void:
 	if _pick.is_empty():
 		_pick = {"word": word, "role": role, "label": l}
 		l.add_theme_color_override("font_color", RED)
+		_guide()
 		return
 	var first: Label = _pick["label"]
 	if is_instance_valid(first):
@@ -513,6 +531,8 @@ func _on_pick(word: String, role: String, l: Label) -> void:
 	if _pick["role"] == role:
 		_pick = {"word": word, "role": role, "label": l}
 		l.add_theme_color_override("font_color", RED)
+		tutor.tell("İki kelime de aynı yerden. Biri %s, öteki %s olmalı." % (["belgeden", "sözlükten"] if doc.era == 1 else ["belgeden ya da eski sözlükten", "duyduklarından"]))
+		_guide()
 		return
 	var old: String = _pick["word"] if _pick["role"] == "old" else word
 	var nw: String = word if _pick["role"] == "old" else _pick["word"]
@@ -635,6 +655,8 @@ func _refresh() -> void:
 		_copy_lines[i].text = lines[i] if i < lines.size() and drafting and not loose else ""
 		_copy_lines[i].add_theme_font_size_override("font_size", cfs)
 	_lay_slips(copy if loose else "")
+	if tutor:
+		_guide()
 	if drafting:
 		for ink in _ink_lines:
 			ink.text = ""
@@ -787,6 +809,91 @@ func _show_ending() -> void:
 	r.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	r.position = Vector2(120, 140)
 	r.size = Vector2(1280, 560)
+
+
+# --- the master's note ---------------------------------------------------------
+
+## The one thing to do next, and the stop mark beside where to do it.
+## The first document walks through every step; later ones only add what is new.
+func _guide() -> void:
+	if not tutor or not is_instance_valid(tutor):
+		return
+	var step := _next_step()
+	tutor.show_step(step[0], step[1])
+
+
+func _next_step() -> Array:
+	var none := Rect2()
+	if _interlude:
+		return ["", none]
+	if state.phase == "answer":
+		return ["Kopya rafta. İstersen kâğıdın altına bir [color=%s]kenar notu[/color] yaz. Sonra pusuladaki soruyu kopyaladığın metne göre cevapla: bir cevaba tıkla." % RED_HEX, _rect("Pusula")]
+	var draft := copy_text()
+	var ready := _all_real(draft)
+	if doc.era == 1:
+		if pairs.is_empty() and _pick.is_empty():
+			return ["Bu tablet eski dilde. Onu bugünün diliyle kopyalayacaksın. Önce [color=%s]belgede bir kelimeye[/color] tıkla." % RED_HEX, _rect("Belge")]
+		if pairs.is_empty():
+			return ["Şimdi [color=%s]sözlükte[/color] o kelimenin bugünkü hâlini bul ve tıkla. Sonu farklı olabilir: [i]ghewom[/i] ile [i]khewos[/i] eşleşir." % RED_HEX, _rect("Defter")]
+		if tiles.is_empty():
+			return ["Eşleşme deftere yazıldı, değişen harfler kırmızı. [color=%s]Aynı değişimi gösteren ikinci bir eşleşme[/color] bul: kural kanıtlanır." % RED_HEX, _rect("Defter")]
+		if tray.model.order().is_empty():
+			return ["Kural kanıtlandı, karosu masaya geldi. Karoyu tutup [color=%s]tepsiye sürükle[/color]." % RED_HEX, tiles.values()[0].get_global_rect()]
+	if doc.era > 1 and pairs.is_empty() and not _hints_done.has("era"):
+		return ["Çağ değişti; sözlüğün artık eski. Bugünün kelimelerini istekte bulunandan duyuyorsun: belgedeki ya da eski sözlükteki kelimeyi [color=%s]Duyduklarım[/color] listesindeki karşılığıyla eşleştir." % RED_HEX, _rect("Defter")]
+	if pairs.size() > 0:
+		_hints_done["era"] = true
+	if doc.allow_reorder and ready:
+		return ["Ekler düştü; kimin kimi öldürdüğünü artık [color=%s]kelimelerin sırası[/color] söylüyor: önce gelen yapandır. Fişleri sürükleyip anlamı koruyan sırayı kur, sonra kalemi tıkla." % RED_HEX, _rect("Kopya")]
+	if not ready:
+		if doc.era == 2 and tray.model.order().size() >= 2 and not _hints_done.has("order"):
+			return ["Tepsi [color=%s]soldan sağa[/color] uygulanır ve sıra önemlidir. Karoların yerini değiştir, taslağın nasıl değiştiğine bak." % RED_HEX, tray.get_global_rect()]
+		return ["Kopya kâğıdındaki kurşun kalem taslak, tepsideki kuralların yazdığıdır. İçinde hâlâ [color=%s]bu çağda olmayan kelimeler[/color] var: başka değişimleri eşleştirip kanıtla, karolarını tepsiye koy." % RED_HEX, _rect("Kopya")]
+	if tray.model.order().size() >= 2:
+		_hints_done["order"] = true
+	return ["Taslaktaki bütün kelimeler bugünün dilinde. [color=%s]Kalemi tıkla[/color], mürekkeple yaz." % RED_HEX, _rect("Kalem")]
+
+
+func _rect(node_name: String) -> Rect2:
+	var n := _node(node_name)
+	return n.get_global_rect() if n else Rect2()
+
+
+func _all_real(text: String) -> bool:
+	for tok in text.split(" ", false):
+		if not engine.is_real(tok.trim_suffix("."), doc.era):
+			return false
+	return true
+
+
+func _proven_count() -> int:
+	var n := 0
+	for rid in state.proven:
+		n += state.proven[rid].size()
+	return n
+
+
+## Say what a good pair showed: a change seen once, or a rule now proven.
+func _tell_pair(res: Dictionary, proved: bool) -> void:
+	var subs: Array = res["subs"]
+	if subs.is_empty():
+		tutor.tell("[i]%s[/i] değişmemiş; bir değişimi kanıtlamaz." % res["old"])
+		return
+	var shown := PackedStringArray()
+	for s in subs:
+		shown.append(RuleText.sub_text(engine.by_id[s[0]], s[1]))
+	if proved:
+		tutor.tell("Kanıtlandı: [color=%s]%s[/color]. Karosu masada." % [RED_HEX, ", ".join(shown)])
+	else:
+		tutor.tell("Tuttu: [color=%s]%s[/color] görüldü. Aynı değişimi gösteren başka bir kelime daha bul." % [RED_HEX, ", ".join(shown)])
+
+
+func _tell_bad_pair(res: Dictionary) -> void:
+	var why: String = res["problem"]
+	if why.contains("karşılığı değil"):
+		tutor.tell("[i]%s[/i] ile [i]%s[/i] aynı kelime değil. Anlamlarına bak: sözlükte her kelimenin yanında yazıyor." % [res["old"], res["new"]])
+	else:
+		tutor.tell(why.substr(0, 1).to_upper() + why.substr(1) + ".")
 
 
 # --- helpers ---------------------------------------------------------------
