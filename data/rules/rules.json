@@ -10,7 +10,7 @@
       "id": "R1",
       "era": 1,
       "kind": "consonant",
-      "name_tr": "Aspiratlar sertleşir",
+      "name_tr": "Sert ünsüzler",
       "note_tr": "bh → ph, dh → th, gh → kh",
       "subs": [
         [
@@ -31,8 +31,8 @@
       "id": "R2",
       "era": 1,
       "kind": "vowel",
-      "name_tr": "Çift ünlüler kaynaşır",
-      "note_tr": "ei → ī, eu → ō",
+      "name_tr": "Çift ünlüler tekleşir",
+      "note_tr": "ei → ī, eu → ū",
       "subs": [
         [
           "ei",
@@ -40,7 +40,7 @@
         ],
         [
           "eu",
-          "ō"
+          "ū"
         ]
       ]
     },

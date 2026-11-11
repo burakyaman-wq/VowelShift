@@ -3,23 +3,25 @@
 Sen bir yazıhanede kâtipsin. Masana eski metinler gelir; dil yüzyıllar içinde kaydığı için onları bugünün yazısıyla kopyalaman gerekir.
 
 ## Dilbilgisi
-| Ek | Görev | Örnek |
+| Ek | Ne demek | Örnek |
 |---|---|---|
-| -os | özne (yapan) | dīwos = tanrı |
-| -om | nesne (-ı, -i) | dīwom = tanrıyı |
-| -osyo | iyelik (-ın, -in) | dīwosyo = tanrının |
+| -os | yapan kişi ya da şey | dīwos = tanrı |
+| -om | -ı, -i (etkilenen) | dīwom = tanrıyı |
+| -osyo | -nın, -nin (sahiplik) | dīwosyo = tanrının |
 | o → e | çoğul | dīwes = tanrılar |
 | -eti | fiil: yapar | dōneti = verir |
 
-Cümle düzeni Türkçedeki gibi: Özne — Nesne — Fiil. Fiilsiz cümle "-dır" demektir: "Mīros rēgos." = Mīros beydir.
+Cümle düzeni Türkçedeki gibi: yapan — etkilenen — fiil. Fiilsiz cümle "-dır" demektir: "Mīros rēgos." = Mīros beydir.
+
+**Uzun ünlüler:** ā ē ī ō ū üstü çizgili harflerdir; çizgisiz a e i o u'dan farklıdır. Yazamıyorsan çift harf kullan: aa = ā, ee = ē, ii = ī, oo = ō, uu = ū.
 
 ## Her belgede işin
 1. **Oku:** Eski metnin kelimelerini sözlüğündeki bugünkü kelimelerle eşleştir. Talep sahibinin konuşmasındaki *italik* kelimeler bugünün dilinden.
-2. **Kural bul:** Bir ses değişimini fark edince masaya söyle. Masa ancak İKİ örnek çiftle kanıtlarsan kural kartını verir:
+2. **Kural kanıtla:** Bir ses değişimini fark edince masaya söyle. Masa ancak İKİ örnek çiftle kanıtlarsan kartı verir. Örnekler senin gördüğün kelimelerden olmalı: eski kelime masadaki metinden (ya da eski sözlüğünden), yeni kelime sözlüğünden ya da talep sahibinden.
    `python3 masa.py <adın> kural "gh -> kh" eskiKelime:yeniKelime eskiKelime:yeniKelime`
-3. **Kopyala:** Kartlarını istediğin sırayla tablete diz. Her kelimeye kartları soldan sağa uygula ve kopyayı kendin yaz. Masa yalnızca kopyandaki kelimelerin gerçek kelime olup olmadığını söyler:
-   `python3 masa.py <adın> kopyala "R1,R2" "kopya metni"`
-4. **Cevapla:** Talep sahibinin sorusunu kendi kopyandan cevapla:
-   `python3 masa.py <adın> cevap "cevabın"`
+3. **Kopyala:** Kartlarını istediğin sırayla tablete diz; masa her kelimeye kartları soldan sağa uygular ve kopyayı yazar. Bu çağın dilinde olmayan bir kelime çıkarsa kopya rafa konmaz.
+   `python3 masa.py <adın> kopyala "kartadi1,kartadi2"`
+4. **Cevapla:** Talep sahibi bir soru sorar; seçeneklerden birini seç.
+   `python3 masa.py <adın> cevap <numara>`
 
 Durumu görmek için: `python3 masa.py <adın> durum`

@@ -11,12 +11,14 @@ Bugün böyle yazılıyor.
 | dōneti | verir |
 | emeti | alır |
 | ageti | kovar, sürer |
+| khrepheti | yazar |
 | nākos | sürgün |
 | nēkos | ölü |
 | āgros | tarla |
 | grānos | tahıl |
 | rēgos | bey, kral |
+| thētos | borç |
 | mātēros | anne |
-| lōkos | ışık, kandil |
+| lūkos | ışık, kandil |
 | thūmos | duman |
 | phāgos | kitap |

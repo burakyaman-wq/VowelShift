@@ -3,7 +3,7 @@ kolmos        kolmos        kolmos        kolmo         kolmo
 bhāgos        phāgos        phēgos        phēgo         fēg         
 ghrebheti     khrepheti     khrepheti     khrepheti     khrefeti    
 legeti        legeti        legeti        leceti        leceti      
-leukos        lōkos         lōkos         lōko          lōk         
+leukos        lūkos         lūkos         lūko          lūk         
 wōkwos        wōkwos        wōkwos        wōkwo         wōp         
 enōmos        enōmos        enōmos        enōmo         enōm        
 weideti       wīdeti        wīdeti        wīdeti        wīdeti      
@@ -47,8 +47,8 @@ ageti         ageti         ageti         aceti         aceti
 gheneti       kheneti       kheneti       şeneti        şeneti      
 
 ## Sıraya duyarlı kural çiftleri
-- R1 (Aspiratlar sertleşir) × R6 (Damaklaşma): 14 form, ör. ghesros: R1→R6 = şesros, R6→R1 = khesros
-- R1 (Aspiratlar sertleşir) × R7 (Sürtünmeliler): 34 form, ör. bhāgos: R1→R7 = fāgos, R7→R1 = phāgos
+- R1 (Sert ünsüzler) × R6 (Damaklaşma): 14 form, ör. ghesros: R1→R6 = şesros, R6→R1 = khesros
+- R1 (Sert ünsüzler) × R7 (Sürtünmeliler): 34 form, ör. bhāgos: R1→R7 = fāgos, R7→R1 = phāgos
 - R3 (Uzun ē yükselir) × R4 (Uzun ā öne kayar): 50 form, ör. bhāgos: R3→R4 = bhēgos, R4→R3 = bhīgos
 - R5 (Sondaki s ve m düşer) × R8 (Son ünlü düşer): 89 form, ör. bhāgos: R5→R8 = bhāg, R8→R5 = bhāgo
 - R6 (Damaklaşma) × R8 (Son ünlü düşer): 2 form, ör. lege: R6→R8 = lec, R8→R6 = leg

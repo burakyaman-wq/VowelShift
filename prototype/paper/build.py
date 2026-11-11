@@ -1,61 +1,20 @@
+import re
 """Build the paper prototype PDF (A4). Usage: python3 prototype/paper/build.py"""
 import sys
 from pathlib import Path
-ROOT = Path(__file__).resolve().parents[2]
-sys.argv = [sys.argv[0]]
-sys.path.insert(0, str(ROOT / "tools"))
-import simulate as s  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import content as C  # noqa: E402
 from weasyprint import HTML  # noqa: E402
 
-R = {r["id"]: r for r in s.RULES}
-
-
-def chain(ids, text):
-    out = []
-    for tok in text.split():
-        word, dot = tok.rstrip("."), tok.endswith(".")
-        cap = word[:1].isupper()
-        w = word.lower()
-        for i in ids:
-            w = s.apply_rule(w, R[i])
-        out.append((w[:1].upper() + w[1:] if cap else w) + ("." if dot else ""))
-    return " ".join(out)
-
-
-DOCS = [
-    {"no": 1, "era": 1, "title": "Temel taşı tableti", "old": "Meiros deiwosyo ghewom dōneti. Mēros nākos.",
-     "who": "Rahibe, tapınaktan",
-     "says": "Tapınağın temelini kazarken bu tablet çıktı. Bir <i>khewos</i> kaydı olmalı, ama hangi <i>dīwos</i>'a sunulmuş? Yeni yazıyla kopyala ki rafa koyabilelim.",
-     "ask": "Adağı kim sundu? İkinci satır ne diyor?", "chain": ["R1", "R2"]},
-    {"no": 2, "era": 2, "title": "Kurucuların kaydı", "old": "Mīros Mērom ageti. Mēros nākos.",
-     "who": "Saray görevlisi",
-     "says": "<i>Rīgos</i> kurucuların kaydını istiyor. Eski defterlerde <i>grānos</i> yazıyor, biz artık <i>grēnos</i> diyoruz; kopyan bugünün diliyle olmalı. Acele et, <i>rīgos</i> beklemez.",
-     "ask": "Kurucunun kardeşine ne oldu?", "chain": ["R3", "R4"], "key": True},
-    {"no": 3, "era": 2, "title": "Bir borç senedi", "old": "Mātēros Mīrosyo grānom emeti.",
-     "who": "Tüccar kadın",
-     "says": "Bu senet annemden kaldı. Ben ona <i>mētīros</i> derdim, siz eski yazıda başka türlü yazıyorsunuz. Tahıl kimden kime geçmiş, bilmem lazım.",
-     "ask": "Tahılı kim aldı, kimin tahılıydı?", "chain": ["R3", "R4"]},
-]
-for d in DOCS:
-    d["right"] = chain(d["chain"], d["old"])
-    d["wrong"] = chain(list(reversed(d["chain"])), d["old"])
-
-LEX1 = [("Mīros", "kurucu, büyük kardeş"), ("Mēros", "kurucu, küçük kardeş"), ("dīwos", "tanrı"),
-        ("khewos", "adak, sunu"), ("dōneti", "verir"), ("emeti", "alır"), ("ageti", "kovar, sürer"),
-        ("nākos", "sürgün"), ("nēkos", "ölü"), ("āgros", "tarla"), ("grānos", "tahıl"),
-        ("rēgos", "bey, kral"), ("mātēros", "anne"), ("lōkos", "ışık, kandil"), ("thūmos", "duman"),
-        ("phāgos", "kitap")]
-LEX2_KNOWN = {"rīgos", "grēnos", "mētīros"}
+DOCS = C.DOCS
+LEX1 = C.LEX1
+LEX2_KNOWN = {h for d in C.DOCS if d["era"] == 2 for h in d["heard"]}
+CARDS = [(c["key"], c["name"], c["rule"], "Belge 1" if rid in ("R1", "R2") else "Belge 2") for rid, c in C.CARDS.items()]
 
 
 def era2(w):
-    return chain(["R3", "R4"], w)
+    return C.apply(["R3", "R4"], w)
 
-
-CARDS = [("R1", "Aspiratlar sertleşir", "bh → ph · dh → th · gh → kh", "Belge 1"),
-         ("R2", "Çift ünlüler kaynaşır", "ei → ī · eu → ō", "Belge 1"),
-         ("R3", "Uzun ē yükselir", "ē → ī", "Belge 2"),
-         ("R4", "Uzun ā öne kayar", "ā → ē", "Belge 2")]
 
 CSS = """
 @page { size: A4; margin: 16mm 16mm 14mm; @bottom-right { content: "Ses Kayması · kâğıt prototip · s. " counter(page); font: 8pt 'DejaVu Sans'; color: #888; } }
@@ -94,7 +53,7 @@ pages = []
 pages.append(page(f"""
 <span class="tag">Yönetici için · oyuncuya gösterme</span>
 <h1>Ses Kayması — kâğıt prototip</h1>
-<p><b>Test edilen döngü:</b> Oku → Kopyala → Cevapla. Sen <b>masa</b>sın: eşleşmeleri onaylar, kural kartını verir, kopyadaki kelimelerin gerçek olup olmadığını söylersin. Süre: 20–30 dakika, tek oyuncu.</p>
+<p><b>Test edilen döngü:</b> Oku → Kopyala → Cevapla. Sen <b>masa</b>sın: kural kanıtlarını onaylar, kartı verir, oyuncunun dizdiği sırayla kopyayı <b>sen yazarsın</b> ve kelimelerin gerçek olup olmadığını söylersin. Süre: 20–30 dakika, tek oyuncu.</p>
 <h2>Hazırlık</h2>
 <ul><li>Kural kartlarını (s. 3) kes, ters çevir, oyuncuya gösterme. Boş kartları ve kural tabletini (s. 4) masaya koy.</li>
 <li>Oyuncuya ver: Dilbilgisi kartı (s. 2), Çağ 1 sözlüğü (s. 5). Belgeleri sırayla ver.</li>
@@ -102,13 +61,13 @@ pages.append(page(f"""
 <h2>Her belgede</h2>
 <ol>
 <li><b>Talep:</b> Talep sahibinin repliğini sesli oku. İtalik kelimeler bugünün dilinden; oyuncu bunları sözlükle karşılaştırabilir.</li>
-<li><b>Oku:</b> Oyuncu eski metindeki kelimeleri sözlükle eşleştirir. Bir ses değişimini <b>iki örnek kelimeyle</b> söylerse (örn. “ghewom → khewom, dīwos”) kartı ver. Tek örnekle verme; tahmin değil, çıkarım istiyoruz.</li>
-<li><b>Kopyala:</b> Oyuncu kartları tablete <b>istediği sırayla</b> dizer ve her kelimeye kartları soldan sağa uygulayarak kopyayı yazar.</li>
-<li><b>Masa denetimi:</b> Her kopyalanan kelimeye bak. Cevap anahtarındaki (s. 10) “gerçek kelime” listesindeyse “masa kabul etti” de; değilse yalnızca “masa bu kelimeyi tanımıyor” de, nedenini söyleme.</li>
-<li><b>Cevapla:</b> Soruyu sor; oyuncu cevabı kendi kopyasından vermeli.</li></ol>
+<li><b>Oku:</b> Oyuncu eski metindeki kelimeleri sözlükle eşleştirir. Bir ses değişimini <b>iki örnek çiftle</b> söylerse kartı ver. Örneklerin eski hâli masadaki metinden ya da eski sözlükten, yeni hâli sözlükten ya da talep sahibinin repliğinden olmalı; uydurma kelime kabul etme.</li>
+<li><b>Kopyala:</b> Oyuncu kartları tablete <b>istediği sırayla</b> dizer. Kartları her kelimeye soldan sağa <b>sen</b> uygula ve kopyayı yaz.</li>
+<li><b>Masa denetimi:</b> Yazdığın her kelimeye bak. Cevap anahtarındaki (s. 10–11) “gerçek kelime” listesindeyse “masa kabul etti” de; değilse yalnızca “masa bu kelimeyi tanımıyor” de, nedenini söyleme.</li>
+<li><b>Cevapla:</b> Soruyu sor; oyuncu seçeneklerden birini işaretler. Belge 3'ün başında, Belge 2'nin kopyasına ve cevabına göre “Kapıda bir söylenti” satırını oku (s. 10). Testin sonunda Son metnini oku.</li></ol>
 <h2><span class="warn">Gizli kural: Belge 2</span></h2>
-<p>Oyuncu R4'ü R3'ten önce dizerse <i>nākos</i> → <b>nīkos</b> olur. Bu gerçek bir kelimedir (“ölü”), <b>kabul et ve hiçbir şey söyleme.</b> Sırayı not et. Belge 3'te aynı yanlış sıra reddedilecek; oyuncunun Belge 2'ye geri dönüp dönmediğini gözle. Testten sonra açıkla.</p>
-<h2>Gözlem formu (s. 11)</h2>
+<p>Oyuncu R4'ü R3'ten önce dizerse <i>nākos</i> → <b>nīkos</b> olur. Bu gerçek bir kelimedir (“ölü”), <b>kabul et ve hiçbir şey söyleme.</b> Sırayı not et. Belge 3'te aynı yanlış sıra reddedilecek; oyuncunun Belge 2'ye geri dönüp dönmediğini gözle. Sonuç, Belge 3'ün söylentisinde ve Son metninde ortaya çıkar.</p>
+<h2>Gözlem formu (s. 12)</h2>
 <p class="small">Sessiz kal, ipucu verme. Oyuncu takılırsa 2 dakika bekle, sonra yalnızca “sözlükteki hangi kelime buna benziyor?” diye sor.</p>
 """))
 
@@ -118,17 +77,18 @@ pages.append(page("""
 <h1>Dilbilgisi kartı</h1>
 <p>Bu dil yüzyıllardır yazılıyor. Eklerinin anlamını biliyorsun; değişen, kelimelerin sesi.</p>
 <table><tr><th>Ek</th><th>Görev</th><th>Örnek</th></tr>
-<tr><td class="form">-os</td><td>özne (yapan)</td><td class="form">dīwos <span class="small">tanrı</span></td></tr>
-<tr><td class="form">-om</td><td>nesne (-ı, -i)</td><td class="form">dīwom <span class="small">tanrıyı</span></td></tr>
-<tr><td class="form">-osyo</td><td>iyelik (-ın, -in)</td><td class="form">dīwosyo <span class="small">tanrının</span></td></tr>
+<tr><td class="form">-os</td><td>yapan kişi ya da şey</td><td class="form">dīwos <span class="small">tanrı</span></td></tr>
+<tr><td class="form">-om</td><td>-ı, -i (etkilenen)</td><td class="form">dīwom <span class="small">tanrıyı</span></td></tr>
+<tr><td class="form">-osyo</td><td>-nın, -nin (sahiplik)</td><td class="form">dīwosyo <span class="small">tanrının</span></td></tr>
 <tr><td class="form">o → e</td><td>çoğul</td><td class="form">dīwes <span class="small">tanrılar</span></td></tr>
 <tr><td class="form">-eti</td><td>fiil: yapar</td><td class="form">dōneti <span class="small">verir</span></td></tr></table>
 <h2>Cümle düzeni</h2>
-<p>Özne — Nesne — Fiil, Türkçedeki gibi. Fiilsiz cümle “-dır” anlamı taşır: <span class="form">Mīros rēgos.</span> = Mīros beydir.</p>
+<p>Yapan — etkilenen — fiil, Türkçedeki gibi. Fiilsiz cümle “-dır” anlamı taşır: <span class="form">Mīros rēgos.</span> = Mīros beydir.</p>
 <h2>Kâtip olarak işin</h2>
 <ol><li><b>Oku:</b> Eski metnin kelimelerini sözlüğündeki bugünkü kelimelerle eşleştir. Sesin nasıl değiştiğini fark edince masaya söyle.</li>
-<li><b>Kopyala:</b> Bulduğun kural kartlarını tablete diz. Her kelimeye kartları soldan sağa uygula ve yeni yazıyla kopyala.</li>
-<li><b>Cevapla:</b> Talep sahibinin sorusunu kendi kopyandan cevapla.</li></ol>
+<li><b>Kopyala:</b> Bulduğun kural kartlarını tablete diz. Masa her kelimeye kartları soldan sağa uygular ve kopyayı yazar.</li>
+<li><b>Cevapla:</b> Talep sahibinin sorusuna seçeneklerden birini işaretle.</li></ol>
+<p class='small'><b>Uzun ünlüler:</b> ā ē ī ō ū üstü çizgilidir ve çizgisiz harflerden farklıdır.</p>
 """))
 
 # 3 Rule cards
@@ -153,13 +113,13 @@ def doc_page(d):
     return page(f"""
 <span class="tag">Oyuncu · Çağ {d['era']} · Belge {d['no']}</span>
 <h1>{d['title']}</h1>
-<div class="req"><b>{d['who']}:</b> “{d['says']}”</div>
+<div class="req"><b>{d['who']}:</b> “{re.sub(r'[*]([^*]+)[*]', lambda m: '<i>' + m.group(1) + '</i>', d['says'])}”</div>{('<p class="small"><b>Kapıda bir söylenti</b> (yönetici, Belge 2 kopyasına göre okur; s. 10).</p>' if d['no'] == 3 else '')}
 <p class="small">Masadaki eski metin:</p>
 <div class="ms">{d['old']}</div>
-<p><b>Kopyan (yeni yazıyla):</b></p>
+<p><b>Kart sıran:</b> ______________________ &nbsp; <b>Masanın yazdığı kopya:</b></p>
 <div class="lines"><div></div><div></div></div>
 <p style="margin-top:6mm"><b>Soru:</b> {d['ask']}</p>
-<div class="lines"><div></div></div>""")
+<p>{' &nbsp; '.join(f'☐ {o}' for o in d['options'])}</p>""")
 
 
 pages.append(doc_page(DOCS[0]))
@@ -181,7 +141,7 @@ real2 = sorted({era2(f) for f, _ in LEX1})
 pages.append(page(f"""
 <span class="tag">Yönetici · cevap anahtarı</span><h1>Cevap anahtarı</h1>
 <table><tr><th>Belge</th><th>Doğru kopya</th><th>Ters sırayla</th></tr>{''.join(keyrow(d) for d in DOCS)}</table>
-<p class="small">Belge 1'de sıra önemsiz (R1 ve R2 birbirini etkilemez). Belge 2 ve 3'te doğru sıra R3 → R4.</p>
+<p class="small">Belge 1'de sıra önemsiz (sert ve teklesme birbirini etkilemez). Belge 2 ve 3'te doğru sıra: yukselme → kayma.</p>
 <h2>Masanın kabul ettiği kelimeler</h2>
 <p><b>Çağ 1:</b> <span class="form">{' · '.join(f for f, _ in LEX1)}</span></p>
 <p><b>Çağ 2:</b> <span class="form">{' · '.join(real2)}</span></p>
@@ -189,7 +149,9 @@ pages.append(page(f"""
 <h2>Kontrol</h2>
 <ul><li>Belge 2, ters sıra: <span class="form">nīkos</span> Çağ 2'de <b>nēkos (ölü)</b> kelimesinin biçimi → <span class="warn">kabul et, sessiz kal.</span></li>
 <li>Belge 3, ters sıra: <span class="form">Mītīros, grīnom</span> gerçek değil → reddet.</li>
-<li>Doğru cevaplar: (1) Mīros sundu; Mēros sürgündür. (2) Sürgün edildi (oyuncu nīkos yazdıysa “öldü” der). (3) Anne aldı; Mīros'un tahılıydı.</li></ul>
+<li>Doğru cevaplar: (1) Büyük kardeş Mīros. (2) Sürgün edildi. (3) Annem aldı.</li></ul>
+<h2>Kapıda bir söylenti (Belge 3 başında oku)</h2><p><b>Kopya nīkos ise:</b> {C.reaction_doc3('nīkos', None).replace('*','')}</p><p><b>Kopya nēkos ise:</b> {C.reaction_doc3('nēkos', None).replace('*','')}</p><p class='small'>Cevap kopyayla çelişiyorsa ekle: “Görevliye başka, kâğıda başka yazmışsın; hangisine inanacaklarını bilmiyorlar.”</p>
+<h2>Son (testin sonunda oku)</h2><p><b>nīkos:</b> {C.epilogue('nīkos')}</p><p><b>nēkos:</b> {C.epilogue('nēkos')}</p>
 """))
 
 # 11 Observation form
