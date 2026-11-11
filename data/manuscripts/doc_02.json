@@ -1,0 +1,29 @@
+{
+  "id": "doc_02",
+  "order": 2,
+  "era": 2,
+  "title_tr": "Kurucuların kaydı",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Saray görevlisi",
+    "says_tr": "*Rīgos* kurucuların kaydını istiyor. Eski defterlerde *grānos* yazıyor, biz artık *grēnos* diyoruz; tarlalara da *ēgros* diyoruz, ambarın *thītos*'u kabardı. Kopyan bugünün diliyle olmalı. Acele et, *rīgos* beklemez."
+  },
+  "old_text": "Mīros Mērom ageti. Mēros nākos.",
+  "heard": [
+    "rīgos",
+    "grēnos",
+    "ēgros",
+    "thītos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "question": {
+    "ask_tr": "Kurucunun kardeşine ne oldu?",
+    "options_tr": [
+      "Sürgün edildi",
+      "Öldü",
+      "Kral oldu",
+      "Tahılını verdi"
+    ]
+  }
+}

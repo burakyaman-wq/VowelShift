@@ -1,0 +1,31 @@
+{
+  "id": "doc_04",
+  "order": 4,
+  "era": 3,
+  "title_tr": "Dağdan gelen belge",
+  "intro_tr": "Yüz yıl daha geçti. Savaş yazıhaneyi yaktı; ustan Argos'tan geriye yarım bir defter ve tek bir kural kartı kaldı: «Damaklaşma». Defterin son sayfasında Argos'un kenar notu var: “Kelime sonları düşmeye başladı; halk artık kimin yaptığını eklerden değil sıradan anlıyor. Önce gelen yapandır.”",
+  "requester": {
+    "name_tr": "Dağlardan gelen elçi",
+    "says_tr": "Biz *Mīro*'nun soyundanız; bize *nēko* dediniz, sürgün. Sizin *rīgo* bize ne *ēgro* bıraktı ne *grēno*. Atamız dağlara sürülmedi, öldürüldü; bu belge bizim arşivimizden. Senin yazınla kopyala ki şehirde herkes okusun."
+  },
+  "old_text": "Mīrom nēkom Mīros rīgos kheneti.",
+  "heard": [
+    "Mīro",
+    "rīgo",
+    "ēgro",
+    "grēno",
+    "nēko"
+  ],
+  "inherit_cards": [
+    "R6"
+  ],
+  "allow_reorder": true,
+  "question": {
+    "ask_tr": "Bu belgeye göre kim kimi öldürdü?",
+    "options_tr": [
+      "Bey Mīros, sürgün Mīros'u öldürdü",
+      "Sürgün Mīros, bey Mīros'u öldürdü",
+      "Yazıdan anlaşılmıyor"
+    ]
+  }
+}

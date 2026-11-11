@@ -1,0 +1,26 @@
+{
+  "id": "doc_03",
+  "order": 3,
+  "era": 2,
+  "title_tr": "Bir borç senedi",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Tüccar kadın",
+    "says_tr": "Bu senet annemden kaldı. Ben ona *mētīros* derdim, siz eski yazıda başka türlü yazıyorsunuz. Tahıl kimden kime geçmiş, bilmem lazım."
+  },
+  "old_text": "Mātēros Mīrosyo grānom emeti.",
+  "heard": [
+    "mētīros"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "question": {
+    "ask_tr": "Bu tahıl hangi kardeşin tahılıydı?",
+    "options_tr": [
+      "Büyük kardeş Mīros'un",
+      "Küçük kardeş Mēros'un",
+      "Yazıdan anlaşılmıyor",
+      "Annemin"
+    ]
+  }
+}

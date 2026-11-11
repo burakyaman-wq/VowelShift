@@ -32,6 +32,15 @@ func _init() -> void:
 	_expect(not engine.is_real("grīnom", 2), "grīnom is not a real era-2 word")
 	_expect(engine.apply_text("Mīros Mērom ageti. Mēros nākos.", ["R4", "R3"]) == "Mīros Mīrom ageti. Mīros nīkos.", "doc 2 wrong order")
 
+	# Manuscripts load, are ordered and pass content validation.
+	var lib := ManuscriptLibrary.new()
+	_expect(lib.docs.size() >= 4, "at least 4 manuscripts load")
+	_expect(lib.get_doc(0).id == "doc_01", "manuscripts sorted by order")
+	for e in lib.validate(engine):
+		_expect(false, "content: " + e)
+	_expect(lib.get_doc(1).says_bbcode().begins_with("[i]Rīgos[/i]"), "italics become BBCode")
+	_expect(lib.get_doc(3).allow_reorder, "doc 4 allows reordering")
+
 	print("%d checks, %d failures" % [checks, failures])
 	quit(1 if failures > 0 else 0)
 

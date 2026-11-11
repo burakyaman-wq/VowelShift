@@ -1,0 +1,27 @@
+{
+  "id": "doc_01",
+  "order": 1,
+  "era": 1,
+  "title_tr": "Temel taşı tableti",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Rahibe, tapınaktan",
+    "says_tr": "Tapınağın temelini kazarken bu tablet çıktı. Bir *khewos* kaydı olmalı, kurucunun *phāgos*'undan da söz ediyor sanırım. Yeni yazıyla kopyala ki rafa koyabilelim."
+  },
+  "old_text": "Meiros deiwosyo ghewom dōneti. Meiros bhāgom ghrebheti. Mēros nākos.",
+  "heard": [
+    "khewos",
+    "phāgos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "question": {
+    "ask_tr": "Adağı kim sundu?",
+    "options_tr": [
+      "Büyük kardeş Mīros",
+      "Küçük kardeş Mēros",
+      "Tanrının kendisi",
+      "Rahibe"
+    ]
+  }
+}
