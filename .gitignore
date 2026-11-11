@@ -1,0 +1,17 @@
+# Godot 4 cache (keep *.import files next to assets — they belong in git)
+.godot/
+
+# Export output
+build/
+*.zip
+
+# Python tools
+__pycache__/
+*.pyc
+.venv/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+.vscode/
