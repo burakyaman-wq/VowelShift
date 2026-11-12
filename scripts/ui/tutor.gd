@@ -5,7 +5,7 @@ extends Control
 ## the last action did. The desk decides the steps (desk.gd, _guide); this
 ## only shows them.
 
-const CARD := Rect2(628, 604, 640, 168)
+const CARD := Rect2(628, 600, 640, 184)
 
 var _card: Control
 var _title: Label
@@ -39,11 +39,11 @@ func setup(font: Font, era: int) -> void:
 	_card.add_child(paper)
 	_title = _label("Ustanın notu", 20, Color("b33a29"))
 	_title.position = Vector2(20, 10)
-	_say = _rich(21, Color("2a1b14"))
+	_say = _rich(19, Color("2a1b14"))
 	_say.position = Vector2(20, 40)
-	_say.size = Vector2(CARD.size.x - 70, 78)
+	_say.size = Vector2(CARD.size.x - 60, 96)
 	_said = _rich(17, Color(0.33, 0.29, 0.27))
-	_said.position = Vector2(20, 120)
+	_said.position = Vector2(20, 138)
 	_said.size = Vector2(CARD.size.x - 150, 44)
 	_mark = TextureRect.new()
 	_mark.texture = Art.tex("durak.png", era)

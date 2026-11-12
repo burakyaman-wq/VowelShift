@@ -1,27 +1,24 @@
 extends Control
 ## The scribe's desk, drawn as a classical Ottoman miniature seen from above
-## (assets/art/STYLE.md). One document at a time:
+## (assets/art/STYLE.md). One document at a time, played like a card game:
 ##
-## 1. Pair words: click an old word (in the document, or in the old dictionary
-##    from the second era on), then a new one (the dictionary of today in the
-##    first era, or a word heard from the requester). A good pair goes into
-##    the notebook with its changed letters in red.
-## 2. Two pairs that show the same change prove it: that line is inked onto
-##    its rule tile, and a new tile appears on the desk if it is the first.
-## 3. Put tiles in the tray; the copy sheet shows in pencil what that order
-##    would write. Click the reed pen to write it in ink. Words that are not
-##    words of this era are scraped; change the order and write again.
-## 4. A copy of real words is shelved. The slip turns into the requester's
-##    question; seal an answer and the next document arrives.
+## 1. Each era hands over its sound-rule cards. They lie in the hand on the
+##    left; the cards of earlier eras stay there too.
+## 2. Lay cards in the tray. They act from left to right on every word of the
+##    document, and the copy sheet shows each word as it now comes out: its
+##    changed letters in red, its meaning if it is a word of this era, scraped
+##    if it is not. Order matters: one card can feed the next.
+## 3. Click the reed pen to write the copy in ink. A copy of real words is
+##    shelved; the slip turns into the requester's question; seal an answer
+##    and the next document arrives. What you wrote is what later eras read.
 ##
 ## Where a document allows it, the copy's words lie on loose slips and can be
 ## put in another order before the pen writes. A shelved copy takes a note in
 ## its margin. Between documents a page tells what the years, or the street,
-## made of the last copy.
+## made of the last copy. The master's note (Tutor) says what to do next.
 
 signal copy_changed(text: String)
 signal copy_written(result: Dictionary)
-signal pair_made(result: Dictionary)
 
 const FONT := preload("res://assets/fonts/Katip-Regular.ttf")
 const INK := Color("2a1b14")
@@ -52,21 +49,17 @@ var narrative: Narrative
 var tray: RuleTray
 var tiles_layer: Control
 var tiles := {}
-var pairs: Array[Dictionary] = []
 var _rest := {}
 var _copy_lines: Array[Label] = []
 var _ink_lines: Array[RichTextLabel] = []
 var _grain: TextureRect
 var _seal: TextureRect
 var _slip: Control
-var _book: Control
-var _book_left: Control
-var _pairs_box: Control
+var _words_box: Control
 var _reading: Control
 var _reading_words := 0
-var _pick := {}              # {"word", "role", "label"} waiting for its partner
-var _bad := ""               # the last pair that did not hold, shown struck
-var _page := 0
+var _new_cards: Array = []   # cards this document handed over, for the master's note
+var _meanings := {}           # era -> {word form -> meaning}
 var _advance := false
 var _word_order: Array = []   # 1-based order of the copy's words once the player has moved any; empty = as written
 var _slips: Control
@@ -115,11 +108,13 @@ func move_word(from_pos: int, to_pos: int) -> bool:
 
 
 func place_rule(rule_id: String, slot: int) -> void:
+	var before := word_results()
 	var out := tray.model.place(rule_id, slot)
 	if out != "":
 		_send_home(tiles[out])
 	_arrange()
 	_refresh()
+	_tell_change(before, rule_id)
 
 
 func take_out(rule_id: String) -> void:
@@ -128,26 +123,37 @@ func take_out(rule_id: String) -> void:
 	_refresh()
 
 
-## Put an old and a new word side by side. Returns Pairing.make's result.
-func try_pair(old: String, nw: String) -> Dictionary:
-	var res := Pairing.make(doc, lib, engine, state, old, nw)
-	if res["ok"]:
-		var dup := false
-		for p in pairs:
-			dup = dup or (p["old"] == res["old"] and p["new"] == res["new"])
-		if not dup:
-			pairs.append(res)
-		_bad = ""
-		var before := _proven_count()
-		_prove_what_pairs_show()
-		_tell_pair(res, _proven_count() > before)
-	else:
-		_bad = "%s → %s" % [res["old"], res["new"]]
-		_tell_bad_pair(res)
-	_draw_pairs()
-	pair_made.emit(res)
-	_guide()
-	return res
+## Each distinct word of the document as the tray now writes it:
+## [{old, new, real, meaning}], in the order they first appear.
+func word_results() -> Array:
+	var out := []
+	var seen := {}
+	for w in doc.old_words():
+		var key := w.to_lower()
+		if seen.has(key):
+			continue
+		seen[key] = true
+		var nw := engine.apply_text(w, tray.model.order(), state.proven)
+		out.append({"old": w, "new": nw, "real": engine.is_real(nw, doc.era), "meaning": meaning_of(nw, doc.era)})
+	return out
+
+
+## What a word means in an era ("" if it is no word then). A form two words
+## have fallen into gives both meanings.
+func meaning_of(word: String, at_era: int) -> String:
+	if not _meanings.has(at_era):
+		var ids := engine.era_ids(at_era)
+		var m := {}
+		for w in engine.words:
+			for tag in w["forms"]:
+				var f := engine.apply_word(w["forms"][tag], ids).to_lower()
+				if not m.has(f):
+					m[f] = []
+				if w["meaning_tr"] not in m[f]:
+					m[f].append(w["meaning_tr"])
+		_meanings[at_era] = m
+	var hit: Array = _meanings[at_era].get(word.to_lower().trim_suffix("."), [])
+	return " / ".join(PackedStringArray(hit))
 
 
 ## The pen: the desk writes the copy from the tray order.
@@ -272,16 +278,18 @@ func reading_word_count() -> int:
 func _start_doc(arrive: bool) -> void:
 	doc = lib.get_doc(state.doc_index)
 	state.begin_doc(doc, engine)
+	_new_cards = []
+	for rid in Pairing.era_rules(doc, engine):          # each era hands over its cards
+		if rid not in state.cards:
+			state.cards.append(rid)
+			state.proven[rid] = range(engine.by_id[rid].sub_count())
+			_new_cards.append(rid)
 	if dev_cards:
 		for era in range(1, doc.era + 1):
 			for rid in engine.era_ids(era):
 				if rid not in state.cards:
 					state.cards.append(rid)
 					state.proven[rid] = range(engine.by_id[rid].sub_count())
-	pairs.clear()
-	_pick = {}
-	_bad = ""
-	_page = 0
 	_reading = null
 	_interlude = null
 	_note = null
@@ -380,6 +388,10 @@ func _build() -> void:
 		ink.add_theme_color_override("default_color", INK)
 		sheet.add_child(ink)
 		_ink_lines.append(ink)
+	_words_box = Control.new()
+	_words_box.name = "Kelimeler"
+	_words_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	sheet.add_child(_words_box)
 	_slips = Control.new()
 	_slips.name = "Fisler"
 	_slips.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -396,24 +408,11 @@ func _build() -> void:
 	_tex(pen, "kalem.png", Vector2(-8, -8), 0.0)
 	_clickable(pen, func() -> void: write_copy(), Vector2(240, -30))
 
-	_book = _sheet("Defter", "defter.png", Vector2(64, 330), Vector2(520, 420), 1.5, 20.0)
-	_label(_book, "Sözlük" if doc.era == 1 else "Eski sözlük", 24, RED).position = Vector2(22, 10)
-	_book_left = Control.new()
-	_book_left.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_book.add_child(_book_left)
-	_draw_dictionary()
-	_label(_book, "Duyduklarım", 24, RED).position = Vector2(282, 10)
-	for i in doc.heard.size():
-		var h := _label(_book, doc.heard[i], 20, INK)
-		h.position = Vector2(286, 44 + i * 27)
-		_pickable(h, doc.heard[i], "new")
-	var py := 44 + maxi(doc.heard.size(), 1) * 27 + 14
-	_label(_book, "Eşleşmeler", 24, RED).position = Vector2(282, py)
-	_pairs_box = Control.new()
-	_pairs_box.position = Vector2(286, py + 34)
-	_pairs_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_book.add_child(_pairs_box)
-	_draw_pairs()
+	var hand := _label(self, "Elindeki kartlar", 26, PAPER)
+	hand.name = "El"
+	hand.position = Vector2(92, 316)
+	hand.size = Vector2(480, 470)
+	hand.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	_slip = _sheet("Pusula", "pusula.png", Vector2(1530, 790), Vector2(360, 250), -6.0)
 	var says := _rich(_slip, doc.says_bbcode().replace("[i]", "[color=%s]" % RED_HEX).replace("[/i]", "[/color]"), 17)
@@ -447,9 +446,9 @@ func _build() -> void:
 	add_child(_grain)
 
 
-# --- words, the dictionary and pairs ----------------------------------------
+# --- words and cards ------------------------------------------------------------
 
-## The document's words as separate, clickable words. Returns how many.
+## The document's words, laid out on its page. Returns how many.
 func _write_words(parent: Control, width: float, start: int, origin: Vector2, height: float) -> int:
 	var lines := _sentences(doc.old_text)
 	var fs := _fit(lines, width, start)
@@ -461,110 +460,11 @@ func _write_words(parent: Control, width: float, start: int, origin: Vector2, he
 		for w in lines[li].split(" ", false):
 			var l := _label(parent, w, fs, INK)
 			l.position = Vector2(x, top + li * fs * 1.55)
-			_pickable(l, w, "old")
 			x += FONT.get_string_size(w, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x + space
 			count += 1
 	return count
 
 
-## Today's dictionary in the first era; from the second on, the old one.
-func dictionary() -> Array:
-	var ids := engine.era_ids(doc.era if doc.era == 1 else doc.era - 1)
-	var out := []
-	for w in engine.words:
-		out.append([engine.apply_word(w["root"], ids), w["meaning_tr"]])
-	out.sort_custom(func(a: Array, b: Array) -> bool: return a[0].to_lower() < b[0].to_lower())
-	return out
-
-
-func _draw_dictionary() -> void:
-	for c in _book_left.get_children():
-		c.queue_free()
-	var entries := dictionary()
-	var pages := ceili(entries.size() / float(PER_PAGE))
-	var role := "new" if doc.era == 1 else "old"
-	for k in PER_PAGE:
-		var i := _page * PER_PAGE + k
-		if i >= entries.size():
-			break
-		var l := _label(_book_left, "%s — %s" % entries[i], 18, INK)
-		l.position = Vector2(24, 44 + k * 27)
-		l.size = Vector2(232, 26)
-		l.clip_text = true
-		_pickable(l, entries[i][0], role)
-	var prev := _label(_book_left, "‹", 28, RED)
-	prev.position = Vector2(30, 372)
-	_clickable(prev, func() -> void: _turn(-1), Vector2(18, -6))
-	_label(_book_left, "%d / %d" % [_page + 1, pages], 18, INK).position = Vector2(112, 380)
-	var nxt := _label(_book_left, "›", 28, RED)
-	nxt.position = Vector2(220, 372)
-	_clickable(nxt, func() -> void: _turn(1), Vector2(18, -6))
-
-
-func _turn(step: int) -> void:
-	var pages := ceili(dictionary().size() / float(PER_PAGE))
-	_page = posmod(_page + step, pages)
-	_draw_dictionary()
-
-
-func _pickable(l: Label, word: String, role: String) -> void:
-	if not _pick.is_empty() and _pick["word"] == word and _pick["role"] == role:
-		_pick["label"] = l              # redrawn (a page turned): the choice stays, on the new label
-		l.add_theme_color_override("font_color", RED)
-	l.mouse_filter = Control.MOUSE_FILTER_STOP
-	l.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	l.gui_input.connect(func(e: InputEvent) -> void:
-		if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT:
-			_on_pick(word, role, l)
-			l.accept_event())
-
-
-func _on_pick(word: String, role: String, l: Label) -> void:
-	if _pick.is_empty():
-		_pick = {"word": word, "role": role, "label": l}
-		l.add_theme_color_override("font_color", RED)
-		_guide()
-		return
-	if is_instance_valid(_pick["label"]):
-		_pick["label"].add_theme_color_override("font_color", INK)
-	if _pick["word"] == word and _pick["role"] == role:
-		_pick = {}
-		return
-	if _pick["role"] == role:
-		_pick = {"word": word, "role": role, "label": l}
-		l.add_theme_color_override("font_color", RED)
-		tutor.tell("İki kelime de aynı yerden. Biri %s, öteki %s olmalı." % (["belgeden", "sözlükten"] if doc.era == 1 else ["belgeden ya da eski sözlükten", "duyduklarından"]))
-		_guide()
-		return
-	var old: String = _pick["word"] if _pick["role"] == "old" else word
-	var nw: String = word if _pick["role"] == "old" else _pick["word"]
-	_pick = {}
-	try_pair(old, nw)
-
-
-func _draw_pairs() -> void:
-	for c in _pairs_box.get_children():
-		c.queue_free()
-	if pairs.is_empty() and _bad == "":
-		var hint := _label(_pairs_box, "Belgeden bir kelime seç, sonra %s karşılığını." % ("sözlükte" if doc.era == 1 else "duyduklarında"), 16, PENCIL)
-		hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		hint.custom_minimum_size = Vector2(214, 0)
-		hint.size = Vector2(214, 80)
-		return
-	var shown := pairs.slice(maxi(0, pairs.size() - 7))
-	var y := 0.0
-	for p in shown:
-		var r := _rich(_pairs_box, _marked(p["old"], p["new"]), 18)
-		r.position = Vector2(0, y)
-		r.size = Vector2(220, 26)
-		y += 26
-	if _bad != "":
-		var b := _rich(_pairs_box, "[color=%s][s]%s[/s][/color]" % [SCRAPED, _bad], 18)
-		b.position = Vector2(0, y)
-		b.size = Vector2(220, 26)
-
-
-## "ghewom → khewom" with the changed letters in red.
 func _marked(old: String, nw: String) -> String:
 	var marks := Pairing.diff_marks(old, nw)
 	return "%s → %s" % [_red_letters(old, marks[0]), _red_letters(nw, marks[1])]
@@ -577,39 +477,14 @@ func _red_letters(w: String, m: PackedInt32Array) -> String:
 	return out
 
 
-## Every substitution shown by two pairs with different old words is proven.
-func _prove_what_pairs_show() -> void:
-	var seen := {}
-	for p in pairs:
-		for s in p["subs"]:
-			var key := "%s:%d" % [s[0], s[1]]
-			if not seen.has(key):
-				seen[key] = {}
-			seen[key][p["old"]] = "%s:%s" % [p["old"], p["new"]]
-	for key in seen:
-		var ev: Dictionary = seen[key]
-		if ev.size() < 2:
-			continue
-		var rid: String = key.get_slice(":", 0)
-		var i := int(key.get_slice(":", 1))
-		if state.proven.has(rid) and i in state.proven[rid]:
-			continue
-		var r: SoundRule = engine.by_id[rid]
-		var res := state.prove_rule(doc, lib, engine, r.patterns[i], r.replacements[i], ev.values().slice(0, 2))
-		if res["ok"]:
-			if tiles.has(rid):
-				tiles[rid].set_proven(RuleText.proven_lines(r, state.proven[rid]))
-			else:
-				_add_tile(rid, true)
-
-
+## A rule card in the hand, at its resting place.
 func _add_tile(rid: String, arriving: bool) -> void:
 	var i := tiles.size()
 	var t := RuleTile.new()
 	tiles_layer.add_child(t)
 	t.setup(engine.by_id[rid], state.proven.get(rid, []), FONT, era())
-	var spot := Vector2(80 + (i % 4) * 112 + (i / 4) * 56, 786 + (i % 2) * 14 + (i / 4) * 40)
-	var rot: float = [-4.0, 3.0, -2.0, 5.0][i % 4]
+	var spot := Vector2(82 + (i % 3) * 166, 364 + (i / 3) * 212)
+	var rot: float = [-3.0, 2.0, -1.5, 2.5, -2.0, 1.0][i % 6]
 	_rest[rid] = [spot, rot]
 	t.dropped.connect(_on_tile_dropped)
 	tiles[rid] = t
@@ -654,15 +529,49 @@ func _refresh() -> void:
 	var loose := drafting and doc.allow_reorder
 	var cfs := _fit(lines, COPY_WIDTH, 38)
 	for i in _copy_lines.size():
-		_copy_lines[i].text = lines[i] if i < lines.size() and drafting and not loose else ""
+		_copy_lines[i].text = ""
 		_copy_lines[i].add_theme_font_size_override("font_size", cfs)
 	_lay_slips(copy if loose else "")
+	_draw_word_cards(drafting)
 	if tutor:
 		_guide()
 	if drafting:
 		for ink in _ink_lines:
 			ink.text = ""
 	copy_changed.emit(copy)
+
+
+## On the copy sheet, while it is still blank: every word as the tray now
+## writes it. Changed letters red; a word of this era in ink with its meaning
+## in pencil beneath; a word of no era struck through.
+func _draw_word_cards(show: bool) -> void:
+	for c in _words_box.get_children():
+		_words_box.remove_child(c)
+		c.queue_free()
+	if not show:
+		return
+	var rows := word_results()
+	var top := 236.0 if doc.allow_reorder else 30.0
+	var step := minf(58.0, (488.0 - top) / maxf(rows.size(), 1))
+	var big_px := 28 if step >= 54 else 22
+	for k in rows.size():
+		var r: Dictionary = rows[k]
+		var shown := _red_letters(r["new"], Pairing.diff_marks(r["old"], r["new"])[1])
+		if not r["real"]:
+			shown = "[color=%s][s]%s[/s][/color]" % [SCRAPED, r["new"]]
+		var big := _rich(_words_box, shown, big_px)
+		big.position = Vector2(40, top + k * step)
+		big.size = Vector2(170, step)
+		var note: String = r["meaning"] if r["real"] else "bu çağda yok"
+		var small := _label(_words_box, ("eski: %s" % r["old"]) if r["new"] != r["old"] else "değişmedi", 14, PENCIL)
+		small.position = Vector2(42, top + k * step + big_px + 4)
+		var mean := _label(_words_box, note, 17, INK if r["real"] else Color(SCRAPED))
+		mean.position = Vector2(214, top + k * step + 6)
+		mean.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		mean.custom_minimum_size = Vector2(168, 0)
+		mean.size = Vector2(168, step - 6)
+		if note.length() > 22:
+			mean.add_theme_font_size_override("font_size", 14)
 
 
 ## The draft as loose slips, one word each, in the order they now stand.
@@ -830,30 +739,49 @@ func _next_step() -> Array:
 		return ["", none]
 	if state.phase == "answer":
 		return ["Kopya rafta. İstersen kâğıdın altına bir [color=%s]kenar notu[/color] yaz. Sonra pusuladaki soruyu kopyaladığın metne göre cevapla: bir cevaba tıkla." % RED_HEX, _rect("Pusula")]
-	var draft := copy_text()
-	var ready := _all_real(draft)
+	var rows := word_results()
+	var wrong := rows.filter(func(r: Dictionary) -> bool: return not r["real"]).size()
+	var order := tray.model.order()
+	if order.is_empty():
+		if doc.era == 1:
+			return ["Belge eski dilde yazılmış; onu bugünün diliyle kopyalayacaksın. Sol tarafta [color=%s]ses kuralı kartların[/color] var. Bir kartı tutup aşağıdaki [color=%s]tepsiye sürükle[/color]." % [RED_HEX, RED_HEX], _hand_rect()]
+		if not _new_cards.is_empty():
+			return ["Yeni çağ, yeni kartlar: [color=%s]%s[/color]. Eski çağların kartları da elinde ama onlar işini çoktan yaptı. Yeni kartları tepsiye diz." % [RED_HEX, ", ".join(_new_cards.map(func(r: String) -> String: return engine.by_id[r].name_tr))], _hand_rect()]
+		return ["Bu belgenin kartlarını tepsiye diz.", _hand_rect()]
+	if wrong > 0:
+		if doc.era == 1 and order.size() == 1:
+			return ["Kart, belgedeki bütün kelimelere uygulandı: kopya kâğıdında değişen harfler [color=%s]kırmızı[/color]. Üstü çizili kelimeler bu çağda yok; [color=%s]öbür kartı da tepsiye koy[/color]." % [RED_HEX, RED_HEX], _hand_rect()]
+		if order.size() >= 2:
+			return ["Hâlâ %d kelime bu çağda yok. Kartlar tepsiye [color=%s]soldan sağa[/color] uygulanır ve sıra önemlidir: bir kart öbürünün yaptığını bir basamak daha kaydırabilir. Sırayı değiştir ya da eksik kartı ekle." % [wrong, RED_HEX], tray.get_global_rect()]
+		return ["Hâlâ %d kelime bu çağda yok. Elindeki öbür kartları dene." % wrong, _hand_rect()]
+	if doc.allow_reorder:
+		return ["Bütün kelimeler bu çağın dilinde. Ama ekler düştü; kimin kimi öldürdüğünü artık [color=%s]kelimelerin sırası[/color] söylüyor: önce gelen yapandır. Fişleri sürükleyip anlamı koruyan sırayı kur, sonra kalemi tıkla." % RED_HEX, _rect("Kopya")]
 	if doc.era == 1:
-		if pairs.is_empty() and _pick.is_empty():
-			return ["Bu tablet eski dilde. Onu bugünün diliyle kopyalayacaksın. Önce [color=%s]belgede bir kelimeye[/color] tıkla." % RED_HEX, _rect("Belge")]
-		if pairs.is_empty():
-			return ["Şimdi [color=%s]sözlükte[/color] o kelimenin bugünkü hâlini bul ve tıkla. Sonu farklı olabilir: [i]ghewom[/i] ile [i]khewos[/i] eşleşir." % RED_HEX, _rect("Defter")]
-		if tiles.is_empty():
-			return ["Eşleşme deftere yazıldı, değişen harfler kırmızı. [color=%s]Aynı değişimi gösteren ikinci bir eşleşme[/color] bul: kural kanıtlanır." % RED_HEX, _rect("Defter")]
-		if tray.model.order().is_empty():
-			return ["Kural kanıtlandı, karosu masaya geldi. Karoyu tutup [color=%s]tepsiye sürükle[/color]." % RED_HEX, tiles.values()[0].get_global_rect()]
-	if doc.era > 1 and pairs.is_empty() and not _hints_done.has("era"):
-		return ["Çağ değişti; sözlüğün artık eski. Bugünün kelimelerini istekte bulunandan duyuyorsun: belgedeki ya da eski sözlükteki kelimeyi [color=%s]Duyduklarım[/color] listesindeki karşılığıyla eşleştir." % RED_HEX, _rect("Defter")]
-	if pairs.size() > 0:
-		_hints_done["era"] = true
-	if doc.allow_reorder and ready:
-		return ["Ekler düştü; kimin kimi öldürdüğünü artık [color=%s]kelimelerin sırası[/color] söylüyor: önce gelen yapandır. Fişleri sürükleyip anlamı koruyan sırayı kur, sonra kalemi tıkla." % RED_HEX, _rect("Kopya")]
-	if not ready:
-		if doc.era == 2 and tray.model.order().size() >= 2 and not _hints_done.has("order"):
-			return ["Tepsi [color=%s]soldan sağa[/color] uygulanır ve sıra önemlidir. Karoların yerini değiştir, taslağın nasıl değiştiğine bak." % RED_HEX, tray.get_global_rect()]
-		return ["Kopya kâğıdındaki kurşun kalem taslak, tepsideki kuralların yazdığıdır. İçinde hâlâ [color=%s]bu çağda olmayan kelimeler[/color] var: başka değişimleri eşleştirip kanıtla, karolarını tepsiye koy." % RED_HEX, _rect("Kopya")]
-	if tray.model.order().size() >= 2:
-		_hints_done["order"] = true
-	return ["Taslaktaki bütün kelimeler bugünün dilinde. [color=%s]Kalemi tıkla[/color], mürekkeple yaz." % RED_HEX, _rect("Kalem")]
+		return ["Bütün kelimeler bu çağın dilinde; anlamları altlarında. [color=%s]Kalemi tıkla[/color], mürekkeple yaz." % RED_HEX, _rect("Kalem")]
+	return ["Bütün kelimeler bu çağın dilinde. Anlamlarına bak: istediğin bu mu? Öyleyse [color=%s]kalemi tıkla[/color]. Yazdığın, sonraki çağların okuyacağı metin olur." % RED_HEX, _rect("Kalem")]
+
+
+func _hand_rect() -> Rect2:
+	for rid in state.cards:
+		if tiles.has(rid) and not tray.model.order().has(rid):
+			return tiles[rid].get_global_rect()
+	return _rect("El")
+
+
+## Say what laying a card did to the words.
+func _tell_change(before: Array, rule_id: String) -> void:
+	if not tutor:
+		return
+	var after := word_results()
+	var changed := 0
+	for i in after.size():
+		if after[i]["new"] != before[i]["new"]:
+			changed += 1
+	var r: SoundRule = engine.by_id[rule_id]
+	if changed == 0:
+		tutor.tell("«%s» bu sırada hiçbir kelimeyi değiştirmedi." % r.name_tr)
+	else:
+		tutor.tell("«%s» %d kelimeyi değiştirdi." % [r.name_tr, changed])
 
 
 func _rect(node_name: String) -> Rect2:
@@ -866,36 +794,6 @@ func _all_real(text: String) -> bool:
 		if not engine.is_real(tok.trim_suffix("."), doc.era):
 			return false
 	return true
-
-
-func _proven_count() -> int:
-	var n := 0
-	for rid in state.proven:
-		n += state.proven[rid].size()
-	return n
-
-
-## Say what a good pair showed: a change seen once, or a rule now proven.
-func _tell_pair(res: Dictionary, proved: bool) -> void:
-	var subs: Array = res["subs"]
-	if subs.is_empty():
-		tutor.tell("[i]%s[/i] değişmemiş; bir değişimi kanıtlamaz." % res["old"])
-		return
-	var shown := PackedStringArray()
-	for s in subs:
-		shown.append(RuleText.sub_text(engine.by_id[s[0]], s[1]))
-	if proved:
-		tutor.tell("Kanıtlandı: [color=%s]%s[/color]. Karosu masada." % [RED_HEX, ", ".join(shown)])
-	else:
-		tutor.tell("Tuttu: [color=%s]%s[/color] görüldü. Aynı değişimi gösteren başka bir kelime daha bul." % [RED_HEX, ", ".join(shown)])
-
-
-func _tell_bad_pair(res: Dictionary) -> void:
-	var why: String = res["problem"]
-	if why.contains("karşılığı değil"):
-		tutor.tell("[i]%s[/i] ile [i]%s[/i] aynı kelime değil. Anlamlarına bak: sözlükte her kelimenin yanında yazıyor." % [res["old"], res["new"]])
-	else:
-		tutor.tell(why.substr(0, 1).to_upper() + why.substr(1) + ".")
 
 
 # --- helpers ---------------------------------------------------------------
