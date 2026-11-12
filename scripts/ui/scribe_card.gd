@@ -55,9 +55,16 @@ func setup(kind: String, count: int, font: Font, era: int) -> void:
 
 func set_left(n: int) -> void:
 	left = n
-	_count.text = "%d kaldı" % n
+	_count.text = "bu belgede %d" % n
 	modulate = Color.WHITE if n > 0 else Color(1, 1, 1, 0.45)
 	mouse_default_cursor_shape = Control.CURSOR_DRAG if n > 0 else Control.CURSOR_FORBIDDEN
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_MOUSE_ENTER and not dragging and left > 0:
+		scale = Vector2.ONE * 1.05
+	elif what == NOTIFICATION_MOUSE_EXIT and not dragging:
+		scale = Vector2.ONE
 
 
 func center() -> Vector2:

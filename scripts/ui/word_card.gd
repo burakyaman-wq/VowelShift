@@ -75,8 +75,14 @@ func setup(font: Font, era: int, word_index: int, can_move: bool) -> void:
 	_flag.position = Vector2(SIZE.x - 22, -10)
 	_flag.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_flag)
-	mouse_entered.connect(func() -> void: hovered.emit(self, true))
-	mouse_exited.connect(func() -> void: hovered.emit(self, false))
+	mouse_entered.connect(func() -> void:
+		if not dragging:
+			scale = Vector2.ONE * 1.04
+		hovered.emit(self, true))
+	mouse_exited.connect(func() -> void:
+		if not dragging:
+			scale = Vector2.ONE
+		hovered.emit(self, false))
 
 
 ## Show a row of Copyist.evaluate.
@@ -114,9 +120,10 @@ func show_row(r: Dictionary, inked: bool = false) -> void:
 	_foot.visible = true
 
 
-## What the hovered sound card would make of this word ("" to clear).
-func preview(form: String) -> void:
-	_ghost.text = ("→ " + form) if form != "" and form != row.get("new", "") else ""
+## What the hovered sound card would make of this word ("" to clear);
+## a form that is no word of the era is said so.
+func preview(form: String, is_word: bool = true) -> void:
+	_ghost.text = ("→ " + form + ("" if is_word else " (yok)")) if form != "" and form != row.get("new", "") else ""
 	_foot.visible = _ghost.text == ""
 
 

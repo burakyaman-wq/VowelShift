@@ -73,6 +73,8 @@ var _hand: Array = []
 var _page_words: Array = []        # labels of the text written on the document
 var _scale_titles := {}            # "fidelity"/"clarity" -> Label with the count
 var _slip_glow: Tween
+var _order_warn: Label
+var _stranger_line := ""
 
 
 var _ink_tween: Tween
@@ -122,7 +124,12 @@ func add_rule(rule_id: String) -> void:
 	if rule_id in order:
 		take_out(rule_id)
 		return
-	var slot := tray.model.slots.find("")
+	var slot := 0
+	for i in tray.model.slots.size():
+		if tray.model.slots[i] != "":
+			slot = i + 1
+	if slot >= tray.model.slots.size():
+		slot = tray.model.slots.find("")
 	if slot >= 0:
 		place_rule(rule_id, slot)
 
@@ -131,6 +138,7 @@ func take_out(rule_id: String) -> void:
 	if state.phase != "read":
 		return
 	tray.model.remove(rule_id)
+	_arrange()
 	_send_home(tiles[rule_id])
 	_refresh()
 	if tutor:
@@ -196,9 +204,14 @@ func write_copy() -> Dictionary:
 		c.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_ink(ev)
 	_write_copy_on_page(ev["copy"])
+	var stranger := Copyist.decoy(engine, doc.era)
 	_seal.visible = true
 	_slip_text.text = "[color=%s]Kopya yazıldı.[/color]\n\nTeslim etmek için bu istek notuna tıkla." % RED_HEX
 	_glow_slip(true)
+	_stranger_line = ""
+	if stranger != "" and stranger in _hand:
+		var used := stranger in tray.model.order()
+		_stranger_line = "Bu çağa ait olmayan kart «%s» idi; %s " % [engine.by_id[stranger].name_tr, "onu kullandın." if used else "doğru, onu kullanmadın."]
 	tutor.tell("Kopya yazıldı: sadakat %d / %d, anlaşılırlık %d / %d." % [ev["fidelity"], Copyist.FULL, ev["clarity"], Copyist.FULL])
 	_guide()
 	copy_written.emit(res)
@@ -235,6 +248,10 @@ func next_document() -> void:
 ## the street made of the last copy. Empty when there is nothing to tell.
 func interlude_text() -> String:
 	var parts := PackedStringArray()
+	var last := str(doc.order - 1)
+	if state.scores.has(last):
+		var sc: Dictionary = state.scores[last]
+		parts.append("[color=%s]Belge %s teslim edildi:[/color] sadakat %d / %d, anlaşılırlık %d / %d. %s" % [RED_HEX, last, sc["fidelity"], Copyist.FULL, sc["clarity"], Copyist.FULL, narrative.delivered(int(last))])
 	if doc.intro != "":
 		parts.append(doc.intro)
 	if doc.order == 3 and state.copies.has("2"):
@@ -247,6 +264,7 @@ func dismiss_interlude() -> void:
 		return
 	_interlude.queue_free()
 	_interlude = null
+	_node("Terazi").visible = true
 	_arrive()
 	_guide()
 
@@ -324,6 +342,7 @@ func _start_doc(arrive: bool) -> void:
 	if told != "":
 		for n in _arriving():
 			n.visible = false
+		_node("Terazi").visible = false
 		_show_interlude(told, "Aradan geçen zaman" if doc.intro != "" else "Kapıda duyduğun")
 	elif arrive:
 		_arrive()
@@ -443,6 +462,11 @@ func _build() -> void:
 		c.dropped.connect(_on_word_dropped)
 		words[key] = c
 
+	_order_warn = _label(_words_layer, "", 21, Color("f0b8a0"))
+	_order_warn.position = Vector2(GRID_STEP.x + 8, GRID_STEP.y + 18)
+	_order_warn.size = Vector2(GRID_STEP.x * 3 - 20, 70)
+	_order_warn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+
 	# the strip and the hand
 	tray = RuleTray.new()
 	tray.era = era()
@@ -457,7 +481,7 @@ func _build() -> void:
 		_add_tile(rid)
 
 	# the scribe cards, bottom right
-	_label(self, "Kâtip kartları · her belgede yenilenir", 20, PAPER).position = Vector2(1460, 770)
+	_label(self, "Kâtip kartları · kelimeye sürükle", 20, PAPER).position = Vector2(1460, 770)
 	for i in Copyist.TOOLS.size():
 		var tool: String = Copyist.TOOLS[i]
 		var sc := ScribeCard.new()
@@ -538,9 +562,9 @@ func _write_copy_on_page(copy: String) -> void:
 			l.queue_free()
 	_page_words = _write_text(page, doc.old_text, 680 - 52 - 110, 40, Vector2(60, 96), 130.0, PENCIL)
 	var tag := _label(page, "Kopyan", 20, RED)
-	tag.position = Vector2(60, 236)
+	tag.position = Vector2(60, 230)
 	_page_words.append(tag)
-	_page_words += _write_text(page, copy, 680 - 52 - 110, 48, Vector2(60, 262), 150.0, INK)
+	_page_words += _write_text(page, copy, 680 - 52 - 110, 44, Vector2(60, 254), 136.0, INK)
 
 
 func _glow_slip(on: bool) -> void:
@@ -577,6 +601,7 @@ func _on_tile_dropped(tile: RuleTile) -> void:
 		place_rule(tile.rule_id, slot)
 		return
 	tray.model.remove(tile.rule_id)
+	_arrange()
 	_send_home(tile)
 	_refresh()
 
@@ -592,7 +617,7 @@ func _on_tile_hovered(tile: RuleTile, on: bool) -> void:
 		return
 	var ev := Copyist.evaluate(doc, engine, order + [tile.rule_id], state.proven, marks)
 	for r in ev["rows"]:
-		words[r["key"]].preview(r["new"])
+		words[r["key"]].preview(r["new"], r["in_dict"])
 
 
 func _on_word_hovered(card: WordCard, on: bool) -> void:
@@ -639,6 +664,17 @@ func _on_tool_dropped(card: ScribeCard) -> void:
 
 
 func _arrange() -> void:
+	var j := 0
+	var order := tray.model.order()
+	for rid in _hand:
+		if rid in order or not tiles.has(rid):
+			continue
+		var rest := [Vector2(70 + j * 168, 806), [-2.5, 1.5, -1.0, 2.0][j % 4]]
+		if _rest[rid][0] != rest[0]:
+			_rest[rid] = rest
+			if not tiles[rid].dragging:
+				tiles[rid].slide_to(rest[0], rest[1])
+		j += 1
 	for i in tray.model.slots.size():
 		var rid := tray.model.slots[i]
 		if rid != "":
@@ -671,6 +707,8 @@ func _refresh() -> void:
 	for t in tools:
 		tools[t].set_left(tools_left(t) if state.phase == "read" else state.tools[t])
 	_show_scales(ev)
+	if _order_warn:
+		_order_warn.text = {"wrong": "Şehir bu sırayı ters okur: önce gelen yapandır.", "unexplained": "Sıra aslından farklı: bir kelimeye Kenar notu koy."}.get(ev["order"], "")
 	if _focus != "" and words.has(_focus):
 		_open_dictionary_at(words[_focus].row)
 	else:
@@ -815,13 +853,26 @@ func _ink(ev: Dictionary) -> void:
 
 
 func _show_ending() -> void:
+	var cover := Control.new()
+	cover.name = "SonPerde"
+	cover.set_anchors_preset(Control.PRESET_FULL_RECT)
+	cover.mouse_filter = Control.MOUSE_FILTER_STOP
+	add_child(cover)
+	move_child(cover, _grain.get_index())
 	var page := _sheet("Son", "belge_okuma.png", Vector2(200, 160), Vector2(1520, 760), 0.0, 8.0, Art.document_era(era()))
 	move_child(page, _grain.get_index())
 	_title(page, Vector2(610, 47), 30, "Yüz yıl sonra")
-	var r := _rich(page, narrative.epilogue(state) + "\n\n" + _scales_line(), 25)
+	var r := _rich(page, _scales_line() + "\n\n" + narrative.epilogue(state), 23)
 	r.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	r.position = Vector2(120, 130)
-	r.size = Vector2(1280, 600)
+	r.scroll_active = true
+	r.mouse_filter = Control.MOUSE_FILTER_PASS
+	r.position = Vector2(120, 122)
+	r.size = Vector2(1280, 548)
+	var again := _label(page, "Son · baştan oynamak için tıkla", 22, RED)
+	again.position = Vector2(1040, 684)
+	page.gui_input.connect(func(e: InputEvent) -> void:
+		if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT and is_inside_tree() and get_tree().current_scene == self:
+			get_tree().reload_current_scene())
 
 
 func _scales_line() -> String:
@@ -849,7 +900,7 @@ func _next_step() -> Array:
 	if _interlude:
 		return ["", none]
 	if state.phase == "answer":
-		return ["Kopya yazıldı. Sağ üstteki [color=%s]istek notuna tıkla[/color]: kopyayı sahibine teslim et." % RED_HEX, _rect("Pusula")]
+		return [_stranger_line + "Sağ üstteki [color=%s]istek notuna tıkla[/color]: kopyayı sahibine teslim et." % RED_HEX, _rect("Pusula")]
 	if state.phase != "read":
 		return ["", none]
 	var ev := evaluation()
@@ -860,10 +911,10 @@ func _next_step() -> Array:
 		var before := lib.get_doc(state.doc_index - 1) if state.doc_index > 0 else null
 		if before and before.era == doc.era:
 			return ["Aynı çağdasın; ses kartları aynı. [color=%s]Biri yine bu çağa ait değil[/color]: onu şeride koyma." % RED_HEX, _hand_rect()]
-		return ["Yeni çağ: sözlük ve ses kartları değişti. [color=%s]Biri bu çağa ait değil[/color]; kelimeleri sözlükte olmayan ya da başka anlama gelen biçimlere çevirir." % RED_HEX, _hand_rect()]
+		return ["Yeni çağ: sözlük ve ses kartları değişti. [color=%s]Biri bu çağa ait değil[/color]. İpucu: istek notundaki kırmızı kelimeler bu çağın dilinden; kartların önizlemesini onlarla karşılaştır." % RED_HEX, _hand_rect()]
 	if not ev["blocked"].is_empty():
 		var where := tray.get_global_rect() if order.size() >= 2 else _hand_rect()
-		return ["Altında «sözlükte yok» yazan kelimeler bugün okunamaz. Başka bir kart ekle ya da şeritteki sırayı değiştir: kartlar soldan sağa uygulanır. Şeritteki bir karta tıklarsan eline döner.", where]
+		return ["Altında «sözlükte yok» yazan kelimeler bugün okunamaz. Başka bir kart ekle ya da sırayı değiştir: kartlar soldan sağa uygulanır. Şeritteki bir kartı başka yuvaya sürükleyebilir ya da tıklayıp eline alabilirsin.", where]
 	var can_mark := tools_left("not") > 0 or tools_left("eski") > 0
 	for r in ev["rows"]:
 		if r["mark"] != "" or not can_mark:
@@ -877,12 +928,12 @@ func _next_step() -> Array:
 			return ["«%s» bugün doğru, ama eski dili bilen [color=%s]yaşlılar onu «%s» diye okur[/color]. Kenar notu ya da Eski yazım bu yanlış okumayı önler; ya da öyle bırak." % [r["new"], RED_HEX, " / ".join(PackedStringArray(r["elder"]))], at]
 	match ev["order"]:
 		"wrong":
-			return ["Ekler düştü; şehir kimin yaptığını artık sıradan anlar: [color=%s]önce gelen yapandır[/color]. Bu sırayla anlam ters okunur. Kelime kartlarını sürükleyip sırayı kur." % RED_HEX, _words_layer.get_global_rect() if _words_layer else none]
+			return ["Ekler düştü; şehir kimin yaptığını artık kelime sırasından anlar: [color=%s]önce gelen yapandır[/color]. Eski yazıda -s ile biten kelimeler (Mīros, rīgos) yapandı. Kelime kartlarını sürükleyip sırayı kur." % RED_HEX, _words_layer.get_global_rect() if _words_layer else none]
 		"unexplained":
 			if tools_left("not") > 0:
-				return ["Sıra artık doğru, ama aslından farklı. Nedenini yazmak için bir kelimeye [color=%s]Kenar notu[/color] koy; yoksa kopya sahte sanılabilir." % RED_HEX, tools["not"].get_global_rect()]
+				return ["Sıra artık doğru, ama aslından farklı. Nedenini yazmak için bir kelimeye [color=%s]Kenar notu[/color] koy; yoksa kopya sahte sanılabilir." % RED_HEX, _words_layer.get_global_rect() if _words_layer else none]
 	if ev["fidelity"] < Copyist.FULL or ev["clarity"] < Copyist.FULL:
-		return ["Kopya yazılabilir ama terazi tam değil: sadakat %d / %d, anlaşılırlık %d / %d. İstersen düzelt; razıysan [color=%s]kalemi tıkla[/color]." % [ev["fidelity"], Copyist.FULL, ev["clarity"], Copyist.FULL, RED_HEX], _rect("Kalem")]
+		return ["Kopya yazılabilir ama terazi tam değil: sadakat %d / %d, anlaşılırlık %d / %d. İstersen düzelt; beğendiysen [color=%s]kalemi tıkla[/color]." % [ev["fidelity"], Copyist.FULL, ev["clarity"], Copyist.FULL, RED_HEX], _rect("Kalem")]
 	return ["Kopya hazır, terazi tam. [color=%s]Kalemi tıkla[/color]." % RED_HEX, _rect("Kalem")]
 
 

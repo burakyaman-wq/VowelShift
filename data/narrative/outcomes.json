@@ -3,7 +3,8 @@
   "reaction_doc3": {
     "dead": "Sarayda senin kopyanı okudular: kurucunun kardeşi ölmüş. Mezarını arıyorlar.",
     "exiled": "Sarayda senin kopyanı okudular: kardeş sürgün edilmiş. Ama yaşlılar eski dille okuyor; onlara göre *nēkos* 'ölü' demek. Çarşıda kardeşin öldürüldüğü konuşuluyor.",
-    "contradiction": "Görevliye başka, kâğıda başka yazmışsın; hangisine inanacaklarını bilmiyorlar."
+    "contradiction": "Görevliye başka, kâğıda başka yazmışsın; hangisine inanacaklarını bilmiyorlar.",
+    "old_spelling": "Sarayda senin kopyanı okudular. Kardeşin adının yanına eski yazımla *nākos* yazmıştın; gençler kelimeyi tanımadı ama yaşlılara sordular, onlar da 'sürgün' dedi. Çarşıda kardeşin sürgün edildiği konuşuluyor."
   },
   "epilogue": {
     "doc2_dead": "Okullarda kurucunun kardeşinin öldüğü öğretiliyor; dayanak, senin rafa koyduğun kopya: 'Mīros nīkos.' Temel taşındaki eski tablette ise 'Mēros nākos' yazıyordu: Mēros sürgündür. Kâğıt üstünde bir kardeşi sen öldürdün.",
@@ -20,11 +21,19 @@
       "2": "Yeni düzenin ölü dil uzmanı Melno arşivi tararken kurucuların kaydındaki notunu buldu. Kimin yazdığını bilmeden ona inanmadı; ama söylentiye uymayan tek satır oydu.",
       "3": "Tüccar kadının torunları notunu senetle birlikte sakladı; hangi Mīros olduğu yalnızca o ailede bilindi.",
       "4": "Notun dağlıların arşivine de kopyalandı; iki taraf da onu kendi lehine okudu, ama Melno onu senin savunman olarak okudu."
-    }
+    },
+    "doc2_old_spelling": "Saray kayıtları kardeşin sürgün edildiğini söylüyor. Kopyanda eski yazımla 'Mīros nākos' yazıyordu; yaşlılar da gençler de aynı şeyi okudu: Mēros sürgündür. 'Ölü' söylentisi hiç doğmadı."
   },
   "doc4": {
     "subject_first": "Bey Mīros, sürgün Mīros'u öldürdü",
     "object_first": "Sürgün Mīros, bey Mīros'u öldürdü",
     "unclear_option": "Yazıdan anlaşılmıyor"
+  },
+  "key_word_old": "nākos",
+  "delivered": {
+    "1": "Rahibe kopyanı tapınağın rafına koydu.",
+    "2": "Saray görevlisi kopyayı alıp kayda geçirdi.",
+    "3": "Tüccar kadın senedi aldı ve ödemeyi saydı.",
+    "4": "Elçi kopyayı şehre götürdü."
   }
 }

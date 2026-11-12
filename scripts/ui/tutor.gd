@@ -39,12 +39,12 @@ func setup(font: Font, era: int) -> void:
 	_card.add_child(paper)
 	_title = _label("Ustanın notu", 20, Color("b33a29"))
 	_title.position = Vector2(20, 10)
-	_say = _rich(19, Color("2a1b14"))
-	_say.position = Vector2(20, 40)
-	_say.size = Vector2(CARD.size.x - 44, 104)
+	_say = _rich(18, Color("2a1b14"))
+	_say.position = Vector2(20, 38)
+	_say.size = Vector2(CARD.size.x - 44, 106)
 	_said = _rich(17, Color(0.33, 0.29, 0.27))
 	_said.size = Vector2(CARD.size.x - 120, 44)
-	_said.position = Vector2(20, 146)
+	_said.position = Vector2(20, 150)
 	_mark = TextureRect.new()
 	_mark.texture = Art.tex("durak.png", era)
 	_mark.pivot_offset = Vector2(16, 16)
@@ -52,8 +52,8 @@ func setup(font: Font, era: int) -> void:
 	_mark.visible = false
 	add_child(_mark)
 	_beat = create_tween().set_loops()
-	_beat.tween_property(_mark, "scale", Vector2.ONE * 2.6, 0.45)
-	_beat.tween_property(_mark, "scale", Vector2.ONE * 1.7, 0.45)
+	_beat.tween_property(_mark, "scale", Vector2.ONE * 2.2, 0.45)
+	_beat.tween_property(_mark, "scale", Vector2.ONE * 1.5, 0.45)
 
 
 ## What to do now, and where. An empty text hides the card's line.

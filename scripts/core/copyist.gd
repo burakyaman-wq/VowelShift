@@ -16,7 +16,8 @@ extends RefCounted
 ##             unless glossed or kept old; a scraped word costs 1.
 ##             Where word order carries the meaning (reading_key), a copy read the
 ##             wrong way round costs 2, and a reordered copy with no margin note costs 1.
-##   clarity   can today's reader read it? Each word kept in old spelling costs 1.
+##   clarity   can today's reader read it? Each word kept in old spelling costs 1;
+##             each word that is no word of the era costs 2 (and the pen will not write it).
 
 const FULL := 5
 const TOOLS := ["not", "eski", "kazi"]
@@ -118,6 +119,7 @@ static func evaluate(doc: Manuscript, engine: RuleEngine, order: Array, proven: 
 			_:
 				if not r["in_dict"]:
 					blocked.append(r["new"])
+					clarity -= 2
 				elif r["shifted"]:
 					fidelity -= 2
 				elif r["collision"] and r["mark"] != "not":

@@ -16,10 +16,20 @@ func copy_says_dead(state: GameState) -> bool:
 	return String(state.copies.get("2", "")).contains(t["key_word_wrong"])
 
 
+## The scribe kept the old spelling, which no one can misread.
+func copy_keeps_old(state: GameState) -> bool:
+	return String(state.copies.get("2", "")).contains(t["key_word_old"])
+
+
+## One line after a copy is handed over.
+func delivered(no: int) -> String:
+	return String(t.get("delivered", {}).get(str(no), ""))
+
+
 ## Line shown before document 3, reacting to the document-2 copy and answer.
 func rumour_doc3(state: GameState) -> String:
 	var dead := copy_says_dead(state)
-	var line: String = t["reaction_doc3"]["dead" if dead else "exiled"]
+	var line: String = t["reaction_doc3"]["dead" if dead else ("old_spelling" if copy_keeps_old(state) else "exiled")]
 	var a2 := String(state.answers.get("2", ""))
 	if a2 != "" and ((dead and a2.begins_with("Sürgün")) or (not dead and a2 == "Öldü")):
 		line += " " + t["reaction_doc3"]["contradiction"]
@@ -37,7 +47,8 @@ func city_reading_doc4(state: GameState) -> String:
 ## The ending, a paragraph per document. A person met twice is introduced once.
 func epilogue(state: GameState) -> String:
 	var e: Dictionary = t["epilogue"]
-	var parts: PackedStringArray = [e["doc2_dead"] if copy_says_dead(state) else e["doc2_exiled"]]
+	var first: String = e["doc2_dead"] if copy_says_dead(state) else (e["doc2_old_spelling"] if copy_keeps_old(state) else e["doc2_exiled"])
+	var parts: PackedStringArray = [first]
 	var has_copy4 := state.copies.has("4")
 	if has_copy4:
 		if city_reading_doc4(state) == t["doc4"]["object_first"]:
@@ -55,8 +66,8 @@ func epilogue(state: GameState) -> String:
 		parts.append(String(e["note_prefix"]).format({"no": no, "note": state.notes[no]}) + " " + String(e["note_fates"].get(no, "")))
 	var out := "\n\n".join(parts)
 	var intro := "eni düzenin ölü dil uzmanı Melno"
-	var first := out.find(intro)
-	if first >= 0:
-		var head := out.substr(0, first + intro.length())
+	var at := out.find(intro)
+	if at >= 0:
+		var head := out.substr(0, at + intro.length())
 		out = head + out.substr(head.length()).replace("Y" + intro, "Melno").replace("y" + intro, "Melno")
 	return out
