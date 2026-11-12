@@ -61,7 +61,7 @@ func show_step(bbcode: String, target: Rect2) -> void:
 	_say.text = bbcode
 	_mark.visible = target.size != Vector2.ZERO
 	if _mark.visible:
-		_mark.position = Vector2(target.end.x - 24, target.position.y - 8)
+		_mark.position = Vector2(target.end.x - 10, target.position.y - 34)
 	_card.visible = bbcode != "" or _said.text != ""
 
 

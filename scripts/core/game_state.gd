@@ -19,6 +19,7 @@ var notes: Dictionary = {}   # doc order (String) -> margin note
 ## Call when a document is put on the desk: hands over inherited cards.
 func begin_doc(doc: Manuscript, engine: RuleEngine) -> void:
 	phase = "read"
+	tools = TOOLS_PER_DOC.duplicate()
 	for rid in doc.inherit_cards:
 		if rid not in cards:
 			cards.append(rid)
@@ -142,7 +143,9 @@ func prove_rule(doc: Manuscript, lib: ManuscriptLibrary, engine: RuleEngine,
 ## Returns {copy, rejected: PackedStringArray, shelved: bool, error: String}.
 ## The scribe cards left for the rest of the work. They are spent when a
 ## copy that uses them is shelved.
-var tools := {"not": 3, "eski": 2, "kazi": 1}
+## Scribe cards for the document on the desk; a fresh set comes with every document.
+const TOOLS_PER_DOC := {"not": 3, "eski": 2, "kazi": 1}
+var tools := TOOLS_PER_DOC.duplicate()
 ## Per document: {"fidelity": n, "clarity": n}.
 var scores := {}
 

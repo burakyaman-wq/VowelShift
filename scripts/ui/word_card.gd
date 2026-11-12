@@ -14,8 +14,8 @@ signal clicked(card: WordCard)
 const SIZE := Vector2(168, 104)
 const INK := Color("2a1b14")
 const RED := Color("b33a29")
-const PENCIL := Color(0.33, 0.29, 0.27, 0.9)
-const SCRAPED := "#9c8466"
+const PENCIL := Color("4a3a2e")
+const SCRAPED := "#7d5f43"
 const MARK_TEXT := {"not": "kenar notu", "eski": "eski yazım", "kazi": "kazındı"}
 
 var key := ""
@@ -64,12 +64,12 @@ func setup(font: Font, era: int, word_index: int, can_move: bool) -> void:
 	_word.position = Vector2(12, 6)
 	_word.size = Vector2(SIZE.x - 24, font.get_height(28))
 	add_child(_word)
-	_was = _label(16, PENCIL)
+	_was = _label(17, PENCIL)
 	_was.position = Vector2(14, 6 + font.get_height(28) - 4)
-	_foot = _label(16, RED)
-	_foot.position = Vector2(14, SIZE.y - font.get_height(16) - 4)
-	_ghost = _label(17, Color(0.18, 0.3, 0.62, 0.85))
-	_ghost.position = Vector2(14, SIZE.y - font.get_height(16) - 4)
+	_foot = _label(17, RED)
+	_foot.position = Vector2(14, SIZE.y - font.get_height(17) - 4)
+	_ghost = _label(19, Color(0.12, 0.24, 0.6))
+	_ghost.position = Vector2(14, SIZE.y - font.get_height(19) - 2)
 	_flag = TextureRect.new()
 	_flag.texture = Art.tex("durak.png", era)
 	_flag.position = Vector2(SIZE.x - 22, -10)
@@ -99,8 +99,17 @@ func show_row(r: Dictionary, inked: bool = false) -> void:
 				shown = _red_letters(r["new"], Pairing.diff_marks(r["old"], r["new"])[1])
 	_word.text = shown
 	_was.text = "değişmedi" if r["new"] == r["old"] else "eski: " + r["old"]
-	_foot.text = MARK_TEXT.get(r["mark"], "iki anlam" if r["collision"] else ("anlamı kaydı" if r["shifted"] else ""))
-	_flag.visible = r["mark"] == "" and (r["collision"] or r["shifted"])
+	var issue := ""
+	if not r["in_dict"]:
+		issue = "sözlükte yok"
+	elif r["shifted"]:
+		issue = "anlamı kaydı"
+	elif r["collision"]:
+		issue = "iki anlam"
+	elif not r.get("elder", []).is_empty():
+		issue = "yaşlılar başka okur"
+	_foot.text = MARK_TEXT.get(r["mark"], issue)
+	_flag.visible = r["mark"] == "" and issue != "" and issue != "sözlükte yok"
 	_ghost.text = ""
 	_foot.visible = true
 

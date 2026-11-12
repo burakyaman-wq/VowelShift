@@ -26,6 +26,7 @@ Her belge `data/manuscripts/` içinde bir JSON dosyasıdır. Oyun hepsini `order
 | `heard` | Repliğin bu çağdaki kelimeleri (kanıt için "duyulmuş" sayılır). Repliktekilerle aynı olmalı. |
 | `inherit_cards` | Belge başında hazır verilen kartlar (örn. ustanın defterinden). |
 | `allow_reorder` | Oyuncu kopyada kelimelerin sırasını değiştirebilir mi. |
+| `reading_key` | (İsteğe bağlı) Anlamı sıra taşıyorsa kopyanın hangi kelimelerle başlaması gerektiği (biçim önekleri). Ters sıra sadakatten 2, notsuz yeniden sıralama 1 götürür. |
 | `question` | Belge sonunda talep sahibinin sorusu ve seçenekler. |
 
 ## Denetim

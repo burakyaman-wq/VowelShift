@@ -14,6 +14,8 @@ var old_text: String
 var heard: PackedStringArray = []
 var inherit_cards: PackedStringArray = []
 var allow_reorder := false
+## Where word order carries the meaning: how the copy must begin (word prefixes).
+var reading_key: PackedStringArray = []
 var ask: String
 var options: PackedStringArray = []
 
@@ -31,6 +33,7 @@ static func from_dict(d: Dictionary) -> Manuscript:
 	m.heard = PackedStringArray(d.get("heard", []))
 	m.inherit_cards = PackedStringArray(d.get("inherit_cards", []))
 	m.allow_reorder = bool(d.get("allow_reorder", false))
+	m.reading_key = PackedStringArray(d.get("reading_key", []))
 	m.ask = d["question"]["ask_tr"]
 	m.options = PackedStringArray(d["question"]["options_tr"])
 	return m

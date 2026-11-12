@@ -69,10 +69,11 @@ func _gui_input(event: InputEvent) -> void:
 		if event.pressed and left > 0:
 			dragging = true
 			_grab = get_global_mouse_position() - global_position
-			move_to_front()
+			z_index = 5
 			scale = Vector2.ONE * 1.05
 		elif not event.pressed and dragging:
 			dragging = false
+			z_index = 0
 			scale = Vector2.ONE
 			dropped.emit(self)
 		accept_event()

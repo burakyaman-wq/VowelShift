@@ -1,27 +1,27 @@
 {
- "A": {
-  "rumour": "Sarayda senin kopyanı okudular: kardeş sürgün edilmiş. Ama yaşlılar eski dille okuyor; onlara göre *nēkos* 'ölü' demek. Çarşıda kardeşin öldürüldüğü konuşuluyor.",
-  "epilogue": "Yüz yıl sonra. Saray kayıtları kardeşin sürgün edildiğini söylüyor; senin kopyan doğruydu: 'Mīros nēkos.' Ama eski dili bilenler aynı kelimeyi 'ölü' diye okudu ve söylenti kayıttan güçlü çıktı. Bugün herkes kardeşin öldürüldüğünü biliyor. Dağdan gelen belgenin kelimelerini yeniden sıraladın; şehir onu yazıldığı gibi anladı: bey sürgünü öldürmüş. Anlamı korudun, harfi değiştirdin. Yüz yıl sonra yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti; ama kenardaki notunu okuyunca neden sıraladığını anladı ve seni sahtecilikle değil, çevirmenlikle andı. Belge 2 kopyasının kenarına “sürgün, ölü değil” yazmıştın. Yeni düzenin ölü dil uzmanı Melno arşivi tararken kurucuların kaydındaki notunu buldu. Kimin yazdığını bilmeden ona inanmadı; ama söylentiye uymayan tek satır oydu. Belge 4 kopyasının kenarına “Sırayı anlam için değiştirdim.” yazmıştın. Notun dağlıların arşivine de kopyalandı; iki taraf da onu kendi lehine okudu, ama Melno onu senin savunman olarak okudu.",
-  "copy2": "Mīros Mīrom ageti. Mīros nēkos.",
-  "answers": {
-   "2": "Sürgün edildi",
-   "4": "Bey Mīros, sürgün Mīros'u öldürdü"
+  "A": {
+    "rumour": "Sarayda senin kopyanı okudular: kardeş sürgün edilmiş. Ama yaşlılar eski dille okuyor; onlara göre *nēkos* 'ölü' demek. Çarşıda kardeşin öldürüldüğü konuşuluyor.",
+    "epilogue": "Saray kayıtları kardeşin sürgün edildiğini söylüyor; senin kopyan doğruydu: 'Mīros nēkos.' Ama eski dili bilenler aynı kelimeyi 'ölü' diye okudu ve söylenti kayıttan güçlü çıktı. Bugün çoğu kişi kardeşin öldürüldüğünü sanıyor.\n\nDağdan gelen belgenin kelimelerinin yerini değiştirdin; şehir onu yazıldığı gibi anladı: bey sürgünü öldürmüş. Sıra değişti ama anlam korundu. Yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti; ama kenardaki notunu okuyunca neden sıraladığını anladı ve seni sahtecilikle değil, çevirmenlikle andı.\n\nBelge 2 kopyasının kenarına “sürgün, ölü değil” yazmıştın. Melno arşivi tararken kurucuların kaydındaki notunu buldu. Kimin yazdığını bilmeden ona inanmadı; ama söylentiye uymayan tek satır oydu.\n\nBelge 4 kopyasının kenarına “Sırayı anlam için değiştirdim.” yazmıştın. Notun dağlıların arşivine de kopyalandı; iki taraf da onu kendi lehine okudu, ama Melno onu senin savunman olarak okudu.",
+    "copy2": "Mīros Mīrom ageti. Mīros nēkos.",
+    "answers": {
+      "2": "Sürgün edildi",
+      "4": "Bey Mīros, sürgün Mīros'u öldürdü"
+    },
+    "notes": {
+      "2": "sürgün, ölü değil",
+      "4": "Sırayı anlam için değiştirdim."
+    },
+    "copy4": "Mīro rīgo Mīro nēko şeneti."
   },
-  "notes": {
-   "2": "sürgün, ölü değil",
-   "4": "Sırayı anlam için değiştirdim."
-  },
-  "copy4": "Mīro rīgo Mīro nēko şeneti."
- },
- "B": {
-  "rumour": "Sarayda senin kopyanı okudular: kurucunun kardeşi ölmüş. Mezarını arıyorlar. Görevliye başka, kâğıda başka yazmışsın; hangisine inanacaklarını bilmiyorlar.",
-  "epilogue": "Yüz yıl sonra. Okullarda kurucunun kardeşinin öldüğü öğretiliyor; dayanak, senin rafa koyduğun kopya: 'Mīros nīkos.' Temel taşındaki eski tablette ise 'Mēros nākos' yazıyordu: Mēros sürgündür. Kâğıt üstünde bir kardeşi sen öldürdün. Dağdan gelen belgeyi kelimesi kelimesine kopyaladın. Şehir onu yeni dille, sıradan okudu: önce sürgün geliyordu, demek ki sürgün beyi öldürmüştü. Harfi korudun, anlamı kaybettin; dağlılar kendi belgeleriyle suçlu ilan edildi. Elçiye 'yazı söylemiyor' dedin; oysa eski yazının ekleri söylüyordu.",
-  "copy2": "Mīros Mīrom ageti. Mīros nīkos.",
-  "answers": {
-   "2": "Sürgün edildi",
-   "4": "Yazıdan anlaşılmıyor"
-  },
-  "notes": {},
-  "copy4": "Mīro nēko Mīro rīgo şeneti."
- }
+  "B": {
+    "rumour": "Sarayda senin kopyanı okudular: kurucunun kardeşi ölmüş. Mezarını arıyorlar. Görevliye başka, kâğıda başka yazmışsın; hangisine inanacaklarını bilmiyorlar.",
+    "epilogue": "Okullarda kurucunun kardeşinin öldüğü öğretiliyor; dayanak, senin rafa koyduğun kopya: 'Mīros nīkos.' Temel taşındaki eski tablette ise 'Mēros nākos' yazıyordu: Mēros sürgündür. Kâğıt üstünde bir kardeşi sen öldürdün.\n\nDağdan gelen belgenin her kelimesini yerinde bıraktın. Şehir onu yeni dille, sıradan okudu: önce sürgün geliyordu, demek ki sürgün beyi öldürmüştü. Harfler aynı kaldı ama anlam tersine döndü; dağlılar kendi belgeleriyle suçlu ilan edildi.\n\nElçiye 'yazı söylemiyor' dedin; oysa eski yazının ekleri söylüyordu.",
+    "copy2": "Mīros Mīrom ageti. Mīros nīkos.",
+    "answers": {
+      "2": "Sürgün edildi",
+      "4": "Yazıdan anlaşılmıyor"
+    },
+    "notes": {},
+    "copy4": "Mīro nēko Mīro rīgo şeneti."
+  }
 }

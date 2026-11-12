@@ -34,6 +34,7 @@ func city_reading_doc4(state: GameState) -> String:
 	return t["doc4"]["object_first"]
 
 
+## The ending, a paragraph per document. A person met twice is introduced once.
 func epilogue(state: GameState) -> String:
 	var e: Dictionary = t["epilogue"]
 	var parts: PackedStringArray = [e["doc2_dead"] if copy_says_dead(state) else e["doc2_exiled"]]
@@ -42,8 +43,7 @@ func epilogue(state: GameState) -> String:
 		if city_reading_doc4(state) == t["doc4"]["object_first"]:
 			parts.append(e["doc4_literal"])
 		else:
-			parts.append(e["doc4_reordered"])
-			parts.append(e["doc4_reordered_with_note"] if state.notes.has("4") else e["doc4_reordered_no_note"])
+			parts.append(e["doc4_reordered"] + " " + (e["doc4_reordered_with_note"] if state.notes.has("4") else e["doc4_reordered_no_note"]))
 	var a4 := String(state.answers.get("4", ""))
 	if a4 == t["doc4"]["unclear_option"]:
 		parts.append(e["doc4_answer_unclear"])
@@ -53,4 +53,10 @@ func epilogue(state: GameState) -> String:
 	keys.sort_custom(func(a, b): return int(a) < int(b))
 	for no in keys:
 		parts.append(String(e["note_prefix"]).format({"no": no, "note": state.notes[no]}) + " " + String(e["note_fates"].get(no, "")))
-	return " ".join(parts)
+	var out := "\n\n".join(parts)
+	var intro := "eni düzenin ölü dil uzmanı Melno"
+	var first := out.find(intro)
+	if first >= 0:
+		var head := out.substr(0, first + intro.length())
+		out = head + out.substr(head.length()).replace("Y" + intro, "Melno").replace("y" + intro, "Melno")
+	return out

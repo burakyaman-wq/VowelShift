@@ -6,12 +6,12 @@
     "contradiction": "Görevliye başka, kâğıda başka yazmışsın; hangisine inanacaklarını bilmiyorlar."
   },
   "epilogue": {
-    "doc2_dead": "Yüz yıl sonra. Okullarda kurucunun kardeşinin öldüğü öğretiliyor; dayanak, senin rafa koyduğun kopya: 'Mīros nīkos.' Temel taşındaki eski tablette ise 'Mēros nākos' yazıyordu: Mēros sürgündür. Kâğıt üstünde bir kardeşi sen öldürdün.",
-    "doc2_exiled": "Yüz yıl sonra. Saray kayıtları kardeşin sürgün edildiğini söylüyor; senin kopyan doğruydu: 'Mīros nēkos.' Ama eski dili bilenler aynı kelimeyi 'ölü' diye okudu ve söylenti kayıttan güçlü çıktı. Bugün herkes kardeşin öldürüldüğünü biliyor.",
-    "doc4_literal": "Dağdan gelen belgeyi kelimesi kelimesine kopyaladın. Şehir onu yeni dille, sıradan okudu: önce sürgün geliyordu, demek ki sürgün beyi öldürmüştü. Harfi korudun, anlamı kaybettin; dağlılar kendi belgeleriyle suçlu ilan edildi.",
-    "doc4_reordered": "Dağdan gelen belgenin kelimelerini yeniden sıraladın; şehir onu yazıldığı gibi anladı: bey sürgünü öldürmüş. Anlamı korudun, harfi değiştirdin.",
-    "doc4_reordered_with_note": "Yüz yıl sonra yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti; ama kenardaki notunu okuyunca neden sıraladığını anladı ve seni sahtecilikle değil, çevirmenlikle andı.",
-    "doc4_reordered_no_note": "Yüz yıl sonra yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti; neden böyle yaptığını açıklayan tek satır bırakmamıştın ve seni sahtecilikle andı.",
+    "doc2_dead": "Okullarda kurucunun kardeşinin öldüğü öğretiliyor; dayanak, senin rafa koyduğun kopya: 'Mīros nīkos.' Temel taşındaki eski tablette ise 'Mēros nākos' yazıyordu: Mēros sürgündür. Kâğıt üstünde bir kardeşi sen öldürdün.",
+    "doc2_exiled": "Saray kayıtları kardeşin sürgün edildiğini söylüyor; senin kopyan doğruydu: 'Mīros nēkos.' Ama eski dili bilenler aynı kelimeyi 'ölü' diye okudu ve söylenti kayıttan güçlü çıktı. Bugün çoğu kişi kardeşin öldürüldüğünü sanıyor.",
+    "doc4_literal": "Dağdan gelen belgenin her kelimesini yerinde bıraktın. Şehir onu yeni dille, sıradan okudu: önce sürgün geliyordu, demek ki sürgün beyi öldürmüştü. Harfler aynı kaldı ama anlam tersine döndü; dağlılar kendi belgeleriyle suçlu ilan edildi.",
+    "doc4_reordered": "Dağdan gelen belgenin kelimelerinin yerini değiştirdin; şehir onu yazıldığı gibi anladı: bey sürgünü öldürmüş. Sıra değişti ama anlam korundu.",
+    "doc4_reordered_with_note": "Yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti; ama kenardaki notunu okuyunca neden sıraladığını anladı ve seni sahtecilikle değil, çevirmenlikle andı.",
+    "doc4_reordered_no_note": "Yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti. Bu kopyaya neden böyle yaptığını açıklayan tek satır bırakmamıştın; seni sahtecilikle andı.",
     "doc4_answer_unclear": "Elçiye 'yazı söylemiyor' dedin; oysa eski yazının ekleri söylüyordu.",
     "doc4_answer_mismatch": "Elçiye söylediğinle şehrin okuduğu birbirini tutmadı; iki taraf da seni yalancılıkla suçladı.",
     "note_prefix": "Belge {no} kopyasının kenarına “{note}” yazmıştın.",

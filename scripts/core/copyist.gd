@@ -12,7 +12,10 @@ extends RefCounted
 ##   fidelity  is the old meaning still there? A word newly fallen into
 ##             another word's form (more meanings than before) costs 1 unless glossed or kept old;
 ##             a word that now means something else costs 2 unless kept old;
-##             a scraped word costs 1.
+##             a word the old language reads otherwise (elders misread it) costs 1
+##             unless glossed or kept old; a scraped word costs 1.
+##             Where word order carries the meaning (reading_key), a copy read the
+##             wrong way round costs 2, and a reordered copy with no margin note costs 1.
 ##   clarity   can today's reader read it? Each word kept in old spelling costs 1.
 
 const FULL := 5
@@ -88,6 +91,7 @@ static func evaluate(doc: Manuscript, engine: RuleEngine, order: Array, proven: 
 		var nw := engine.apply_text(w, order, proven)
 		var was := meanings(engine, w, doc.era - 1)
 		var now := meanings(engine, nw, doc.era)
+		var elder := meanings(engine, nw, doc.era - 1)
 		var mark: String = marks.get(key, "")
 		var row := {
 			"key": key, "old": w, "new": nw, "mark": mark,
@@ -95,8 +99,11 @@ static func evaluate(doc: Manuscript, engine: RuleEngine, order: Array, proven: 
 			"in_dict": not now.is_empty(),
 			"collision": now.size() > 1 and now.size() > was.size(),
 			"shifted": not was.is_empty() and not now.is_empty() and not _meet(was, now),
-			"was": was, "now": now,
+			"was": was, "now": now, "elder": [],
 		}
+		if not row["collision"] and not row["shifted"] and nw.to_lower() != key \
+				and not elder.is_empty() and not _meet(was, elder):
+			row["elder"] = elder
 		by_key[key] = row
 		rows.append(row)
 	var fidelity := FULL
@@ -114,6 +121,8 @@ static func evaluate(doc: Manuscript, engine: RuleEngine, order: Array, proven: 
 				elif r["shifted"]:
 					fidelity -= 2
 				elif r["collision"] and r["mark"] != "not":
+					fidelity -= 1
+				elif not r["elder"].is_empty() and r["mark"] != "not":
 					fidelity -= 1
 	# The copy keeps the document's sentences: a full stop stays with its
 	# sentence even when the word that carried it is scraped.
@@ -134,8 +143,23 @@ static func evaluate(doc: Manuscript, engine: RuleEngine, order: Array, proven: 
 	var copy := " ".join(words)
 	if not copy.ends_with("."):
 		copy += "."
+	var order_state := ""
+	if not doc.reading_key.is_empty():
+		var lead := copy.to_lower().split(" ", false)
+		order_state = "ok"
+		for i in doc.reading_key.size():
+			if i >= lead.size() or not lead[i].begins_with(doc.reading_key[i]):
+				order_state = "wrong"
+		var moved := word_order.size() == tokens.size() and word_order != range(1, tokens.size() + 1)
+		if order_state == "wrong":
+			fidelity -= 2
+		elif moved and not rows.any(func(r: Dictionary) -> bool: return r["mark"] == "not"):
+			order_state = "unexplained"
+			fidelity -= 1
+		elif moved:
+			order_state = "explained"
 	return {
-		"rows": rows, "copy": copy, "blocked": blocked,
+		"rows": rows, "copy": copy, "blocked": blocked, "order": order_state,
 		"fidelity": maxi(0, fidelity), "clarity": maxi(0, clarity),
 	}
 
@@ -146,6 +170,8 @@ static func gloss(ev: Dictionary) -> String:
 	for r in ev["rows"]:
 		if r["mark"] == "not":
 			out.append("%s: %s" % [r["new"], " / ".join(PackedStringArray(r["was"]))])
+	if ev.get("order", "") == "explained":
+		out.append("sırayı yeni dilin okuyuşuna göre kurdum")
 	return "; ".join(out)
 
 
