@@ -90,6 +90,12 @@ func _desk_tests() -> void:
 	root.add_child(desk1)
 	_expect(desk1.tiles.is_empty(), "doc 1 starts with no tiles")
 	_expect(desk1.tutor.step_text().contains("belgede bir kelimeye"), "the master's note starts by pointing at the document")
+	desk1._on_pick("khewos", "new", Label.new())
+	desk1._turn(1)
+	desk1._on_pick("ghewom", "old", Label.new())
+	_expect(desk1.pairs.size() == 1 and desk1.pairs[0]["old"] == "ghewom", "a word picked before a page turn still pairs after it")
+	desk1.pairs.clear()
+	desk1._turn(-1)
 	desk1._on_pick("ghewom", "old", Label.new())
 	_expect(desk1.tutor.step_text().contains("sözlükte"), "after a word is picked it points at the dictionary")
 	desk1._pick = {}

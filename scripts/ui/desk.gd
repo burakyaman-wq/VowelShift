@@ -508,6 +508,9 @@ func _turn(step: int) -> void:
 
 
 func _pickable(l: Label, word: String, role: String) -> void:
+	if not _pick.is_empty() and _pick["word"] == word and _pick["role"] == role:
+		_pick["label"] = l              # redrawn (a page turned): the choice stays, on the new label
+		l.add_theme_color_override("font_color", RED)
 	l.mouse_filter = Control.MOUSE_FILTER_STOP
 	l.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	l.gui_input.connect(func(e: InputEvent) -> void:
@@ -522,10 +525,9 @@ func _on_pick(word: String, role: String, l: Label) -> void:
 		l.add_theme_color_override("font_color", RED)
 		_guide()
 		return
-	var first: Label = _pick["label"]
-	if is_instance_valid(first):
-		first.add_theme_color_override("font_color", INK)
-	if first == l:
+	if is_instance_valid(_pick["label"]):
+		_pick["label"].add_theme_color_override("font_color", INK)
+	if _pick["word"] == word and _pick["role"] == role:
 		_pick = {}
 		return
 	if _pick["role"] == role:
