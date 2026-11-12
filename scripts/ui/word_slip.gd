@@ -19,7 +19,8 @@ var _mark: TextureRect
 func setup(word: String, word_index: int, font: Font, font_size: int, color: Color, era: int) -> void:
 	index = word_index
 	name = "Fis_%d" % word_index
-	size = Vector2(font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x + INSET * 2, HEIGHT)
+	var text_h := font.get_height(font_size)
+	size = Vector2(font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x + INSET * 2, maxf(HEIGHT, text_h + 14))
 	custom_minimum_size = size
 	pivot_offset = size / 2
 	mouse_filter = Control.MOUSE_FILTER_STOP
@@ -36,9 +37,8 @@ func setup(word: String, word_index: int, font: Font, font_size: int, color: Col
 	add_child(paper)
 	var l := Label.new()
 	l.text = word
-	l.position = Vector2(INSET, 0)
-	l.size = Vector2(size.x - INSET * 2, HEIGHT)
-	l.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	l.position = Vector2(INSET, (size.y - text_h) / 2)
+	l.size = Vector2(size.x - INSET * 2, text_h)
 	l.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	l.add_theme_font_override("font", font)
 	l.add_theme_font_size_override("font_size", font_size)

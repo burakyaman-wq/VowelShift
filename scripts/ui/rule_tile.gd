@@ -40,7 +40,7 @@ func setup(rule: SoundRule, proven_idx: Array, font: Font, desk_era: int = 2) ->
 		add_child(Art.shadow_of(frame, Vector2(-PAD, -PAD)))
 	_add_texture(frame)
 	_add_texture(Art.tex("picto_%s.png" % rule.id))
-	var title := _label(_two_lines(rule.name_tr, 15, SIZE.x - 54), 15, Art.TILE_INK.get(rule.era, Art.TILE_INK[2]))
+	var title := _label(_two_lines(rule.name_tr, 17, SIZE.x - 40), 17, Art.TILE_INK.get(rule.era, Art.TILE_INK[2]))
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_constant_override("line_spacing", -7)
 	title.position = Vector2(14, 14)

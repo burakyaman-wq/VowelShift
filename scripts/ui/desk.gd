@@ -33,7 +33,7 @@ const COPY_WIDTH := 330.0
 const DESK := Rect2(70, 64, 1780, 952)
 const PER_PAGE := 12
 const SLIP_ORIGIN := Vector2(44, 40)
-const SLIP_ROW := 54.0
+const SLIP_ROW := 64.0
 const SLIP_GAP := 8.0
 const SLIP_WIDTH := 348.0
 
@@ -165,6 +165,7 @@ func write_copy() -> Dictionary:
 	if res["error"] != "":
 		return res
 	_lay_slips("")
+	_draw_word_cards(false)
 	_ink(res)
 	if not res["shelved"]:
 		tutor.tell("Üstü çizili kelimeler [color=%s]bu çağın dilinde yok[/color]. Eksik bir kural mı var, yoksa karoların sırası mı yanlış? Düzelt ve kalemi yeniden tıkla." % RED_HEX)
@@ -429,7 +430,9 @@ func _build() -> void:
 	tiles_layer.set_anchors_preset(Control.PRESET_FULL_RECT)
 	tiles_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(tiles_layer)
-	for rid in state.cards:
+	var hand_order: Array = state.cards.duplicate()
+	hand_order.sort_custom(func(a: String, b: String) -> bool: return a.naturalnocasecmp_to(b) < 0)
+	for rid in hand_order:
 		_add_tile(rid, false)
 
 	tutor = Tutor.new()
@@ -551,27 +554,35 @@ func _draw_word_cards(show: bool) -> void:
 	if not show:
 		return
 	var rows := word_results()
-	var top := 236.0 if doc.allow_reorder else 30.0
-	var step := minf(58.0, (488.0 - top) / maxf(rows.size(), 1))
-	var big_px := 28 if step >= 54 else 22
+	# In a document whose words lie on slips the slips already show the new
+	# forms; the list below them only needs the meanings.
+	var compact := doc.allow_reorder
+	var top := 250.0 if compact else 28.0
+	var step := (490.0 - top) / maxf(rows.size(), 1)
+	var big_px := 24
+	var small_px := 16
+	var big_h := FONT.get_height(big_px)
 	for k in rows.size():
 		var r: Dictionary = rows[k]
+		var y := top + k * step
 		var shown := _red_letters(r["new"], Pairing.diff_marks(r["old"], r["new"])[1])
 		if not r["real"]:
 			shown = "[color=%s][s]%s[/s][/color]" % [SCRAPED, r["new"]]
 		var big := _rich(_words_box, shown, big_px)
-		big.position = Vector2(40, top + k * step)
-		big.size = Vector2(170, step)
+		big.fit_content = true
+		big.autowrap_mode = TextServer.AUTOWRAP_OFF
+		big.position = Vector2(36, y)
+		big.size = Vector2(150, big_h)
+		if not compact:
+			var small := _label(_words_box, ("eski: %s" % r["old"]) if r["new"] != r["old"] else "değişmedi", small_px, PENCIL)
+			small.position = Vector2(38, y + big_h - 6)
 		var note: String = r["meaning"] if r["real"] else "bu çağda yok"
-		var small := _label(_words_box, ("eski: %s" % r["old"]) if r["new"] != r["old"] else "değişmedi", 14, PENCIL)
-		small.position = Vector2(42, top + k * step + big_px + 4)
-		var mean := _label(_words_box, note, 17, INK if r["real"] else Color(SCRAPED))
-		mean.position = Vector2(214, top + k * step + 6)
+		note = note.replace(" / ", " ya da ")
+		var mean := _label(_words_box, note, 16, INK if r["real"] else Color(SCRAPED))
+		mean.position = Vector2(196, y + 2)
 		mean.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		mean.custom_minimum_size = Vector2(168, 0)
-		mean.size = Vector2(168, step - 6)
-		if note.length() > 22:
-			mean.add_theme_font_size_override("font_size", 14)
+		mean.custom_minimum_size = Vector2(190, 0)
+		mean.size = Vector2(190, step - 4)
 
 
 ## The draft as loose slips, one word each, in the order they now stand.
@@ -586,7 +597,7 @@ func _lay_slips(copy: String) -> void:
 	for k in ws.size():
 		var slip := WordSlip.new()
 		_slips.add_child(slip)
-		slip.setup(ws[k], int(_word_order[k]) if _word_order.size() == ws.size() else k + 1, FONT, 30, PENCIL, era())
+		slip.setup(ws[k], int(_word_order[k]) if _word_order.size() == ws.size() else k + 1, FONT, 26, PENCIL, era())
 		if at.x > SLIP_ORIGIN.x and at.x + slip.size.x > SLIP_ORIGIN.x + SLIP_WIDTH:
 			at = Vector2(SLIP_ORIGIN.x, at.y + SLIP_ROW)
 		slip.position = at
