@@ -72,6 +72,9 @@ var _word_order: Array = []       # 1-based order of the words once moved; empty
 var _hand: Array = []
 
 
+var _ink_tween: Tween
+
+
 func _ready() -> void:
 	engine = RuleEngine.new()
 	lib = ManuscriptLibrary.new()
@@ -284,6 +287,8 @@ func era() -> int:
 # --- a document on the desk ---------------------------------------------------
 
 func _start_doc(arrive: bool) -> void:
+	if _ink_tween and _ink_tween.is_valid():
+		_ink_tween.kill()
 	doc = lib.get_doc(state.doc_index)
 	state.begin_doc(doc, engine)
 	_hand = Copyist.hand(doc, engine)
@@ -725,15 +730,18 @@ func _draw_entry(row: Dictionary) -> void:
 # --- writing and the end ---------------------------------------------------------
 
 func _ink(ev: Dictionary) -> void:
-	var tw := create_tween()
+	_ink_tween = create_tween()
 	for r in ev["rows"]:
 		var c: WordCard = words[r["key"]]
-		tw.tween_interval(0.12)
-		tw.tween_callback(func() -> void:
-			c.show_row(r, true)
-			c.scale = Vector2.ONE * 1.06)
-		tw.tween_interval(0.08)
-		tw.tween_callback(func() -> void: c.scale = Vector2.ONE)
+		_ink_tween.tween_interval(0.12)
+		_ink_tween.tween_callback(func() -> void:
+			if is_instance_valid(c):
+				c.show_row(r, true)
+				c.scale = Vector2.ONE * 1.06)
+		_ink_tween.tween_interval(0.08)
+		_ink_tween.tween_callback(func() -> void:
+			if is_instance_valid(c):
+				c.scale = Vector2.ONE)
 
 
 func _show_ending() -> void:
