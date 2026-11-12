@@ -49,9 +49,11 @@ func _go() -> void:
 		await _check(desk, "belge %s okuma" % order)
 		desk.close_reading()
 		desk.write_copy()
-		await create_timer(1.5).timeout
+		await create_timer(0.8).timeout
 		await _check(desk, "belge %s rafta" % order)
 		desk.deliver()
+		await create_timer(0.9).timeout
+		await _check(desk, "belge %s sonrası" % order)
 		if m == lib.docs[-1]:
 			desk.next_document()
 			await create_timer(0.3).timeout

@@ -49,7 +49,7 @@ static func dictionary(engine: RuleEngine, era: int) -> Array:
 	var out := []
 	for w in engine.words:
 		out.append([engine.apply_word(w["root"], ids), w["meaning_tr"]])
-	out.sort_custom(func(a: Array, b: Array) -> bool: return a[0].to_lower() < b[0].to_lower())
+	out.sort_custom(func(a: Array, b: Array) -> bool: return _plain(a[0]) < _plain(b[0]))
 	return out
 
 
@@ -184,3 +184,11 @@ static func _meet(a: Array, b: Array) -> bool:
 		if x in b:
 			return true
 	return false
+
+
+## A word without its length marks, for alphabetical order.
+static func _plain(w: String) -> String:
+	var out := w.to_lower()
+	for k in {"ā": "a", "ē": "e", "ī": "i", "ō": "o", "ū": "u"}.keys():
+		out = out.replace(k, {"ā": "a", "ē": "e", "ī": "i", "ō": "o", "ū": "u"}[k])
+	return out

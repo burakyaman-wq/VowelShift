@@ -1,13 +1,13 @@
 {
   "id": "i05",
-  "order": 5,
+  "order": 7,
   "era": 1,
   "kind": "kisa",
   "title_tr": "Dağdan bir mektup",
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağlı çoban",
-    "says_tr": "Tahıl için indim. Dedemin dedesinden kalma bir kayın tahtası getirdim; dağda herkes onun sürgün Mēros'tan geldiğini söyler. Bizim dilde *gwīweti* 'yaşar' demek."
+    "says_tr": "Tahıl için indim. Dağda saklanan bir kayın tahtası getirdim: sürgün Mēros'un annesine yazıp hiç yollayamadığı mektup. Bugün *gwīweti* 'yaşar' demek."
   },
   "old_text": "Mēros gweiweti. Bhāgom mātērosyo dōneti.",
   "heard": [
@@ -18,12 +18,13 @@
   "allow_reorder": false,
   "cards": [
     "R1",
-    "R2"
+    "R2",
+    "R3"
   ],
   "tools": {
     "not": 0,
     "eski": 0,
     "kazi": 0
   },
-  "delivered_tr": "Çoban kopyayı alıp dağa döndü. Sürgün Mēros dağda yaşamış; annesine mektup yollamış."
+  "delivered_tr": "Çoban kopyayı alıp dağa döndü. Sürgün Mēros dağda yaşamış; annesine yazmış ama mektubu hiç yollayamamış."
 }

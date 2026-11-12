@@ -79,6 +79,13 @@ var _scale_titles := {}            # "fidelity"/"clarity" -> Label with the coun
 var _slip_glow: Tween
 var _order_warn: Label
 var _stranger_line := ""
+var _armed := ""                   # a scribe card picked by click, waiting for a word
+var _ribbon: Label                 # the chronicle's latest line, across the top of the desk
+const TOOL_INTRO := {
+	"not": "[color=%s]Kenar notu[/color]: kelimeyi yeni biçimiyle yazar, eski anlamını kenara not eder. Sadakati korur, okuru yormaz.",
+	"eski": "[color=%s]Eski yazım[/color]: kelimeyi hiç değiştirmeden eski hâliyle yazar. Anlam korunur ama bugünün okuru zorlanır (anlaşılırlık −1).",
+	"kazi": "[color=%s]Kazı[/color]: kelimeyi kopyadan çıkarır. Bir şey silinir (sadakat −1); kimi zaman biri tam da bunu ister.",
+}
 
 
 var _ink_tween: Tween
@@ -155,6 +162,8 @@ func take_out(rule_id: String) -> void:
 
 ## Lay a scribe card on a word. False when none of that card is left.
 func mark_word(key: String, tool: String) -> bool:
+	if state:
+		state.flags["tanit_" + tool] = true
 	key = key.to_lower()
 	if state.phase != "read" or not words.has(key) or tool not in Copyist.TOOLS:
 		return false
@@ -211,7 +220,17 @@ func write_copy() -> Dictionary:
 		c.set_left(state.tools[c.tool])
 		c.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_ink(ev)
-	_write_copy_on_page(ev["copy"])
+	_write_copy_on_page(ev["copy"], Copyist.gloss(ev))
+	for t in Copyist.TOOLS:
+		if state.tools.get(t, 0) > 0 or marks.values().has(t):
+			state.flags["tanit_" + t] = true
+	if doc.kind == "kisa":
+		var me := doc.id
+		var auto := create_tween()
+		auto.tween_interval(1.1)
+		auto.tween_callback(func() -> void:
+			if doc and doc.id == me and state.phase == "answer":
+				deliver())
 	var stranger := Copyist.decoy(engine, doc.era)
 	_seal.visible = true
 	_slip_text.text = "[color=%s]Kopya yazıldı.[/color]\n\nTeslim etmek için bu istek notuna tıkla." % RED_HEX
@@ -239,7 +258,7 @@ func deliver() -> bool:
 	var stamp := _tex(_slip, "muhur.png", Vector2(250, 150), -10.0, false)
 	stamp.scale = Vector2(0.6, 0.6)
 	var tw := create_tween()
-	tw.tween_interval(0.6)
+	tw.tween_interval(0.2)
 	tw.tween_callback(next_document)
 	return true
 
@@ -270,6 +289,12 @@ func interlude_text() -> String:
 
 
 ## How the last copy was weighed and what came of it, in one line.
+func _plain_text(t: String) -> String:
+	var rx := RegEx.new()
+	rx.compile("\\[[^\\]]*\\]")
+	return rx.sub(t, "", true)
+
+
 func _handoff_line(last: Manuscript) -> String:
 	var sc: Dictionary = state.scores[last.id]
 	return "[color=%s]«%s» teslim edildi:[/color] sadakat %d / %d, anlaşılırlık %d / %d. %s" % [RED_HEX, last.title, sc["fidelity"], Copyist.FULL, sc["clarity"], Copyist.FULL, state.chronicle_of(last.id)]
@@ -341,6 +366,7 @@ func _start_doc(arrive: bool) -> void:
 		state.proven[rid] = range(engine.by_id[rid].sub_count())
 	_reading = null
 	_interlude = null
+	_armed = ""
 	_word_order = []
 	marks = {}
 	_focus = ""
@@ -359,13 +385,13 @@ func _start_doc(arrive: bool) -> void:
 		for n in _arriving():
 			n.visible = false
 		_node("Terazi").visible = false
-		_show_interlude(told, "Aradan geçen zaman" if doc.intro != "" else "Kapıda duyduğun")
+		_show_interlude(told, "Aradan geçen zaman" if doc.intro != "" else "Teslimden sonra")
 	elif arrive:
 		_arrive()
 	_guide()
 	var last := lib.get_doc(state.doc_index - 1) if state.doc_index > 0 else null
 	if told == "" and last and state.scores.has(last.id) and tutor:
-		tutor.tell(_handoff_line(last))
+		tutor.tell("Teslim edildi; ne olduğu yukarıdaki kronikte.")
 
 
 func _arriving() -> Array:
@@ -395,6 +421,11 @@ func _show_interlude(text: String, heading: String) -> void:
 			dismiss_interlude())
 	add_child(_interlude)
 	move_child(_interlude, _grain.get_index())
+	var dim := ColorRect.new()
+	dim.color = Color(0.08, 0.04, 0.03, 0.82)
+	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
+	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_interlude.add_child(dim)
 	var page := Control.new()
 	page.position = Vector2(200, 160)
 	page.size = Vector2(1520, 760)
@@ -513,7 +544,28 @@ func _build() -> void:
 		sc.position = sc.home
 		sc.visible = tool in shown
 		sc.dropped.connect(_on_tool_dropped)
+		sc.clicked.connect(_on_tool_clicked)
 		tools[tool] = sc
+
+	var strip := NinePatchRect.new()
+	strip.texture = Art.tex("kelime_fisi.png", era())
+	for side in [SIDE_LEFT, SIDE_RIGHT]:
+		strip.set_patch_margin(side, 18)
+	for side in [SIDE_TOP, SIDE_BOTTOM]:
+		strip.set_patch_margin(side, 12)
+	strip.position = Vector2(600, 18)
+	strip.size = Vector2(700, 76)
+	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(strip)
+	_ribbon = _label(strip, "", 16, INK)
+	_ribbon.position = Vector2(18, 8)
+	_ribbon.size = Vector2(664, 60)
+	_ribbon.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_ribbon.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	_ribbon.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	var latest: String = state.chronicle[-1]["line"] if not state.chronicle.is_empty() else ""
+	_ribbon.text = "Kronik: " + _plain_text(latest) if latest != "" else "Kronik: henüz bir şey yazılmadı."
+	strip.visible = true
 
 	tutor = Tutor.new()
 	add_child(tutor)
@@ -578,7 +630,7 @@ func _write_text(parent: Control, text: String, width: float, start: int, origin
 
 
 ## The pen has written: the old text moves up, the copy is written under it.
-func _write_copy_on_page(copy: String) -> void:
+func _write_copy_on_page(copy: String, gloss: String = "") -> void:
 	var page := _node("Belge")
 	for l in _page_words:
 		if is_instance_valid(l):
@@ -587,7 +639,13 @@ func _write_copy_on_page(copy: String) -> void:
 	var tag := _label(page, "Kopyan", 20, RED)
 	tag.position = Vector2(60, 230)
 	_page_words.append(tag)
-	_page_words += _write_text(page, copy, 680 - 52 - 110, 44, Vector2(60, 254), 136.0, INK)
+	_page_words += _write_text(page, copy, 680 - 52 - 110, 44, Vector2(60, 254), 136.0 if gloss == "" else 104.0, INK)
+	if gloss != "":
+		var margin := _label(page, "Kenarda: " + gloss, 17, RED)
+		margin.position = Vector2(60, 362)
+		margin.size = Vector2(500, 24)
+		margin.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		_page_words.append(margin)
 
 
 func _glow_slip(on: bool) -> void:
@@ -640,7 +698,8 @@ func _on_tile_hovered(tile: RuleTile, on: bool) -> void:
 		return
 	var ev := Copyist.evaluate(doc, engine, order + [tile.rule_id], state.proven, marks)
 	for r in ev["rows"]:
-		words[r["key"]].preview(r["new"], r["in_dict"])
+		var tag := "anlam kayar" if r["shifted"] else ("iki anlam" if r["collision"] else "")
+		words[r["key"]].preview(r["new"], r["in_dict"], tag)
 
 
 func _on_word_hovered(card: WordCard, on: bool) -> void:
@@ -653,6 +712,12 @@ func _on_word_hovered(card: WordCard, on: bool) -> void:
 
 
 func _on_word_clicked(card: WordCard) -> void:
+	if _armed != "":
+		var tool := _armed
+		_disarm()
+		if not mark_word(card.key, tool):
+			tutor.tell("Bu kelimeye konamaz ya da o karttan kalmadı.")
+		return
 	if marks.has(card.key):
 		unmark(card.key)
 		tutor.tell("«%s» kelimesinden kâtip kartı kaldırıldı." % card.row["new"])
@@ -677,6 +742,24 @@ func _on_word_dropped(_card: WordCard) -> void:
 		tutor.tell("Sıra değişti: " + evaluation()["copy"])
 
 
+func _on_tool_clicked(card: ScribeCard) -> void:
+	if state.phase != "read" or card.left <= 0:
+		return
+	var was := _armed
+	_disarm()
+	if was == card.tool:
+		return
+	_armed = card.tool
+	card.armed = true
+	tutor.tell("%s seçildi: şimdi bir kelime kartına tıkla." % Copyist.TOOL_NAMES[card.tool])
+
+
+func _disarm() -> void:
+	if _armed != "" and tools.has(_armed) and is_instance_valid(tools[_armed]):
+		tools[_armed].armed = false
+	_armed = ""
+
+
 func _on_tool_dropped(card: ScribeCard) -> void:
 	var at := card.center()
 	card.go_home()
@@ -687,17 +770,6 @@ func _on_tool_dropped(card: ScribeCard) -> void:
 
 
 func _arrange() -> void:
-	var j := 0
-	var order := tray.model.order()
-	for rid in _hand:
-		if rid in order or not tiles.has(rid):
-			continue
-		var rest := [Vector2(70 + j * 168, 806), [-2.5, 1.5, -1.0, 2.0][j % 4]]
-		if _rest[rid][0] != rest[0]:
-			_rest[rid] = rest
-			if not tiles[rid].dragging:
-				tiles[rid].slide_to(rest[0], rest[1])
-		j += 1
 	for i in tray.model.slots.size():
 		var rid := tray.model.slots[i]
 		if rid != "":
@@ -948,7 +1020,12 @@ func _next_step() -> Array:
 		return ["Yeni iş. Hangi ses kartları bu belgeye uyuyor? Kartın üstüne gel, önizlemeye bak; [color=%s]uyanları şeride koy[/color]." % RED_HEX, _hand_rect()]
 	if not ev["blocked"].is_empty():
 		var where := tray.get_global_rect() if order.size() >= 2 else _hand_rect()
+		if doc.era == 1:
+			return ["Altında «sözlükte yok» yazan kelimeler bugün okunamaz. Eksik bir kart ekle ya da yanlış olanı çıkar: şeritteki bir karta tıklarsan eline döner.", where]
 		return ["Altında «sözlükte yok» yazan kelimeler bugün okunamaz. Başka bir kart ekle ya da sırayı değiştir: kartlar soldan sağa uygulanır. Şeritteki bir kartı başka yuvaya sürükleyebilir ya da tıklayıp eline alabilirsin.", where]
+	for t in Copyist.TOOLS:
+		if state.tools.get(t, 0) > 0 and not state.flags.has("tanit_" + t):
+			return ["Yeni kâtip kartı. " + (TOOL_INTRO[t] % RED_HEX) + " Kartı bir kelimenin üstüne sürükle ya da karta tıklayıp kelimeye tıkla.", _below_header(tools[t].get_global_rect())]
 	var can_mark := tools_left("not") > 0 or tools_left("eski") > 0
 	for r in ev["rows"]:
 		if r["mark"] != "" or not can_mark:
@@ -957,7 +1034,7 @@ func _next_step() -> Array:
 		if r["shifted"]:
 			return ["«%s» artık [color=%s]başka bir şey anlatıyor[/color] (sözlüğe bak). Şeritte bu çağa ait olmayan bir kart olabilir: ona tıklayıp geri al. Ya da kelimeye Eski yazım koy." % [r["new"], RED_HEX], at]
 		if r["collision"]:
-			return ["«%s» artık [color=%s]iki kelimenin biçimi[/color]; okur hangisi olduğunu bilemez. Sağ alttaki Kenar notu kartını bu kelimenin üstüne sürükle. Kâtip kartları her belgede yenilenir." % [r["new"], RED_HEX], at]
+			return ["«%s» artık [color=%s]iki kelimenin biçimi[/color]; okur hangisi olduğunu bilemez. Sağ alttaki Kenar notu kartını bu kelimenin üstüne sürükle. Kâtip kartları her işte yeniden dağıtılır." % [r["new"], RED_HEX], at]
 		if not r["elder"].is_empty():
 			return ["«%s» bugün doğru, ama eski dili bilen [color=%s]yaşlılar onu «%s» diye okur[/color]. Kenar notu ya da Eski yazım bu yanlış okumayı önler; ya da öyle bırak." % [r["new"], RED_HEX, " / ".join(PackedStringArray(r["elder"]))], at]
 	match ev["order"]:
@@ -966,9 +1043,19 @@ func _next_step() -> Array:
 		"unexplained":
 			if tools_left("not") > 0:
 				return ["Sıra artık doğru, ama aslından farklı. Nedenini yazmak için bir kelimeye [color=%s]Kenar notu[/color] koy; yoksa kopya sahte sanılabilir." % RED_HEX, _words_layer.get_global_rect() if _words_layer else none]
+	for o in doc.outcomes:
+		var w: Dictionary = o.get("when", {})
+		if w.has("mark") and words.has(w["mark"][0]) and not marks.has(w["mark"][0]) and tools_left(w["mark"][1]) > 0 and not state.flags.has("secim_" + doc.id):
+			var card: WordCard = words[w["mark"][0]]
+			return ["Bu işte bir [color=%s]seçim[/color] var: «%s» kelimesine %s koymak ya da olduğu gibi bırakmak. İkisinin de sonucu olacak. Karar ver, sonra kalemi tıkla." % [RED_HEX, card.row.get("new", ""), Copyist.TOOL_NAMES[w["mark"][1]]], card.get_global_rect()]
 	if ev["fidelity"] < Copyist.FULL or ev["clarity"] < Copyist.FULL:
 		return ["Kopya yazılabilir ama terazi tam değil: sadakat %d / %d, anlaşılırlık %d / %d. İstersen düzelt; beğendiysen [color=%s]kalemi tıkla[/color]." % [ev["fidelity"], Copyist.FULL, ev["clarity"], Copyist.FULL, RED_HEX], _rect("Kalem")]
 	return ["Kopya hazır, terazi tam. [color=%s]Kalemi tıkla[/color]." % RED_HEX, _rect("Kalem")]
+
+
+## A scribe card's rect without its top, so the pointer stays off the header above it.
+func _below_header(r: Rect2) -> Rect2:
+	return Rect2(r.position + Vector2(8, 96), r.size - Vector2(8, 96))
 
 
 func _hand_rect() -> Rect2:

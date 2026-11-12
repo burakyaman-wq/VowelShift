@@ -1,18 +1,18 @@
 {
   "id": "i03",
-  "order": 3,
+  "order": 4,
   "era": 1,
   "kind": "kisa",
   "title_tr": "Ambardaki mühür",
   "intro_tr": "",
   "requester": {
     "name_tr": "Ambarcı Sālwa",
-    "says_tr": "Ambarın dibinde eski bir mühür bulduk; kurucu kardeşlerin annesinin mührü. Üstünde bir borç yazıyor. Bugün buna *thētos* diyoruz. Ne yazdığını bilmem lazım."
+    "says_tr": "Ben Sālwa, şehrin ambarcısı. Senet davası yüzünden ambarın dibini kazdık; kurucuların annesinin mührü çıktı. Mahkeme eski yazıya daha çok inanıyor: istersen mührün adını eski hâliyle bırak. Bugün ona *sikhlos* diyoruz."
   },
   "old_text": "Mātērosyo sighlos. Grānosyo dhētos.",
   "heard": [
-    "thētos",
-    "sikhlos"
+    "sikhlos",
+    "thētos"
   ],
   "inherit_cards": [],
   "allow_reorder": false,
@@ -21,8 +21,25 @@
   ],
   "tools": {
     "not": 0,
-    "eski": 0,
+    "eski": 1,
     "kazi": 0
   },
-  "delivered_tr": "Sālwa mührü sandığına kilitledi: kurucuların annesinin bir tahıl borcu varmış."
+  "delivered_tr": "Sālwa mührü sandığına kilitledi: kurucuların annesinin bir tahıl borcu varmış.",
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "sighlos",
+          "eski"
+        ]
+      },
+      "set": "muhur_eski",
+      "chronicle": "Mührün adını eski yazımla bıraktın. Yaşlı yargıç mührü tanıdı; Sālwa'nın borç kaydı ciddiye alındı."
+    },
+    {
+      "when": {},
+      "set": "muhur_yeni",
+      "chronicle": "Mühür bugünün yazısıyla kopyalandı. Gençler okudu, yaşlı yargıç omuz silkti."
+    }
+  ]
 }

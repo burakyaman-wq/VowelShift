@@ -1,13 +1,13 @@
 {
   "id": "i10",
-  "order": 10,
+  "order": 3,
   "era": 1,
   "kind": "kisa",
   "title_tr": "Saray senedi",
   "intro_tr": "",
   "requester": {
     "name_tr": "Bey'in kâhyası",
-    "says_tr": "Bey, Sālwa'nın ambarını istiyor. Elimizde kurucu zamanından bir senet var: kurucu, annesinin tahılını almış, bir tanık da görmüş. Ama bugün *tūkos* deyince herkes 'hırsız' anlıyor, dikkat et."
+    "says_tr": "Ben beyin kâhyasıyım. Bey, ambarcı Sālwa'nın ambarını istiyor; elimizde kurucu zamanından bir senet var: kurucu, annesinin tahılını almış, bir tanık da görmüş. Ama bugün *tūkos* deyince herkes 'hırsız' anlıyor. Sen bilirsin, kâtip."
   },
   "old_text": "Rēgos mātērosyo grānom emeti. Teukos weideti.",
   "heard": [
@@ -18,12 +18,11 @@
   "allow_reorder": false,
   "cards": [
     "R1",
-    "R2",
-    "R3"
+    "R2"
   ],
   "tools": {
-    "not": 2,
-    "eski": 1,
+    "not": 1,
+    "eski": 0,
     "kazi": 0
   },
   "outcomes": [
@@ -36,16 +35,6 @@
       },
       "set": "senet_notlu",
       "chronicle": "Senedin kenarına 'tanık' yazdın. Kâhya kızdı ama mahkeme kopyayı kabul etti; Sālwa'nın ambarı şimdilik onun."
-    },
-    {
-      "when": {
-        "mark": [
-          "teukos",
-          "eski"
-        ]
-      },
-      "set": "senet_notlu",
-      "chronicle": "'Tanık' kelimesini eski yazımla bıraktın. Mahkeme eski yazıyı okuyan bir yaşlı buldu; Sālwa'nın ambarı şimdilik onun."
     },
     {
       "when": {},

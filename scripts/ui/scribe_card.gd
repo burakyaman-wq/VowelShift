@@ -5,6 +5,14 @@ extends Control
 
 signal dropped(card: ScribeCard)
 signal hovered(card: ScribeCard, on: bool)
+## A press and release without moving: pick the card, then click a word.
+signal clicked(card: ScribeCard)
+var _down := Vector2.ZERO
+var armed := false:
+	set(v):
+		armed = v
+		self_modulate = Color(1.2, 1.1, 0.8) if v else Color.WHITE
+		position = home - Vector2(0, 18) if v else home
 
 const SIZE := Vector2(124, 160)
 const BLURB := {
@@ -74,6 +82,7 @@ func center() -> Vector2:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed and left > 0:
+			_down = get_global_mouse_position()
 			dragging = true
 			_grab = get_global_mouse_position() - global_position
 			z_index = 5
@@ -82,7 +91,11 @@ func _gui_input(event: InputEvent) -> void:
 			dragging = false
 			z_index = 0
 			scale = Vector2.ONE
-			dropped.emit(self)
+			if get_global_mouse_position().distance_to(_down) <= 6.0:
+				position = home
+				clicked.emit(self)
+			else:
+				dropped.emit(self)
 		accept_event()
 	elif event is InputEventMouseMotion and dragging:
 		global_position = get_global_mouse_position() - _grab

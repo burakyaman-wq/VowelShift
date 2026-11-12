@@ -122,8 +122,9 @@ func show_row(r: Dictionary, inked: bool = false) -> void:
 
 ## What the hovered sound card would make of this word ("" to clear);
 ## a form that is no word of the era is said so.
-func preview(form: String, is_word: bool = true) -> void:
-	_ghost.text = ("→ " + form + ("" if is_word else " (yok)")) if form != "" and form != row.get("new", "") else ""
+func preview(form: String, is_word: bool = true, tag: String = "") -> void:
+	var note := " (yok)" if not is_word else (" (%s)" % tag if tag != "" else "")
+	_ghost.text = ("→ " + form + note) if form != "" and form != row.get("new", "") else ""
 	_foot.visible = _ghost.text == ""
 
 

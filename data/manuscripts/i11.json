@@ -7,7 +7,7 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağlı çoban",
-    "says_tr": "Kopyan dağda okundu; bir tahta daha gönderdiler. Bu mektupta Mēros'un ışığı sönüyor. Ama bugün *lūkos* dersen dağda herkes 'kurt' anlar."
+    "says_tr": "Kopyan dağda okundu; bir tahta daha gönderdiler. Bu mektupta Mēros'un ışığı sönüyor. Senin adın da bu ışıktan gelir, Leuka. Ama bugün *lūkos* dersen dağda herkes 'kurt' anlar."
   },
   "old_text": "Bhrātēros grānom emeti. Leukos mereti.",
   "heard": [
@@ -21,7 +21,7 @@
     "R3"
   ],
   "tools": {
-    "not": 2,
+    "not": 1,
     "eski": 1,
     "kazi": 0
   },

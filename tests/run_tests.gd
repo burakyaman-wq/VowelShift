@@ -51,7 +51,7 @@ func _initialize() -> void:
 
 func _finish() -> void:
 	await process_frame
-	_desk_tests()
+	await _desk_tests()
 	print("%d checks, %d failures" % [checks, failures])
 	quit(1 if failures > 0 else 0)
 
@@ -117,7 +117,7 @@ func _desk_tests() -> void:
 	var gs := GameState.new()
 	var j10 := lib.find("i10")
 	gs.begin_doc(j10, engine)
-	_expect(gs.tools == {"not": 2, "eski": 1, "kazi": 0}, "a job deals only the scribe cards it needs")
+	_expect(gs.tools == {"not": 1, "eski": 0, "kazi": 0}, "a job deals only the scribe cards it needs")
 	var e10 := Copyist.evaluate(j10, engine, ["R1", "R2"], {}, {"teukos": "not"})
 	_expect(e10["fidelity"] == 5 and gs.shelve(j10, e10, {"teukos": "not"})["shelved"], "the witness glossed, the deed is whole")
 	_expect(gs.flags.has("senet_notlu") and gs.chronicle_of("i10").contains("tanık"), "the note saves the granary and the chronicle says so")
@@ -131,7 +131,7 @@ func _desk_tests() -> void:
 	_expect(gs2.flags.has("meros_kazindi") and gs2.chronicle.size() == 2 and gs2.scores.has("i14"), "flags, chronicle and scores survive a save")
 	var stranger_ok := true
 	for job in lib.docs:
-		if job.era == 1 and job.order < 7 and Copyist.decoy(engine, 1) in Copyist.hand(job, engine):
+		if job.era == 1 and job.order < 6 and Copyist.decoy(engine, 1) in Copyist.hand(job, engine):
 			stranger_ok = false
 	_expect(stranger_ok, "no stranger card before the founding tablet")
 
@@ -145,8 +145,27 @@ func _desk_tests() -> void:
 	_expect(desk0.write_copy()["copy"] == "Khrophosyo domos." and desk0.deliver(), "the door sign is copied and handed over")
 	desk0.next_document()
 	_expect(desk0.doc.id == "i02" and desk0.interlude_text() == "", "a short job follows without a page between")
-	_expect(desk0.tutor.feedback_text().contains("«Yazıhanenin kapısı» teslim edildi"), "the last job's fate is told on the desk")
+	_expect(desk0.tutor.feedback_text().contains("Teslim edildi"), "the last job's fate is told on the desk")
+	_expect(desk0._ribbon.text.contains("Kapıya yeni yazı asıldı"), "and the chronicle ribbon carries what came of it")
 	desk0.queue_free()
+
+	# A scribe card picked by a click lands on the next word clicked.
+	var desk10: Node = load("res://scenes/desk.tscn").instantiate()
+	desk10.doc_id = "i10"
+	root.add_child(desk10)
+	desk10.add_rule("R1")
+	desk10.add_rule("R2")
+	_expect(desk10.tutor.step_text().contains("Yeni kâtip kartı"), "the first margin note is introduced")
+	desk10.tools["not"].clicked.emit(desk10.tools["not"])
+	_expect(desk10._armed == "not" and desk10.tools["not"].armed, "a click picks the margin note up")
+	desk10.words["teukos"].clicked.emit(desk10.words["teukos"])
+	_expect(desk10.marks.get("teukos", "") == "not" and desk10._armed == "", "and a click on the word puts it there")
+	_expect(desk10.evaluation()["fidelity"] == 5, "the witness is a witness again")
+	desk10.write_copy()
+	_expect(desk10._page_words.any(func(l: Node) -> bool: return is_instance_valid(l) and l is Label and l.text.begins_with("Kenarda:")), "the margin note is written on the tablet")
+	await create_timer(1.4).timeout
+	_expect(desk10.state.phase == "done" or desk10.doc.id != "i10", "a short job is handed over by itself after the pen")
+	desk10.queue_free()
 
 	var desk1: Node = load("res://scenes/desk.tscn").instantiate()
 	desk1.doc_id = "doc_01"
@@ -179,7 +198,7 @@ func _desk_tests() -> void:
 	_expect(desk1._page_words.size() > 16, "the copy is written on the document under the old text")
 	_expect(desk1.deliver(), "the copy is delivered")
 	desk1.next_document()
-	_expect(desk1.doc.id == "i08" and desk1.tiles.size() == 3 and desk1.tiles.has("R3"), "the next job keeps the era's cards and its stranger")
+	_expect(desk1.doc.id == "i05" and desk1.tiles.size() == 3 and desk1.tiles.has("R3"), "the next job keeps the era's cards and its stranger")
 	_expect(desk1.interlude_text().contains("«Temel taşı tableti» teslim edildi"), "a story document is followed by a page")
 	desk1.dismiss_interlude()
 	_expect(desk1.tutor.step_text().contains("Biri yine bu çağa ait değil"), "the note warns of the stranger again")
@@ -196,6 +215,10 @@ func _desk_tests() -> void:
 	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nīkos.", "R4 before R3 writes the trap")
 	desk.place_rule("R3", 0)
 	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nēkos.", "swapping the cards mends it")
+	_expect(desk.tutor.step_text().contains("Yeni kâtip kartı"), "scribe cards the scribe has not met yet are introduced first")
+	for t in ["not", "eski", "kazi"]:
+		desk.state.flags["tanit_" + t] = true
+	desk._guide()
 	_expect(desk.tutor.step_text().contains("iki kelimenin biçimi"), "a word fallen into another's form is pointed out")
 	_expect(desk.words["mēros"]._foot.text == "iki anlam", "and marked on its card")
 	_expect(desk.mark_word("mēros", "not") and desk.evaluation()["fidelity"] == 2, "a margin note buys back fidelity")

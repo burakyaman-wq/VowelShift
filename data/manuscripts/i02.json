@@ -7,16 +7,17 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Rahibe Wēsna",
-    "says_tr": "Kıtlık başladı; tanrıya son ekmeğimizi sunuyoruz. Sunu taşına yazılacak. Bugün *pīstos* diyoruz, eski yazıdaki gibi *peistos* değil."
+    "says_tr": "Kıtlık başladı; tanrıya son ekmeğimizi *khewos* olarak sunuyoruz. Sunu taşına yazılacak. Bugün *pīstos* diyoruz, eski yazıdaki gibi *peistos* değil. Bir kelimenin ne demek olduğunu merak edersen üstüne gel: sözlük açılır."
   },
-  "old_text": "Peistom deiwosyo dōneti.",
+  "old_text": "Peistom deiwosyo ghewom dōneti.",
   "heard": [
     "pīstos",
-    "dīwos"
+    "khewos"
   ],
   "inherit_cards": [],
   "allow_reorder": false,
   "cards": [
+    "R1",
     "R2"
   ],
   "tools": {

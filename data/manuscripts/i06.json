@@ -1,13 +1,13 @@
 {
   "id": "i06",
-  "order": 6,
+  "order": 8,
   "era": 1,
   "kind": "kisa",
   "title_tr": "Kıtlık kaydı",
   "intro_tr": "",
   "requester": {
     "name_tr": "Rahibe Wēsna",
-    "says_tr": "Kıtlığı tapınağın duvarına yazıyoruz ki unutulmasın. Bugün *thekhnos* diyoruz; eskiden başka türlü yazılırdı."
+    "says_tr": "Kıtlığı tapınağın duvarına yazıyoruz ki unutulmasın. Ama kâhya geldi: bey, duvarda *thekhnos* kelimesinin geçmesini istemiyor; halk korkarmış. Ben yazılsın derim. Karar senin."
   },
   "old_text": "Dheghnos peistom edeti. Nēkes mereti.",
   "heard": [
@@ -17,12 +17,29 @@
   "allow_reorder": false,
   "cards": [
     "R1",
-    "R2"
+    "R2",
+    "R3"
   ],
   "tools": {
     "not": 0,
     "eski": 0,
-    "kazi": 0
+    "kazi": 1
   },
-  "delivered_tr": "Kıtlık tapınak duvarına yazıldı. Ambarlarda tahıl azalıyor."
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "dheghnos",
+          "kazi"
+        ]
+      },
+      "set": "kitlik_kazindi",
+      "chronicle": "Duvarda kıtlık yazmıyor; yalnızca 'ölüler öldü'. Halk tapınağın neden boşaldığını anlamadı, rahibe sana küstü."
+    },
+    {
+      "when": {},
+      "set": "kitlik_yazildi",
+      "chronicle": "Kıtlık tapınak duvarına yazıldı. Halk ambarların önünde toplandı; kâhya adını not etti."
+    }
+  ]
 }
