@@ -1,0 +1,29 @@
+{
+  "id": "i04",
+  "order": 4,
+  "era": 1,
+  "kind": "kisa",
+  "title_tr": "Sınır taşı",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Bey'in kâhyası",
+    "says_tr": "Bey, şehrin dışındaki sınır taşının yenisini istiyor. Taş iki tarlayı ayırıyor: biri kurucu Mīros'un, öbürü kardeşi Mēros'un. Taşın kendisi de tanrıya *khewos* sayılır."
+  },
+  "old_text": "Meirosyo āgros. Mērosyo āgros. Akmos deiwosyo ghewos.",
+  "heard": [
+    "khewos",
+    "Mīros"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R1",
+    "R2"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "delivered_tr": "Yeni sınır taşı dikildi. Kâhya, Mēros'un tarlasının bugün beyin sürülerine açık olduğunu söyledi."
+}

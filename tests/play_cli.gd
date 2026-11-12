@@ -110,6 +110,8 @@ func _texts() -> String:
 func _go() -> void:
 	await process_frame
 	desk = load("res://scenes/desk.tscn").instantiate()
+	if OS.get_environment("DOC") != "":
+		desk.doc_id = OS.get_environment("DOC")
 	root.add_child(desk)
 	await create_timer(0.6).timeout
 	var path := OS.get_environment("ACTIONS")

@@ -1,0 +1,28 @@
+{
+  "id": "i02",
+  "order": 2,
+  "era": 1,
+  "kind": "kisa",
+  "title_tr": "Ekmek adağı",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Rahibe Wēsna",
+    "says_tr": "Kıtlık başladı; tanrıya son ekmeğimizi sunuyoruz. Sunu taşına yazılacak. Bugün *pīstos* diyoruz, eski yazıdaki gibi *peistos* değil."
+  },
+  "old_text": "Peistom deiwosyo dōneti.",
+  "heard": [
+    "pīstos",
+    "dīwos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R2"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "delivered_tr": "Sunu taşı tapınağın kapısına kondu. Kıtlığın ilk ayı."
+}

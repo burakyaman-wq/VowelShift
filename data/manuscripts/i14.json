@@ -1,0 +1,48 @@
+{
+  "id": "i14",
+  "order": 14,
+  "era": 1,
+  "kind": "ana",
+  "title_tr": "Sürgün buyruğu",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Bey",
+    "says_tr": "Kurucu atamın buyruğunu tapınağa asacağım. Halk Mēros'un neden sürüldüğünü bilsin. İstersen adını kazı; bir sürgünün adı taşta ne arar?"
+  },
+  "old_text": "Meiros rēgos Mērom ageti. Mēros nākos. Mēros werteti. Mēros mereti.",
+  "heard": [
+    "Mīros",
+    "nākos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "mēros",
+          "kazi"
+        ]
+      },
+      "set": "meros_kazindi",
+      "chronicle": "Buyruk tapınağa asıldı; sürgünün adı taşta yok. 'Dönerse ölür' satırı kimin için yazıldığını söylemiyor."
+    },
+    {
+      "when": {
+        "copy_has": "mēros"
+      },
+      "set": "ad_korundu",
+      "chronicle": "Buyruk tapınağa asıldı: Mēros sürgündür; dönerse ölür. Halk satırı yüksek sesle okudu."
+    },
+    {
+      "when": {},
+      "set": "adlar_birlesti",
+      "chronicle": "Buyrukta iki kardeşin adı aynı yazılmış. Halk kimin kimi sürdüğünü tartışıyor."
+    }
+  ]
+}

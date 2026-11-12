@@ -15,12 +15,12 @@
     "doc4_reordered_no_note": "Yeni düzenin ölü dil uzmanı Melno kopyanın aslına uymadığını fark etti. Bu kopyaya neden böyle yaptığını açıklayan tek satır bırakmamıştın; seni sahtecilikle andı.",
     "doc4_answer_unclear": "Elçiye 'yazı söylemiyor' dedin; oysa eski yazının ekleri söylüyordu.",
     "doc4_answer_mismatch": "Elçiye söylediğinle şehrin okuduğu birbirini tutmadı; iki taraf da seni yalancılıkla suçladı.",
-    "note_prefix": "Belge {no} kopyasının kenarına “{note}” yazmıştın.",
+    "note_prefix": "«{title}» kopyasının kenarına “{note}” yazmıştın.",
     "note_fates": {
-      "1": "Rahibe notunu tabletin yanına iliştirdi; tapınak yandığında ikisi birlikte kayboldu.",
-      "2": "Yeni düzenin ölü dil uzmanı Melno arşivi tararken kurucuların kaydındaki notunu buldu. Kimin yazdığını bilmeden ona inanmadı; ama söylentiye uymayan tek satır oydu.",
-      "3": "Tüccar kadının torunları notunu senetle birlikte sakladı; hangi Mīros olduğu yalnızca o ailede bilindi.",
-      "4": "Notun dağlıların arşivine de kopyalandı; iki taraf da onu kendi lehine okudu, ama Melno onu senin savunman olarak okudu."
+      "doc_01": "Rahibe notunu tabletin yanına iliştirdi; tapınak yandığında ikisi birlikte kayboldu.",
+      "doc_02": "Yeni düzenin ölü dil uzmanı Melno arşivi tararken kurucuların kaydındaki notunu buldu. Kimin yazdığını bilmeden ona inanmadı; ama söylentiye uymayan tek satır oydu.",
+      "doc_03": "Tüccar kadının torunları notunu senetle birlikte sakladı; hangi Mīros olduğu yalnızca o ailede bilindi.",
+      "doc_04": "Notun dağlıların arşivine de kopyalandı; iki taraf da onu kendi lehine okudu, ama Melno onu senin savunman olarak okudu."
     },
     "doc2_old_spelling": "Saray kayıtları kardeşin sürgün edildiğini söylüyor. Kopyanda eski yazımla 'Mīros nākos' yazıyordu; yaşlılar da gençler de aynı şeyi okudu: Mēros sürgündür. 'Ölü' söylentisi hiç doğmadı."
   },

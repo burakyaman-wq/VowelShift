@@ -755,6 +755,147 @@
         "3sg": "gheneti",
         "imp": "ghene"
       }
+    },
+    {
+      "id": 48,
+      "root": "sighlos",
+      "stem": "sighl",
+      "meaning_tr": "mühür",
+      "pos": "noun",
+      "domain": "scriptorium",
+      "etymon": "*seǵʰ- tutmak",
+      "forms": {
+        "nom_sg": "sighlos",
+        "acc_sg": "sighlom",
+        "gen_sg": "sighlosyo",
+        "nom_pl": "sighles",
+        "acc_pl": "sighlem",
+        "gen_pl": "sighlesyo"
+      }
+    },
+    {
+      "id": 49,
+      "root": "gweiweti",
+      "stem": "gweiw",
+      "meaning_tr": "yaşar",
+      "pos": "verb",
+      "domain": "kin_body_faith",
+      "etymon": "*gʷeyh₃- yaşamak",
+      "forms": {
+        "3sg": "gweiweti",
+        "imp": "gweiwe"
+      }
+    },
+    {
+      "id": 50,
+      "root": "dheghnos",
+      "stem": "dheghn",
+      "meaning_tr": "kıtlık",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "invented",
+      "forms": {
+        "nom_sg": "dheghnos",
+        "acc_sg": "dheghnom",
+        "gen_sg": "dheghnosyo",
+        "nom_pl": "dheghnes",
+        "acc_pl": "dheghnem",
+        "gen_pl": "dheghnesyo"
+      }
+    },
+    {
+      "id": 51,
+      "root": "dhegheti",
+      "stem": "dhegh",
+      "meaning_tr": "yakar",
+      "pos": "verb",
+      "domain": "property",
+      "etymon": "*dʰegʷʰ- yakmak",
+      "forms": {
+        "3sg": "dhegheti",
+        "imp": "dheghe"
+      }
+    },
+    {
+      "id": 52,
+      "root": "teukos",
+      "stem": "teuk",
+      "meaning_tr": "tanık",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "invented",
+      "forms": {
+        "nom_sg": "teukos",
+        "acc_sg": "teukom",
+        "gen_sg": "teukosyo",
+        "nom_pl": "teukes",
+        "acc_pl": "teukem",
+        "gen_pl": "teukesyo"
+      }
+    },
+    {
+      "id": 53,
+      "root": "lūkos",
+      "stem": "lūk",
+      "meaning_tr": "kurt",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "*wĺ̥kʷos",
+      "forms": {
+        "nom_sg": "lūkos",
+        "acc_sg": "lūkom",
+        "gen_sg": "lūkosyo",
+        "nom_pl": "lūkes",
+        "acc_pl": "lūkem",
+        "gen_pl": "lūkesyo"
+      }
+    },
+    {
+      "id": 54,
+      "root": "Dhēmos",
+      "stem": "Dhēm",
+      "meaning_tr": "Dhēmos, ilk kâtip",
+      "pos": "noun",
+      "domain": "proper",
+      "etymon": "ad",
+      "forms": {
+        "nom_sg": "Dhēmos",
+        "acc_sg": "Dhēmom",
+        "gen_sg": "Dhēmosyo",
+        "nom_pl": "Dhēmes",
+        "acc_pl": "Dhēmem",
+        "gen_pl": "Dhēmesyo"
+      }
+    },
+    {
+      "id": 55,
+      "root": "werteti",
+      "stem": "wert",
+      "meaning_tr": "döner",
+      "pos": "verb",
+      "domain": "kin_body_faith",
+      "etymon": "*wert- dönmek",
+      "forms": {
+        "3sg": "werteti",
+        "imp": "werte"
+      }
+    },
+    {
+      "id": 56,
+      "root": "tūkos",
+      "stem": "tūk",
+      "meaning_tr": "hırsız",
+      "pos": "noun",
+      "domain": "property",
+      "etymon": "invented",
+      "forms": {
+        "nom_sg": "tūkos",
+        "acc_sg": "tūkom",
+        "gen_sg": "tūkosyo",
+        "nom_pl": "tūkes",
+        "acc_pl": "tūkem",
+        "gen_pl": "tūkesyo"
+      }
     }
   ]
 }

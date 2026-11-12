@@ -1,0 +1,30 @@
+{
+  "id": "i08",
+  "order": 8,
+  "era": 1,
+  "kind": "kisa",
+  "title_tr": "Nöbet buyruğu",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Bey'in kâhyası",
+    "says_tr": "Bey dağa nöbetçi koyuyor. Dağlılar inerse ateş yakılacak. Buyruk bugünün diliyle yazılsın; *rēgos* adı doğru yazılmazsa başım yanar."
+  },
+  "old_text": "Rēgos agnom dhegheti. Dhūmom weide.",
+  "heard": [
+    "thekheti",
+    "rēgos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "delivered_tr": "Dağ yolunda ateş kuleleri kuruldu. Çobanlar şehre artık geceleri iniyor."
+}

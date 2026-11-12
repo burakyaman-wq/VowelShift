@@ -1,0 +1,55 @@
+{
+  "id": "i11",
+  "order": 11,
+  "era": 1,
+  "kind": "kisa",
+  "title_tr": "Mēros'un ikinci mektubu",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Dağlı çoban",
+    "says_tr": "Kopyan dağda okundu; bir tahta daha gönderdiler. Bu mektupta Mēros'un ışığı sönüyor. Ama bugün *lūkos* dersen dağda herkes 'kurt' anlar."
+  },
+  "old_text": "Bhrātēros grānom emeti. Leukos mereti.",
+  "heard": [
+    "lūkos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "tools": {
+    "not": 2,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "leukos",
+          "eski"
+        ]
+      },
+      "set": "isik_eski",
+      "chronicle": "'Işık' kelimesini eski yazımla bıraktın. Dağlılar mektubu yaşlılarına okuttu; Mēros'un umudunun söndüğünü anladılar."
+    },
+    {
+      "when": {
+        "mark": [
+          "leukos",
+          "not"
+        ]
+      },
+      "set": "isik_notlu",
+      "chronicle": "Kenara 'ışık' notunu düştün. Dağlılar Mēros'un umudunun söndüğünü anladı."
+    },
+    {
+      "when": {},
+      "set": "kurt_soylentisi",
+      "chronicle": "Dağda mektup 'kurt öldü' diye okundu. Çobanlar şehirden gelen kurtları konuşuyor."
+    }
+  ]
+}

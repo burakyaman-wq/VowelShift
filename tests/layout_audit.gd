@@ -13,41 +13,46 @@ func _initialize() -> void:
 
 func _go() -> void:
 	await process_frame
-	for order in [1, 2, 3, 4]:
+	var lib := ManuscriptLibrary.new()
+	var only := OS.get_environment("DOCS")
+	for m in lib.docs:
+		var order: String = m.id
+		if only != "" and not order in only.split(","):
+			continue
 		var desk: Node = load("res://scenes/desk.tscn").instantiate()
-		desk.doc_order = order
+		desk.doc_id = m.id
 		root.add_child(desk)
 		await process_frame
 		if desk.interlude_text() != "":
-			await _check(desk, "belge %d ara sayfa" % order)
+			await _check(desk, "belge %s ara sayfa" % order)
 			desk.dismiss_interlude()
 			await create_timer(0.6).timeout
-		await _check(desk, "belge %d başta" % order)
-		var cards: Array = Copyist.hand(desk.doc, desk.engine).slice(0, 2)
+		await _check(desk, "belge %s başta" % order)
+		var cards: Array = Copyist.hand(desk.doc, desk.engine).filter(func(r: String) -> bool: return desk.engine.by_id[r].era == desk.doc.era or r in desk.doc.inherit_cards).slice(0, 2)
 		for i in cards.size():
 			desk.place_rule(cards[i], i)
 			await create_timer(0.3).timeout
-			await _check(desk, "belge %d, %d kart" % [order, i + 1])
+			await _check(desk, "belge %s, %d kart" % [order, i + 1])
 		for k in desk.words:
 			desk._on_word_hovered(desk.words[k], true)
-			await _check(desk, "belge %d, sözlük: %s" % [order, k])
+			await _check(desk, "belge %s, sözlük: %s" % [order, k])
 		for t in ["not", "eski", "kazi"]:
 			desk.mark_word(desk.words.keys()[0], t)
-			await _check(desk, "belge %d, %s" % [order, t])
+			await _check(desk, "belge %s, %s" % [order, t])
 		desk.unmark(desk.words.keys()[0])
 		if desk.doc.allow_reorder:
 			desk.move_word(2, 0)
 			desk.move_word(3, 1)
-			await _check(desk, "belge %d sıralı" % order)
+			await _check(desk, "belge %s sıralı" % order)
 		desk.open_reading()
 		await create_timer(0.3).timeout
-		await _check(desk, "belge %d okuma" % order)
+		await _check(desk, "belge %s okuma" % order)
 		desk.close_reading()
 		desk.write_copy()
 		await create_timer(1.5).timeout
-		await _check(desk, "belge %d rafta" % order)
+		await _check(desk, "belge %s rafta" % order)
 		desk.deliver()
-		if order == 4:
+		if m == lib.docs[-1]:
 			desk.next_document()
 			await create_timer(0.3).timeout
 			await _check(desk, "son")

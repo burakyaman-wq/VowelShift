@@ -1,6 +1,6 @@
 {
   "id": "doc_01",
-  "order": 1,
+  "order": 7,
   "era": 1,
   "title_tr": "Temel taşı tableti",
   "intro_tr": "",
@@ -23,5 +23,12 @@
       "Tanrının kendisi",
       "Rahibe"
     ]
+  },
+  "delivered_tr": "Rahibe kopyanı tapınağın rafına koydu.",
+  "kind": "ana",
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
   }
 }

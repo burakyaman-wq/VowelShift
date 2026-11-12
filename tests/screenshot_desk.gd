@@ -20,7 +20,7 @@ func _save(name: String) -> void:
 
 func _desk(order: int) -> Node:
 	var desk: Node = load("res://scenes/desk.tscn").instantiate()
-	desk.doc_order = order
+	desk.doc_id = "doc_0%d" % order
 	desk.era_look = int(OS.get_environment("ERA")) if OS.get_environment("ERA") != "" else 0
 	root.add_child(desk)
 	return desk

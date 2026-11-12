@@ -38,6 +38,10 @@ const GRID_COLS := 4
 const ERA_NAMES := ["", "I. çağ", "II. çağ", "III. çağ", "IV. çağ"]
 
 @export var doc_order := 1
+## Start at this document instead (its id); wins over doc_order.
+@export var doc_id := ""
+## Pick up the saved run and save after every delivery.
+@export var autosave := false
 @export var dev_cards := false          # kept for older tests; the hand is dealt either way
 @export var era_look := 0               # paint the desk as this era whatever the document's; 0 = the document's
 
@@ -84,8 +88,12 @@ func _ready() -> void:
 	engine = RuleEngine.new()
 	lib = ManuscriptLibrary.new()
 	narrative = Narrative.new()
-	state = GameState.new()
-	state.doc_index = doc_order - 1
+	state = GameState.load_or_new() if autosave else GameState.new()
+	if not autosave:
+		state.doc_index = lib.index_of(doc_id) if doc_id != "" else doc_order - 1
+	if state.doc_index >= lib.docs.size():
+		state.doc_index = 0
+	state.phase = "read"
 	_start_doc(false)
 
 
@@ -224,6 +232,8 @@ func deliver() -> bool:
 		return false
 	state.phase = "done"
 	state.doc_index += 1
+	if autosave:
+		state.save()
 	_advance = true
 	_glow_slip(false)
 	var stamp := _tex(_slip, "muhur.png", Vector2(250, 150), -10.0, false)
@@ -247,16 +257,22 @@ func next_document() -> void:
 ## What the scribe learns before this document: what the years did, or what
 ## the street made of the last copy. Empty when there is nothing to tell.
 func interlude_text() -> String:
+	var last := lib.get_doc(state.doc_index - 1) if state.doc_index > 0 else null
+	var after_story := last != null and last.kind == "ana" and state.scores.has(last.id)
+	if doc.intro == "" and not after_story:
+		return ""
 	var parts := PackedStringArray()
-	var last := str(doc.order - 1)
-	if state.scores.has(last):
-		var sc: Dictionary = state.scores[last]
-		parts.append("[color=%s]Belge %s teslim edildi:[/color] sadakat %d / %d, anlaşılırlık %d / %d. %s" % [RED_HEX, last, sc["fidelity"], Copyist.FULL, sc["clarity"], Copyist.FULL, narrative.delivered(int(last))])
+	if last and state.scores.has(last.id):
+		parts.append(_handoff_line(last))
 	if doc.intro != "":
 		parts.append(doc.intro)
-	if doc.order == 3 and state.copies.has("2"):
-		parts.append(narrative.rumour_doc3(state))
 	return "\n\n".join(parts)
+
+
+## How the last copy was weighed and what came of it, in one line.
+func _handoff_line(last: Manuscript) -> String:
+	var sc: Dictionary = state.scores[last.id]
+	return "[color=%s]«%s» teslim edildi:[/color] sadakat %d / %d, anlaşılırlık %d / %d. %s" % [RED_HEX, last.title, sc["fidelity"], Copyist.FULL, sc["clarity"], Copyist.FULL, state.chronicle_of(last.id)]
 
 
 func dismiss_interlude() -> void:
@@ -316,7 +332,7 @@ func era() -> int:
 func _start_doc(arrive: bool) -> void:
 	if _ink_tween and _ink_tween.is_valid():
 		_ink_tween.kill()
-	doc = lib.get_doc(state.doc_index)
+	doc = lib.get_doc(state.doc_index).resolved(state.flags)
 	state.begin_doc(doc, engine)
 	_hand = Copyist.hand(doc, engine)
 	for rid in _hand:
@@ -347,6 +363,9 @@ func _start_doc(arrive: bool) -> void:
 	elif arrive:
 		_arrive()
 	_guide()
+	var last := lib.get_doc(state.doc_index - 1) if state.doc_index > 0 else null
+	if told == "" and last and state.scores.has(last.id) and tutor:
+		tutor.tell(_handoff_line(last))
 
 
 func _arriving() -> Array:
@@ -481,14 +500,18 @@ func _build() -> void:
 		_add_tile(rid)
 
 	# the scribe cards, bottom right
-	_label(self, "Kâtip kartları · kelimeye sürükle", 20, PAPER).position = Vector2(1460, 770)
+	# a job that has not reached the scribe cards yet shows none of them
+	var shown := Copyist.TOOLS.filter(func(t: String) -> bool: return state.tools[t] > 0 or doc.tools.is_empty())
+	if not shown.is_empty():
+		_label(self, "Kâtip kartları · kelimeye sürükle", 20, PAPER).position = Vector2(1460, 770)
 	for i in Copyist.TOOLS.size():
 		var tool: String = Copyist.TOOLS[i]
 		var sc := ScribeCard.new()
 		add_child(sc)
 		sc.setup(tool, state.tools[tool], FONT, era())
-		sc.home = Vector2(1456 + i * 134, 806)
+		sc.home = Vector2(1456 + shown.find(tool) * 134, 806)
 		sc.position = sc.home
+		sc.visible = tool in shown
 		sc.dropped.connect(_on_tool_dropped)
 		tools[tool] = sc
 
@@ -872,7 +895,9 @@ func _show_ending() -> void:
 	again.position = Vector2(1040, 684)
 	page.gui_input.connect(func(e: InputEvent) -> void:
 		if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT and is_inside_tree() and get_tree().current_scene == self:
-			get_tree().reload_current_scene())
+			if autosave and FileAccess.file_exists(GameState.SAVE_PATH):
+				DirAccess.remove_absolute(ProjectSettings.globalize_path(GameState.SAVE_PATH))
+			get_tree().change_scene_to_file("res://scenes/baslik.tscn"))
 
 
 func _scales_line() -> String:
@@ -909,9 +934,18 @@ func _next_step() -> Array:
 		if doc.order == 1:
 			return ["Eski belgeyi bugünün diline kopyalayacaksın. Sol alttaki [color=%s]ses kartlarından birine tıkla[/color]: şeride iner ve bütün kelimeler birlikte değişir. Kartın üstüne gelince sonucunu önceden görürsün." % RED_HEX, _hand_rect()]
 		var before := lib.get_doc(state.doc_index - 1) if state.doc_index > 0 else null
-		if before and before.era == doc.era:
-			return ["Aynı çağdasın; ses kartları aynı. [color=%s]Biri yine bu çağa ait değil[/color]: onu şeride koyma." % RED_HEX, _hand_rect()]
-		return ["Yeni çağ: sözlük ve ses kartları değişti. [color=%s]Biri bu çağa ait değil[/color]. İpucu: istek notundaki kırmızı kelimeler bu çağın dilinden; kartların önizlemesini onlarla karşılaştır." % RED_HEX, _hand_rect()]
+		var stranger := Copyist.decoy(engine, doc.era)
+		var has_stranger := stranger != "" and stranger in _hand
+		var had_stranger := before != null and stranger in Copyist.hand(before, engine)
+		if before and before.era != doc.era:
+			return ["Yeni çağ: sözlük ve ses kartları değişti.%s" % (" [color=%s]Biri bu çağa ait değil[/color]. İpucu: istek notundaki kırmızı kelimeler bu çağın dilinden; kartların önizlemesini onlarla karşılaştır." % RED_HEX if has_stranger else " Kartların üstüne gelip önizlemeye bak."), _hand_rect()]
+		if has_stranger and not had_stranger:
+			return ["Elinde yeni bir kart var ve [color=%s]biri bu çağa ait değil[/color]: kelimeleri sözlükte olmayan ya da başka anlama gelen biçimlere çevirir. Önizlemeye ve istek notundaki kırmızı kelimelere bak; o kartı şeride koyma." % RED_HEX, _hand_rect()]
+		if has_stranger:
+			return ["Ses kartları aynı. [color=%s]Biri yine bu çağa ait değil[/color]: onu şeride koyma." % RED_HEX, _hand_rect()]
+		if _hand.size() == 1:
+			return ["Yeni iş. [color=%s]Ses kartına tıkla[/color]; kelimelerin nasıl değiştiğine bak." % RED_HEX, _hand_rect()]
+		return ["Yeni iş. Hangi ses kartları bu belgeye uyuyor? Kartın üstüne gel, önizlemeye bak; [color=%s]uyanları şeride koy[/color]." % RED_HEX, _hand_rect()]
 	if not ev["blocked"].is_empty():
 		var where := tray.get_global_rect() if order.size() >= 2 else _hand_rect()
 		return ["Altında «sözlükte yok» yazan kelimeler bugün okunamaz. Başka bir kart ekle ya da sırayı değiştir: kartlar soldan sağa uygulanır. Şeritteki bir kartı başka yuvaya sürükleyebilir ya da tıklayıp eline alabilirsin.", where]
@@ -963,7 +997,7 @@ func _tell_change(before: Dictionary, rule_id: String) -> void:
 			if a["shifted"] and not before["rows"][i]["shifted"]:
 				drifted.append(a["new"])
 	var r: SoundRule = engine.by_id[rule_id]
-	var line := "«%s» bu sırada hiçbir kelimeyi değiştirmedi." % r.name_tr if changed == 0 else "«%s» %d kelimeyi değiştirdi." % [r.name_tr, changed]
+	var line := "«%s» hiçbir kelimeyi değiştirmedi." % r.name_tr if changed == 0 else "«%s» %d kelimeyi değiştirdi." % [r.name_tr, changed]
 	if not drifted.is_empty():
 		line += " [color=%s]%s[/color] artık başka bir anlam taşıyor." % [RED_HEX, ", ".join(drifted)]
 	tutor.tell(line)
@@ -998,7 +1032,11 @@ func _clickable(node: Control, action: Callable, mark_at: Vector2) -> void:
 
 
 func _title(page: Control, pos: Vector2, size_px: int, text: String = "") -> void:
-	var title := _label(page, text if text != "" else doc.title, size_px, PAPER)
+	var t := text if text != "" else doc.title
+	var fs := size_px
+	while fs > 16 and FONT.get_string_size(t, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > 280:
+		fs -= 1
+	var title := _label(page, t, fs, PAPER)
 	title.position = pos
 	title.size = Vector2(300, 46)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

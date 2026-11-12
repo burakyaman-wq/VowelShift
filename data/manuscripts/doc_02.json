@@ -1,9 +1,9 @@
 {
   "id": "doc_02",
-  "order": 2,
+  "order": 16,
   "era": 2,
   "title_tr": "Kurucuların kaydı",
-  "intro_tr": "Elli yıl geçti. Sokakta sesli harfler yine değişti; eski defterleri artık gençler okuyamıyor. Yazıhanenin başına usta Argos geçti ve sana yeni çağın ses kartlarını verdi.",
+  "intro_tr": "Elli yıl geçti. Lūka yaşlandı; mührü çırağı Argos'a, yani sana verdi. Sokakta sesli harfler yine değişti; eski defterleri artık gençler okuyamıyor.",
   "requester": {
     "name_tr": "Saray görevlisi",
     "says_tr": "*Rīgos* kurucuların kaydını istiyor. Eski defterlerde *grānos* yazıyor, biz artık *grēnos* diyoruz; tarlalara da *ēgros* diyoruz, ambarın *thītos*'u kabardı. Kopyan bugünün diliyle olmalı. Acele et, *rīgos* beklemez."
@@ -25,5 +25,28 @@
       "Kral oldu",
       "Tahılını verdi"
     ]
-  }
+  },
+  "delivered_tr": "Saray görevlisi kopyayı alıp kayda geçirdi.",
+  "outcomes": [
+    {
+      "when": {
+        "copy_has": "nīkos"
+      },
+      "set": "olu_yazildi",
+      "chronicle": "Sarayda senin kopyanı okudular: kurucunun kardeşi ölmüş. Mezarını arıyorlar."
+    },
+    {
+      "when": {
+        "copy_has": "nākos"
+      },
+      "set": "nakos_korundu",
+      "chronicle": "Sarayda senin kopyanı okudular. Kardeşin adının yanına eski yazımla [i]nākos[/i] yazmıştın; gençler kelimeyi tanımadı ama yaşlılara sordular, onlar da 'sürgün' dedi. Çarşıda kardeşin sürgün edildiği konuşuluyor."
+    },
+    {
+      "when": {},
+      "set": "olu_soylentisi",
+      "chronicle": "Sarayda senin kopyanı okudular: kardeş sürgün edilmiş. Ama yaşlılar eski dille okuyor; onlara göre [i]nēkos[/i] 'ölü' demek. Çarşıda kardeşin öldürüldüğü konuşuluyor."
+    }
+  ],
+  "kind": "ana"
 }

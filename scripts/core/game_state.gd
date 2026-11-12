@@ -11,15 +11,20 @@ var doc_index := 0
 var phase := "read"          # "read" -> "answer" -> next document
 var cards: Array[String] = []
 var proven: Dictionary = {}  # rule id -> Array[int] of proven sub indices
-var copies: Dictionary = {}  # doc order (String) -> shelved copy text
-var answers: Dictionary = {} # doc order (String) -> chosen option text
-var notes: Dictionary = {}   # doc order (String) -> margin note
+var copies: Dictionary = {}  # doc id -> shelved copy text
+var answers: Dictionary = {} # doc id -> chosen option text
+var notes: Dictionary = {}   # doc id -> margin note
+var titles: Dictionary = {}  # doc id -> title, for every shelved copy
+var flags: Dictionary = {}   # story flags set by delivered copies
+var chronicle: Array = []    # [{"doc": id, "line": text}] in the order written
 
 
 ## Call when a document is put on the desk: hands over inherited cards.
 func begin_doc(doc: Manuscript, engine: RuleEngine) -> void:
 	phase = "read"
 	tools = TOOLS_PER_DOC.duplicate()
+	if not doc.tools.is_empty():
+		tools = {"not": int(doc.tools.get("not", 0)), "eski": int(doc.tools.get("eski", 0)), "kazi": int(doc.tools.get("kazi", 0))}
 	for rid in doc.inherit_cards:
 		if rid not in cards:
 			cards.append(rid)
@@ -165,13 +170,36 @@ func shelve(doc: Manuscript, ev: Dictionary, marks: Dictionary) -> Dictionary:
 			return {"shelved": false, "error": "no_" + t}
 	for t in need:
 		tools[t] -= need[t]
-	copies[str(doc.order)] = ev["copy"]
+	copies[doc.id] = ev["copy"]
 	var g := Copyist.gloss(ev)
 	if g != "":
-		notes[str(doc.order)] = g
-	scores[str(doc.order)] = {"fidelity": ev["fidelity"], "clarity": ev["clarity"]}
+		notes[doc.id] = g
+	titles[doc.id] = doc.title
+	scores[doc.id] = {"fidelity": ev["fidelity"], "clarity": ev["clarity"]}
+	titles[doc.id] = doc.title
+	var line := doc.delivered
+	var told := false
+	for o in doc.outcomes:
+		if not Manuscript.holds(o.get("when", {}), flags, ev, marks):
+			continue
+		var sets = o.get("set", [])
+		for f in (sets if sets is Array else [sets]):
+			flags[String(f)] = true
+		if o.has("chronicle") and not told:
+			line = o["chronicle"]
+			told = true
+	if line != "":
+		chronicle.append({"doc": doc.id, "line": line})
 	phase = "answer"
-	return {"shelved": true, "error": "", "copy": ev["copy"]}
+	return {"shelved": true, "error": "", "copy": ev["copy"], "line": line}
+
+
+## The chronicle line written when `doc_id` was delivered ("" if none).
+func chronicle_of(doc_id: String) -> String:
+	for c in chronicle:
+		if c["doc"] == doc_id:
+			return c["line"]
+	return ""
 
 
 func make_copy(doc: Manuscript, engine: RuleEngine, order: Array, reorder: Array = []) -> Dictionary:
@@ -202,22 +230,23 @@ func make_copy(doc: Manuscript, engine: RuleEngine, order: Array, reorder: Array
 			rejected.append(w.to_lower())
 	var shelved := rejected.is_empty()
 	if shelved:
-		copies[str(doc.order)] = copy
+		copies[doc.id] = copy
 		phase = "answer"
 	return {"copy": copy, "rejected": rejected, "shelved": shelved, "error": ""}
 
 
 func add_note(doc: Manuscript, text: String) -> bool:
-	if text.strip_edges() == "" or not copies.has(str(doc.order)):
+	if text.strip_edges() == "" or not copies.has(doc.id):
 		return false
-	notes[str(doc.order)] = text.strip_edges()
+	notes[doc.id] = text.strip_edges()
+	titles[doc.id] = doc.title
 	return true
 
 
 func answer(doc: Manuscript, option_index: int) -> bool:
 	if phase != "answer" or option_index < 0 or option_index >= doc.options.size():
 		return false
-	answers[str(doc.order)] = doc.options[option_index]
+	answers[doc.id] = doc.options[option_index]
 	doc_index += 1
 	phase = "read"
 	return true
@@ -232,9 +261,10 @@ static func _unique(a: Array) -> Array:
 
 # --- Saving ----------------------------------------------------------------
 
-func to_dict() -> Dictionary:  # tools and scores are not saved yet: the slice is played in one sitting
+func to_dict() -> Dictionary:
 	return {"doc_index": doc_index, "phase": phase, "cards": cards, "proven": proven,
-		"copies": copies, "answers": answers, "notes": notes}
+		"copies": copies, "answers": answers, "notes": notes, "titles": titles,
+		"flags": flags, "chronicle": chronicle, "scores": scores}
 
 
 static func from_dict(d: Dictionary) -> GameState:
@@ -248,6 +278,12 @@ static func from_dict(d: Dictionary) -> GameState:
 	g.copies = d.get("copies", {})
 	g.answers = d.get("answers", {})
 	g.notes = d.get("notes", {})
+	g.titles = d.get("titles", {})
+	g.flags = d.get("flags", {})
+	g.chronicle = d.get("chronicle", [])
+	for k in d.get("scores", {}):
+		var sc: Dictionary = d["scores"][k]
+		g.scores[k] = {"fidelity": int(sc["fidelity"]), "clarity": int(sc["clarity"])}
 	return g
 
 

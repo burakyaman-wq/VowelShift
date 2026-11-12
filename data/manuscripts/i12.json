@@ -1,0 +1,46 @@
+{
+  "id": "i12",
+  "order": 12,
+  "era": 1,
+  "kind": "kisa",
+  "title_tr": "Ustanın son sayfası",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Usta Dhēmos",
+    "says_tr": "Bu sayfa benim son işim. Mührü sana bırakıyorum, Leuka. Bugün bana *Thēmos* diyorlar; ama adımı mezar taşına nasıl yazacağın senin bileceğin iş."
+  },
+  "old_text": "Dhēmos mereti. Sighlom ghrobhosyo dōneti.",
+  "heard": [
+    "Thēmos",
+    "khrophos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "dhēmos",
+          "eski"
+        ]
+      },
+      "set": "usta_eski_ad",
+      "chronicle": "Ustanın adını eski yazımla bıraktın. Mezar taşında Dhēmos yazıyor; mühür artık sende. Gençler sana Lūka diyor."
+    },
+    {
+      "when": {},
+      "set": "usta_yeni_ad",
+      "chronicle": "Usta Thēmos öldü; mühür artık sende. Gençler sana artık Leuka değil, Lūka diyor."
+    }
+  ]
+}

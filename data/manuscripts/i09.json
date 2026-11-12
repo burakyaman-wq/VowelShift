@@ -1,0 +1,43 @@
+{
+  "id": "i09",
+  "order": 9,
+  "era": 1,
+  "kind": "kisa",
+  "title_tr": "Annenin vasiyeti",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Ambarcı Sālwa",
+    "says_tr": "Mühürle birlikte bir tablet daha çıktı: kurucuların annesinin vasiyeti. Tahılını kime bırakmış, mahkemede lazım olur. Annenin adı yine *Mātēros*, değişmedi."
+  },
+  "old_text": "Mātēros grānom Mērosyo dōneti. Bhrātēros grānom emeti.",
+  "heard": [
+    "phrātēros",
+    "Mātēros"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "copy_has": "mērosyo"
+      },
+      "set": "tahil_meros",
+      "chronicle": "Vasiyet açık: anne tahılını küçük oğlu Mēros'a bırakmış; büyük kardeş onu almış. Sālwa kopyayı sakladı."
+    },
+    {
+      "when": {},
+      "set": "tahil_belirsiz",
+      "chronicle": "Vasiyetin kopyasında tahılın kime kaldığı okunmuyor. Sālwa omuz silkti."
+    }
+  ]
+}

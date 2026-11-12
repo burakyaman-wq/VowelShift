@@ -35,11 +35,11 @@ func _init() -> void:
 	# Manuscripts load, are ordered and pass content validation.
 	var lib := ManuscriptLibrary.new()
 	_expect(lib.docs.size() >= 4, "at least 4 manuscripts load")
-	_expect(lib.get_doc(0).id == "doc_01", "manuscripts sorted by order")
+	_expect(lib.find("doc_01").id == "doc_01", "manuscripts sorted by order")
 	for e in lib.validate(engine):
 		_expect(false, "content: " + e)
-	_expect(lib.get_doc(1).says_bbcode().begins_with("[i]Rīgos[/i]"), "italics become BBCode")
-	_expect(lib.get_doc(3).allow_reorder, "doc 4 allows reordering")
+	_expect(lib.find("doc_02").says_bbcode().begins_with("[i]Rīgos[/i]"), "italics become BBCode")
+	_expect(lib.find("doc_04").allow_reorder, "doc 4 allows reordering")
 
 	_play_through(engine, lib)
 
@@ -78,7 +78,7 @@ func _desk_tests() -> void:
 	# Pairing: affixes follow the old word, and a pair names the changes it shows.
 	_expect(Pairing.match_affix("ghewom", "khewos") == "khewom", "the new word takes the old word's ending")
 	var st := GameState.new()
-	var d1 := lib.get_doc(0)
+	var d1 := lib.find("doc_01")
 	var good := Pairing.make(d1, lib, engine, st, "ghrebheti", "khrepheti")
 	_expect(good["ok"] and good["subs"].size() == 2, "ghrebheti → khrepheti shows two changes (gh, bh)")
 	_expect(not Pairing.make(d1, lib, engine, st, "Meiros", "khewos")["ok"], "unrelated words do not pair")
@@ -86,8 +86,8 @@ func _desk_tests() -> void:
 	_expect(marks[0][0] == 1 and marks[0][1] == 0 and marks[1][0] == 1, "only the changed letter is marked")
 
 	# Copyist: the copy, the scales and the scribe cards, without the desk.
-	var d2 := lib.get_doc(1)
-	_expect(Copyist.hand(lib.get_doc(0), engine) == ["R1", "R2", "R3"], "doc 1 deals its era's two cards and one stranger")
+	var d2 := lib.find("doc_02")
+	_expect(Copyist.hand(lib.find("doc_01"), engine) == ["R1", "R2", "R3"], "doc 1 deals its era's two cards and one stranger")
 	var ok2 := Copyist.evaluate(d2, engine, ["R3", "R4"], {}, {})
 	_expect(ok2["copy"] == "Mīros Mīrom ageti. Mīros nēkos." and ok2["blocked"].is_empty(), "doc 2 in the right order")
 	_expect(ok2["fidelity"] == 1 and ok2["clarity"] == 5, "three words fallen together and one the elders misread cost four fidelity")
@@ -98,7 +98,7 @@ func _desk_tests() -> void:
 	_expect(noted["fidelity"] == 3 and noted["clarity"] == 4 and noted["copy"] == "Mīros Mērom ageti. Mīros nēkos.", "a note and an old spelling buy back fidelity; the old spelling costs clarity")
 	var full2 := Copyist.evaluate(d2, engine, ["R3", "R4"], {}, {"mēros": "not", "mērom": "not", "mīros": "not", "nākos": "eski"})
 	_expect(full2["fidelity"] == 5 and full2["clarity"] == 4, "three notes and an old spelling: the best doc 2 can be")
-	var d4 := lib.get_doc(3)
+	var d4 := lib.find("doc_04")
 	var lit4 := Copyist.evaluate(d4, engine, ["R5", "R6"], {}, {})
 	_expect(lit4["order"] == "wrong" and lit4["fidelity"] == 3, "doc 4 copied word for word reads the wrong way round")
 	var re4 := Copyist.evaluate(d4, engine, ["R5", "R6"], {}, {}, [3, 4, 1, 2, 5])
@@ -108,15 +108,51 @@ func _desk_tests() -> void:
 	_expect(Copyist.gloss(noted) == "Mīros: kurucu kardeş (küçük)", "the note carries the old meaning")
 	var scraped := Copyist.evaluate(d2, engine, ["R3", "R4"], {}, {"nākos": "kazi"})
 	_expect(scraped["copy"] == "Mīros Mīrom ageti. Mīros.", "a scraped word leaves its sentence")
-	var raw := Copyist.evaluate(lib.get_doc(0), engine, [], {}, {})
+	var raw := Copyist.evaluate(lib.find("doc_01"), engine, [], {}, {})
 	_expect(raw["blocked"].size() == 5, "with no cards, five words of doc 1 are no words of the first era")
 	_expect(raw["clarity"] == 0, "and today's reader can read nothing of it")
 
 	# Document 1 on the desk: click a card, see the words change, write, deliver.
+	# Jobs set story flags and write the chronicle.
+	var gs := GameState.new()
+	var j10 := lib.find("i10")
+	gs.begin_doc(j10, engine)
+	_expect(gs.tools == {"not": 2, "eski": 1, "kazi": 0}, "a job deals only the scribe cards it needs")
+	var e10 := Copyist.evaluate(j10, engine, ["R1", "R2"], {}, {"teukos": "not"})
+	_expect(e10["fidelity"] == 5 and gs.shelve(j10, e10, {"teukos": "not"})["shelved"], "the witness glossed, the deed is whole")
+	_expect(gs.flags.has("senet_notlu") and gs.chronicle_of("i10").contains("tanık"), "the note saves the granary and the chronicle says so")
+	var j14 := lib.find("i14")
+	gs.begin_doc(j14, engine)
+	var e14 := Copyist.evaluate(j14, engine, ["R1", "R2"], {}, {"mēros": "kazi"})
+	gs.shelve(j14, e14, {"mēros": "kazi"})
+	_expect(gs.flags.has("meros_kazindi") and not gs.flags.has("ad_korundu"), "scraping the exile's name is remembered")
+	gs.save("user://test_flags.json")
+	var gs2 := GameState.load_or_new("user://test_flags.json")
+	_expect(gs2.flags.has("meros_kazindi") and gs2.chronicle.size() == 2 and gs2.scores.has("i14"), "flags, chronicle and scores survive a save")
+	var stranger_ok := true
+	for job in lib.docs:
+		if job.era == 1 and job.order < 7 and Copyist.decoy(engine, 1) in Copyist.hand(job, engine):
+			stranger_ok = false
+	_expect(stranger_ok, "no stranger card before the founding tablet")
+
+	# The very first job: one card, no scribe cards, the note starts with the hand.
+	var desk0: Node = load("res://scenes/desk.tscn").instantiate()
+	root.add_child(desk0)
+	_expect(desk0.doc.id == "i01" and desk0.tiles.size() == 1 and desk0.tiles.has("R1"), "the run opens on the door sign with one sound card")
+	_expect(desk0.tutor.step_text().contains("ses kartlarından birine tıkla"), "the note starts with the hand")
+	_expect(not desk0.tools["not"].visible and not desk0.tools["kazi"].visible, "no scribe cards before they are needed")
+	desk0.add_rule("R1")
+	_expect(desk0.write_copy()["copy"] == "Khrophosyo domos." and desk0.deliver(), "the door sign is copied and handed over")
+	desk0.next_document()
+	_expect(desk0.doc.id == "i02" and desk0.interlude_text() == "", "a short job follows without a page between")
+	_expect(desk0.tutor.feedback_text().contains("«Yazıhanenin kapısı» teslim edildi"), "the last job's fate is told on the desk")
+	desk0.queue_free()
+
 	var desk1: Node = load("res://scenes/desk.tscn").instantiate()
+	desk1.doc_id = "doc_01"
 	root.add_child(desk1)
 	_expect(desk1.tiles.size() == 3 and desk1.words.size() == 8, "doc 1: three sound cards in hand, eight word cards")
-	_expect(desk1.tutor.step_text().contains("ses kartlarından birine tıkla"), "the note starts with the hand")
+	_expect(desk1.tutor.step_text().contains("bu çağa ait değil"), "the first job with a stranger card says so")
 	desk1.tiles["R2"].clicked.emit(desk1.tiles["R2"])
 	_expect(desk1.tray.model.order() == ["R2"], "a click puts a card in the strip")
 	_expect(desk1.tutor.feedback_text().contains("2 kelimeyi değiştirdi"), "and says how many words it changed")
@@ -137,20 +173,21 @@ func _desk_tests() -> void:
 	_expect(desk1.tutor.step_text().contains("Kopya hazır"), "with every word right the note points at the pen")
 	var w1: Dictionary = desk1.write_copy()
 	_expect(w1["shelved"] and w1["copy"] == "Mīros dīwosyo khewom dōneti. Mīros phāgom khrepheti. Mēros nākos.", "doc 1 is copied right and shelved")
-	_expect(desk1.state.scores["1"] == {"fidelity": 5, "clarity": 5}, "and weighed in full")
+	_expect(desk1.state.scores["doc_01"] == {"fidelity": 5, "clarity": 5}, "and weighed in full")
 	_expect(desk1.tutor.step_text().contains("istek notuna tıkla"), "after shelving it points at the slip")
 	_expect(desk1.tutor.step_text().contains("doğru, onu kullanmadın"), "and says which card was the stranger")
 	_expect(desk1._page_words.size() > 16, "the copy is written on the document under the old text")
 	_expect(desk1.deliver(), "the copy is delivered")
 	desk1.next_document()
-	_expect(desk1.doc.order == 2 and desk1.tiles.size() == 3 and desk1.tiles.has("R5"), "doc 2 deals R3, R4 and a stranger")
+	_expect(desk1.doc.id == "i08" and desk1.tiles.size() == 3 and desk1.tiles.has("R3"), "the next job keeps the era's cards and its stranger")
+	_expect(desk1.interlude_text().contains("«Temel taşı tableti» teslim edildi"), "a story document is followed by a page")
 	desk1.dismiss_interlude()
-	_expect(desk1.tutor.step_text().contains("Biri bu çağa ait değil"), "the note warns of the stranger")
+	_expect(desk1.tutor.step_text().contains("Biri yine bu çağa ait değil"), "the note warns of the stranger again")
 	desk1.queue_free()
 
 	# Document 2: order, collisions and the scribe cards.
 	var desk: Node = load("res://scenes/desk.tscn").instantiate()
-	desk.doc_order = 2
+	desk.doc_id = "doc_02"
 	root.add_child(desk)
 	_expect(desk.interlude_text().contains("Elli yıl"), "doc 2 opens with the years that passed")
 	desk.dismiss_interlude()
@@ -173,14 +210,14 @@ func _desk_tests() -> void:
 	desk.close_reading()
 	var res: Dictionary = desk.write_copy()
 	_expect(res["shelved"] and desk.state.tools["not"] == 0, "writing spends the notes")
-	_expect(desk.state.notes["2"].contains("kurucu kardeş (küçük)"), "the glosses become the copy's margin note")
+	_expect(desk.state.notes["doc_02"].contains("kurucu kardeş (küçük)"), "the glosses become the copy's margin note")
 	_expect(desk.state.phase == "answer" and desk.tiles["R3"].locked, "a shelved copy locks the strip")
 	_expect(desk.write_copy().is_empty(), "nothing more is written after shelving")
 	_expect(not desk.move_word(0, 1), "words stay where they are in a document that does not let them move")
 	desk.deliver()
 	desk.next_document()
-	_expect(desk.doc.order == 3 and desk.interlude_text().contains("Sarayda senin kopyanı okudular"), "doc 3 opens on what the palace made of the copy")
-	_expect(desk.interlude_text().contains("Belge 2 teslim edildi"), "and on how the delivered copy was weighed")
+	_expect(desk.doc.id == "doc_03" and desk.interlude_text().contains("Sarayda senin kopyanı okudular"), "doc 3 opens on what the palace made of the copy")
+	_expect(desk.interlude_text().contains("«Kurucuların kaydı» teslim edildi"), "and on how the delivered copy was weighed")
 	_expect(not desk.get_node("Belge").visible, "the new document waits behind the page")
 	_expect(desk.state.tools["not"] == 3 and desk.tools_left("not") == 3, "a fresh set of scribe cards comes with every document")
 	desk.dismiss_interlude()
@@ -196,7 +233,7 @@ func _desk_tests() -> void:
 
 	# Document 4: the endings have worn off, so the order of the words now says who did it.
 	var desk4: Node = load("res://scenes/desk.tscn").instantiate()
-	desk4.doc_order = 4
+	desk4.doc_id = "doc_04"
 	root.add_child(desk4)
 	_expect(desk4.interlude_text().contains("Önce gelen yapandır"), "doc 4 opens on the master's note about word order")
 	desk4.dismiss_interlude()
@@ -237,7 +274,7 @@ func _play_through(engine: RuleEngine, lib: ManuscriptLibrary) -> void:
 		var careful: bool = name == "A"
 		var g := GameState.new()
 		# Doc 1
-		var d := lib.get_doc(0)
+		var d := lib.find("doc_01")
 		g.begin_doc(d, engine)
 		_expect(g.prove_rule(d, lib, engine, "gh", "kh", ["ghewom:khewom", "ghrebheti:khrepheti"]).ok, name + " prove gh")
 		_expect(not g.prove_rule(d, lib, engine, "gh", "kh", ["ghewom:khewos", "ghos:khos"]).ok, name + " fake/affix pairs rejected")
@@ -247,7 +284,7 @@ func _play_through(engine: RuleEngine, lib: ManuscriptLibrary) -> void:
 		_expect(g.make_copy(d, engine, ["R1", "R2"]).shelved, name + " doc1 shelved")
 		g.answer(d, 0)
 		# Doc 2
-		d = lib.get_doc(1)
+		d = lib.find("doc_02")
 		g.begin_doc(d, engine)
 		_expect(g.prove_rule(d, lib, engine, "ē", "ī", ["rēgos:rīgos", "thētos:thītos"]).ok, name + " prove ē→ī")
 		_expect(g.prove_rule(d, lib, engine, "ā", "ē", ["grānos:grēnos", "āgros:ēgros"]).ok, name + " prove ā→ē")
@@ -257,14 +294,14 @@ func _play_through(engine: RuleEngine, lib: ManuscriptLibrary) -> void:
 			g.add_note(d, story[name]["notes"]["2"])
 		g.answer(d, 0)
 		# Doc 3
-		d = lib.get_doc(2)
+		d = lib.find("doc_03")
 		g.begin_doc(d, engine)
 		_expect(narr.rumour_doc3(g) == story[name]["rumour"], name + " rumour: " + narr.rumour_doc3(g))
 		_expect(not g.make_copy(d, engine, ["R4", "R3"]).shelved, name + " doc3 rejects wrong order")
 		_expect(g.make_copy(d, engine, ["R3", "R4"]).shelved, name + " doc3 shelved")
 		g.answer(d, 0)
 		# Doc 4
-		d = lib.get_doc(3)
+		d = lib.find("doc_04")
 		g.begin_doc(d, engine)
 		_expect("R6" in g.cards, name + " inherited damak")
 		_expect(g.prove_rule(d, lib, engine, "-s", "∅", ["rīgos:rīgo", "ēgros:ēgro"]).ok, name + " prove -s")
@@ -276,7 +313,7 @@ func _play_through(engine: RuleEngine, lib: ManuscriptLibrary) -> void:
 		g.answer(d, 0 if careful else 2)
 		_expect(narr.epilogue(g) == story[name]["epilogue"], name + " epilogue matches prototype")
 		var g_old := GameState.new()
-		g_old.copies["2"] = "Mīros Mīrom ageti. Mīros nākos."
+		g_old.copies["doc_02"] = "Mīros Mīrom ageti. Mīros nākos."
 		_expect(narr.rumour_doc3(g_old).contains("sürgün edildiği konuşuluyor") and narr.epilogue(g_old).contains("hiç doğmadı"), name + " the old spelling keeps the rumour from being born")
 		# Save round-trip
 		var path := "user://test_save.json"

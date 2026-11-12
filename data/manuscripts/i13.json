@@ -1,0 +1,45 @@
+{
+  "id": "i13",
+  "order": 13,
+  "era": 1,
+  "kind": "kisa",
+  "title_tr": "Bey'in istediği silinti",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Bey'in kâhyası",
+    "says_tr": "Bey dağlıların mektubunu duydu. Mektubun saray kopyası olacak, ama içinde 'kardeş' geçmeyecek. O kelimeyi kazı, Lūka. Ödülü bol."
+  },
+  "old_text": "Mēros gweiweti. Bhrātēros grānom emeti.",
+  "heard": [
+    "phrātēros"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 1,
+    "kazi": 1
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "bhrātēros",
+          "kazi"
+        ]
+      },
+      "set": "mektup_kazindi",
+      "chronicle": "Saray kopyasında 'kardeş' yok. Kâhya kesesini masana bıraktı; dağlıların mektubu artık kimseyi suçlamıyor."
+    },
+    {
+      "when": {},
+      "set": "mektup_tam",
+      "chronicle": "Kelimeyi kazımadın. Kâhya kopyayı yere attı; bey seni bir daha saraya çağırmayacak."
+    }
+  ]
+}

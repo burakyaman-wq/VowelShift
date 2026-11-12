@@ -1,0 +1,30 @@
+{
+  "id": "i15",
+  "order": 15,
+  "era": 1,
+  "kind": "ana",
+  "title_tr": "Ustanın defteri",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Lūka (kendin)",
+    "says_tr": "Ustanın defterinin son sayfası kurucu zamanından kalma; kimse görmeden kopyalamak istiyorum. Satırları kendi defterime geçireceğim, kenarına da kendi notumu düşeceğim."
+  },
+  "old_text": "Mēros werteti. Rēgos dhūmom weideti. Ghrobhos weideti.",
+  "heard": [
+    "thūmos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "outcomes": [
+    {
+      "when": {},
+      "set": "luka_sayfasi",
+      "chronicle": "Lūka sayfayı defterine geçirdi: Mēros bir gün dönmüş, bey dumanı görmüş, bir kâtip de görmüş. Sayfanın kenarına küçük bir işaret koydu."
+    }
+  ]
+}

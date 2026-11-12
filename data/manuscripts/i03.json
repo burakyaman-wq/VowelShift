@@ -1,0 +1,28 @@
+{
+  "id": "i03",
+  "order": 3,
+  "era": 1,
+  "kind": "kisa",
+  "title_tr": "Ambardaki mühür",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Ambarcı Sālwa",
+    "says_tr": "Ambarın dibinde eski bir mühür bulduk; kurucu kardeşlerin annesinin mührü. Üstünde bir borç yazıyor. Bugün buna *thētos* diyoruz. Ne yazdığını bilmem lazım."
+  },
+  "old_text": "Mātērosyo sighlos. Grānosyo dhētos.",
+  "heard": [
+    "thētos",
+    "sikhlos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R1"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "delivered_tr": "Sālwa mührü sandığına kilitledi: kurucuların annesinin bir tahıl borcu varmış."
+}

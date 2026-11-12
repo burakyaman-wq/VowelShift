@@ -23,7 +23,8 @@ func _go() -> void:
 	await process_frame
 	seed(int(OS.get_environment("SEED")) if OS.get_environment("SEED") != "" else 1)
 	desk = load("res://scenes/desk.tscn").instantiate()
-	desk.doc_order = int(OS.get_environment("DOC")) if OS.get_environment("DOC") != "" else 1
+	var dv := OS.get_environment("DOC")
+	desk.doc_id = ("doc_0" + dv) if dv.is_valid_int() else (dv if dv != "" else "doc_01")
 	root.add_child(desk)
 	await create_timer(0.5).timeout
 	for i in 300:

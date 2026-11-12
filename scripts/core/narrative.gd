@@ -13,12 +13,12 @@ func _init(path: String = PATH) -> void:
 
 
 func copy_says_dead(state: GameState) -> bool:
-	return String(state.copies.get("2", "")).contains(t["key_word_wrong"])
+	return String(state.copies.get("doc_02", "")).contains(t["key_word_wrong"])
 
 
 ## The scribe kept the old spelling, which no one can misread.
 func copy_keeps_old(state: GameState) -> bool:
-	return String(state.copies.get("2", "")).contains(t["key_word_old"])
+	return String(state.copies.get("doc_02", "")).contains(t["key_word_old"])
 
 
 ## One line after a copy is handed over.
@@ -30,7 +30,7 @@ func delivered(no: int) -> String:
 func rumour_doc3(state: GameState) -> String:
 	var dead := copy_says_dead(state)
 	var line: String = t["reaction_doc3"]["dead" if dead else ("old_spelling" if copy_keeps_old(state) else "exiled")]
-	var a2 := String(state.answers.get("2", ""))
+	var a2 := String(state.answers.get("doc_02", ""))
 	if a2 != "" and ((dead and a2.begins_with("Sürgün")) or (not dead and a2 == "Öldü")):
 		line += " " + t["reaction_doc3"]["contradiction"]
 	return line
@@ -38,7 +38,7 @@ func rumour_doc3(state: GameState) -> String:
 
 ## How era-3 readers understand the document-4 copy: the first noun is the doer.
 func city_reading_doc4(state: GameState) -> String:
-	var ws := String(state.copies.get("4", "")).to_lower().split(" ", false)
+	var ws := String(state.copies.get("doc_04", "")).to_lower().split(" ", false)
 	if ws.size() >= 2 and ws[0].begins_with("mīro") and ws[1].begins_with("rīgo"):
 		return t["doc4"]["subject_first"]
 	return t["doc4"]["object_first"]
@@ -49,21 +49,21 @@ func epilogue(state: GameState) -> String:
 	var e: Dictionary = t["epilogue"]
 	var first: String = e["doc2_dead"] if copy_says_dead(state) else (e["doc2_old_spelling"] if copy_keeps_old(state) else e["doc2_exiled"])
 	var parts: PackedStringArray = [first]
-	var has_copy4 := state.copies.has("4")
+	var has_copy4 := state.copies.has("doc_04")
 	if has_copy4:
 		if city_reading_doc4(state) == t["doc4"]["object_first"]:
 			parts.append(e["doc4_literal"])
 		else:
-			parts.append(e["doc4_reordered"] + " " + (e["doc4_reordered_with_note"] if state.notes.has("4") else e["doc4_reordered_no_note"]))
-	var a4 := String(state.answers.get("4", ""))
+			parts.append(e["doc4_reordered"] + " " + (e["doc4_reordered_with_note"] if state.notes.has("doc_04") else e["doc4_reordered_no_note"]))
+	var a4 := String(state.answers.get("doc_04", ""))
 	if a4 == t["doc4"]["unclear_option"]:
 		parts.append(e["doc4_answer_unclear"])
 	elif a4 != "" and has_copy4 and a4 != city_reading_doc4(state):
 		parts.append(e["doc4_answer_mismatch"])
-	var keys := state.notes.keys()
-	keys.sort_custom(func(a, b): return int(a) < int(b))
-	for no in keys:
-		parts.append(String(e["note_prefix"]).format({"no": no, "note": state.notes[no]}) + " " + String(e["note_fates"].get(no, "")))
+	# only the margin notes the story has a fate for, in story order
+	for id in e["note_fates"]:
+		if state.notes.has(id):
+			parts.append(String(e["note_prefix"]).format({"title": state.titles.get(id, id), "note": state.notes[id]}) + " " + String(e["note_fates"][id]))
 	var out := "\n\n".join(parts)
 	var intro := "eni düzenin ölü dil uzmanı Melno"
 	var at := out.find(intro)

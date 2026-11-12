@@ -55,7 +55,7 @@ func setup(kind: String, count: int, font: Font, era: int) -> void:
 
 func set_left(n: int) -> void:
 	left = n
-	_count.text = "bu belgede %d" % n
+	_count.text = "%d adet" % n
 	modulate = Color.WHITE if n > 0 else Color(1, 1, 1, 0.45)
 	mouse_default_cursor_shape = Control.CURSOR_DRAG if n > 0 else Control.CURSOR_FORBIDDEN
 

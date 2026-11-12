@@ -1,6 +1,6 @@
 {
   "id": "doc_03",
-  "order": 3,
+  "order": 17,
   "era": 2,
   "title_tr": "Bir borç senedi",
   "intro_tr": "",
@@ -22,5 +22,7 @@
       "Yazıdan anlaşılmıyor",
       "Annemin"
     ]
-  }
+  },
+  "delivered_tr": "Tüccar kadın senedi aldı ve ödemeyi saydı.",
+  "kind": "ana"
 }

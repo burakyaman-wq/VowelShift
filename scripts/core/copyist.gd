@@ -63,6 +63,8 @@ static func decoy(engine: RuleEngine, era: int) -> String:
 
 ## The sound cards dealt for a document: its era's shifts and one stranger.
 static func hand(doc: Manuscript, engine: RuleEngine) -> Array:
+	if not doc.cards.is_empty():
+		return Array(doc.cards)
 	var out: Array = []
 	for rid in engine.era_ids(doc.era):
 		if engine.by_id[rid].era == doc.era:
