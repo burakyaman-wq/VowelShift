@@ -16,7 +16,6 @@ func _go() -> void:
 	for order in [1, 2, 3, 4]:
 		var desk: Node = load("res://scenes/desk.tscn").instantiate()
 		desk.doc_order = order
-		desk.dev_cards = order > 1
 		root.add_child(desk)
 		await process_frame
 		if desk.interlude_text() != "":
@@ -24,13 +23,18 @@ func _go() -> void:
 			desk.dismiss_interlude()
 			await create_timer(0.6).timeout
 		await _check(desk, "belge %d başta" % order)
-		var cards: Array = Pairing.era_rules(desk.doc, desk.engine)
-		if order == 2 or order == 3:
-			cards = ["R3", "R4"]
+		var cards: Array = Copyist.hand(desk.doc, desk.engine).slice(0, 2)
 		for i in cards.size():
 			desk.place_rule(cards[i], i)
-			await create_timer(0.4).timeout
+			await create_timer(0.3).timeout
 			await _check(desk, "belge %d, %d kart" % [order, i + 1])
+		for k in desk.words:
+			desk._on_word_hovered(desk.words[k], true)
+			await _check(desk, "belge %d, sözlük: %s" % [order, k])
+		for t in ["not", "eski", "kazi"]:
+			desk.mark_word(desk.words.keys()[0], t)
+			await _check(desk, "belge %d, %s" % [order, t])
+		desk.unmark(desk.words.keys()[0])
 		if desk.doc.allow_reorder:
 			desk.move_word(2, 0)
 			desk.move_word(3, 1)
@@ -40,10 +44,9 @@ func _go() -> void:
 		await _check(desk, "belge %d okuma" % order)
 		desk.close_reading()
 		desk.write_copy()
-		await create_timer(4.0).timeout
-		desk.add_note("Sırayı ben değiştirdim; anlam aynı.")
-		await _check(desk, "belge %d soru" % order)
-		desk.answer_question(0)
+		await create_timer(1.5).timeout
+		await _check(desk, "belge %d rafta" % order)
+		desk.deliver()
 		if order == 4:
 			desk.next_document()
 			await create_timer(0.3).timeout
@@ -68,8 +71,10 @@ func _check(desk: Node, when: String) -> void:
 		var need := _content(n)
 		var box: Rect2 = n.get_global_rect()
 		var shown := Rect2(box.position, need)
+		if n is Label and n.text_overrun_behavior != TextServer.OVERRUN_NO_TRIMMING:
+			shown.size.x = minf(need.x, box.size.x)     # trimmed on purpose: it stops at its box
 		var tag := "[%s] %s «%s»" % [when, _path(desk, n), t.left(28).replace("\n", " ")]
-		if n is Label and (n.clip_text or n.text_overrun_behavior != TextServer.OVERRUN_NO_TRIMMING) and need.x > box.size.x + 1:
+		if n is Label and n.clip_text and need.x > box.size.x + 1:
 			problems.append("%s kesiliyor (%d > %d)" % [tag, need.x, box.size.x])
 		var sheet := _sheet(desk, n)
 		if sheet:
@@ -115,9 +120,9 @@ func _content(n: Control) -> Vector2:
 func _sheet(desk: Node, n: Node) -> Control:
 	var p := n.get_parent()
 	while p and p != desk:
-		if p is Control and p.name in ["Belge", "Kopya", "Pusula", "Ara", "Son", "Okuma"]:
+		if p is Control and p.name in ["Belge", "Defter", "Pusula", "Ara", "Son", "Okuma"]:
 			return p
-		if p is RuleTile or p is WordSlip:
+		if p is RuleTile or p is WordCard or p is ScribeCard:
 			return p
 		if p.get_parent() is Tutor:
 			return p

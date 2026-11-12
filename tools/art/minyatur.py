@@ -91,17 +91,18 @@ def painters():
 
 
 def pictos(only=None):
-    """Every rule's pictogram, each in the hand of the era that found the rule.
-    These are not per-era files: a tile keeps the look it was born with."""
-    for rule, e in karo.RULE_ERA.items():
-        if only and e not in only:
-            continue
+    """Every rule's pictogram in the hand of every era: a card on the desk is
+    painted in the desk's school, so a card that does not belong this era
+    cannot be told by its look. Plain names are the second era."""
+    for e in (only or [1, 2, 3, 4]):
         m.use_era(e)
         st = m.ERAS[e]
         how = dict(st["how"])
         how["wobble"] = how.get("wobble", 1.0) * 0.6
-        nk.paint_png(karo.picto(rule), 150, 200, SPR / f"picto_{rule}.png", pad=8, seed=30 + int(rule[1]), src=SRC / f"picto_{rule}.svg", line=st["line"], **how)
-        print("  ", f"picto_{rule}")
+        for rule in karo.RULE_ERA:
+            nk.paint_png(karo.picto(rule), 150, 200, SPR / f"{fname('picto_' + rule)}.png", pad=8, seed=30 + int(rule[1]),
+                         src=SRC / f"{fname('picto_' + rule)}.svg", line=st["line"], **how)
+        print(f"   picto_R1..R8 ({e}. çağ)")
 
 
 def contact_sheet(e):

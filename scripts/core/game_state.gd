@@ -140,6 +140,37 @@ func prove_rule(doc: Manuscript, lib: ManuscriptLibrary, engine: RuleEngine,
 ## The desk writes the copy from the card order (only proven subs apply).
 ## `reorder` is a 1-based word order, allowed only if the document permits it.
 ## Returns {copy, rejected: PackedStringArray, shelved: bool, error: String}.
+## The scribe cards left for the rest of the work. They are spent when a
+## copy that uses them is shelved.
+var tools := {"not": 3, "eski": 2, "kazi": 1}
+## Per document: {"fidelity": n, "clarity": n}.
+var scores := {}
+
+
+## Shelve a copy the desk has weighed (Copyist.evaluate). Refused while a word
+## is not a word of the era, or when the scribe cards it uses are spent.
+func shelve(doc: Manuscript, ev: Dictionary, marks: Dictionary) -> Dictionary:
+	if phase != "read":
+		return {"shelved": false, "error": "already_copied"}
+	if not ev["blocked"].is_empty():
+		return {"shelved": false, "error": "not_words", "blocked": ev["blocked"]}
+	var need := {}
+	for k in marks:
+		need[marks[k]] = need.get(marks[k], 0) + 1
+	for t in need:
+		if need[t] > tools.get(t, 0):
+			return {"shelved": false, "error": "no_" + t}
+	for t in need:
+		tools[t] -= need[t]
+	copies[str(doc.order)] = ev["copy"]
+	var g := Copyist.gloss(ev)
+	if g != "":
+		notes[str(doc.order)] = g
+	scores[str(doc.order)] = {"fidelity": ev["fidelity"], "clarity": ev["clarity"]}
+	phase = "answer"
+	return {"shelved": true, "error": "", "copy": ev["copy"]}
+
+
 func make_copy(doc: Manuscript, engine: RuleEngine, order: Array, reorder: Array = []) -> Dictionary:
 	if phase != "read":
 		return {"copy": "", "rejected": [], "shelved": false, "error": "already_copied"}
@@ -198,7 +229,7 @@ static func _unique(a: Array) -> Array:
 
 # --- Saving ----------------------------------------------------------------
 
-func to_dict() -> Dictionary:
+func to_dict() -> Dictionary:  # tools and scores are not saved yet: the slice is played in one sitting
 	return {"doc_index": doc_index, "phase": phase, "cards": cards, "proven": proven,
 		"copies": copies, "answers": answers, "notes": notes}
 

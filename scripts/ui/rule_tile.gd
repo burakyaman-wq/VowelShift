@@ -7,6 +7,8 @@ extends Control
 
 signal picked(tile: RuleTile)
 signal dropped(tile: RuleTile)
+signal clicked(tile: RuleTile)                 # pressed and let go without moving
+signal hovered(tile: RuleTile, on: bool)
 
 const SIZE := Vector2(150, 200)
 const PAD := 8.0
@@ -17,15 +19,16 @@ var rule_id := ""
 var dragging := false
 var locked := false        # set once the copy is shelved
 var _grab := Vector2.ZERO
+var _press := Vector2.ZERO
 var _tween: Tween
 var _hover: TextureRect
 var _lines: Array[Label] = []
 var _font: Font
 
 
-## `desk_era` is the era of the desk the tile lies on: it decides the hover
-## mark and whether the tile casts a shadow. The tile itself keeps the look
-## of the era that found its rule.
+## `desk_era` is the era of the desk the tile lies on. The card is painted in
+## that era's school, whatever era its rule belongs to: a card that does not
+## belong must be found by what it does, not by how it looks.
 func setup(rule: SoundRule, proven_idx: Array, font: Font, desk_era: int = 2) -> void:
 	rule_id = rule.id
 	_font = font
@@ -35,12 +38,12 @@ func setup(rule: SoundRule, proven_idx: Array, font: Font, desk_era: int = 2) ->
 	pivot_offset = SIZE / 2
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	var frame := Art.tex("karo_cerceve.png", rule.era)
+	var frame := Art.tex("karo_cerceve.png", desk_era)
 	if Art.casts_shadow(desk_era):
 		add_child(Art.shadow_of(frame, Vector2(-PAD, -PAD)))
 	_add_texture(frame)
-	_add_texture(Art.tex("picto_%s.png" % rule.id))
-	var title := _label(_two_lines(rule.name_tr, 17, SIZE.x - 40), 17, Art.TILE_INK.get(rule.era, Art.TILE_INK[2]))
+	_add_texture(Art.tex("picto_%s.png" % rule.id, desk_era))
+	var title := _label(_two_lines(rule.name_tr, 17, SIZE.x - 40), 17, Art.TILE_INK.get(desk_era, Art.TILE_INK[2]))
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_constant_override("line_spacing", -7)
 	title.position = Vector2(14, 14)
@@ -57,7 +60,10 @@ func setup(rule: SoundRule, proven_idx: Array, font: Font, desk_era: int = 2) ->
 	_hover.visible = false
 	add_child(_hover)
 	mouse_entered.connect(func() -> void: _hover.visible = not dragging and not locked)
-	mouse_exited.connect(func() -> void: _hover.visible = false)
+	mouse_exited.connect(func() -> void:
+		_hover.visible = false
+		hovered.emit(self, false))
+	mouse_entered.connect(func() -> void: hovered.emit(self, true))
 
 
 ## Ink in the proven lines; the rest of the tile stays blank glaze.
@@ -72,6 +78,7 @@ func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			dragging = true
+			_press = get_global_mouse_position()
 			_grab = get_global_mouse_position() - global_position
 			_hover.visible = false
 			_lift(true)
@@ -79,7 +86,10 @@ func _gui_input(event: InputEvent) -> void:
 		elif dragging:
 			dragging = false
 			_lift(false)
-			dropped.emit(self)
+			if get_global_mouse_position().distance_to(_press) <= 6.0:
+				clicked.emit(self)
+			else:
+				dropped.emit(self)
 		accept_event()
 	elif event is InputEventMouseMotion and dragging:
 		global_position = get_global_mouse_position() - _grab
