@@ -1,0 +1,41 @@
+{
+  "id": "j13",
+  "order": 28,
+  "era": 2,
+  "kind": "ana",
+  "title_tr": "Tabletleri düzeltmek",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Genç bey",
+    "says_tr": "Tapınaktaki eski tabletler yenileniyor. Hepsinde sürgün kardeşin adı geçiyor. Bu tablette de: Mēros'u kazı. Tarih bir kurucuyla başlar, iki kişiyle değil."
+  },
+  "old_text": "Mīros dīwosyo khewom dōneti. Mēros nākos.",
+  "heard": [
+    "Mīros",
+    "nēkos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "mēros",
+          "kazi"
+        ]
+      },
+      "set": "kazi_yapildi",
+      "chronicle": "Tabletten sürgünün adı kazındı. Yeni tabletlerde kurucunun tek başına adak sunduğu yazıyor. Dhās bir gece tapınağa girip eski tableti kopyalamaya çalıştı."
+    },
+    {
+      "when": {},
+      "set": "kazi_reddedildi",
+      "chronicle": "Mēros'un adını kazımadın. Genç bey tableti başka bir kâtibe yeniden yazdırdı; ama senin kopyan tapınağın arşivinde kaldı."
+    }
+  ]
+}

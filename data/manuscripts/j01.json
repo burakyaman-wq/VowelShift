@@ -1,0 +1,27 @@
+{
+  "id": "j01",
+  "order": 16,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Ustanın mührü",
+  "intro_tr": "Elli yıl geçti. Lūka yaşlandı; mührü çırağı Argos'a, yani sana verdi. Sokakta sesli harfler yine değişti: uzun ē artık başka söyleniyor. Eski defterleri gençler okuyamıyor.",
+  "requester": {
+    "name_tr": "Yaşlı Lūka",
+    "says_tr": "Ben yazmayı bıraktım, Argos. İlk işin, mühürdeki ustamın adını yenilemek. Bugün ona *Thīmos* diyorlar; ben hâlâ Thēmos derim."
+  },
+  "old_text": "Thēmosyo sikhlos.",
+  "heard": [
+    "Thīmos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "delivered_tr": "Mührün yeni yazısı kazındı. Lūka mührü eline alıp uzun uzun baktı."
+}

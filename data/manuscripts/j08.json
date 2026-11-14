@@ -1,0 +1,55 @@
+{
+  "id": "j08",
+  "order": 23,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Tapınağın kapısı",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Başrahibe",
+    "says_tr": "Tapınağın kapısında 'gerçek tanrınındır' yazıyor. Bugün gerçeğe *wēros* diyoruz. Yaşlılar sorun çıkarıyor: onlara göre bu kelime 'yalan' demek."
+  },
+  "old_text": "Wāros dīwosyo.",
+  "heard": [
+    "wēros"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "wāros",
+          "not"
+        ]
+      },
+      "set": "kapi_dogru",
+      "chronicle": "Kapının kenarında 'gerçek' notu var. Yaşlılar bile başını sallayıp geçti."
+    },
+    {
+      "when": {
+        "mark": [
+          "wāros",
+          "eski"
+        ]
+      },
+      "set": "kapi_dogru",
+      "chronicle": "Kapıda eski kelime duruyor. Gençler okuyamıyor, yaşlılar memnun."
+    },
+    {
+      "when": {},
+      "set": "kapi_yalan",
+      "chronicle": "Yaşlılar kapıyı 'yalan tanrınındır' diye okuyor. Çarşıda tapınakla alay eden bir şarkı dolaşıyor."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "j14",
+  "order": 29,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Lūka'nın vasiyeti",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Yaşlı Lūka",
+    "says_tr": "Defterimi sana bırakıyorum, Argos. Adın 'gümüş' demek, bilir misin? Vasiyetime 'defter gerçektir' yazdım. Bugün gerçeğe *wēros* diyorlar; yaşlılar yanlış anlamasın."
+  },
+  "old_text": "Phāgom argosyo dōneti. Phāgos wāros.",
+  "heard": [
+    "phēgos",
+    "wēros"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "wāros",
+          "not"
+        ]
+      },
+      "set": "luka_gercek",
+      "chronicle": "Lūka öldü. Defteri sende; bir sayfası koparılmış. Kenardaki 'gerçek' notunu okuyan Dhās, eksik sayfayı sordu."
+    },
+    {
+      "when": {
+        "mark": [
+          "wāros",
+          "eski"
+        ]
+      },
+      "set": "luka_gercek",
+      "chronicle": "Lūka öldü. Defteri sende; bir sayfası koparılmış. Eski yazıyı yaşlılar doğru okudu."
+    },
+    {
+      "when": {},
+      "set": "luka_yalan",
+      "chronicle": "Lūka öldü. Yaşlılar vasiyeti 'defter yalandır' diye okudu; defterine kimse dokunmuyor. Bir sayfası zaten koparılmış."
+    }
+  ]
+}

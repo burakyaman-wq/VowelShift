@@ -1,9 +1,9 @@
 {
   "id": "doc_02",
-  "order": 16,
+  "order": 21,
   "era": 2,
   "title_tr": "Kurucuların kaydı",
-  "intro_tr": "Elli yıl geçti. Lūka yaşlandı; mührü çırağı Argos'a, yani sana verdi. Sokakta sesli harfler yine değişti; eski defterleri artık gençler okuyamıyor.",
+  "intro_tr": "",
   "requester": {
     "name_tr": "Saray görevlisi",
     "says_tr": "*Rīgos* kurucuların kaydını istiyor. Eski defterlerde *grānos* yazıyor, biz artık *grēnos* diyoruz; tarlalara da *ēgros* diyoruz, ambarın *thītos*'u kabardı. Kopyan bugünün diliyle olmalı. Acele et, *rīgos* beklemez."
@@ -48,5 +48,10 @@
       "chronicle": "Sarayda senin kopyanı okudular: kardeş sürgün edilmiş. Ama yaşlılar eski dille okuyor; onlara göre [i]nēkos[/i] 'ölü' demek. Çarşıda kardeşin öldürüldüğü konuşuluyor."
     }
   ],
-  "kind": "ana"
+  "kind": "ana",
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ]
 }

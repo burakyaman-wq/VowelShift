@@ -1,0 +1,45 @@
+{
+  "id": "j03",
+  "order": 18,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Barış taşı",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Saray görevlisi",
+    "says_tr": "Genç bey dağlılarla barış istiyor; şehir kapısına yazılacak. Bugün barışa *pēkos* diyoruz. Ama yaşlılar eski dille okur; onların kulağında *pēkos* başka bir şey."
+  },
+  "old_text": "Rēgos pākom dōneti.",
+  "heard": [
+    "pēkos",
+    "rīgos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 0,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "pākom",
+          "not"
+        ]
+      },
+      "set": "baris_notlu",
+      "chronicle": "Kapıdaki yazının kenarında 'barış' notu var. Yaşlılar da doğru okudu; dağ tüccarları ilk kez şehre silahsız girdi."
+    },
+    {
+      "when": {},
+      "set": "baris_savas",
+      "chronicle": "Yaşlılar kapıdaki yazıyı 'bey savaş verir' diye okudu. Dağda nöbet ateşleri yeniden yakıldı."
+    }
+  ]
+}

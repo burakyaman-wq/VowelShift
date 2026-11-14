@@ -913,6 +913,74 @@
         "acc_pl": "thūmem",
         "gen_pl": "thūmesyo"
       }
+    },
+    {
+      "id": 58,
+      "root": "pākos",
+      "stem": "pāk",
+      "meaning_tr": "barış",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "invented",
+      "forms": {
+        "nom_sg": "pākos",
+        "acc_sg": "pākom",
+        "gen_sg": "pākosyo",
+        "nom_pl": "pākes",
+        "acc_pl": "pākem",
+        "gen_pl": "pākesyo"
+      }
+    },
+    {
+      "id": 59,
+      "root": "pēkos",
+      "stem": "pēk",
+      "meaning_tr": "savaş",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "invented",
+      "forms": {
+        "nom_sg": "pēkos",
+        "acc_sg": "pēkom",
+        "gen_sg": "pēkosyo",
+        "nom_pl": "pēkes",
+        "acc_pl": "pēkem",
+        "gen_pl": "pēkesyo"
+      }
+    },
+    {
+      "id": 60,
+      "root": "wāros",
+      "stem": "wār",
+      "meaning_tr": "gerçek",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "invented",
+      "forms": {
+        "nom_sg": "wāros",
+        "acc_sg": "wārom",
+        "gen_sg": "wārosyo",
+        "nom_pl": "wāres",
+        "acc_pl": "wārem",
+        "gen_pl": "wāresyo"
+      }
+    },
+    {
+      "id": 61,
+      "root": "wēros",
+      "stem": "wēr",
+      "meaning_tr": "yalan",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "invented",
+      "forms": {
+        "nom_sg": "wēros",
+        "acc_sg": "wērom",
+        "gen_sg": "wērosyo",
+        "nom_pl": "wēres",
+        "acc_pl": "wērem",
+        "gen_pl": "wēresyo"
+      }
     }
   ]
 }

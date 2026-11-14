@@ -1,0 +1,65 @@
+{
+  "id": "j12",
+  "order": 27,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Mektubun dağ kopyası",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Dağ tüccarları",
+    "says_tr": "Lūka'nın zamanında bir mektubumuzu kopyalamıştınız. Sarayda bir kopyası daha var dediler. Biz kendi kopyamızı yeniletmek istiyoruz; içinde *phrētīros* geçiyor."
+  },
+  "old_text": "Phrātēros grānom emeti. Lūkos mereti.",
+  "heard": [
+    "phrētīros",
+    "grēnom"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "lūkos",
+          "not"
+        ]
+      },
+      "set": "mektup_isik",
+      "chronicle": "Mektubun kenarında 'ışık' notu var. Dağlılar ilk kez şehrin bir kopyasına güvendi."
+    },
+    {
+      "when": {
+        "mark": [
+          "lūkos",
+          "eski"
+        ]
+      },
+      "set": "mektup_isik",
+      "chronicle": "Mektup eski yazımla yenilendi; dağın yaşlıları okudu."
+    },
+    {
+      "when": {},
+      "set": "mektup_kurt",
+      "chronicle": "Mektup yine 'kurt öldü' diye okundu. Dağlılar artık şehirden kopya istemiyor."
+    }
+  ],
+  "variants": [
+    {
+      "when": {
+        "flag": "mektup_kazindi"
+      },
+      "old_text": "Grānom emeti. Lūkos mereti.",
+      "says_tr": "Sarayın kopyasını getirdik; bizimki kayboldu. İçinde 'kardeş' yok, ama atamızın mektubu bu. Kim tahılı aldı, okunmuyor."
+    }
+  ]
+}

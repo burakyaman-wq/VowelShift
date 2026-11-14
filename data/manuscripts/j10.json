@@ -1,0 +1,56 @@
+{
+  "id": "j10",
+  "order": 25,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Hanedanın soy kütüğü",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Genç bey",
+    "says_tr": "Soy kütüğümü yazdırıyorum. Eski kayıtta kurucu ile kardeşi yan yana. Bugün ikisi de *Mīros* okunuyor; iyi, sürgünün adı ayrıca geçmesin. Mēros'u kütükten kazı."
+  },
+  "old_text": "Mīros Mēros phrātēres.",
+  "heard": [
+    "Mīros",
+    "phrētīres"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 0,
+    "kazi": 1
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "mēros",
+          "kazi"
+        ]
+      },
+      "set": "kutuk_kazindi",
+      "chronicle": "Kütükte tek kurucu var. Genç bey seni ödüllendirdi; Dhās ise kaşlarını çattı."
+    },
+    {
+      "when": {
+        "mark": [
+          "mēros",
+          "not"
+        ]
+      },
+      "set": "kutuk_notlu",
+      "chronicle": "Kütükte iki Mīros var, kenarında da 'biri sürgün kardeş' notu. Bey öfkelendi ama kütüğü astırdı."
+    },
+    {
+      "when": {},
+      "set": "kutuk_karisti",
+      "chronicle": "Kütükte iki Mīros var. Herkes bunu yazım hatası sanıyor."
+    }
+  ]
+}

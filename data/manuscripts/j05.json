@@ -1,0 +1,61 @@
+{
+  "id": "j05",
+  "order": 20,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Kıtlığın unutulması",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Başrahibe",
+    "says_tr": "Tapınak duvarını yeniliyoruz. Eski kıtlık yazısı halkı korkutuyor; ben *thekhnos* kelimesinin kazınmasını istiyorum. Lūka'nın zamanında yazılmış."
+  },
+  "old_text": "Thekhnos pīstom edeti. Nēkes mereti.",
+  "heard": [
+    "nīkes"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 1
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "thekhnos",
+          "kazi"
+        ]
+      },
+      "set": "kitlik_unutuldu",
+      "chronicle": "Duvarda artık kıtlık yok. Gençler o yılları hiç duymadan büyüyecek."
+    },
+    {
+      "when": {
+        "flag": "kitlik_kazindi"
+      },
+      "set": "kitlik_unutuldu",
+      "chronicle": "Duvar yenilendi; kıtlığın adı iki kuşaktır yok."
+    },
+    {
+      "when": {},
+      "set": "kitlik_hatirlandi",
+      "chronicle": "Kıtlık duvarda kaldı. Başrahibe söylendi ama ambarlar bu yıl erken dolduruldu."
+    }
+  ],
+  "variants": [
+    {
+      "when": {
+        "flag": "kitlik_kazindi"
+      },
+      "old_text": "Pīstom edeti. Nēkes mereti.",
+      "says_tr": "Tapınak duvarını yeniliyoruz. Lūka'nın zamanında kıtlık zaten silinmiş; geriye 'ölüler öldü' kalmış. Bunu da yenile, ama bir şey ekleme."
+    }
+  ]
+}

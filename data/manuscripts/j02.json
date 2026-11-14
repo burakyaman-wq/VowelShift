@@ -1,0 +1,30 @@
+{
+  "id": "j02",
+  "order": 17,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Eski kelimeler",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Bilgin Dhās",
+    "says_tr": "Ben Dhās; eski kelimeleri topluyorum. Elimde bir saray kaydı var. Bugün *grēnos* ve *thītos* diyoruz. Dikkat: iki kartın sırası değişirse tahıl başka bir şeye döner."
+  },
+  "old_text": "Rēgos grānom thētom emeti.",
+  "heard": [
+    "grēnos",
+    "thītos",
+    "rīgos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "delivered_tr": "Dhās kopyayı kelime listesine ekledi. 'Sesler sırayla kayar,' dedi, 'tıpkı kuşaklar gibi.'"
+}

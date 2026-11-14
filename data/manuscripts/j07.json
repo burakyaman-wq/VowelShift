@@ -1,0 +1,63 @@
+{
+  "id": "j07",
+  "order": 22,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Dağlıların takası",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Dağ tüccarları",
+    "says_tr": "Sürülerimizi tahılla takas ediyoruz. Senette atamızın adı geçiyor: Mēros. Sizin dilde artık *Mīros* oluyor; ama Mīros sizin kurucunuz. Atamızın adı onunkine karışmasın."
+  },
+  "old_text": "Mēros pekwom dōneti.",
+  "heard": [
+    "Mīros"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "mēros",
+          "eski"
+        ]
+      },
+      "set": "dag_adi_korundu",
+      "chronicle": "Senette 'Mēros' eski yazımla duruyor. Dağ tüccarları sana bir kuzu bıraktı."
+    },
+    {
+      "when": {
+        "mark": [
+          "mēros",
+          "not"
+        ]
+      },
+      "set": "dag_adi_korundu",
+      "chronicle": "Senedin kenarına 'küçük kardeş' yazdın. Dağ tüccarları başını salladı."
+    },
+    {
+      "when": {},
+      "set": "dag_adi_karisti",
+      "chronicle": "Senette atalarının adı kurucununkiyle aynı yazıldı. Dağ tüccarları 'adımızı da aldınız' dedi."
+    }
+  ],
+  "variants": [
+    {
+      "when": {
+        "flag": "dag_eski"
+      },
+      "says_tr": "'Dağın kâtibi'nin çırağı sensin, değil mi? Sürülerimizi tahılla takas ediyoruz; senette atamız Mēros'un adı geçiyor. Sizin dilde *Mīros* oluyor; ama atamızın adı kurucunuzunkine karışmasın."
+    }
+  ]
+}

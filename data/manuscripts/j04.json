@@ -1,0 +1,38 @@
+{
+  "id": "j04",
+  "order": 19,
+  "era": 2,
+  "kind": "kisa",
+  "title_tr": "Ambar defteri",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Tüccar Grēna",
+    "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızın defteri bu; annemin annesi yazdırmış. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım."
+  },
+  "old_text": "Grānos mātērosyo. Thētos rēgosyo.",
+  "heard": [
+    "grēnos",
+    "thītos"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "delivered_tr": "Grēna defteri sandığa koydu. 'Borç beyin,' dedi, 'ama tahıl annenindi.'",
+  "variants": [
+    {
+      "when": {
+        "flag": "senet_notsuz"
+      },
+      "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızı saray aldı, elimizde yalnız bu defter kaldı. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım; belki bir gün geri alırız."
+    }
+  ]
+}

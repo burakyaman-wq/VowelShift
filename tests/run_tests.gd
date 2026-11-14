@@ -135,6 +135,15 @@ func _desk_tests() -> void:
 			stranger_ok = false
 	_expect(stranger_ok, "no stranger card before the founding tablet")
 
+	# Era II: the order of the cards, the elders' ear, and documents that remember era I.
+	var j02 := lib.find("j02")
+	_expect(Copyist.evaluate(j02, engine, ["R4", "R3"], {}, {})["blocked"] == PackedStringArray(["grīnom"]), "ā→ē before ē→ī carries the grain too far")
+	_expect(Copyist.evaluate(lib.find("j03"), engine, ["R3", "R4"], {}, {})["rows"][1]["elder"] == ["savaş"], "the elders hear 'war' in the new word for peace")
+	var j11 := lib.find("j11")
+	_expect(j11.resolved({}).old_text.contains("Mēros nākos") and not j11.resolved({"meros_kazindi": true}).old_text.contains("Mēros"), "a name scraped in era I is missing from its copy in era II")
+	_expect(lib.find("j15").resolved({"tarla_kazindi": true}).old_text.count("āgros") == 1, "the boundary stone keeps one field if the other was scraped")
+	_expect(lib.find("j01").intro != "" and lib.find("j01").era == 2, "era II opens on its first job")
+
 	# The very first job: one card, no scribe cards, the note starts with the hand.
 	var desk0: Node = load("res://scenes/desk.tscn").instantiate()
 	root.add_child(desk0)
@@ -208,8 +217,7 @@ func _desk_tests() -> void:
 	var desk: Node = load("res://scenes/desk.tscn").instantiate()
 	desk.doc_id = "doc_02"
 	root.add_child(desk)
-	_expect(desk.interlude_text().contains("Elli yıl"), "doc 2 opens with the years that passed")
-	desk.dismiss_interlude()
+	_expect(desk.interlude_text() == "", "doc 2 comes in the middle of its era, without a page")
 	desk.place_rule("R4", 0)
 	desk.place_rule("R3", 1)
 	_expect(desk.copy_text() == "Mīros Mīrom ageti. Mīros nīkos.", "R4 before R3 writes the trap")
@@ -239,12 +247,16 @@ func _desk_tests() -> void:
 	_expect(not desk.move_word(0, 1), "words stay where they are in a document that does not let them move")
 	desk.deliver()
 	desk.next_document()
-	_expect(desk.doc.id == "doc_03" and desk.interlude_text().contains("Sarayda senin kopyanı okudular"), "doc 3 opens on what the palace made of the copy")
+	_expect(desk.doc.id == "j07" and desk.interlude_text().contains("Sarayda senin kopyanı okudular"), "the next job opens on what the palace made of the copy")
 	_expect(desk.interlude_text().contains("«Kurucuların kaydı» teslim edildi"), "and on how the delivered copy was weighed")
 	_expect(not desk.get_node("Belge").visible, "the new document waits behind the page")
-	_expect(desk.state.tools["not"] == 3 and desk.tools_left("not") == 3, "a fresh set of scribe cards comes with every document")
+	_expect(desk.state.tools["not"] == 1 and desk.tools_left("eski") == 1, "a fresh set of scribe cards comes with every job")
 	desk.dismiss_interlude()
 	_expect(desk.get_node("Belge").visible, "a click puts the page away and the document arrives")
+	desk.queue_free()
+	desk = load("res://scenes/desk.tscn").instantiate()
+	desk.doc_id = "doc_03"
+	root.add_child(desk)
 	desk.place_rule("R4", 0)
 	desk.place_rule("R3", 1)
 	var bad3: Dictionary = desk.write_copy()

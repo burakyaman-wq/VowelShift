@@ -1,0 +1,60 @@
+{
+  "id": "j15",
+  "order": 30,
+  "era": 2,
+  "kind": "ana",
+  "title_tr": "Sınır davası",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Yargıç",
+    "says_tr": "Dağlılar şehir dışındaki tarlanın kendilerinin olduğunu söylüyor; saray kendinin. Elimizde Lūka'nın sınır taşı kopyası var. Bugün iki ad da *Mīrosyo* okunuyor. Mahkeme kopyana göre karar verecek."
+  },
+  "old_text": "Mīrosyo āgros. Mērosyo āgros. Akmos dīwosyo khewos.",
+  "heard": [
+    "ēgros",
+    "Mīrosyo"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "mērosyo",
+          "not"
+        ]
+      },
+      "set": "tarla_daglilara",
+      "chronicle": "Kenar notun mahkemede okundu: tarlalardan biri sürgün kardeşindi. Yargıç tarlayı dağlılara verdi. Saray bunu unutmayacak; dağ yolunda ilk çatışmalar başladı."
+    },
+    {
+      "when": {
+        "mark": [
+          "mērosyo",
+          "eski"
+        ]
+      },
+      "set": "tarla_daglilara",
+      "chronicle": "Eski yazımla 'Mēros' okundu. Yargıç tarlayı dağlılara verdi. Saray bunu unutmayacak; dağ yolunda ilk çatışmalar başladı."
+    },
+    {
+      "when": {},
+      "set": "tarla_saraya",
+      "chronicle": "Kopyada iki tarla da kurucunun. Yargıç tarlayı saraya verdi. Dağlılar mahkemeden çıkarken bir daha inmeyeceklerini söyledi; dağ yolunda ilk çatışmalar başladı."
+    }
+  ],
+  "variants": [
+    {
+      "when": {
+        "flag": "tarla_kazindi"
+      },
+      "old_text": "Mīrosyo āgros. Akmos dīwosyo khewos.",
+      "says_tr": "Dağlılar şehir dışındaki tarlanın kendilerinin olduğunu söylüyor; saray kendinin. Lūka'nın sınır taşı kopyasında tek tarla var. Mahkeme kopyana göre karar verecek."
+    }
+  ]
+}

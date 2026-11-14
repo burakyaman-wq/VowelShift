@@ -1,11 +1,11 @@
 {
   "id": "doc_03",
-  "order": 17,
+  "order": 24,
   "era": 2,
   "title_tr": "Bir borç senedi",
   "intro_tr": "",
   "requester": {
-    "name_tr": "Tüccar kadın",
+    "name_tr": "Tüccar Grēna",
     "says_tr": "Bu senet annemden kaldı. Ben ona *mētīros* derdim, siz eski yazıda başka türlü yazıyorsunuz. Tahıl kimden kime geçmiş, bilmem lazım."
   },
   "old_text": "Mātēros Mīrosyo grānom emeti.",
@@ -24,5 +24,17 @@
     ]
   },
   "delivered_tr": "Tüccar kadın senedi aldı ve ödemeyi saydı.",
-  "kind": "ana"
+  "kind": "ana",
+  "cards": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "outcomes": [
+    {
+      "when": {},
+      "set": "senet_okundu",
+      "chronicle": "Grēna senedi aldı. 'Mīrosyo' yazıyor: tahıl kurucunun mu, sürgünün mü? Grēna ödemeyi saydı ama yüzü asıktı."
+    }
+  ]
 }
