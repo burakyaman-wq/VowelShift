@@ -156,6 +156,9 @@ func _desk_tests() -> void:
 	_expect(desk0.doc.id == "i02" and desk0.interlude_text() == "", "a short job follows without a page between")
 	_expect(desk0.tutor.feedback_text().contains("Teslim edildi"), "the last job's fate is told on the desk")
 	_expect(desk0._ribbon.text.contains("Kapıya yeni yazı asıldı"), "and the chronicle ribbon carries what came of it")
+	desk0.open_chronicle()
+	_expect(desk0.get_node_or_null("Kronik") != null, "the ribbon opens the whole chronicle")
+	desk0.close_chronicle()
 	desk0.queue_free()
 
 	# A scribe card picked by a click lands on the next word clicked.
@@ -276,11 +279,13 @@ func _desk_tests() -> void:
 	_expect(desk4.copy_text() == "Mīro nēko Mīro rīgo şeneti.", "doc 4 copies word for word at first")
 	_expect(desk4.move_word(2, 0) and desk4.move_word(3, 1), "two words are carried to the front")
 	_expect(desk4.copy_text() == "Mīro rīgo Mīro nēko şeneti.", "the copy reads in the new order")
+	var law := Copyist.evaluate(lib.find("k04"), engine, ["R5", "R6"], {}, {}, [2, 1, 3])
+	_expect(law["copy"] == "Rīgo grēno emeti." and law["order"] != "wrong", "a reordered sentence keeps its capital at the front")
 	_expect(not desk4.move_word(0, 9), "a word cannot be carried off the line")
 	var first: WordCard = desk4.words["kheneti"]
 	first.position = Vector2(-50, -50)
 	desk4._on_word_dropped(first)
-	_expect(desk4.copy_text().begins_with("şeneti"), "a word card dropped first comes first")
+	_expect(desk4.copy_text().begins_with("Şeneti"), "a word card dropped first comes first")
 	desk4._word_order = [3, 4, 1, 2, 5]
 	desk4._refresh()
 	var res4: Dictionary = desk4.write_copy()

@@ -10,6 +10,7 @@ var rules: Array[SoundRule] = []
 var by_id: Dictionary = {}
 var words: Array = []
 var _real_cache: Dictionary = {}
+var _names: Dictionary = {}
 
 
 func _init(rules_path: String = RULES_PATH, words_path: String = WORDS_PATH) -> void:
@@ -72,6 +73,17 @@ func real_words(era: int) -> Dictionary:
 			s[apply_word(w["forms"][tag], ids).to_lower()] = true
 	_real_cache[era] = s
 	return s
+
+
+## Is this word (any era's form) a name? Names keep their capital wherever they stand.
+func is_name(word: String) -> bool:
+	if _names.is_empty():
+		for w in words:
+			if w.get("domain", "") == "proper":
+				for f in w["forms"].values():
+					for e in range(0, 5):
+						_names[apply_word(f, era_ids(e)).to_lower()] = true
+	return _names.has(word.to_lower())
 
 
 func is_real(word: String, era: int) -> bool:

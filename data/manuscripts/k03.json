@@ -7,7 +7,7 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Genç Melno",
-    "says_tr": "Ben Melno; Dhās'ın soyundanım. Dedemin dedesinin kelime listesinden bir satır yanmadan kaldı. Bugün *grēno*, *thīto* diyoruz. Ölü dili öğrenmek istiyorum."
+    "says_tr": "Ben Melno; Dhās'ın soyundanım. Dedemin dedesinin kelime listesinden bir satır yanmadan kaldı. Bugün *grēno*, *thīto* diyoruz. Ölü dili bugünküyle yan yana görmek istiyorum: istersen 'borç' kelimesini eski hâliyle bırak, ben karşılaştırırım."
   },
   "old_text": "Rīgos grēnom thītom emeti.",
   "heard": [
@@ -23,8 +23,24 @@
   ],
   "tools": {
     "not": 0,
-    "eski": 0,
+    "eski": 1,
     "kazi": 0
   },
-  "delivered_tr": "Melno satırı defterine geçirdi. 'Ekler gitti,' dedi, 'artık kim kime ne yaptı, nasıl bileceğiz?'"
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "thītom",
+          "eski"
+        ]
+      },
+      "set": "melno_eski",
+      "chronicle": "Melno satırı defterine geçirdi; 'borç' kelimesinin eski hâlinin altını çizdi. 'Ekler gitti,' dedi, 'ama izleri burada.'"
+    },
+    {
+      "when": {},
+      "set": "melno_yeni",
+      "chronicle": "Melno satırı defterine geçirdi. 'Ekler gitti,' dedi, 'artık kim kime ne yaptı, nasıl bileceğiz?'"
+    }
+  ]
 }

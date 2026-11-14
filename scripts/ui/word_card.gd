@@ -26,6 +26,8 @@ var row: Dictionary = {}
 var _grab := Vector2.ZERO
 var _press := Vector2.ZERO
 var _word: RichTextLabel
+## How many times the word stands in the document (shown as ×N when more than once).
+var repeats := 1
 var _was: Label
 var _foot: Label
 var _ghost: Label
@@ -103,7 +105,7 @@ func show_row(r: Dictionary, inked: bool = false) -> void:
 				shown = r["new"]
 			else:
 				shown = _red_letters(r["new"], Pairing.diff_marks(r["old"], r["new"])[1])
-	_word.text = shown
+	_word.text = shown + ("  [color=#7a6a5a][font_size=18]×%d[/font_size][/color]" % repeats if repeats > 1 else "")
 	_was.text = "değişmedi" if r["new"] == r["old"] else "eski: " + r["old"]
 	var issue := ""
 	if not r["in_dict"]:

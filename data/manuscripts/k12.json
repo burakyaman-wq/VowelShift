@@ -7,15 +7,15 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağlı elçi",
-    "says_tr": "Şehir meydanına bir ilan asılacak. Eski yazıda önce sürgün yazılmış, sonra bey: 'sürgünü bey öldürdü'. Sıra bozuk kalırsa şehir yine bizi katil sanar."
+    "says_tr": "Şehir meydanına bir ilan asılacak: bey sürgünü öldürdü. Ama şehirde kimse *nēko*'nun kim olduğunu bilmiyor. Kenara 'sürgün, beyin kardeşiydi' yazarsan herkes öğrenir."
   },
-  "old_text": "Nēkom rīgos kheneti.",
+  "old_text": "Rīgos nēkom kheneti.",
   "heard": [
     "nēko",
     "şeneti"
   ],
   "inherit_cards": [],
-  "allow_reorder": true,
+  "allow_reorder": false,
   "cards": [
     "R5",
     "R6",
@@ -29,15 +29,18 @@
   "outcomes": [
     {
       "when": {
-        "order": "wrong"
+        "mark": [
+          "nēkom",
+          "not"
+        ]
       },
-      "set": "ilan_ters",
-      "chronicle": "İlan 'sürgün beyi öldürdü' diye okundu. Meydanda dağlılara taş atıldı."
+      "set": "ilan_dogru",
+      "chronicle": "İlan meydana asıldı; kenarında 'sürgün, beyin kardeşiydi' yazıyor. Meydanda uzun bir sessizlik oldu."
     },
     {
       "when": {},
-      "set": "ilan_dogru",
-      "chronicle": "İlan doğru okundu: bey sürgünü öldürdü. Meydanda uzun bir sessizlik oldu."
+      "set": "ilan_yarim",
+      "chronicle": "İlan asıldı: bey bir sürgünü öldürmüş. Kimse sürgünün kim olduğunu sormadı."
     }
   ],
   "variants": [
@@ -45,11 +48,7 @@
       "when": {
         "flag": "daglilar_suclu"
       },
-      "says_tr": "Senin kopyan yüzünden şehir bizi katil sandı. Şimdi meydana gerçeği asmak istiyoruz. Eski yazıda önce sürgün, sonra bey yazılmış: 'sürgünü bey öldürdü'. Bu kez sırayı doğru kur."
+      "says_tr": "Senin kopyan yüzünden şehir bizi katil sandı. Şimdi meydana gerçeği asmak istiyoruz: bey sürgünü öldürdü. Kenara 'sürgün, beyin kardeşiydi' yazarsan herkes öğrenir."
     }
-  ],
-  "reading_key": [
-    "rīgo",
-    "nēko"
   ]
 }

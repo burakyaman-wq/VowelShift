@@ -7,7 +7,7 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Genç Melno",
-    "says_tr": "Dağlıların belgesini okudum. Şimdi Argos'un sürgün buyruğu kopyasını yan yana koymak istiyorum: 'dönerse ölür' diyor. İkisi aynı hikâyeyi anlatıyor olabilir mi?"
+    "says_tr": "Dağlıların belgesini okudum. Şimdi Argos'un sürgün buyruğu kopyasını yan yana koymak istiyorum: 'dönerse ölür' diyor. İkisi aynı hikâyeyi anlatıyor olabilir mi? Arşivde adları ayrı tutan eski bir kopya varsa, kenar notun onu gösterebilir."
   },
   "old_text": "Mīros rīgos Mīrom ageti. Mīros nēkos. Mīros werteti. Mīros mereti.",
   "heard": [
@@ -32,10 +32,42 @@
         "mark": [
           "mīrom",
           "not"
-        ]
+        ],
+        "flag": "ad_korundu"
       },
       "set": "melno_anladi",
-      "chronicle": "Melno iki belgeyi yan yana koydu: sürgün dönmüş, bey onu öldürtmüş. 'Söylenti doğruymuş,' dedi, 'ama yanlış okumadan doğmuş.'"
+      "chronicle": "Melno, Leuka'nın adları ayrı tutan kopyasını buldu: sürgün dönmüş, bey onu öldürtmüş. 'Söylenti doğruymuş,' dedi, 'ama yanlış okumadan doğmuş.'"
+    },
+    {
+      "when": {
+        "mark": [
+          "mīros",
+          "not"
+        ],
+        "flag": "ad_korundu"
+      },
+      "set": "melno_anladi",
+      "chronicle": "Melno, Leuka'nın adları ayrı tutan kopyasını buldu: sürgün dönmüş, bey onu öldürtmüş. 'Söylenti doğruymuş,' dedi, 'ama yanlış okumadan doğmuş.'"
+    },
+    {
+      "when": {
+        "mark": [
+          "mīrom",
+          "not"
+        ]
+      },
+      "set": "melno_suphe",
+      "chronicle": "Kenar notun iki adı da yazıyor; arşivde onları ayıran eski bir kopya kalmamış. Melno 'bu adlar bir düğüm' dedi."
+    },
+    {
+      "when": {
+        "mark": [
+          "mīros",
+          "not"
+        ]
+      },
+      "set": "melno_suphe",
+      "chronicle": "Kenar notun iki adı da yazıyor; arşivde onları ayıran eski bir kopya kalmamış. Melno 'bu adlar bir düğüm' dedi."
     },
     {
       "when": {},

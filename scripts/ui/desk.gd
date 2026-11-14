@@ -80,6 +80,7 @@ var _slip_glow: Tween
 var _order_warn: Label
 var _stranger_line := ""
 var _armed := ""                   # a scribe card picked by click, waiting for a word
+var _book_page: Control
 var _ribbon: Label                 # the chronicle's latest line, across the top of the desk
 const TOOL_INTRO := {
 	"not": "[color=%s]Kenar notu[/color]: kelimeyi yeni biçimiyle yazar, eski anlamını kenara not eder. Sadakati korur, okuru yormaz.",
@@ -295,6 +296,58 @@ func _plain_text(t: String) -> String:
 	return rx.sub(t, "", true)
 
 
+## The whole chronicle, era by era, on a page over the desk; a click closes it.
+func open_chronicle() -> void:
+	if _book_page or state.chronicle.is_empty():
+		return
+	_book_page = Control.new()
+	_book_page.name = "Kronik"
+	_book_page.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_book_page.mouse_filter = Control.MOUSE_FILTER_STOP
+	add_child(_book_page)
+	move_child(_book_page, _grain.get_index())
+	var dim := ColorRect.new()
+	dim.color = Color(0.08, 0.04, 0.03, 0.82)
+	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
+	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_book_page.add_child(dim)
+	var page := Control.new()
+	page.position = Vector2(200, 160)
+	page.size = Vector2(1520, 760)
+	page.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_book_page.add_child(page)
+	_tex(page, "belge_okuma.png", Vector2(-8, -8), 0.0)
+	_title(page, Vector2(610, 47), 30, "Kronik")
+	var scribes := {1: "I. çağ · Leuka", 2: "II. çağ · Argos", 3: "III. çağ · Nīka"}
+	var lines := PackedStringArray()
+	var last_era := 0
+	for c in state.chronicle:
+		var m := lib.find(c["doc"])
+		var e := m.era if m else 0
+		if e != last_era:
+			lines.append("\n[color=%s]%s[/color]" % [RED_HEX, scribes.get(e, "")])
+			last_era = e
+		lines.append("[b]%s[/b] — %s" % [state.titles.get(c["doc"], c["doc"]), c["line"]])
+	var r := _rich(page, "\n".join(lines).strip_edges(), 21)
+	r.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	r.scroll_active = true
+	r.scroll_following = true
+	r.mouse_filter = Control.MOUSE_FILTER_PASS
+	r.position = Vector2(130, 120)
+	r.size = Vector2(1260, 540)
+	var go := _label(page, "kapatmak için tıkla", 22, RED)
+	go.position = Vector2(1120, 664)
+	_book_page.gui_input.connect(func(e: InputEvent) -> void:
+		if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT:
+			close_chronicle())
+
+
+func close_chronicle() -> void:
+	if _book_page:
+		_book_page.queue_free()
+		_book_page = null
+
+
 func _handoff_line(last: Manuscript) -> String:
 	var sc: Dictionary = state.scores[last.id]
 	return "[color=%s]«%s» teslim edildi:[/color] sadakat %d / %d, anlaşılırlık %d / %d. %s" % [RED_HEX, last.title, sc["fidelity"], Copyist.FULL, sc["clarity"], Copyist.FULL, state.chronicle_of(last.id)]
@@ -366,6 +419,7 @@ func _start_doc(arrive: bool) -> void:
 		state.proven[rid] = range(engine.by_id[rid].sub_count())
 	_reading = null
 	_interlude = null
+	_book_page = null
 	_armed = ""
 	_word_order = []
 	marks = {}
@@ -508,6 +562,7 @@ func _build() -> void:
 		var c := WordCard.new()
 		_words_layer.add_child(c)
 		c.setup(FONT, era(), i + 1, doc.allow_reorder)
+		c.repeats = Array(ws).filter(func(w: String) -> bool: return w.to_lower() == key).size()
 		c.hovered.connect(_on_word_hovered)
 		c.clicked.connect(_on_word_clicked)
 		c.dropped.connect(_on_word_dropped)
@@ -556,8 +611,11 @@ func _build() -> void:
 		strip.set_patch_margin(side, 12)
 	strip.position = Vector2(600, 18)
 	strip.size = Vector2(700, 76)
-	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	strip.mouse_filter = Control.MOUSE_FILTER_STOP
+	strip.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	strip.tooltip_text = "Kroniğin tamamı"
 	add_child(strip)
+	_clickable(strip, open_chronicle, Vector2(664, 22))
 	_ribbon = _label(strip, "", 16, INK)
 	_ribbon.position = Vector2(18, 8)
 	_ribbon.size = Vector2(664, 60)
@@ -565,7 +623,7 @@ func _build() -> void:
 	_ribbon.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	_ribbon.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	var latest: String = state.chronicle[-1]["line"] if not state.chronicle.is_empty() else ""
-	_ribbon.text = "Kronik: " + _plain_text(latest) if latest != "" else "Kronik: henüz bir şey yazılmadı."
+	_ribbon.text = ("Kronik: " + _plain_text(latest) if latest != "" else "Kronik: henüz bir şey yazılmadı.") + "  (tıkla: tamamı)"
 	strip.visible = true
 
 	tutor = Tutor.new()
@@ -645,7 +703,8 @@ func _write_copy_on_page(copy: String, gloss: String = "", ink: Color = INK) -> 
 	if gloss != "":
 		var margin := _label(page, "Kenarda: " + gloss, 17, RED)
 		margin.position = Vector2(60, 362)
-		margin.size = Vector2(500, 24)
+		margin.size = Vector2(470, 24)
+		margin.clip_text = true
 		margin.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		_page_words.append(margin)
 
@@ -1137,7 +1196,7 @@ func _clickable(node: Control, action: Callable, mark_at: Vector2) -> void:
 func _title(page: Control, pos: Vector2, size_px: int, text: String = "") -> void:
 	var t := text if text != "" else doc.title
 	var fs := size_px
-	while fs > 16 and FONT.get_string_size(t, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > 280:
+	while fs > 16 and FONT.get_string_size(t, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > 250:
 		fs -= 1
 	var title := _label(page, t, fs, PAPER)
 	title.position = pos

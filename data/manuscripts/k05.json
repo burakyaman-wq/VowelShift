@@ -32,10 +32,21 @@
         "mark": [
           "mīrosyo",
           "not"
-        ]
+        ],
+        "flag": "senet_buyuk"
       },
       "set": "miras_acik",
-      "chronicle": "Kenar notun mahkemede okundu. Grēna'nın torunu davayı sürdürecek gücü buldu."
+      "chronicle": "Arşivdeki Argos kopyasının kenarında 'büyük kardeş' yazıyordu; notun onu gösterdi. Grēna'nın torunu davayı sürdürecek gücü buldu."
+    },
+    {
+      "when": {
+        "mark": [
+          "mīrosyo",
+          "not"
+        ]
+      },
+      "set": "miras_belirsiz",
+      "chronicle": "Kenar notun iki kardeşi de yazıyor; arşivde ayıran eski bir kopya yok. Mahkeme davayı erteledi."
     },
     {
       "when": {},

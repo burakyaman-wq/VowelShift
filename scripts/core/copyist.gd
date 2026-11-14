@@ -136,8 +136,19 @@ static func evaluate(doc: Manuscript, engine: RuleEngine, order: Array, proven: 
 		var bare := tok.trim_suffix(".")
 		tokens.append(by_key[bare.to_lower()]["final"])
 		stops.append(tok.ends_with("."))
-	if word_order.size() == tokens.size():
+	if word_order.size() == tokens.size() and word_order != range(1, tokens.size() + 1):
+		# a sentence's capital belongs to its first place, not to the word that stood there
+		for i in tokens.size():
+			if tokens[i] != "" and not engine.is_name(tokens[i]):
+				tokens[i] = tokens[i].to_lower()
 		tokens = word_order.map(func(i: int) -> String: return tokens[i - 1])
+		var start := true
+		for i in tokens.size():
+			if tokens[i] == "":
+				continue
+			if start:
+				tokens[i] = tokens[i].left(1).to_upper() + tokens[i].substr(1)
+			start = stops[i]
 	var words := PackedStringArray()
 	for i in tokens.size():
 		if tokens[i] != "":

@@ -7,7 +7,7 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Tüccar Grēna",
-    "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızın defteri bu; annemin annesi yazdırmış. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım."
+    "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızın defteri bu; annemin annesi yazdırmış. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım. Mahkeme eski yazıya daha çok güvenir; istersen *tahıl* kelimesini eski hâliyle bırak."
   },
   "old_text": "Grānos mātērosyo. Thētos rēgosyo.",
   "heard": [
@@ -23,16 +23,32 @@
   ],
   "tools": {
     "not": 0,
-    "eski": 0,
+    "eski": 1,
     "kazi": 0
   },
-  "delivered_tr": "Grēna defteri sandığa koydu. 'Borç beyin,' dedi, 'ama tahıl annenindi.'",
   "variants": [
     {
       "when": {
         "flag": "senet_notsuz"
       },
-      "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızı saray aldı, elimizde yalnız bu defter kaldı. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım; belki bir gün geri alırız."
+      "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızı saray aldı, elimizde yalnız bu defter kaldı. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım; belki bir gün geri alırız. Mahkeme eski yazıya daha çok güvenir; istersen *tahıl* kelimesini eski hâliyle bırak."
+    }
+  ],
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "grānos",
+          "eski"
+        ]
+      },
+      "set": "defter_eski",
+      "chronicle": "Defterde 'tahıl' eski yazımla duruyor. Yaşlı yargıç Grēna'yı ciddiye aldı."
+    },
+    {
+      "when": {},
+      "set": "defter_yeni",
+      "chronicle": "Grēna defteri sandığa koydu. 'Borç beyin,' dedi, 'ama tahıl annenindi.'"
     }
   ]
 }

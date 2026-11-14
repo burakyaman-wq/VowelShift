@@ -7,7 +7,7 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Grēna'nın torunu",
-    "says_tr": "Mahkeme son kez soruyor: kurucuların annesinin tahılı kime kaldı? Elimde vasiyetin II. çağ kopyası var. Ben de dağlılar da bu satırlara bağlıyız."
+    "says_tr": "Mahkeme son kez soruyor: kurucuların annesinin tahılı kime kaldı? Elimde vasiyetin II. çağ kopyası var; adlar orada zaten birleşmiş. Arşivde Leuka'nın ilk kopyası duruyorsa, kenar notun ona dayanabilir."
   },
   "old_text": "Mētīros grēnom Mīrosyo dōneti. Phrētīros grēnom emeti.",
   "heard": [
@@ -32,25 +32,27 @@
         "mark": [
           "mīrosyo",
           "not"
-        ]
+        ],
+        "flag": "tahil_meros"
       },
       "set": "miras_daglilara",
-      "chronicle": "Kenar notunla vasiyet açıldı: tahıl küçük kardeşe kalmış, büyüğü almış. Mahkeme tüccar ailesinin borcunu sildi; dağlılara tarla verildi."
+      "chronicle": "Kenar notun Leuka'nın vasiyet kopyasını gösterdi: orada 'Mērosyo' yazıyordu. Tahıl küçük kardeşe kalmış, büyüğü almış. Mahkeme tüccar ailesinin borcunu sildi; dağlılara tarla verildi."
     },
     {
       "when": {
         "mark": [
           "mīrosyo",
           "eski"
-        ]
+        ],
+        "flag": "tahil_meros"
       },
       "set": "miras_daglilara",
-      "chronicle": "Eski yazımla vasiyet okundu: tahıl küçük kardeşindi. Mahkeme tüccar ailesinin borcunu sildi; dağlılara tarla verildi."
+      "chronicle": "Eski yazım, Leuka'nın kopyasındaki 'Mērosyo'yu geri getirdi. Mahkeme tüccar ailesinin borcunu sildi; dağlılara tarla verildi."
     },
     {
       "when": {},
       "set": "miras_saraya",
-      "chronicle": "Vasiyette tahılın hangi kardeşe kaldığı okunmadı. Mahkeme eski hanedanın lehine karar verdi; tüccar ailesi borçla kaldı."
+      "chronicle": "Vasiyette tahılın hangi kardeşe kaldığı okunmadı; arşivde ayıran bir kopya da yok. Mahkeme eski hanedanın lehine karar verdi; tüccar ailesi borçla kaldı."
     }
   ]
 }
