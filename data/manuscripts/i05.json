@@ -7,7 +7,7 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağlı çoban",
-    "says_tr": "Tahıl için indim. Dağda saklanan bir kayın tahtası getirdim: sürgün Mēros'un annesine yazıp hiç yollayamadığı mektup. Bugün *gwīweti* 'yaşar' demek."
+    "says_tr": "Tahıl için indim. Dağda saklanan bir kayın tahtası getirdim: sürgün Mēros'un annesine yazıp hiç yollayamadığı mektup. Şehirde *gwīweti* diyorsunuz; ama dağda yaşlılar hâlâ eski dili konuşur. Eski yazımla bırakırsan onlar da okur."
   },
   "old_text": "Mēros gweiweti. Bhāgom mātērosyo dōneti.",
   "heard": [
@@ -23,8 +23,24 @@
   ],
   "tools": {
     "not": 0,
-    "eski": 0,
+    "eski": 1,
     "kazi": 0
   },
-  "delivered_tr": "Çoban kopyayı alıp dağa döndü. Sürgün Mēros dağda yaşamış; annesine yazmış ama mektubu hiç yollayamamış."
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "gweiweti",
+          "eski"
+        ]
+      },
+      "set": "dag_eski",
+      "chronicle": "Mektubu dağın yaşlıları kendi dilleriyle okudu. Çobanlar sana 'dağın kâtibi' demeye başladı; şehirde ise kopyayı kimse okuyamadı."
+    },
+    {
+      "when": {},
+      "set": "dag_yeni",
+      "chronicle": "Çoban kopyayı alıp dağa döndü. Gençler okudu; yaşlılar 'şehrin yazısı' deyip başını salladı."
+    }
+  ]
 }

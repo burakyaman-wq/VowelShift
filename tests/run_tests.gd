@@ -193,7 +193,7 @@ func _desk_tests() -> void:
 	var w1: Dictionary = desk1.write_copy()
 	_expect(w1["shelved"] and w1["copy"] == "Mīros dīwosyo khewom dōneti. Mīros phāgom khrepheti. Mēros nākos.", "doc 1 is copied right and shelved")
 	_expect(desk1.state.scores["doc_01"] == {"fidelity": 5, "clarity": 5}, "and weighed in full")
-	_expect(desk1.tutor.step_text().contains("istek notuna tıkla"), "after shelving it points at the slip")
+	_expect(desk1.tutor.step_text().contains("sahibine gidiyor"), "after the pen the copy goes to its owner")
 	_expect(desk1.tutor.step_text().contains("doğru, onu kullanmadın"), "and says which card was the stranger")
 	_expect(desk1._page_words.size() > 16, "the copy is written on the document under the old text")
 	_expect(desk1.deliver(), "the copy is delivered")

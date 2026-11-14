@@ -896,6 +896,23 @@
         "acc_pl": "tūkem",
         "gen_pl": "tūkesyo"
       }
+    },
+    {
+      "id": 57,
+      "root": "thūmos",
+      "stem": "thūm",
+      "meaning_tr": "öfke",
+      "pos": "noun",
+      "domain": "kin_body_faith",
+      "etymon": "*dʰuh₂mós (Yun. thymos)",
+      "forms": {
+        "nom_sg": "thūmos",
+        "acc_sg": "thūmom",
+        "gen_sg": "thūmosyo",
+        "nom_pl": "thūmes",
+        "acc_pl": "thūmem",
+        "gen_pl": "thūmesyo"
+      }
     }
   ]
 }
