@@ -1,0 +1,36 @@
+{
+  "id": "k06",
+  "order": 36,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Argos'un yarım defteri",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Nīka (kendin)",
+    "says_tr": "Yangından Argos'un yarım defteri çıktı. İçinden yeni bir ses kartı düştü: «Damaklaşma». Son sayfada Argos'un notu var: “Ekler düşüyor; halk kimin yaptığını artık sıradan anlıyor. Önce gelen yapandır.” Defterin ilk satırını kendi defterime geçireceğim."
+  },
+  "old_text": "Mīros nēkos. Phēgos wēros.",
+  "heard": [
+    "nēko",
+    "wēro"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {},
+      "set": "argos_defteri",
+      "chronicle": "Argos'un satırı artık senin defterinde: 'Mīros sürgündür. Defter gerçektir.' Defterin arasında bir sayfa izi var; biri bir şey koparmış."
+    }
+  ]
+}

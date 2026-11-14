@@ -270,8 +270,7 @@ func _desk_tests() -> void:
 	var desk4: Node = load("res://scenes/desk.tscn").instantiate()
 	desk4.doc_id = "doc_04"
 	root.add_child(desk4)
-	_expect(desk4.interlude_text().contains("Önce gelen yapandır"), "doc 4 opens on the master's note about word order")
-	desk4.dismiss_interlude()
+	_expect(lib.find("k06").requester_says.contains("Önce gelen yapandır"), "Argos's note about word order comes before the mountain document")
 	desk4.place_rule("R5", 0)
 	desk4.place_rule("R6", 1)
 	_expect(desk4.copy_text() == "Mīro nēko Mīro rīgo şeneti.", "doc 4 copies word for word at first")
@@ -287,10 +286,22 @@ func _desk_tests() -> void:
 	var res4: Dictionary = desk4.write_copy()
 	_expect(res4.get("shelved", false) and res4["copy"] == "Mīro rīgo Mīro nēko şeneti.", "the reordered copy is written and shelved")
 	_expect(desk4.narrative.city_reading_doc4(desk4.state) == desk4.narrative.t["doc4"]["subject_first"], "the city reads the first noun as the doer")
-	desk4.deliver()
-	desk4.next_document()
-	_expect(desk4.get_node_or_null("Son") != null, "after the last document the epilogue opens")
+	_expect(desk4.state.flags.has("dag_aklandi"), "the mountain people are cleared by a copy read the right way round")
 	desk4.queue_free()
+
+	# The last job and the ending.
+	var deskE: Node = load("res://scenes/desk.tscn").instantiate()
+	deskE.doc_id = "k15"
+	root.add_child(deskE)
+	deskE.add_rule("R5")
+	deskE.add_rule("R6")
+	_expect(deskE.mark_word("kheneti", "kazi"), "the killing can be scraped from the chronicle")
+	deskE.write_copy()
+	deskE.deliver()
+	deskE.next_document()
+	_expect(deskE.get_node_or_null("Son") != null, "after the chronicle the ending opens")
+	_expect(deskE.narrative.ending(deskE.state).contains("öldürmek yok"), "and it remembers the silence")
+	deskE.queue_free()
 
 
 func _expect(ok: bool, msg: String) -> void:
@@ -338,7 +349,8 @@ func _play_through(engine: RuleEngine, lib: ManuscriptLibrary) -> void:
 		# Doc 4
 		d = lib.find("doc_04")
 		g.begin_doc(d, engine)
-		_expect("R6" in g.cards, name + " inherited damak")
+		if not "R6" in g.cards:
+			g.cards.append("R6")  # dealt by Argos's notebook in the full run
 		_expect(g.prove_rule(d, lib, engine, "-s", "∅", ["rīgos:rīgo", "ēgros:ēgro"]).ok, name + " prove -s")
 		_expect(g.prove_rule(d, lib, engine, "-m", "∅", ["nēkom:nēko", "Mīrom:Mīro"]).ok, name + " prove -m")
 		r = g.make_copy(d, engine, ["R5", "R6"], [3, 4, 1, 2, 5] if careful else [])

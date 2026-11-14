@@ -71,3 +71,50 @@ func epilogue(state: GameState) -> String:
 		var head := out.substr(0, at + intro.length())
 		out = head + out.substr(head.length()).replace("Y" + intro, "Melno").replace("y" + intro, "Melno")
 	return out
+
+
+## The ending of the full run: what old Melno wrote fifty years on, one
+## paragraph for each thing the city came to believe. Built from story flags.
+func ending(state: GameState) -> String:
+	var f := state.flags
+	var out := PackedStringArray()
+	# 1. What happened to Mēros
+	if f.has("kronik_sessiz"):
+		out.append("Kroniğin ilk satırında öldürmek yok. Okullarda kurucunun kardeşinin bir gün ortadan kaybolduğu öğretiliyor; kimse nasıl olduğunu sormuyor.")
+	elif f.has("kronik_gercek") and (f.has("sayfa_okundu") or f.has("melno_anladi")):
+		out.append("Okullarda kurucunun, kardeşini sürgünde öldürttüğü öğretiliyor. Melno, bu gerçeğin yüz yıl boyunca bir yanlış okumadan doğan söylentiyle yaşadığını yazdı: yaşlılar 'sürgün' kelimesini 'ölü' diye duymuştu ve haklıydılar.")
+	elif f.has("kronik_gercek"):
+		out.append("Kronik, beyin sürgün kardeşini öldürdüğünü yazıyor. Ama bunun nasıl bilindiğini kimse hatırlamıyor; çoğu kişi yeni düzenin uydurduğunu düşünüyor.")
+	else:
+		out.append("Kurucunun kardeşine ne olduğu hâlâ tartışılıyor.")
+	if f.has("kazi_yapildi") or f.has("meros_kazindi"):
+		out.append("Eski tabletlerde sürgünün adı yok; yalnız kazı izleri var. Melno o izleri 'kâtiplerin sessizliği' diye andı.")
+	# 2. The mountain people
+	if f.has("daglilar_suclu") and f.has("ilan_dogru"):
+		out.append("Dağlılar önce kendi belgeleriyle suçlu sayıldı; sonra meydana asılan ilan onları akladı. Yine de şehre inen ilk kuşak taşlandı.")
+	elif f.has("daglilar_suclu"):
+		out.append("Dağlılar kendi belgeleriyle suçlu ilan edildi. Dağ yolu elli yıldır kapalı.")
+	elif f.has("dag_aklandi") and (f.has("miras_daglilara") or f.has("tarla_daglilara")):
+		out.append("Dağlılar aklandı; atalarının tarlası onlara verildi. Bugün şehrin pazarında dağ yünü satılıyor.")
+	elif f.has("dag_aklandi"):
+		out.append("Dağlılar aklandı ama şehre dönmedi. Yalnız elçinin torunu her yıl kapıdaki barış yazısını okumaya gelir.")
+	# 3. The granary family
+	if f.has("miras_daglilara"):
+		out.append("Sālwa'nın soyu borçtan kurtuldu ve ambarı geri aldı. Grēna'nın torunu yazıhaneye bir çuval tahıl bıraktı.")
+	elif f.has("miras_saraya"):
+		out.append("Sālwa'nın soyu borçla kaldı; ambar saray deposu olarak kullanılıyor.")
+	# 4. How the scribes are remembered
+	var scraped := 0
+	for k in ["tarla_kazindi", "kitlik_kazindi", "mektup_kazindi", "meros_kazindi", "kutuk_kazindi", "kazi_yapildi", "kutuk_temiz", "kronik_sessiz"]:
+		if f.has(k):
+			scraped += 1
+	var noted := state.notes.size()
+	if scraped >= 3:
+		out.append("Melno, Leuka'dan Nīka'ya uzanan kâtip zincirini 'sarayın kalemi' diye andı: %d kez bir şey sildiler. Kenarlarda yine de %d not bıraktılar." % [scraped, noted])
+	elif f.has("dag_aklandi") and state.scores.has("doc_04") and not state.notes.has("doc_04"):
+		out.append("Melno, kâtip zincirini hem çevirmen hem sahteci diye andı: son kâtip sırayı değiştirmiş ama nedenini yazmamıştı.")
+	elif noted >= 6:
+		out.append("Melno, Leuka'dan Nīka'ya uzanan kâtip zincirini 'çevirmenler' diye andı: kenarlara %d not bırakmışlardı; sözlüğünü onlardan derledi." % noted)
+	else:
+		out.append("Melno, kâtip zincirinden az söz etti: kopyaları doğruydu, ama kenarları boştu.")
+	return "\n\n".join(out)

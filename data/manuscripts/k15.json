@@ -1,0 +1,56 @@
+{
+  "id": "k15",
+  "order": 45,
+  "era": 3,
+  "kind": "ana",
+  "title_tr": "Şehrin kroniği",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Yeni düzen",
+    "says_tr": "Şehrin kroniği yazılacak ve senin kopyan esas alınacak. İlk satır kuruluşu anlatıyor: bey sürgünü öldürdü, sürgün kardeşti. Kimi bu satırı kazımanı istiyor, kimi korumanı. Karar senin, Nīka."
+  },
+  "old_text": "Rīgos nēkom kheneti. Nēkos phrētīros.",
+  "heard": [
+    "şeneti",
+    "phrētīro"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 2,
+    "eski": 1,
+    "kazi": 1
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "kheneti",
+          "kazi"
+        ]
+      },
+      "set": "kronik_sessiz",
+      "chronicle": "Kroniğin ilk satırında öldürmek yok; yalnız 'sürgün kardeşti' yazıyor."
+    },
+    {
+      "when": {
+        "mark": [
+          "nēkom",
+          "kazi"
+        ]
+      },
+      "set": "kronik_sessiz",
+      "chronicle": "Kroniğin ilk satırında kimin öldürüldüğü yok."
+    },
+    {
+      "when": {},
+      "set": "kronik_gercek",
+      "chronicle": "Kroniğin ilk satırı: bey sürgünü öldürdü; sürgün kardeşti."
+    }
+  ]
+}

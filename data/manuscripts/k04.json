@@ -1,0 +1,47 @@
+{
+  "id": "k04",
+  "order": 34,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Yeni yasa",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Yeni düzenin vekili",
+    "says_tr": "Eski bir yasayı yeniden yürürlüğe koyuyoruz: bey tahılı alır. Eski yazıda önce tahıl yazılmış; ekler sayesinde anlaşılırmış. Bugün ekler düştü: halk önce geleni yapan sanıyor."
+  },
+  "old_text": "Grēnom rīgos emeti.",
+  "heard": [
+    "rīgo",
+    "grēno"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": true,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 0,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "order": "wrong"
+      },
+      "set": "yasa_ters",
+      "chronicle": "Yasa 'tahıl beyi alır' diye okundu. Çarşıda kahkahalar; vekil yasayı geri çekti."
+    },
+    {
+      "when": {},
+      "set": "yasa_dogru",
+      "chronicle": "Yasa doğru okundu: bey tahılı alır. Halk homurdandı ama anladı."
+    }
+  ],
+  "reading_key": [
+    "rīgo",
+    "grēno"
+  ]
+}

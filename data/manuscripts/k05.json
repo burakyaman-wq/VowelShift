@@ -1,0 +1,54 @@
+{
+  "id": "k05",
+  "order": 35,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Borcun mirası",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Grēna'nın torunu",
+    "says_tr": "Büyük annem Grēna'nın borç senedini getirdim; mahkemede miras davası var. İçinde *Mīrosyo* geçiyor: kurucunun mu, sürgünün mü?"
+  },
+  "old_text": "Mētīros Mīrosyo grēnom emeti.",
+  "heard": [
+    "Mīrosyo",
+    "grēno"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 0,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "mīrosyo",
+          "not"
+        ]
+      },
+      "set": "miras_acik",
+      "chronicle": "Kenar notun mahkemede okundu. Grēna'nın torunu davayı sürdürecek gücü buldu."
+    },
+    {
+      "when": {},
+      "set": "miras_belirsiz",
+      "chronicle": "Senetteki ad yine iki kişiyi gösteriyor. Mahkeme davayı erteledi."
+    }
+  ],
+  "variants": [
+    {
+      "when": {
+        "flag": "senet_buyuk"
+      },
+      "says_tr": "Büyük annem Grēna'nın senedini getirdim. Senin yazıhanen bir kez kenarına 'büyük kardeş' yazmıştı; o yüzden borçtan kurtulmuşuz. Mahkeme yine soruyor: *Mīrosyo* hangisi?"
+    }
+  ]
+}

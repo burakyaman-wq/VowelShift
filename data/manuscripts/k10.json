@@ -1,0 +1,47 @@
+{
+  "id": "k10",
+  "order": 40,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Barış kapısı",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Yaşlı rahip",
+    "says_tr": "Şehir kapısındaki barış yazısı yanmış; bir parçası kaldı. Eski yazıda önce barış, sonra bey yazılmış: 'barışı bey verir'. Bugün sıra bozulursa 'barış beyi verir' okunur."
+  },
+  "old_text": "Pēkom rīgos dōneti.",
+  "heard": [
+    "pēko",
+    "rīgo"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": true,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 0,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "order": "wrong"
+      },
+      "set": "baris_ters",
+      "chronicle": "Kapı 'barış beyi verir' diye okundu. Dağlılar bunu alay sandı."
+    },
+    {
+      "when": {},
+      "set": "baris_kapisi",
+      "chronicle": "Kapıda yeniden 'bey barış verir' yazıyor. Dağlı elçi kapının önünde durup uzun uzun baktı."
+    }
+  ],
+  "reading_key": [
+    "rīgo",
+    "pēko"
+  ]
+}

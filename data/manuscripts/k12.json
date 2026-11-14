@@ -1,0 +1,55 @@
+{
+  "id": "k12",
+  "order": 42,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Meydandaki ilan",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Dağlı elçi",
+    "says_tr": "Şehir meydanına bir ilan asılacak. Eski yazıda önce sürgün yazılmış, sonra bey: 'sürgünü bey öldürdü'. Sıra bozuk kalırsa şehir yine bizi katil sanar."
+  },
+  "old_text": "Nēkom rīgos kheneti.",
+  "heard": [
+    "nēko",
+    "şeneti"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": true,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 0,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "order": "wrong"
+      },
+      "set": "ilan_ters",
+      "chronicle": "İlan 'sürgün beyi öldürdü' diye okundu. Meydanda dağlılara taş atıldı."
+    },
+    {
+      "when": {},
+      "set": "ilan_dogru",
+      "chronicle": "İlan doğru okundu: bey sürgünü öldürdü. Meydanda uzun bir sessizlik oldu."
+    }
+  ],
+  "variants": [
+    {
+      "when": {
+        "flag": "daglilar_suclu"
+      },
+      "says_tr": "Senin kopyan yüzünden şehir bizi katil sandı. Şimdi meydana gerçeği asmak istiyoruz. Eski yazıda önce sürgün, sonra bey yazılmış: 'sürgünü bey öldürdü'. Bu kez sırayı doğru kur."
+    }
+  ],
+  "reading_key": [
+    "rīgo",
+    "nēko"
+  ]
+}

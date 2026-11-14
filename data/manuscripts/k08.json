@@ -1,0 +1,46 @@
+{
+  "id": "k08",
+  "order": 38,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Buyruk ve dağ belgesi",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Genç Melno",
+    "says_tr": "Dağlıların belgesini okudum. Şimdi Argos'un sürgün buyruğu kopyasını yan yana koymak istiyorum: 'dönerse ölür' diyor. İkisi aynı hikâyeyi anlatıyor olabilir mi?"
+  },
+  "old_text": "Mīros rīgos Mīrom ageti. Mīros nēkos. Mīros werteti. Mīros mereti.",
+  "heard": [
+    "aceti",
+    "nēko"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 2,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "mīrom",
+          "not"
+        ]
+      },
+      "set": "melno_anladi",
+      "chronicle": "Melno iki belgeyi yan yana koydu: sürgün dönmüş, bey onu öldürtmüş. 'Söylenti doğruymuş,' dedi, 'ama yanlış okumadan doğmuş.'"
+    },
+    {
+      "when": {},
+      "set": "melno_suphe",
+      "chronicle": "Melno buyruğu okudu ama kimin kimi sürdüğünü ayırt edemedi. 'Bu adlar bir düğüm,' dedi."
+    }
+  ]
+}

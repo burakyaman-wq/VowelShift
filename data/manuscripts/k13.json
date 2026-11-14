@@ -1,0 +1,46 @@
+{
+  "id": "k13",
+  "order": 43,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Koparılmış sayfa",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Yangın artığı",
+    "says_tr": "Argos'un defterinin cildinin içinden katlanmış bir sayfa çıktı: Lūka'nın koparıp sakladığı sayfa. Kurucu çağından kopyalanmış satırlar: dönen biri, duman, bir de gören bir kâtip."
+  },
+  "old_text": "Mīros werteti. Rīgos thūmom wīdeti. Khrophos wīdeti.",
+  "heard": [
+    "thūmo",
+    "khropho"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "thūmom",
+          "not"
+        ]
+      },
+      "set": "sayfa_okundu",
+      "chronicle": "Lūka'nın sayfası okundu: Mēros dönmüş, bey dumanı görmüş, bir kâtip de görmüş. O kâtip ilk usta Dhēmos'tu. Yazıhane yüz elli yıldır bu sırrı saklıyormuş."
+    },
+    {
+      "when": {},
+      "set": "sayfa_karisik",
+      "chronicle": "Sayfada 'bey öfkeyi gördü' okunuyor. Melno başını salladı: 'Doğru da olabilir.'"
+    }
+  ]
+}

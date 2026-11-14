@@ -1,0 +1,65 @@
+{
+  "id": "k09",
+  "order": 39,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Düşen hanedanın kütüğü",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Yeni düzenin vekili",
+    "says_tr": "Eski hanedanın soy kütüğü elimizde. Yeni düzen onların bir katil soyu olduğunu gösterecek. Kütükte sürgün kardeşin adı varsa kalsın; yoksa da sen ekleme."
+  },
+  "old_text": "Mīros Mīros phrētīres.",
+  "heard": [
+    "Mīro",
+    "phrētīre"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 0,
+    "kazi": 1
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "mīros",
+          "not"
+        ]
+      },
+      "set": "kutuk_acik",
+      "chronicle": "Kütüğün kenarında 'biri bey, biri sürgün' yazıyor. Vekil kütüğü meydana astırdı."
+    },
+    {
+      "when": {
+        "mark": [
+          "mīros",
+          "kazi"
+        ]
+      },
+      "set": "kutuk_temiz",
+      "chronicle": "Kütükten bir ad daha kazıdın. Vekil kızdı: 'katil soyunu temize çıkarıyorsun.'"
+    },
+    {
+      "when": {},
+      "set": "kutuk_karisik",
+      "chronicle": "Kütükte iki aynı ad. Halk bunu bir eski yazım hatası sanıyor."
+    }
+  ],
+  "variants": [
+    {
+      "when": {
+        "flag": "kutuk_kazindi"
+      },
+      "old_text": "Mīros phrētīres.",
+      "says_tr": "Eski hanedanın soy kütüğü elimizde. Sürgünün adı yüz yıl önce kazınmış; yalnız 'Mīros kardeşler' kalmış. Kimin kardeşi, belli değil."
+    }
+  ]
+}

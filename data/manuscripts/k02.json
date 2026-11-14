@@ -1,0 +1,45 @@
+{
+  "id": "k02",
+  "order": 32,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Yanmış dua",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Yaşlı rahip",
+    "says_tr": "Tapınaktan geriye ben kaldım. Bu dua tabletini kurtardım. Bugün *aceti* diyorsunuz; ben tanrının adını harfiyle isterim: istersen *dīwos* eski yazımla kalsın."
+  },
+  "old_text": "Dīwos agnom ageti.",
+  "heard": [
+    "aceti",
+    "agno"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "dīwos",
+          "eski"
+        ]
+      },
+      "set": "dua_eski",
+      "chronicle": "Duada tanrının adı eski yazımla duruyor. Yaşlı rahip ağladı; gençler duayı ezberleyemedi."
+    },
+    {
+      "when": {},
+      "set": "dua_yeni",
+      "chronicle": "Dua bugünün diliyle yazıldı. Çocuklar onu sokakta söylüyor; yaşlı rahip duymamış gibi yapıyor."
+    }
+  ]
+}

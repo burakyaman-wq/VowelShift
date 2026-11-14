@@ -1,0 +1,27 @@
+{
+  "id": "k01",
+  "order": 31,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Yanmış kapı",
+  "intro_tr": "Yüz yıl daha geçti. Dağ yolundaki çatışmalar savaşa döndü; savaş yazıhaneyi yaktı, eski hanedan düştü. Argos'un çırağının çırağı Nīka, yani sen, külleri süpürüyorsun. Sokakta kelime sonları düşüyor: kimse artık -s, -m demiyor.",
+  "requester": {
+    "name_tr": "Yeni düzenin vekili",
+    "says_tr": "Yazıhane yeniden açılacak. Kapı yazısı yanmış ama okunuyor. Bugünün diliyle yaz: biz artık *domo* diyoruz, *domos* değil."
+  },
+  "old_text": "Khrophosyo domos.",
+  "heard": [
+    "domo"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "delivered_tr": "Yanık kapıya yeni yazı asıldı. Vekil 'yazı yeni düzenin işidir,' dedi."
+}

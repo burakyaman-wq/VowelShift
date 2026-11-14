@@ -1,0 +1,52 @@
+{
+  "id": "k14",
+  "order": 44,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Kazınmış tablet",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Genç Melno",
+    "says_tr": "Tapınağın enkazında Argos'un zamanından bir tablet bulduk. Bir adın kazınıp kazınmadığını görmek istiyorum."
+  },
+  "old_text": "Mīros dīwosyo khewom dōneti. Mīros nēkos.",
+  "heard": [
+    "şewo",
+    "nēko"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 1,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "flag": "kazi_yapildi"
+      },
+      "set": "tablet_izli",
+      "chronicle": "Tablette yalnız kazınmış bir izin gölgesi var. Melno izi parmağıyla takip etti: 'Burada biri vardı.'"
+    },
+    {
+      "when": {},
+      "set": "tablet_tam",
+      "chronicle": "Tablette iki ad duruyor: biri adak sunmuş, biri sürgün. Argos kazımamış."
+    }
+  ],
+  "variants": [
+    {
+      "when": {
+        "flag": "kazi_yapildi"
+      },
+      "old_text": "Mīros dīwosyo khewom dōneti.",
+      "says_tr": "Tapınağın enkazında Argos'un zamanından bir tablet bulduk. Bir ad kazınmış; taşın yüzünde yalnız izi var. Kalanı kopyala."
+    }
+  ]
+}

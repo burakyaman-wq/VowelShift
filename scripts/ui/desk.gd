@@ -960,15 +960,15 @@ func _show_ending() -> void:
 	move_child(cover, _grain.get_index())
 	var page := _sheet("Son", "belge_okuma.png", Vector2(200, 160), Vector2(1520, 760), 0.0, 8.0, Art.document_era(era()))
 	move_child(page, _grain.get_index())
-	_title(page, Vector2(610, 47), 30, "Yüz yıl sonra")
-	var r := _rich(page, _scales_line() + "\n\n" + narrative.epilogue(state), 23)
+	_title(page, Vector2(610, 47), 30, "Elli yıl sonra")
+	var r := _rich(page, _scales_line() + "\n\n" + narrative.ending(state), 23)
 	r.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	r.scroll_active = true
 	r.mouse_filter = Control.MOUSE_FILTER_PASS
 	r.position = Vector2(120, 122)
 	r.size = Vector2(1280, 548)
 	var again := _label(page, "Son · baştan oynamak için tıkla", 22, RED)
-	again.position = Vector2(1040, 684)
+	again.position = Vector2(1000, 650)
 	page.gui_input.connect(func(e: InputEvent) -> void:
 		if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT and is_inside_tree() and get_tree().current_scene == self:
 			if autosave and FileAccess.file_exists(GameState.SAVE_PATH):
@@ -1046,7 +1046,7 @@ func _next_step() -> Array:
 			return ["«%s» bugün doğru, ama eski dili bilen [color=%s]yaşlılar onu «%s» diye okur[/color]. Kenar notu ya da Eski yazım bu yanlış okumayı önler; ya da öyle bırak." % [r["new"], RED_HEX, " / ".join(PackedStringArray(r["elder"]))], at]
 	match ev["order"]:
 		"wrong":
-			return ["Ekler düştü; şehir kimin yaptığını artık kelime sırasından anlar: [color=%s]önce gelen yapandır[/color]. Eski yazıda -s ile biten kelimeler (Mīros, rīgos) yapandı. Kelime kartlarını sürükleyip sırayı kur." % RED_HEX, _words_layer.get_global_rect() if _words_layer else none]
+			return ["Ekler düştü; şehir kimin yaptığını artık kelime sırasından anlar: [color=%s]önce gelen yapandır[/color]. Eski yazıda -s ile biten kelime yapandı, -m ile biten etkilenen; kartın altındaki 'eski:' satırına bak. Kelime kartlarını sürükleyip sırayı kur." % RED_HEX, _words_layer.get_global_rect() if _words_layer else none]
 		"unexplained":
 			if tools_left("not") > 0:
 				return ["Sıra artık doğru, ama aslından farklı. Nedenini yazmak için bir kelimeye [color=%s]Kenar notu[/color] koy; yoksa kopya sahte sanılabilir." % RED_HEX, _words_layer.get_global_rect() if _words_layer else none]

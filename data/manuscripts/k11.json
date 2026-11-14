@@ -1,0 +1,56 @@
+{
+  "id": "k11",
+  "order": 41,
+  "era": 3,
+  "kind": "ana",
+  "title_tr": "Vasiyetin zinciri",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Grēna'nın torunu",
+    "says_tr": "Mahkeme son kez soruyor: kurucuların annesinin tahılı kime kaldı? Elimde vasiyetin II. çağ kopyası var. Ben de dağlılar da bu satırlara bağlıyız."
+  },
+  "old_text": "Mētīros grēnom Mīrosyo dōneti. Phrētīros grēnom emeti.",
+  "heard": [
+    "Mētīro",
+    "Phrētīro"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 2,
+    "eski": 1,
+    "kazi": 0
+  },
+  "outcomes": [
+    {
+      "when": {
+        "mark": [
+          "mīrosyo",
+          "not"
+        ]
+      },
+      "set": "miras_daglilara",
+      "chronicle": "Kenar notunla vasiyet açıldı: tahıl küçük kardeşe kalmış, büyüğü almış. Mahkeme tüccar ailesinin borcunu sildi; dağlılara tarla verildi."
+    },
+    {
+      "when": {
+        "mark": [
+          "mīrosyo",
+          "eski"
+        ]
+      },
+      "set": "miras_daglilara",
+      "chronicle": "Eski yazımla vasiyet okundu: tahıl küçük kardeşindi. Mahkeme tüccar ailesinin borcunu sildi; dağlılara tarla verildi."
+    },
+    {
+      "when": {},
+      "set": "miras_saraya",
+      "chronicle": "Vasiyette tahılın hangi kardeşe kaldığı okunmadı. Mahkeme eski hanedanın lehine karar verdi; tüccar ailesi borçla kaldı."
+    }
+  ]
+}

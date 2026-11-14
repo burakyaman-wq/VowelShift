@@ -3,7 +3,7 @@
   "order": 37,
   "era": 3,
   "title_tr": "Dağdan gelen belge",
-  "intro_tr": "Yüz yıl daha geçti. Savaş yazıhaneyi yaktı; yazıhanenin eski ustası Argos'tan geriye yarım bir defter kaldı. Defterin arasından yeni bir ses kartı çıktı: «Damaklaşma». Son sayfada Argos'un kenar notu var: “Kelime sonları düşmeye başladı; halk artık kimin yaptığını eklerden değil, kelimelerin sırasından anlıyor. Önce gelen yapandır.”",
+  "intro_tr": "",
   "requester": {
     "name_tr": "Dağlardan gelen elçi",
     "says_tr": "Biz *Mīro*'nun soyundanız; bize *nēko* dediniz, sürgün. Sizin *rīgo* bize ne *ēgro* bıraktı ne *grēno*. Atamız dağlara sürülmedi, öldürüldü; bu belge bizim arşivimizden. Senin yazınla kopyala ki şehirde herkes okusun."
@@ -16,9 +16,7 @@
     "grēno",
     "nēko"
   ],
-  "inherit_cards": [
-    "R6"
-  ],
+  "inherit_cards": [],
   "allow_reorder": true,
   "reading_key": [
     "mīro",
@@ -33,5 +31,31 @@
     ]
   },
   "delivered_tr": "Elçi kopyayı şehre götürdü.",
-  "kind": "ana"
+  "kind": "ana",
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "outcomes": [
+    {
+      "when": {
+        "order": "wrong"
+      },
+      "set": "daglilar_suclu",
+      "chronicle": "Şehir kopyanı sırasıyla okudu: sürgün beyi öldürmüş. Dağlılar kendi belgeleriyle suçlu ilan edildi."
+    },
+    {
+      "when": {
+        "order": "unexplained"
+      },
+      "set": "dag_aklandi",
+      "chronicle": "Şehir kopyanı doğru okudu: bey sürgünü öldürmüş. Ama kopya aslından farklı; kimi seni sahtecilikle suçluyor."
+    },
+    {
+      "when": {},
+      "set": "dag_aklandi",
+      "chronicle": "Şehir kopyanı doğru okudu: bey sürgünü öldürmüş. Kenar notun neden sırayı değiştirdiğini anlatıyor."
+    }
+  ]
 }

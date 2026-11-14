@@ -1,0 +1,30 @@
+{
+  "id": "k03",
+  "order": 33,
+  "era": 3,
+  "kind": "kisa",
+  "title_tr": "Dhās'ın listesi",
+  "intro_tr": "",
+  "requester": {
+    "name_tr": "Genç Melno",
+    "says_tr": "Ben Melno; Dhās'ın soyundanım. Dedemin dedesinin kelime listesinden bir satır yanmadan kaldı. Bugün *grēno*, *thīto* diyoruz. Ölü dili öğrenmek istiyorum."
+  },
+  "old_text": "Rīgos grēnom thītom emeti.",
+  "heard": [
+    "grēno",
+    "thīto"
+  ],
+  "inherit_cards": [],
+  "allow_reorder": false,
+  "cards": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "tools": {
+    "not": 0,
+    "eski": 0,
+    "kazi": 0
+  },
+  "delivered_tr": "Melno satırı defterine geçirdi. 'Ekler gitti,' dedi, 'artık kim kime ne yaptı, nasıl bileceğiz?'"
+}
