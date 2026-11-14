@@ -1018,7 +1018,7 @@ func _next_step() -> Array:
 		if has_stranger and not had_stranger:
 			return ["Elinde yeni bir kart var ve [color=%s]biri bu çağa ait değil[/color]: kelimeleri sözlükte olmayan ya da başka anlama gelen biçimlere çevirir. Önizlemeye ve istek notundaki kırmızı kelimelere bak; o kartı şeride koyma." % RED_HEX, _hand_rect()]
 		if has_stranger:
-			return ["Ses kartları aynı. [color=%s]Biri yine bu çağa ait değil[/color]: onu şeride koyma." % RED_HEX, _hand_rect()]
+			return ["Ses kartları aynı; [color=%s]yabancı kart yine elinde[/color]." % RED_HEX, _hand_rect()]
 		if _hand.size() == 1:
 			return ["Yeni iş. [color=%s]Ses kartına tıkla[/color]; kelimelerin nasıl değiştiğine bak." % RED_HEX, _hand_rect()]
 		return ["Yeni iş. Hangi ses kartları bu belgeye uyuyor? Kartın üstüne gel, önizlemeye bak; [color=%s]uyanları şeride koy[/color]." % RED_HEX, _hand_rect()]
@@ -1032,7 +1032,7 @@ func _next_step() -> Array:
 			var target := _choice_word(t)
 			if target != "":
 				return ["Yeni kâtip kartı. " + (TOOL_INTRO[t] % RED_HEX) + " Bu işte seçim senin: «%s» kelimesine koymak ya da koymamak; ikisinin de sonucu olacak." % words[target].row.get("new", ""), words[target].get_global_rect()]
-			return ["Yeni kâtip kartı. " + (TOOL_INTRO[t] % RED_HEX) + " Kartı bir kelimenin üstüne sürükle ya da karta tıklayıp kelimeye tıkla.", _below_header(tools[t].get_global_rect())]
+			return ["Yeni kâtip kartı. " + (TOOL_INTRO[t] % RED_HEX) + " Kartı bir kelimenin üstüne sürükle ya da karta tıklayıp kelimeye tıkla; geri almak için kelimeye tıkla.", _below_header(tools[t].get_global_rect())]
 	var can_mark := tools_left("not") > 0 or tools_left("eski") > 0
 	for r in ev["rows"]:
 		if r["mark"] != "" or not can_mark:

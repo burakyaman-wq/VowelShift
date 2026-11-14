@@ -210,7 +210,7 @@ func _desk_tests() -> void:
 	_expect(desk1.doc.id == "i05" and desk1.tiles.size() == 3 and desk1.tiles.has("R3"), "the next job keeps the era's cards and its stranger")
 	_expect(desk1.interlude_text().contains("«Temel taşı tableti» teslim edildi"), "a story document is followed by a page")
 	desk1.dismiss_interlude()
-	_expect(desk1.tutor.step_text().contains("Biri yine bu çağa ait değil"), "the note warns of the stranger again")
+	_expect(desk1.tutor.step_text().contains("yabancı kart yine elinde"), "the note warns of the stranger again")
 	desk1.queue_free()
 
 	# Document 2: order, collisions and the scribe cards.

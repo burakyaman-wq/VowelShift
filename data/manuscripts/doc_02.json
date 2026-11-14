@@ -37,6 +37,16 @@
     },
     {
       "when": {
+        "mark": [
+          "nākos",
+          "not"
+        ]
+      },
+      "set": "nakos_notlu",
+      "chronicle": "Sarayda senin kopyanı okudular. Kenardaki notu okuyan yaşlılar da anladı: kardeş sürgün edilmiş, ölmemiş. Söylenti bu kez doğmadı."
+    },
+    {
+      "when": {
         "copy_has": "nākos"
       },
       "set": "nakos_korundu",

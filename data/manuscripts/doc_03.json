@@ -32,9 +32,29 @@
   ],
   "outcomes": [
     {
+      "when": {
+        "mark": [
+          "mīrosyo",
+          "not"
+        ]
+      },
+      "set": "senet_buyuk",
+      "chronicle": "Kenar notun 'büyük kardeşin' diyor: tahıl kurucunun evinden alınmış. Grēna borcu saraya ödemek zorunda kalmadı; saray ödedi."
+    },
+    {
+      "when": {
+        "mark": [
+          "mīrosyo",
+          "eski"
+        ]
+      },
+      "set": "senet_buyuk",
+      "chronicle": "Senet eski yazımla kaldı; yaşlı yargıç kurucunun adını tanıdı. Grēna borçtan kurtuldu."
+    },
+    {
       "when": {},
-      "set": "senet_okundu",
-      "chronicle": "Grēna senedi aldı. 'Mīrosyo' yazıyor: tahıl kurucunun mu, sürgünün mü? Grēna ödemeyi saydı ama yüzü asıktı."
+      "set": "senet_belirsiz",
+      "chronicle": "Senette 'Mīrosyo' yazıyor: tahıl kurucunun mu, sürgünün mü? Saray 'sürgünün' dedi; Grēna ödemeyi kendi kesesinden saydı."
     }
   ]
 }
