@@ -15,6 +15,10 @@ config/description="Ses Kayması — a scribe deciphers manuscripts as the langu
 run/main_scene="res://scenes/baslik.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
+[autoload]
+
+Ses="*res://scripts/ui/sound.gd"
+
 [display]
 
 window/size/viewport_width=1920

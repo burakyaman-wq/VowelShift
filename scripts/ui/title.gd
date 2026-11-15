@@ -34,7 +34,7 @@ func _ready() -> void:
 		y += 80
 	_button(Loc.t("Yeni oyun"), Vector2(460, y), _new_game)
 	var other := "English" if Loc.lang == "tr" else "Türkçe"
-	var lang := _text("Türkçe · English", 26, INK, Vector2(1500, 40), 380)
+	var lang := _text("Türkçe · English", 26, RED, Vector2(560, 650), 380)
 	lang.text = ("[ Türkçe ] · English" if Loc.lang == "tr" else "Türkçe · [ English ]")
 	lang.mouse_filter = Control.MOUSE_FILTER_STOP
 	lang.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
@@ -43,6 +43,18 @@ func _ready() -> void:
 		if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT:
 			Loc.set_lang("en" if Loc.lang == "tr" else "tr")
 			get_tree().reload_current_scene())
+	var snd := get_node_or_null("/root/Ses")
+	if snd:
+		var sl := _text("", 26, RED, Vector2(980, 650), 380)
+		sl.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		var show := func() -> void: sl.text = Loc.t("Ses: kapalı (M)") if snd.muted else Loc.t("Ses: açık (M)")
+		show.call()
+		sl.mouse_filter = Control.MOUSE_FILTER_STOP
+		sl.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		sl.gui_input.connect(func(e: InputEvent) -> void:
+			if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT:
+				snd.toggle()
+				show.call())
 	_text(Loc.t("Çizimler kodla çizildi; tasarımda, kodda ve metinlerde yapay zekâ kullanıldı. Ayrıntılar oyunun sayfasında."), 18, Color(INK, 0.8), Vector2(460, 742), 1000)
 
 

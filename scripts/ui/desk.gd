@@ -131,6 +131,7 @@ func place_rule(rule_id: String, slot: int) -> void:
 		_send_home(tiles[out])
 	_arrange()
 	_refresh()
+	_sfx("kart")
 	_tell_change(before, rule_id)
 
 
@@ -157,6 +158,7 @@ func take_out(rule_id: String) -> void:
 	_arrange()
 	_send_home(tiles[rule_id])
 	_refresh()
+	_sfx("kart_al")
 	if tutor:
 		tutor.tell(Loc.t("«%s» şeritten çıktı, eline döndü.") % engine.by_id[rule_id].name_tr)
 
@@ -173,6 +175,7 @@ func mark_word(key: String, tool: String) -> bool:
 		return false
 	marks[key] = tool
 	_refresh()
+	_sfx("kalem_kisa")
 	var row: Dictionary = words[key].row
 	tutor.tell(Loc.t("«%s» kelimesine %s kondu.") % [row["old"] if tool == "eski" else row["new"], Copyist.tool_name(tool).to_lower()])
 	return true
@@ -181,6 +184,7 @@ func mark_word(key: String, tool: String) -> bool:
 func unmark(key: String) -> void:
 	if state.phase == "read" and marks.erase(key.to_lower()):
 		_refresh()
+		_sfx("kart_al")
 
 
 func tools_left(tool: String) -> int:
@@ -202,6 +206,7 @@ func move_word(from_pos: int, to_pos: int) -> bool:
 	var w: int = _word_order.pop_at(from_pos)
 	_word_order.insert(to_pos, w)
 	_refresh()
+	_sfx("kart")
 	return true
 
 
@@ -214,6 +219,7 @@ func write_copy() -> Dictionary:
 	if not res["shelved"]:
 		if res["error"] == "not_words":
 			tutor.tell(Loc.t("Yazılamaz: [color=%s]%s[/color] sözlükte yok. Kartları değiştir ya da Eski yazım / Kazı koy.") % [RED_HEX, ", ".join(res["blocked"])])
+			_sfx("hata")
 		return res
 	for t in tiles.values():
 		t.locked = true
@@ -234,6 +240,7 @@ func write_copy() -> Dictionary:
 				deliver())
 	var stranger := Copyist.decoy(engine, doc.era)
 	_seal.visible = true
+	_sfx("kalem")
 	_slip_text.text = Loc.t("[color=%s]Kopya yazıldı.[/color] Sahibine gidiyor.") % RED_HEX
 	_glow_slip(true)
 	_stranger_line = ""
@@ -251,6 +258,7 @@ func deliver() -> bool:
 	if state.phase != "answer" or _advance:
 		return false
 	state.phase = "done"
+	_sfx("muhur")
 	state.doc_index += 1
 	if autosave:
 		state.save()
@@ -296,6 +304,12 @@ func _plain_text(t: String) -> String:
 	return rx.sub(t, "", true)
 
 
+func _sfx(name: String) -> void:
+	var s := get_node_or_null("/root/Ses")
+	if s:
+		s.play(name)
+
+
 ## The whole chronicle, era by era, on a page over the desk; a click closes it.
 func open_chronicle() -> void:
 	if _book_page or state.chronicle.is_empty():
@@ -305,6 +319,7 @@ func open_chronicle() -> void:
 	_book_page.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_book_page.mouse_filter = Control.MOUSE_FILTER_STOP
 	add_child(_book_page)
+	_sfx("sayfa")
 	move_child(_book_page, _grain.get_index())
 	var dim := ColorRect.new()
 	dim.color = Color(0.08, 0.04, 0.03, 0.82)
@@ -358,6 +373,7 @@ func dismiss_interlude() -> void:
 		return
 	_interlude.queue_free()
 	_interlude = null
+	_sfx("kagit")
 	_node("Terazi").visible = true
 	_arrive()
 	_guide()
@@ -474,6 +490,7 @@ func _show_interlude(text: String, heading: String) -> void:
 		if e is InputEventMouseButton and e.pressed:
 			dismiss_interlude())
 	add_child(_interlude)
+	_sfx("can" if heading == Loc.t("Aradan geçen zaman") else "sayfa")
 	move_child(_interlude, _grain.get_index())
 	var dim := ColorRect.new()
 	dim.color = Color(0.08, 0.04, 0.03, 0.82)

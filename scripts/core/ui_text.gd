@@ -8,6 +8,8 @@ const EN := {
 	"Bir şehrin yalanı, üç kâtibin elinde": "A city's lie, in the hands of three scribes",
 	"Devam et  ·  iş %d / %d": "Continue  ·  job %d / %d",
 	"Yeni oyun": "New game",
+	"Ses: açık (M)": "Sound: on (M)",
+	"Ses: kapalı (M)": "Sound: off (M)",
 	"Çizimler kodla çizildi; tasarımda, kodda ve metinlerde yapay zekâ kullanıldı. Ayrıntılar oyunun sayfasında.": "The art is drawn in code; AI was used in the design, the code and the writing. Details on the game's page.",
 	# desk furniture
 	"Ustanın notu": "Master's note",
