@@ -109,6 +109,8 @@ func _texts() -> String:
 
 func _go() -> void:
 	await process_frame
+	if OS.get_environment("LANG_EN") != "":
+		Loc.lang = "en"
 	desk = load("res://scenes/desk.tscn").instantiate()
 	if OS.get_environment("DOC") != "":
 		desk.doc_id = OS.get_environment("DOC")
