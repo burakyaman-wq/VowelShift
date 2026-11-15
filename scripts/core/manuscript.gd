@@ -38,10 +38,10 @@ static func from_dict(d: Dictionary) -> Manuscript:
 	m.id = d["id"]
 	m.order = int(d["order"])
 	m.era = int(d["era"])
-	m.title = d.get("title_tr", "")
-	m.intro = d.get("intro_tr", "")
-	m.requester_name = d["requester"]["name_tr"]
-	m.requester_says = d["requester"]["says_tr"]
+	m.title = Loc.pick(d, "title")
+	m.intro = Loc.pick(d, "intro")
+	m.requester_name = Loc.pick(d["requester"], "name")
+	m.requester_says = Loc.pick(d["requester"], "says")
 	m.old_text = d["old_text"]
 	m.heard = PackedStringArray(d.get("heard", []))
 	m.inherit_cards = PackedStringArray(d.get("inherit_cards", []))
@@ -54,7 +54,7 @@ static func from_dict(d: Dictionary) -> Manuscript:
 	m.cards = PackedStringArray(d.get("cards", []))
 	m.tools = d.get("tools", {})
 	m.outcomes = d.get("outcomes", [])
-	m.delivered = d.get("delivered_tr", "")
+	m.delivered = Loc.pick(d, "delivered")
 	m.variants = d.get("variants", [])
 	m._raw = d
 	return m
@@ -66,11 +66,12 @@ func resolved(flags: Dictionary) -> Manuscript:
 	for v in variants:
 		if Manuscript.holds(v.get("when", {}), flags):
 			var d := _raw.duplicate(true)
-			for k in ["old_text", "title_tr", "intro_tr"]:
+			for k in ["old_text", "title_tr", "intro_tr", "title_en", "intro_en"]:
 				if v.has(k):
 					d[k] = v[k]
-			if v.has("says_tr"):
-				d["requester"]["says_tr"] = v["says_tr"]
+			for k in ["says_tr", "says_en"]:
+				if v.has(k):
+					d["requester"][k] = v[k]
 			d.erase("variants")
 			return Manuscript.from_dict(d)
 	return self

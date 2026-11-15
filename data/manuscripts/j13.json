@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Genç bey",
-    "says_tr": "Tapınaktaki eski tabletler yenileniyor. Hepsinde sürgün kardeşin adı geçiyor. Bu tablette de: Mēros'u kazı. Tarih bir kurucuyla başlar, iki kişiyle değil."
+    "says_tr": "Tapınaktaki eski tabletler yenileniyor. Hepsinde sürgün kardeşin adı geçiyor. Bu tablette de: Mēros'u kazı. Tarih bir kurucuyla başlar, iki kişiyle değil.",
+    "name_en": "The young lord",
+    "says_en": "The old tablets in the temple are being renewed. The exiled brother's name is on all of them. On this one too: scrape Mēros. History begins with one founder, not two."
   },
   "old_text": "Mīros dīwosyo khewom dōneti. Mēros nākos.",
   "heard": [
@@ -30,12 +32,15 @@
         ]
       },
       "set": "kazi_yapildi",
-      "chronicle": "Tabletten sürgünün adı kazındı. Yeni tabletlerde kurucunun tek başına adak sunduğu yazıyor. Dhās bir gece tapınağa girip eski tableti kopyalamaya çalıştı."
+      "chronicle": "Tabletten sürgünün adı kazındı. Yeni tabletlerde kurucunun tek başına adak sunduğu yazıyor. Dhās bir gece tapınağa girip eski tableti kopyalamaya çalıştı.",
+      "chronicle_en": "The exile's name was scraped from the tablet. The new tablets say the founder made the offering alone. One night Dhās slipped into the temple to copy the old tablet."
     },
     {
       "when": {},
       "set": "kazi_reddedildi",
-      "chronicle": "Mēros'un adını kazımadın. Genç bey tableti başka bir kâtibe yeniden yazdırdı; ama senin kopyan tapınağın arşivinde kaldı."
+      "chronicle": "Mēros'un adını kazımadın. Genç bey tableti başka bir kâtibe yeniden yazdırdı; ama senin kopyan tapınağın arşivinde kaldı.",
+      "chronicle_en": "You did not scrape Mēros's name. The young lord had another scribe rewrite the tablet; but your copy stayed in the temple archive."
     }
-  ]
+  ],
+  "title_en": "Correcting the tablets"
 }

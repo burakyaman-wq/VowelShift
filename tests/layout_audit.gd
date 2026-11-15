@@ -13,6 +13,8 @@ func _initialize() -> void:
 
 func _go() -> void:
 	await process_frame
+	if OS.get_environment("LANG_EN") != "":
+		Loc.lang = "en"
 	var lib := ManuscriptLibrary.new()
 	var only := OS.get_environment("DOCS")
 	for m in lib.docs:

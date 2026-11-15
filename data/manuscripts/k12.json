@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağlı elçi",
-    "says_tr": "Şehir meydanına bir ilan asılacak: bey sürgünü öldürdü. Ama şehirde kimse *nēko*'nun kim olduğunu bilmiyor. Kenara 'sürgün, beyin kardeşiydi' yazarsan herkes öğrenir."
+    "says_tr": "Şehir meydanına bir ilan asılacak: bey sürgünü öldürdü. Ama şehirde kimse *nēko*'nun kim olduğunu bilmiyor. Kenara 'sürgün, beyin kardeşiydi' yazarsan herkes öğrenir.",
+    "name_en": "A mountain envoy",
+    "says_en": "A notice will be posted in the city square: the lord killed the exile. But no one in the city knows who the *nēko* was. Write 'the exile was the lord's brother' in the margin and everyone will know."
   },
   "old_text": "Rīgos nēkom kheneti.",
   "heard": [
@@ -35,12 +37,14 @@
         ]
       },
       "set": "ilan_dogru",
-      "chronicle": "İlan meydana asıldı; kenarında 'sürgün, beyin kardeşiydi' yazıyor. Meydanda uzun bir sessizlik oldu."
+      "chronicle": "İlan meydana asıldı; kenarında 'sürgün, beyin kardeşiydi' yazıyor. Meydanda uzun bir sessizlik oldu.",
+      "chronicle_en": "The notice went up in the square, with 'the exile was the lord's brother' in its margin. A long silence fell over the square."
     },
     {
       "when": {},
       "set": "ilan_yarim",
-      "chronicle": "İlan asıldı: bey bir sürgünü öldürmüş. Kimse sürgünün kim olduğunu sormadı."
+      "chronicle": "İlan asıldı: bey bir sürgünü öldürmüş. Kimse sürgünün kim olduğunu sormadı.",
+      "chronicle_en": "The notice went up: the lord killed an exile. No one asked who the exile was."
     }
   ],
   "variants": [
@@ -48,7 +52,9 @@
       "when": {
         "flag": "daglilar_suclu"
       },
-      "says_tr": "Senin kopyan yüzünden şehir bizi katil sandı. Şimdi meydana gerçeği asmak istiyoruz: bey sürgünü öldürdü. Kenara 'sürgün, beyin kardeşiydi' yazarsan herkes öğrenir."
+      "says_tr": "Senin kopyan yüzünden şehir bizi katil sandı. Şimdi meydana gerçeği asmak istiyoruz: bey sürgünü öldürdü. Kenara 'sürgün, beyin kardeşiydi' yazarsan herkes öğrenir.",
+      "says_en": "Because of your copy the city took us for killers. Now we want the truth posted in the square: the lord killed the exile. Write 'the exile was the lord's brother' in the margin and everyone will know."
     }
-  ]
+  ],
+  "title_en": "The notice in the square"
 }

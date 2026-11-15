@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Yeni düzenin vekili",
-    "says_tr": "Eski bir yasayı yeniden yürürlüğe koyuyoruz: bey tahılı alır. Eski yazıda -s ile biten kelime yapandı (*rīgos*), -m ile biten etkilenen (*grēnom*); o yüzden önce tahıl yazılmış. Bugün ekler düştü: halk önce geleni yapan sanıyor. Kelime kartlarını sürükleyip sırayı kur."
+    "says_tr": "Eski bir yasayı yeniden yürürlüğe koyuyoruz: bey tahılı alır. Eski yazıda -s ile biten kelime yapandı (*rīgos*), -m ile biten etkilenen (*grēnom*); o yüzden önce tahıl yazılmış. Bugün ekler düştü: halk önce geleni yapan sanıyor. Kelime kartlarını sürükleyip sırayı kur.",
+    "name_en": "Envoy of the new order",
+    "says_en": "We are bringing an old law back into force: the lord takes the grain. In the old script the word ending in -s was the doer (*rīgos*), the one ending in -m the done-to (*grēnom*); that is why grain is written first. Today the endings are gone: people take whatever comes first as the doer. Drag the word cards into order."
   },
   "old_text": "Grēnom rīgos emeti.",
   "heard": [
@@ -32,16 +34,19 @@
         "order": "wrong"
       },
       "set": "yasa_ters",
-      "chronicle": "Yasa 'tahıl beyi alır' diye okundu. Çarşıda kahkahalar; vekil yasayı geri çekti."
+      "chronicle": "Yasa 'tahıl beyi alır' diye okundu. Çarşıda kahkahalar; vekil yasayı geri çekti.",
+      "chronicle_en": "The law was read as 'the grain takes the lord'. Laughter in the market; the envoy withdrew the law."
     },
     {
       "when": {},
       "set": "yasa_dogru",
-      "chronicle": "Yasa doğru okundu: bey tahılı alır. Halk homurdandı ama anladı."
+      "chronicle": "Yasa doğru okundu: bey tahılı alır. Halk homurdandı ama anladı.",
+      "chronicle_en": "The law was read right: the lord takes the grain. People grumbled, but understood."
     }
   ],
   "reading_key": [
     "rīgo",
     "grēno"
-  ]
+  ],
+  "title_en": "The new law"
 }

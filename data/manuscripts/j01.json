@@ -7,7 +7,9 @@
   "intro_tr": "Elli yıl geçti. Lūka yaşlandı; mührü çırağı Argos'a, yani sana verdi. Sokakta sesli harfler yine değişti: uzun ē artık başka söyleniyor. Eski defterleri gençler okuyamıyor.",
   "requester": {
     "name_tr": "Yaşlı Lūka",
-    "says_tr": "Ben yazmayı bıraktım, Argos. İlk işin, mühürdeki ustamın adını yenilemek. En eski tabletlerde Dhēmos yazılırdı; benim gençliğimde Thēmos dedik; bugün *Thīmos* diyorlar."
+    "says_tr": "Ben yazmayı bıraktım, Argos. İlk işin, mühürdeki ustamın adını yenilemek. En eski tabletlerde Dhēmos yazılırdı; benim gençliğimde Thēmos dedik; bugün *Thīmos* diyorlar.",
+    "name_en": "Old Lūka",
+    "says_en": "I have stopped writing, Argos. Your first job is to renew my master's name on the seal. The oldest tablets wrote Dhēmos; in my youth we said Thēmos; today they say *Thīmos*."
   },
   "old_text": "Thēmosyo sikhlos.",
   "heard": [
@@ -23,5 +25,8 @@
     "eski": 0,
     "kazi": 0
   },
-  "delivered_tr": "Mührün yeni yazısı kazındı. Lūka mührü eline alıp uzun uzun baktı."
+  "delivered_tr": "Mührün yeni yazısı kazındı. Lūka mührü eline alıp uzun uzun baktı.",
+  "title_en": "The master's seal",
+  "intro_en": "Fifty years passed. Lūka grew old and gave the seal to her apprentice Argos: to you. In the street the vowels shifted again: long ē sounds different now. The young cannot read the old notebooks.",
+  "delivered_en": "The seal's new lettering was cut. Lūka held the seal and looked at it for a long time."
 }

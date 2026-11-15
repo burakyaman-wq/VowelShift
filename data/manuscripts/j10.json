@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Genç bey",
-    "says_tr": "Soy kütüğümü yazdırıyorum. Eski kayıtta kurucu ile kardeşi yan yana. Bugün ikisi de *Mīros* okunuyor; iyi, sürgünün adı ayrıca geçmesin. Mēros'u kütükten kazı."
+    "says_tr": "Soy kütüğümü yazdırıyorum. Eski kayıtta kurucu ile kardeşi yan yana. Bugün ikisi de *Mīros* okunuyor; iyi, sürgünün adı ayrıca geçmesin. Mēros'u kütükten kazı.",
+    "name_en": "The young lord",
+    "says_en": "I am having my family tree written. In the old record the founder and his brother stand side by side. Today both read *Mīros*; good, let the exile's name not appear apart. Scrape Mēros from the tree."
   },
   "old_text": "Mīros Mēros phrātēres.",
   "heard": [
@@ -35,7 +37,8 @@
         ]
       },
       "set": "kutuk_kazindi",
-      "chronicle": "Kütükte tek kurucu var. Genç bey seni ödüllendirdi; Dhās ise kaşlarını çattı."
+      "chronicle": "Kütükte tek kurucu var. Genç bey seni ödüllendirdi; Dhās ise kaşlarını çattı.",
+      "chronicle_en": "The tree has a single founder. The young lord rewarded you; Dhās frowned."
     },
     {
       "when": {
@@ -45,12 +48,15 @@
         ]
       },
       "set": "kutuk_notlu",
-      "chronicle": "Kütükte iki Mīros var, kenarında da 'biri sürgün kardeş' notu. Bey öfkelendi ama kütüğü astırdı."
+      "chronicle": "Kütükte iki Mīros var, kenarında da 'biri sürgün kardeş' notu. Bey öfkelendi ama kütüğü astırdı.",
+      "chronicle_en": "The tree shows two Mīros, with a margin note: 'one is the exiled brother'. The lord was furious but had the tree hung."
     },
     {
       "when": {},
       "set": "kutuk_karisti",
-      "chronicle": "Kütükte iki Mīros var. Herkes bunu yazım hatası sanıyor."
+      "chronicle": "Kütükte iki Mīros var. Herkes bunu yazım hatası sanıyor.",
+      "chronicle_en": "The tree shows two Mīros. Everyone takes it for a spelling mistake."
     }
-  ]
+  ],
+  "title_en": "The dynasty's family tree"
 }

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Bey",
-    "says_tr": "Kurucu atamın buyruğunu tapınağa asacağım. Halk Mēros'un neden sürüldüğünü bilsin. İstersen adını kazı; bir sürgünün adı taşta ne arar?"
+    "says_tr": "Kurucu atamın buyruğunu tapınağa asacağım. Halk Mēros'un neden sürüldüğünü bilsin. İstersen adını kazı; bir sürgünün adı taşta ne arar?",
+    "name_en": "The lord",
+    "says_en": "I will hang my founding ancestor's decree in the temple. Let the people know why Mēros was exiled. Scrape his name if you like; what is an exile's name doing on stone?"
   },
   "old_text": "Meiros rēgos Mērom ageti. Mēros nākos. Mēros werteti. Mēros mereti.",
   "heard": [
@@ -30,19 +32,23 @@
         ]
       },
       "set": "meros_kazindi",
-      "chronicle": "Buyruk tapınağa asıldı; sürgünün adı taşta yok. 'Dönerse ölür' satırı kimin için yazıldığını söylemiyor."
+      "chronicle": "Buyruk tapınağa asıldı; sürgünün adı taşta yok. 'Dönerse ölür' satırı kimin için yazıldığını söylemiyor.",
+      "chronicle_en": "The decree hangs in the temple; the exile's name is not on the stone. The line 'if he returns, he dies' does not say whom it was written for."
     },
     {
       "when": {
         "copy_has": "mēros"
       },
       "set": "ad_korundu",
-      "chronicle": "Buyruk tapınağa asıldı: Mēros sürgündür; dönerse ölür. Halk satırı yüksek sesle okudu."
+      "chronicle": "Buyruk tapınağa asıldı: Mēros sürgündür; dönerse ölür. Halk satırı yüksek sesle okudu.",
+      "chronicle_en": "The decree hangs in the temple: Mēros is exiled; if he returns, he dies. People read the line aloud."
     },
     {
       "when": {},
       "set": "adlar_birlesti",
-      "chronicle": "Buyrukta iki kardeşin adı aynı yazılmış. Halk kimin kimi sürdüğünü tartışıyor."
+      "chronicle": "Buyrukta iki kardeşin adı aynı yazılmış. Halk kimin kimi sürdüğünü tartışıyor.",
+      "chronicle_en": "In the decree both brothers' names are written alike. People argue over who exiled whom."
     }
-  ]
+  ],
+  "title_en": "The exile decree"
 }

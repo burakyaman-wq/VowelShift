@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Rahibe Wēsna",
-    "says_tr": "Kıtlık başladı; tanrıya son ekmeğimizi *khewos* olarak sunuyoruz. Sunu taşına yazılacak. Bugün *pīstos* diyoruz, eski yazıdaki gibi *peistos* değil. Bir kelimenin ne demek olduğunu merak edersen üstüne gel: sözlük açılır."
+    "says_tr": "Kıtlık başladı; tanrıya son ekmeğimizi *khewos* olarak sunuyoruz. Sunu taşına yazılacak. Bugün *pīstos* diyoruz, eski yazıdaki gibi *peistos* değil. Bir kelimenin ne demek olduğunu merak edersen üstüne gel: sözlük açılır.",
+    "name_en": "Priestess Wēsna",
+    "says_en": "The famine has begun; we offer our last bread to the god as a *khewos*. It will be cut into the offering stone. Today we say *pīstos*, not *peistos* as the old script has it. If you wonder what a word means, hover over it: the dictionary opens."
   },
   "old_text": "Peistom deiwosyo ghewom dōneti.",
   "heard": [
@@ -25,5 +27,7 @@
     "eski": 0,
     "kazi": 0
   },
-  "delivered_tr": "Sunu taşı tapınağın kapısına kondu. Kıtlığın ilk ayı."
+  "delivered_tr": "Sunu taşı tapınağın kapısına kondu. Kıtlığın ilk ayı.",
+  "title_en": "Bread offering",
+  "delivered_en": "The offering stone was set at the temple door. The first month of the famine."
 }

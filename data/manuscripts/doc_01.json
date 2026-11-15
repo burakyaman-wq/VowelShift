@@ -6,7 +6,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Rahibe, tapınaktan",
-    "says_tr": "Tapınağın temelini kazarken bu tablet çıktı. Bir *khewos* kaydı olmalı, kurucunun *phāgos*'undan da söz ediyor sanırım. Yeni yazıyla kopyala ki rafa koyabilelim."
+    "says_tr": "Tapınağın temelini kazarken bu tablet çıktı. Bir *khewos* kaydı olmalı, kurucunun *phāgos*'undan da söz ediyor sanırım. Yeni yazıyla kopyala ki rafa koyabilelim.",
+    "name_en": "A priestess, from the temple",
+    "says_en": "This tablet came up while we dug the temple's foundation. It must record a *khewos*, and I think it speaks of the founder's *phāgos*. Copy it in the new script so we can shelve it."
   },
   "old_text": "Meiros deiwosyo ghewom dōneti. Meiros bhāgom ghrebheti. Mēros nākos.",
   "heard": [
@@ -30,5 +32,7 @@
     "not": 0,
     "eski": 0,
     "kazi": 0
-  }
+  },
+  "title_en": "The foundation tablet",
+  "delivered_en": "The priestess put your copy on the temple shelf."
 }

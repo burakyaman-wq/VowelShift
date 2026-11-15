@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Ambarcı Sālwa",
-    "says_tr": "Mühürle birlikte bir tablet daha çıktı: kurucuların annesinin vasiyeti. Tahılını kime bırakmış, mahkemede lazım olur. Annenin adı yine *Mātēros*, değişmedi."
+    "says_tr": "Mühürle birlikte bir tablet daha çıktı: kurucuların annesinin vasiyeti. Tahılını kime bırakmış, mahkemede lazım olur. Annenin adı yine *Mātēros*, değişmedi.",
+    "name_en": "Sālwa the granary-keeper",
+    "says_en": "Another tablet came up with the seal: the founders' mother's will. Whom she left her grain to will matter in court. The mother's name is still *Mātēros*; it has not changed."
   },
   "old_text": "Mātēros grānom Mērosyo dōneti. Bhrātēros grānom emeti.",
   "heard": [
@@ -32,12 +34,15 @@
         "copy_has": "mērosyo"
       },
       "set": "tahil_meros",
-      "chronicle": "Vasiyet açık: anne tahılını küçük oğlu Mēros'a bırakmış; büyük kardeş onu almış. Sālwa kopyayı sakladı."
+      "chronicle": "Vasiyet açık: anne tahılını küçük oğlu Mēros'a bırakmış; büyük kardeş onu almış. Sālwa kopyayı sakladı.",
+      "chronicle_en": "The will is plain: the mother left her grain to her younger son Mēros; the elder brother took it. Sālwa kept the copy."
     },
     {
       "when": {},
       "set": "tahil_belirsiz",
-      "chronicle": "Vasiyetin kopyasında tahılın kime kaldığı okunmuyor. Sālwa omuz silkti."
+      "chronicle": "Vasiyetin kopyasında tahılın kime kaldığı okunmuyor. Sālwa omuz silkti.",
+      "chronicle_en": "In the copy of the will you cannot tell who got the grain. Sālwa shrugged."
     }
-  ]
+  ],
+  "title_en": "The mother's will"
 }

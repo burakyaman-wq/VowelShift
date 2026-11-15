@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Bilgin Dhās",
-    "says_tr": "Ben Dhās; eski kelimeleri topluyorum. Elimde bir saray kaydı var. Bugün *grēnos* ve *thītos* diyoruz. Dikkat: iki kartın sırası değişirse tahıl başka bir şeye döner."
+    "says_tr": "Ben Dhās; eski kelimeleri topluyorum. Elimde bir saray kaydı var. Bugün *grēnos* ve *thītos* diyoruz. Dikkat: iki kartın sırası değişirse tahıl başka bir şeye döner.",
+    "name_en": "Dhās the scholar",
+    "says_en": "I am Dhās; I collect old words. I have a palace record here. Today we say *grēnos* and *thītos*. Careful: if the two cards swap order, the grain turns into something else."
   },
   "old_text": "Rēgos grānom thētom emeti.",
   "heard": [
@@ -26,5 +28,7 @@
     "eski": 0,
     "kazi": 0
   },
-  "delivered_tr": "Dhās kopyayı kelime listesine ekledi. 'Sesler sırayla kayar,' dedi, 'tıpkı kuşaklar gibi.'"
+  "delivered_tr": "Dhās kopyayı kelime listesine ekledi. 'Sesler sırayla kayar,' dedi, 'tıpkı kuşaklar gibi.'",
+  "title_en": "Old words",
+  "delivered_en": "Dhās added the copy to his word list. 'Sounds shift in order,' he said, 'like generations.'"
 }

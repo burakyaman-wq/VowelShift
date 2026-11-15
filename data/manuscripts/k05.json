@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Grēna'nın torunu",
-    "says_tr": "Büyük annem Grēna'nın borç senedini getirdim; mahkemede miras davası var. İçinde *Mīrosyo* geçiyor: kurucunun mu, sürgünün mü?"
+    "says_tr": "Büyük annem Grēna'nın borç senedini getirdim; mahkemede miras davası var. İçinde *Mīrosyo* geçiyor: kurucunun mu, sürgünün mü?",
+    "name_en": "Grēna's grandson",
+    "says_en": "I brought my grandmother Grēna's debt note; there is an inheritance case in court. It says *Mīrosyo*: the founder's, or the exile's?"
   },
   "old_text": "Mētīros Mīrosyo grēnom emeti.",
   "heard": [
@@ -36,7 +38,8 @@
         "flag": "senet_buyuk"
       },
       "set": "miras_acik",
-      "chronicle": "Arşivdeki Argos kopyasının kenarında 'büyük kardeş' yazıyordu; notun onu gösterdi. Grēna'nın torunu davayı sürdürecek gücü buldu."
+      "chronicle": "Arşivdeki Argos kopyasının kenarında 'büyük kardeş' yazıyordu; notun onu gösterdi. Grēna'nın torunu davayı sürdürecek gücü buldu.",
+      "chronicle_en": "Argos's copy in the archive had 'the elder brother' in its margin; your note pointed to it. Grēna's grandson found the strength to pursue the case."
     },
     {
       "when": {
@@ -46,12 +49,14 @@
         ]
       },
       "set": "miras_belirsiz",
-      "chronicle": "Kenar notun iki kardeşi de yazıyor; arşivde ayıran eski bir kopya yok. Mahkeme davayı erteledi."
+      "chronicle": "Kenar notun iki kardeşi de yazıyor; arşivde ayıran eski bir kopya yok. Mahkeme davayı erteledi.",
+      "chronicle_en": "Your margin note names both brothers; no older copy in the archive tells them apart. The court postponed the case."
     },
     {
       "when": {},
       "set": "miras_belirsiz",
-      "chronicle": "Senetteki ad yine iki kişiyi gösteriyor. Mahkeme davayı erteledi."
+      "chronicle": "Senetteki ad yine iki kişiyi gösteriyor. Mahkeme davayı erteledi.",
+      "chronicle_en": "The name on the note still points to two people. The court postponed the case."
     }
   ],
   "variants": [
@@ -59,7 +64,9 @@
       "when": {
         "flag": "senet_buyuk"
       },
-      "says_tr": "Büyük annem Grēna'nın senedini getirdim. Senin yazıhanen bir kez kenarına 'büyük kardeş' yazmıştı; o yüzden borçtan kurtulmuşuz. Mahkeme yine soruyor: *Mīrosyo* hangisi?"
+      "says_tr": "Büyük annem Grēna'nın senedini getirdim. Senin yazıhanen bir kez kenarına 'büyük kardeş' yazmıştı; o yüzden borçtan kurtulmuşuz. Mahkeme yine soruyor: *Mīrosyo* hangisi?",
+      "says_en": "I brought my grandmother Grēna's note. Your scriptorium once wrote 'the elder brother' in its margin; that is how we were freed of the debt. The court asks again: which one is *Mīrosyo*?"
     }
-  ]
+  ],
+  "title_en": "The debt inheritance"
 }

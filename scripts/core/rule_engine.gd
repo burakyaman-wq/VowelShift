@@ -20,6 +20,10 @@ func _init(rules_path: String = RULES_PATH, words_path: String = WORDS_PATH) -> 
 		rules.append(r)
 		by_id[r.id] = r
 	words = _read_json(words_path)["words"]
+	if Loc.lang == "en" and words_path == WORDS_PATH:
+		var en: Dictionary = _read_json("res://data/words/meanings_en.json")
+		for w in words:
+			w["meaning_tr"] = en.get(str(int(w["id"])), w["meaning_tr"])
 
 
 static func _read_json(path: String) -> Dictionary:

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Bey'in kâhyası",
-    "says_tr": "Bey dağlıların ikinci mektubunu duydu. Sarayın da bir kopyası olacak, ama içinde 'kardeş' geçmeyecek: *phrātēros* kelimesini kazı, Lūka. Ödülü bol."
+    "says_tr": "Bey dağlıların ikinci mektubunu duydu. Sarayın da bir kopyası olacak, ama içinde 'kardeş' geçmeyecek: *phrātēros* kelimesini kazı, Lūka. Ödülü bol.",
+    "name_en": "The lord's steward",
+    "says_en": "The lord heard of the mountain folk's second letter. The palace will have a copy too, but 'brother' will not be in it: scrape the word *phrātēros*, Lūka. The reward is generous."
   },
   "old_text": "Bhrātēros grānom emeti. Leukos mereti.",
   "heard": [
@@ -35,12 +37,15 @@
         ]
       },
       "set": "mektup_kazindi",
-      "chronicle": "Saray kopyasında 'kardeş' yok. Kâhya kesesini masana bıraktı; mektup artık kimseyi suçlamıyor."
+      "chronicle": "Saray kopyasında 'kardeş' yok. Kâhya kesesini masana bıraktı; mektup artık kimseyi suçlamıyor.",
+      "chronicle_en": "The palace copy has no 'brother'. The steward left his purse on your desk; the letter accuses no one now."
     },
     {
       "when": {},
       "set": "mektup_tam",
-      "chronicle": "Kelimeyi kazımadın. Kâhya kopyayı yere attı; bey adını bir kenara yazdı. Bundan sonraki işlerinde gözü üstünde."
+      "chronicle": "Kelimeyi kazımadın. Kâhya kopyayı yere attı; bey adını bir kenara yazdı. Bundan sonraki işlerinde gözü üstünde.",
+      "chronicle_en": "You did not scrape the word. The steward threw the copy on the floor; the lord wrote your name down. He will watch your work from now on."
     }
-  ]
+  ],
+  "title_en": "The erasure the lord wants"
 }

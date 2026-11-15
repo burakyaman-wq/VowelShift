@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Yaşlı rahip",
-    "says_tr": "Tapınaktan geriye ben kaldım. Bu dua tabletini kurtardım. Bugün *aceti* diyorsunuz; ben tanrının adını harfiyle isterim: istersen *dīwos* eski yazımla kalsın."
+    "says_tr": "Tapınaktan geriye ben kaldım. Bu dua tabletini kurtardım. Bugün *aceti* diyorsunuz; ben tanrının adını harfiyle isterim: istersen *dīwos* eski yazımla kalsın.",
+    "name_en": "The old priest",
+    "says_en": "I am all that is left of the temple. I saved this prayer tablet. You say *aceti* today; I want the god's name letter by letter: leave *dīwos* in the old spelling, if you will."
   },
   "old_text": "Dīwos agnom ageti.",
   "heard": [
@@ -34,12 +36,15 @@
         ]
       },
       "set": "dua_eski",
-      "chronicle": "Duada tanrının adı eski yazımla duruyor. Yaşlı rahip ağladı; gençler duayı ezberleyemedi."
+      "chronicle": "Duada tanrının adı eski yazımla duruyor. Yaşlı rahip ağladı; gençler duayı ezberleyemedi.",
+      "chronicle_en": "In the prayer the god's name stands in the old spelling. The old priest wept; the young could not learn the prayer by heart."
     },
     {
       "when": {},
       "set": "dua_yeni",
-      "chronicle": "Dua bugünün diliyle yazıldı. Çocuklar onu sokakta söylüyor; yaşlı rahip duymamış gibi yapıyor."
+      "chronicle": "Dua bugünün diliyle yazıldı. Çocuklar onu sokakta söylüyor; yaşlı rahip duymamış gibi yapıyor.",
+      "chronicle_en": "The prayer was written in today's tongue. Children sing it in the street; the old priest pretends not to hear."
     }
-  ]
+  ],
+  "title_en": "The burnt prayer"
 }

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Genç Melno",
-    "says_tr": "Tapınağın enkazında Argos'un zamanından bir tablet bulduk. Bir adın kazınıp kazınmadığını görmek istiyorum."
+    "says_tr": "Tapınağın enkazında Argos'un zamanından bir tablet bulduk. Bir adın kazınıp kazınmadığını görmek istiyorum.",
+    "name_en": "Young Melno",
+    "says_en": "In the temple ruins we found a tablet from Argos's time. I want to see whether a name was scraped."
   },
   "old_text": "Mīros dīwosyo khewom dōneti. Mīros nēkos.",
   "heard": [
@@ -32,12 +34,14 @@
         "flag": "kazi_yapildi"
       },
       "set": "tablet_izli",
-      "chronicle": "Tablette yalnız kazınmış bir izin gölgesi var. Melno izi parmağıyla takip etti: 'Burada biri vardı.'"
+      "chronicle": "Tablette yalnız kazınmış bir izin gölgesi var. Melno izi parmağıyla takip etti: 'Burada biri vardı.'",
+      "chronicle_en": "Only the shadow of a scraped mark is left on the tablet. Melno traced it with his finger: 'Someone was here.'"
     },
     {
       "when": {},
       "set": "tablet_tam",
-      "chronicle": "Tablette iki ad duruyor: biri adak sunmuş, biri sürgün. Argos kazımamış."
+      "chronicle": "Tablette iki ad duruyor: biri adak sunmuş, biri sürgün. Argos kazımamış.",
+      "chronicle_en": "Both names stand on the tablet: one made the offering, one was exiled. Argos did not scrape it."
     }
   ],
   "variants": [
@@ -46,7 +50,9 @@
         "flag": "kazi_yapildi"
       },
       "old_text": "Mīros dīwosyo khewom dōneti.",
-      "says_tr": "Tapınağın enkazında Argos'un zamanından bir tablet bulduk. Bir ad kazınmış; taşın yüzünde yalnız izi var. Kalanı kopyala."
+      "says_tr": "Tapınağın enkazında Argos'un zamanından bir tablet bulduk. Bir ad kazınmış; taşın yüzünde yalnız izi var. Kalanı kopyala.",
+      "says_en": "In the temple ruins we found a tablet from Argos's time. A name has been scraped; only its trace is left on the stone. Copy the rest."
     }
-  ]
+  ],
+  "title_en": "The scraped tablet"
 }

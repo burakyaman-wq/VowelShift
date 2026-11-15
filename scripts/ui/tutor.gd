@@ -37,7 +37,7 @@ func setup(font: Font, era: int) -> void:
 	paper.patch_margin_bottom = 60
 	paper.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_card.add_child(paper)
-	_title = _label("Ustanın notu", 20, Color("b33a29"))
+	_title = _label(Loc.t("Ustanın notu"), 20, Color("b33a29"))
 	_title.position = Vector2(20, 10)
 	_say = _rich(18, Color("2a1b14"))
 	_say.position = Vector2(20, 38)

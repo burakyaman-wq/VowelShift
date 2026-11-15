@@ -8,6 +8,7 @@ const RED := Color("b33a29")
 
 
 func _ready() -> void:
+	Loc.load_choice()
 	var bg := TextureRect.new()
 	bg.texture = Art.tex("masa.png", 1)
 	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -21,18 +22,28 @@ func _ready() -> void:
 	add_child(sheet)
 	sheet.position = Vector2(420, 150)
 	sheet.size = Vector2(1080, 700)
-	_text("Ses Kayması", 92, RED, Vector2(460, 250), 1000)
-	_text("Bir şehrin yalanı, üç kâtibin elinde", 30, INK, Vector2(460, 380), 1000)
+	_text(Loc.t("Ses Kayması"), 92, RED, Vector2(460, 250), 1000)
+	_text(Loc.t("Bir şehrin yalanı, üç kâtibin elinde"), 30, INK, Vector2(460, 380), 1000)
 	var y := 470.0
 	var saved := FileAccess.file_exists(GameState.SAVE_PATH)
 	if saved:
 		var st := GameState.load_or_new()
 		var lib := ManuscriptLibrary.new()
 		var at := mini(st.doc_index + 1, lib.docs.size())
-		_button("Devam et  ·  iş %d / %d" % [at, lib.docs.size()], Vector2(460, y), _continue)
+		_button(Loc.t("Devam et  ·  iş %d / %d") % [at, lib.docs.size()], Vector2(460, y), _continue)
 		y += 80
-	_button("Yeni oyun", Vector2(460, y), _new_game)
-	_text("Çizimler kodla çizildi; tasarımda, kodda ve metinlerde yapay zekâ kullanıldı. Ayrıntılar oyunun sayfasında.", 18, Color(INK, 0.8), Vector2(460, 742), 1000)
+	_button(Loc.t("Yeni oyun"), Vector2(460, y), _new_game)
+	var other := "English" if Loc.lang == "tr" else "Türkçe"
+	var lang := _text("Türkçe · English", 26, INK, Vector2(1500, 40), 380)
+	lang.text = ("[ Türkçe ] · English" if Loc.lang == "tr" else "Türkçe · [ English ]")
+	lang.mouse_filter = Control.MOUSE_FILTER_STOP
+	lang.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	lang.tooltip_text = other
+	lang.gui_input.connect(func(e: InputEvent) -> void:
+		if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT:
+			Loc.set_lang("en" if Loc.lang == "tr" else "tr")
+			get_tree().reload_current_scene())
+	_text(Loc.t("Çizimler kodla çizildi; tasarımda, kodda ve metinlerde yapay zekâ kullanıldı. Ayrıntılar oyunun sayfasında."), 18, Color(INK, 0.8), Vector2(460, 742), 1000)
 
 
 func _text(t: String, size: int, color: Color, at: Vector2, width: float) -> Label:

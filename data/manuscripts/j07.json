@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağ tüccarları",
-    "says_tr": "Sürülerimizi tahılla takas ediyoruz. Senette atamızın adı geçiyor: Mēros. Sizin dilde artık *Mīros* oluyor; ama Mīros sizin kurucunuz. Atamızın adı onunkine karışmasın."
+    "says_tr": "Sürülerimizi tahılla takas ediyoruz. Senette atamızın adı geçiyor: Mēros. Sizin dilde artık *Mīros* oluyor; ama Mīros sizin kurucunuz. Atamızın adı onunkine karışmasın.",
+    "name_en": "Mountain traders",
+    "says_en": "We trade our flocks for grain. Our ancestor's name is on the deed: Mēros. In your tongue it becomes *Mīros* now; but Mīros is your founder. Do not let our ancestor's name blur into his."
   },
   "old_text": "Mēros pekwom dōneti.",
   "heard": [
@@ -34,7 +36,8 @@
         ]
       },
       "set": "dag_adi_korundu",
-      "chronicle": "Senette 'Mēros' eski yazımla duruyor. Dağ tüccarları sana bir kuzu bıraktı."
+      "chronicle": "Senette 'Mēros' eski yazımla duruyor. Dağ tüccarları sana bir kuzu bıraktı.",
+      "chronicle_en": "The deed keeps 'Mēros' in the old spelling. The mountain traders left you a lamb."
     },
     {
       "when": {
@@ -44,12 +47,14 @@
         ]
       },
       "set": "dag_adi_korundu",
-      "chronicle": "Senedin kenarına 'küçük kardeş' yazdın. Dağ tüccarları başını salladı."
+      "chronicle": "Senedin kenarına 'küçük kardeş' yazdın. Dağ tüccarları başını salladı.",
+      "chronicle_en": "You wrote 'younger brother' in the margin of the deed. The mountain traders nodded."
     },
     {
       "when": {},
       "set": "dag_adi_karisti",
-      "chronicle": "Senette atalarının adı kurucununkiyle aynı yazıldı. Dağ tüccarları 'adımızı da aldınız' dedi."
+      "chronicle": "Senette atalarının adı kurucununkiyle aynı yazıldı. Dağ tüccarları 'adımızı da aldınız' dedi.",
+      "chronicle_en": "On the deed their ancestor's name is written like the founder's. The mountain traders said: 'You took our name too.'"
     }
   ],
   "variants": [
@@ -57,7 +62,9 @@
       "when": {
         "flag": "dag_eski"
       },
-      "says_tr": "'Dağın kâtibi'nin çırağı sensin, değil mi? Sürülerimizi tahılla takas ediyoruz; senette atamız Mēros'un adı geçiyor. Sizin dilde *Mīros* oluyor; ama atamızın adı kurucunuzunkine karışmasın."
+      "says_tr": "'Dağın kâtibi'nin çırağı sensin, değil mi? Sürülerimizi tahılla takas ediyoruz; senette atamız Mēros'un adı geçiyor. Sizin dilde *Mīros* oluyor; ama atamızın adı kurucunuzunkine karışmasın.",
+      "says_en": "You are the apprentice of 'the mountain's scribe', aren't you? We trade our flocks for grain; our ancestor Mēros's name is on the deed. In your tongue it becomes *Mīros*; but do not let our ancestor's name blur into your founder's."
     }
-  ]
+  ],
+  "title_en": "The mountain trade"
 }

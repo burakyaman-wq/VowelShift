@@ -6,7 +6,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Tüccar Grēna",
-    "says_tr": "Bu senet annemden kaldı. Ben ona *mētīros* derdim, siz eski yazıda başka türlü yazıyorsunuz. Tahıl kimden kime geçmiş, bilmem lazım."
+    "says_tr": "Bu senet annemden kaldı. Ben ona *mētīros* derdim, siz eski yazıda başka türlü yazıyorsunuz. Tahıl kimden kime geçmiş, bilmem lazım.",
+    "name_en": "Grēna the merchant",
+    "says_en": "This note came down from my mother. I called her *mētīros*; you write it differently in the old script. I need to know from whom to whom the grain passed."
   },
   "old_text": "Mātēros Mīrosyo grānom emeti.",
   "heard": [
@@ -39,7 +41,8 @@
         ]
       },
       "set": "senet_buyuk",
-      "chronicle": "Kenar notun 'büyük kardeşin' diyor: tahıl kurucunun evinden alınmış. Grēna borcu saraya ödemek zorunda kalmadı; saray ödedi."
+      "chronicle": "Kenar notun 'büyük kardeşin' diyor: tahıl kurucunun evinden alınmış. Grēna borcu saraya ödemek zorunda kalmadı; saray ödedi.",
+      "chronicle_en": "Your margin note says 'the elder brother's': the grain was taken from the founder's house. Grēna did not have to pay the palace; the palace paid."
     },
     {
       "when": {
@@ -49,12 +52,16 @@
         ]
       },
       "set": "senet_buyuk",
-      "chronicle": "Senet eski yazımla kaldı; yaşlı yargıç kurucunun adını tanıdı. Grēna borçtan kurtuldu."
+      "chronicle": "Senet eski yazımla kaldı; yaşlı yargıç kurucunun adını tanıdı. Grēna borçtan kurtuldu.",
+      "chronicle_en": "The note stayed in the old spelling; the old judge recognised the founder's name. Grēna was freed of the debt."
     },
     {
       "when": {},
       "set": "senet_belirsiz",
-      "chronicle": "Senette 'Mīrosyo' yazıyor: tahıl kurucunun mu, sürgünün mü? Saray 'sürgünün' dedi; Grēna ödemeyi kendi kesesinden saydı."
+      "chronicle": "Senette 'Mīrosyo' yazıyor: tahıl kurucunun mu, sürgünün mü? Saray 'sürgünün' dedi; Grēna ödemeyi kendi kesesinden saydı.",
+      "chronicle_en": "The note says 'Mīrosyo': the founder's grain, or the exile's? The palace said 'the exile's'; Grēna paid out of her own purse."
     }
-  ]
+  ],
+  "title_en": "A debt note",
+  "delivered_en": "The merchant woman took the note and counted out the payment."
 }

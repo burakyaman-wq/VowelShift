@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Bey'in kâhyası",
-    "says_tr": "Bey dağa nöbetçi koyuyor: dağlılar inerse ateş yakılacak, nöbetçi dumanı görecek. Ama bugün *thūmos* deyince kimi 'duman' anlar, kimi 'öfke'. Buyruk yanlış okunursa kan dökülür."
+    "says_tr": "Bey dağa nöbetçi koyuyor: dağlılar inerse ateş yakılacak, nöbetçi dumanı görecek. Ama bugün *thūmos* deyince kimi 'duman' anlar, kimi 'öfke'. Buyruk yanlış okunursa kan dökülür.",
+    "name_en": "The lord's steward",
+    "says_en": "The lord is posting watchmen on the mountain: if the mountain folk come down, a fire is lit and the watchman sees the smoke. But today, say *thūmos* and some hear 'smoke', others 'wrath'. Misread, this order will spill blood."
   },
   "old_text": "Rēgos agnom dhegheti. Dhūmom weide.",
   "heard": [
@@ -35,12 +37,15 @@
         ]
       },
       "set": "nobet_duman",
-      "chronicle": "Nöbetçiler buyruğu doğru okudu: ateş yak, dumanı gör. Dağ yolunda ateş kuleleri kuruldu."
+      "chronicle": "Nöbetçiler buyruğu doğru okudu: ateş yak, dumanı gör. Dağ yolunda ateş kuleleri kuruldu.",
+      "chronicle_en": "The watchmen read the order right: light the fire, watch the smoke. Fire towers went up along the mountain road."
     },
     {
       "when": {},
       "set": "nobet_ofke",
-      "chronicle": "Nöbetçiler buyruğu 'öfkeyi gör' diye okudu. Geceleri inen ilk çobanlara saldırdılar; dağda bir ölü var."
+      "chronicle": "Nöbetçiler buyruğu 'öfkeyi gör' diye okudu. Geceleri inen ilk çobanlara saldırdılar; dağda bir ölü var.",
+      "chronicle_en": "The watchmen read the order as 'watch for wrath'. They attacked the first shepherds coming down at night; there is a dead man on the mountain."
     }
-  ]
+  ],
+  "title_en": "The watch order"
 }

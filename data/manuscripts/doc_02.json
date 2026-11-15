@@ -6,7 +6,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Saray görevlisi",
-    "says_tr": "*Rīgos* kurucuların kaydını istiyor. Eski defterlerde *grānos* yazıyor, biz artık *grēnos* diyoruz; tarlalara da *ēgros* diyoruz, ambarın *thītos*'u kabardı. Kopyan bugünün diliyle olmalı. Acele et, *rīgos* beklemez."
+    "says_tr": "*Rīgos* kurucuların kaydını istiyor. Eski defterlerde *grānos* yazıyor, biz artık *grēnos* diyoruz; tarlalara da *ēgros* diyoruz, ambarın *thītos*'u kabardı. Kopyan bugünün diliyle olmalı. Acele et, *rīgos* beklemez.",
+    "name_en": "A palace official",
+    "says_en": "The *rīgos* wants the founders' record. The old ledgers say *grānos*; we say *grēnos* now. We call fields *ēgros*, and the granary's *thītos* has swollen. Your copy must be in today's tongue. Hurry, the *rīgos* does not wait."
   },
   "old_text": "Mīros Mērom ageti. Mēros nākos.",
   "heard": [
@@ -33,7 +35,8 @@
         "copy_has": "nīkos"
       },
       "set": "olu_yazildi",
-      "chronicle": "Sarayda senin kopyanı okudular: kurucunun kardeşi ölmüş. Mezarını arıyorlar."
+      "chronicle": "Sarayda senin kopyanı okudular: kurucunun kardeşi ölmüş. Mezarını arıyorlar.",
+      "chronicle_en": "The palace read your copy: the founder's brother died. They are looking for his grave."
     },
     {
       "when": {
@@ -43,19 +46,22 @@
         ]
       },
       "set": "nakos_notlu",
-      "chronicle": "Sarayda senin kopyanı okudular. Kenardaki notu okuyan yaşlılar da anladı: kardeş sürgün edilmiş, ölmemiş. Söylenti bu kez doğmadı."
+      "chronicle": "Sarayda senin kopyanı okudular. Kenardaki notu okuyan yaşlılar da anladı: kardeş sürgün edilmiş, ölmemiş. Söylenti bu kez doğmadı.",
+      "chronicle_en": "The palace read your copy. The old read the margin note too and understood: the brother was exiled, not killed. This time no rumour was born."
     },
     {
       "when": {
         "copy_has": "nākos"
       },
       "set": "nakos_korundu",
-      "chronicle": "Sarayda senin kopyanı okudular. Kardeşin adının yanına eski yazımla [i]nākos[/i] yazmıştın; gençler kelimeyi tanımadı ama yaşlılara sordular, onlar da 'sürgün' dedi. Çarşıda kardeşin sürgün edildiği konuşuluyor."
+      "chronicle": "Sarayda senin kopyanı okudular. Kardeşin adının yanına eski yazımla [i]nākos[/i] yazmıştın; gençler kelimeyi tanımadı ama yaşlılara sordular, onlar da 'sürgün' dedi. Çarşıda kardeşin sürgün edildiği konuşuluyor.",
+      "chronicle_en": "The palace read your copy. You had written [i]nākos[/i] beside the brother's name in the old spelling; the young did not know the word, but they asked the old, who said 'exile'. In the market people say the brother was exiled."
     },
     {
       "when": {},
       "set": "olu_soylentisi",
-      "chronicle": "Sarayda senin kopyanı okudular: kardeş sürgün edilmiş. Ama yaşlılar eski dille okuyor; onlara göre [i]nēkos[/i] 'ölü' demek. Çarşıda kardeşin öldürüldüğü konuşuluyor."
+      "chronicle": "Sarayda senin kopyanı okudular: kardeş sürgün edilmiş. Ama yaşlılar eski dille okuyor; onlara göre [i]nēkos[/i] 'ölü' demek. Çarşıda kardeşin öldürüldüğü konuşuluyor.",
+      "chronicle_en": "The palace read your copy: the brother was exiled. But the old read in the old tongue; to them [i]nēkos[/i] means 'dead'. In the market people say the brother was murdered."
     }
   ],
   "kind": "ana",
@@ -63,5 +69,7 @@
     "R3",
     "R4",
     "R5"
-  ]
+  ],
+  "title_en": "The founders' record",
+  "delivered_en": "The palace official took the copy and entered it in the records."
 }

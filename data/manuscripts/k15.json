@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Yeni düzen",
-    "says_tr": "Şehrin kroniği yazılacak ve senin kopyan esas alınacak. İlk satır kuruluşu anlatıyor: bey sürgünü öldürdü, sürgün kardeşti. Kimi bu satırı kazımanı istiyor, kimi korumanı. Karar senin, Nīka."
+    "says_tr": "Şehrin kroniği yazılacak ve senin kopyan esas alınacak. İlk satır kuruluşu anlatıyor: bey sürgünü öldürdü, sürgün kardeşti. Kimi bu satırı kazımanı istiyor, kimi korumanı. Karar senin, Nīka.",
+    "name_en": "The new order",
+    "says_en": "The city's chronicle will be written, and your copy will be the basis. The first line tells the founding: the lord killed the exile; the exile was his brother. Some want you to scrape this line, some to keep it. The choice is yours, Nīka."
   },
   "old_text": "Rīgos nēkom kheneti. Nēkos phrētīros.",
   "heard": [
@@ -35,7 +37,8 @@
         ]
       },
       "set": "kronik_sessiz",
-      "chronicle": "Kroniğin ilk satırında öldürmek yok; yalnız 'sürgün kardeşti' yazıyor."
+      "chronicle": "Kroniğin ilk satırında öldürmek yok; yalnız 'sürgün kardeşti' yazıyor.",
+      "chronicle_en": "The chronicle's first line has no killing; it only says 'the exile was a brother'."
     },
     {
       "when": {
@@ -45,12 +48,15 @@
         ]
       },
       "set": "kronik_sessiz",
-      "chronicle": "Kroniğin ilk satırında kimin öldürüldüğü yok."
+      "chronicle": "Kroniğin ilk satırında kimin öldürüldüğü yok.",
+      "chronicle_en": "The chronicle's first line does not say who was killed."
     },
     {
       "when": {},
       "set": "kronik_gercek",
-      "chronicle": "Kroniğin ilk satırı: bey sürgünü öldürdü; sürgün kardeşti."
+      "chronicle": "Kroniğin ilk satırı: bey sürgünü öldürdü; sürgün kardeşti.",
+      "chronicle_en": "The chronicle's first line: the lord killed the exile; the exile was a brother."
     }
-  ]
+  ],
+  "title_en": "The city chronicle"
 }

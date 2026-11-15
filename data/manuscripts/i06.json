@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Rahibe Wēsna",
-    "says_tr": "Kıtlığı tapınağın duvarına yazıyoruz ki unutulmasın. Ama kâhya geldi: bey, duvarda *thekhnos* kelimesinin geçmesini istemiyor; halk korkarmış. Ben yazılsın derim. Karar senin."
+    "says_tr": "Kıtlığı tapınağın duvarına yazıyoruz ki unutulmasın. Ama kâhya geldi: bey, duvarda *thekhnos* kelimesinin geçmesini istemiyor; halk korkarmış. Ben yazılsın derim. Karar senin.",
+    "name_en": "Priestess Wēsna",
+    "says_en": "We are writing the famine on the temple wall so it is not forgotten. But the steward came: the lord does not want the word *thekhnos* on the wall; it would frighten people. I say write it. The choice is yours."
   },
   "old_text": "Dheghnos peistom edeti. Nēkes mereti.",
   "heard": [
@@ -34,12 +36,15 @@
         ]
       },
       "set": "kitlik_kazindi",
-      "chronicle": "Duvarda kıtlık yazmıyor; yalnızca 'ölüler öldü'. Halk tapınağın neden boşaldığını anlamadı, rahibe sana küstü."
+      "chronicle": "Duvarda kıtlık yazmıyor; yalnızca 'ölüler öldü'. Halk tapınağın neden boşaldığını anlamadı, rahibe sana küstü.",
+      "chronicle_en": "The wall does not say famine; only 'the dead died'. People never understood why the temple emptied, and the priestess stopped speaking to you."
     },
     {
       "when": {},
       "set": "kitlik_yazildi",
-      "chronicle": "Kıtlık tapınak duvarına yazıldı. Halk ambarların önünde toplandı; kâhya adını not etti."
+      "chronicle": "Kıtlık tapınak duvarına yazıldı. Halk ambarların önünde toplandı; kâhya adını not etti.",
+      "chronicle_en": "The famine was written on the temple wall. People gathered at the granaries; the steward noted your name."
     }
-  ]
+  ],
+  "title_en": "The famine record"
 }

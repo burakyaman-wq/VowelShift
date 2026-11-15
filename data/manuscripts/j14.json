@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Yaşlı Lūka",
-    "says_tr": "Defterimi sana bırakıyorum, Argos. Adın 'gümüş' demek, bilir misin? Vasiyetime 'defter gerçektir' yazdım. Bugün gerçeğe *wēros* diyorlar; yaşlılar yanlış anlamasın."
+    "says_tr": "Defterimi sana bırakıyorum, Argos. Adın 'gümüş' demek, bilir misin? Vasiyetime 'defter gerçektir' yazdım. Bugün gerçeğe *wēros* diyorlar; yaşlılar yanlış anlamasın.",
+    "name_en": "Old Lūka",
+    "says_en": "I leave you my notebook, Argos. Do you know your name means 'silver'? In my testament I wrote 'the notebook is truth'. Today they call truth *wēros*; do not let the old misunderstand."
   },
   "old_text": "Phāgom argosyo dōneti. Phāgos wāros.",
   "heard": [
@@ -35,7 +37,8 @@
         ]
       },
       "set": "luka_gercek",
-      "chronicle": "Lūka öldü. Defteri sende; bir sayfası koparılmış. Kenardaki 'gerçek' notunu okuyan Dhās, eksik sayfayı sordu."
+      "chronicle": "Lūka öldü. Defteri sende; bir sayfası koparılmış. Kenardaki 'gerçek' notunu okuyan Dhās, eksik sayfayı sordu.",
+      "chronicle_en": "Lūka died. Her notebook is yours; one page has been torn out. Dhās read the margin note 'truth' and asked about the missing page."
     },
     {
       "when": {
@@ -45,12 +48,15 @@
         ]
       },
       "set": "luka_gercek",
-      "chronicle": "Lūka öldü. Defteri sende; bir sayfası koparılmış. Eski yazıyı yaşlılar doğru okudu."
+      "chronicle": "Lūka öldü. Defteri sende; bir sayfası koparılmış. Eski yazıyı yaşlılar doğru okudu.",
+      "chronicle_en": "Lūka died. Her notebook is yours; one page has been torn out. The old read the old spelling right."
     },
     {
       "when": {},
       "set": "luka_yalan",
-      "chronicle": "Lūka öldü. Yaşlılar vasiyeti 'defter yalandır' diye okudu; defterine kimse dokunmuyor. Bir sayfası zaten koparılmış."
+      "chronicle": "Lūka öldü. Yaşlılar vasiyeti 'defter yalandır' diye okudu; defterine kimse dokunmuyor. Bir sayfası zaten koparılmış.",
+      "chronicle_en": "Lūka died. The old read the testament as 'the notebook is a lie'; no one touches it. One page was torn out already."
     }
-  ]
+  ],
+  "title_en": "Lūka's testament"
 }

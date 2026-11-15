@@ -18,8 +18,8 @@ static func from_dict(d: Dictionary, classes: Dictionary) -> SoundRule:
 	r.id = d["id"]
 	r.era = int(d["era"])
 	r.kind = d.get("kind", "")
-	r.name_tr = d.get("name_tr", "")
-	r.note_tr = d.get("note_tr", "")
+	r.name_tr = Loc.pick(d, "name")
+	r.note_tr = Loc.pick(d, "note")
 	for sub in d["subs"]:
 		var pat: String = sub[0]
 		for cls_name in classes:

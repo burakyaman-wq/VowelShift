@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Bey'in kâhyası",
-    "says_tr": "Ben beyin kâhyasıyım. Bey, ambarcı Sālwa'nın ambarını istiyor; elimizde kurucu zamanından bir senet var: kurucu, annesinin tahılını almış, bir tanık da görmüş. Ama bugün *tūkos* deyince herkes 'hırsız' anlıyor. Sen bilirsin, kâtip."
+    "says_tr": "Ben beyin kâhyasıyım. Bey, ambarcı Sālwa'nın ambarını istiyor; elimizde kurucu zamanından bir senet var: kurucu, annesinin tahılını almış, bir tanık da görmüş. Ama bugün *tūkos* deyince herkes 'hırsız' anlıyor. Sen bilirsin, kâtip.",
+    "name_en": "The lord's steward",
+    "says_en": "I am the lord's steward. The lord wants the granary of Sālwa the granary-keeper; we hold a deed from the founder's time: the founder took his mother's grain, and a witness saw it. But today, say *tūkos* and everyone hears 'thief'. You know your trade, scribe."
   },
   "old_text": "Rēgos mātērosyo grānom emeti. Teukos weideti.",
   "heard": [
@@ -34,12 +36,15 @@
         ]
       },
       "set": "senet_notlu",
-      "chronicle": "Senedin kenarına 'tanık' yazdın. Kâhya kızdı ama mahkeme kopyayı kabul etti; Sālwa'nın ambarı şimdilik onun."
+      "chronicle": "Senedin kenarına 'tanık' yazdın. Kâhya kızdı ama mahkeme kopyayı kabul etti; Sālwa'nın ambarı şimdilik onun.",
+      "chronicle_en": "You wrote 'witness' in the margin of the deed. The steward fumed, but the court accepted the copy; Sālwa keeps her granary for now."
     },
     {
       "when": {},
       "set": "senet_notsuz",
-      "chronicle": "Senet saraya gitti. Mahkeme 'hırsız gördü' diye okudu; Sālwa'yı hırsızlıkla suçladılar, ambar saraya geçti."
+      "chronicle": "Senet saraya gitti. Mahkeme 'hırsız gördü' diye okudu; Sālwa'yı hırsızlıkla suçladılar, ambar saraya geçti.",
+      "chronicle_en": "The deed went to the palace. The court read 'a thief saw it'; Sālwa was charged with theft and the granary passed to the palace."
     }
-  ]
+  ],
+  "title_en": "The palace deed"
 }

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Nīka (kendin)",
-    "says_tr": "Yangından Argos'un yarım defteri çıktı. Son sayfada Argos'un notu var: “Ekler düşüyor; halk kimin yaptığını artık sıradan anlıyor. Önce gelen yapandır.” Defterin ilk satırını kendi defterime geçireceğim."
+    "says_tr": "Yangından Argos'un yarım defteri çıktı. Son sayfada Argos'un notu var: “Ekler düşüyor; halk kimin yaptığını artık sıradan anlıyor. Önce gelen yapandır.” Defterin ilk satırını kendi defterime geçireceğim.",
+    "name_en": "Nīka (yourself)",
+    "says_en": "Argos's half notebook came out of the fire. On the last page is Argos's note: “The endings are falling; people now tell who did it by the order. The first is the doer.” I will copy the notebook's first line into my own."
   },
   "old_text": "Mīros nēkos. Phēgos wēros.",
   "heard": [
@@ -30,7 +32,9 @@
     {
       "when": {},
       "set": "argos_defteri",
-      "chronicle": "Argos'un satırı artık senin defterinde: 'Mīros sürgündür. Defter gerçektir.' Defterin arasında bir sayfa izi var; biri bir şey koparmış."
+      "chronicle": "Argos'un satırı artık senin defterinde: 'Mīros sürgündür. Defter gerçektir.' Defterin arasında bir sayfa izi var; biri bir şey koparmış.",
+      "chronicle_en": "Argos's line is in your notebook now: 'Mīros is an exile. The notebook is truth.' Between the pages there is the trace of a page; someone tore something out."
     }
-  ]
+  ],
+  "title_en": "Argos's half notebook"
 }

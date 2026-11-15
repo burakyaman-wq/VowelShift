@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağlı çoban",
-    "says_tr": "Tahıl için indim. Dağda saklanan bir kayın tahtası getirdim: sürgün Mēros'un annesine yazıp hiç yollayamadığı mektup. Şehirde *gwīweti* diyorsunuz; ama dağda yaşlılar hâlâ eski dili konuşur. Eski yazımla bırakırsan onlar da okur."
+    "says_tr": "Tahıl için indim. Dağda saklanan bir kayın tahtası getirdim: sürgün Mēros'un annesine yazıp hiç yollayamadığı mektup. Şehirde *gwīweti* diyorsunuz; ama dağda yaşlılar hâlâ eski dili konuşur. Eski yazımla bırakırsan onlar da okur.",
+    "name_en": "A mountain shepherd",
+    "says_en": "I came down for grain. I brought a beech board hidden in the mountains: a letter the exile Mēros wrote to his mother and never sent. In the city you say *gwīweti*; but in the mountains the old still speak the old tongue. Leave it in the old spelling and they can read it too."
   },
   "old_text": "Mēros gweiweti. Bhāgom mātērosyo dōneti.",
   "heard": [
@@ -35,12 +37,15 @@
         ]
       },
       "set": "dag_eski",
-      "chronicle": "Mektubu dağın yaşlıları kendi dilleriyle okudu. Çobanlar sana 'dağın kâtibi' demeye başladı; şehirde ise kopyayı kimse okuyamadı."
+      "chronicle": "Mektubu dağın yaşlıları kendi dilleriyle okudu. Çobanlar sana 'dağın kâtibi' demeye başladı; şehirde ise kopyayı kimse okuyamadı.",
+      "chronicle_en": "The mountain elders read the letter in their own tongue. The shepherds began to call you 'the mountain's scribe'; in the city, no one could read the copy."
     },
     {
       "when": {},
       "set": "dag_yeni",
-      "chronicle": "Çoban kopyayı alıp dağa döndü. Gençler okudu; yaşlılar 'şehrin yazısı' deyip başını salladı."
+      "chronicle": "Çoban kopyayı alıp dağa döndü. Gençler okudu; yaşlılar 'şehrin yazısı' deyip başını salladı.",
+      "chronicle_en": "The shepherd took the copy back to the mountain. The young read it; the old shook their heads: 'city writing'."
     }
-  ]
+  ],
+  "title_en": "A letter from the mountain"
 }

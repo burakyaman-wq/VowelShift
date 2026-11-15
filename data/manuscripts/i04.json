@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Bey'in kâhyası",
-    "says_tr": "Bey, şehrin dışındaki sınır taşının yenisini istiyor. Taş iki tarlayı ayırıyor: biri kurucu Mīros'un, öbürü sürgün kardeşi Mēros'un. Bey diyor ki sürgünün tarlası olmaz: Mēros'un adını taştan kazı. Taşın kendisi de tanrıya *khewos* sayılır."
+    "says_tr": "Bey, şehrin dışındaki sınır taşının yenisini istiyor. Taş iki tarlayı ayırıyor: biri kurucu Mīros'un, öbürü sürgün kardeşi Mēros'un. Bey diyor ki sürgünün tarlası olmaz: Mēros'un adını taştan kazı. Taşın kendisi de tanrıya *khewos* sayılır.",
+    "name_en": "The lord's steward",
+    "says_en": "The lord wants a new boundary stone outside the city. It divides two fields: one of the founder Mīros, the other of his exiled brother Mēros. The lord says an exile has no field: scrape Mēros's name off the stone. The stone itself counts as a *khewos* to the god."
   },
   "old_text": "Meirosyo āgros. Mērosyo āgros. Akmos deiwosyo ghewos.",
   "heard": [
@@ -34,12 +36,15 @@
         ]
       },
       "set": "tarla_kazindi",
-      "chronicle": "Yeni taşta tek tarla var: kurucununki. Mēros'un tarlası beyin sürülerine açıldı; dağlı çobanlar homurdandı."
+      "chronicle": "Yeni taşta tek tarla var: kurucununki. Mēros'un tarlası beyin sürülerine açıldı; dağlı çobanlar homurdandı.",
+      "chronicle_en": "The new stone names one field: the founder's. Mēros's field was opened to the lord's herds; the mountain shepherds grumbled."
     },
     {
       "when": {},
       "set": "tarla_korundu",
-      "chronicle": "Yeni taşta iki tarla da yazıyor. Kâhya söylendi ama taşı dikti; Mēros'un tarlası boş duruyor."
+      "chronicle": "Yeni taşta iki tarla da yazıyor. Kâhya söylendi ama taşı dikti; Mēros'un tarlası boş duruyor.",
+      "chronicle_en": "Both fields are written on the new stone. The steward muttered but set it up; Mēros's field lies empty."
     }
-  ]
+  ],
+  "title_en": "The boundary stone"
 }

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Yeni düzenin vekili",
-    "says_tr": "Eski hanedanın soy kütüğü elimizde. Yeni düzen onların bir katil soyu olduğunu gösterecek. Kütükte sürgün kardeşin adı varsa kalsın; yoksa da sen ekleme."
+    "says_tr": "Eski hanedanın soy kütüğü elimizde. Yeni düzen onların bir katil soyu olduğunu gösterecek. Kütükte sürgün kardeşin adı varsa kalsın; yoksa da sen ekleme.",
+    "name_en": "Envoy of the new order",
+    "says_en": "We hold the old dynasty's family tree. The new order will show they were a line of killers. If the exiled brother's name is on it, let it stay; if not, do not add it."
   },
   "old_text": "Mīros Mīros phrētīres.",
   "heard": [
@@ -35,7 +37,8 @@
         ]
       },
       "set": "kutuk_acik",
-      "chronicle": "Kütüğün kenarında 'biri bey, biri sürgün' yazıyor. Vekil kütüğü meydana astırdı."
+      "chronicle": "Kütüğün kenarında 'biri bey, biri sürgün' yazıyor. Vekil kütüğü meydana astırdı.",
+      "chronicle_en": "The tree's margin says 'one a lord, one an exile'. The envoy had it hung in the square."
     },
     {
       "when": {
@@ -45,12 +48,14 @@
         ]
       },
       "set": "kutuk_temiz",
-      "chronicle": "Kütükten bir ad daha kazıdın. Vekil kızdı: 'katil soyunu temize çıkarıyorsun.'"
+      "chronicle": "Kütükten bir ad daha kazıdın. Vekil kızdı: 'katil soyunu temize çıkarıyorsun.'",
+      "chronicle_en": "You scraped one more name from the tree. The envoy was angry: 'You are whitewashing a line of killers.'"
     },
     {
       "when": {},
       "set": "kutuk_karisik",
-      "chronicle": "Kütükte iki aynı ad. Halk bunu bir eski yazım hatası sanıyor."
+      "chronicle": "Kütükte iki aynı ad. Halk bunu bir eski yazım hatası sanıyor.",
+      "chronicle_en": "The tree shows the same name twice. People think it is an old spelling mistake."
     }
   ],
   "variants": [
@@ -59,7 +64,9 @@
         "flag": "kutuk_kazindi"
       },
       "old_text": "Mīros phrētīres.",
-      "says_tr": "Eski hanedanın soy kütüğü elimizde. Sürgünün adı yüz yıl önce kazınmış; yalnız 'Mīros kardeşler' kalmış. Kimin kardeşi, belli değil."
+      "says_tr": "Eski hanedanın soy kütüğü elimizde. Sürgünün adı yüz yıl önce kazınmış; yalnız 'Mīros kardeşler' kalmış. Kimin kardeşi, belli değil.",
+      "says_en": "We hold the old dynasty's family tree. The exile's name was scraped a hundred years ago; only 'Mīros brothers' is left. Whose brother, no one can say."
     }
-  ]
+  ],
+  "title_en": "The fallen dynasty's tree"
 }

@@ -6,7 +6,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağlardan gelen elçi",
-    "says_tr": "Biz *Mīro*'nun soyundanız; bize *nēko* dediniz, sürgün. Sizin *rīgo* bize ne *ēgro* bıraktı ne *grēno*. Atamız dağlara sürülmedi, öldürüldü; bu belge bizim arşivimizden. Senin yazınla kopyala ki şehirde herkes okusun."
+    "says_tr": "Biz *Mīro*'nun soyundanız; bize *nēko* dediniz, sürgün. Sizin *rīgo* bize ne *ēgro* bıraktı ne *grēno*. Atamız dağlara sürülmedi, öldürüldü; bu belge bizim arşivimizden. Senin yazınla kopyala ki şehirde herkes okusun.",
+    "name_en": "An envoy from the mountains",
+    "says_en": "We are of *Mīro*'s line; you called us *nēko*, exiles. Your *rīgo* left us neither *ēgro* nor *grēno*. Our ancestor was not driven into the mountains; he was killed. This document is from our archive. Copy it in your script so everyone in the city can read it."
   },
   "old_text": "Mīrom nēkom Mīros rīgos kheneti.",
   "heard": [
@@ -43,19 +45,24 @@
         "order": "wrong"
       },
       "set": "daglilar_suclu",
-      "chronicle": "Şehir kopyanı sırasıyla okudu: sürgün beyi öldürmüş. Dağlılar kendi belgeleriyle suçlu ilan edildi."
+      "chronicle": "Şehir kopyanı sırasıyla okudu: sürgün beyi öldürmüş. Dağlılar kendi belgeleriyle suçlu ilan edildi.",
+      "chronicle_en": "The city read your copy in its order: the exile killed the lord. The mountain folk were declared guilty by their own document."
     },
     {
       "when": {
         "order": "unexplained"
       },
       "set": "dag_aklandi",
-      "chronicle": "Şehir kopyanı doğru okudu: bey sürgünü öldürmüş. Ama kopya aslından farklı; kimi seni sahtecilikle suçluyor."
+      "chronicle": "Şehir kopyanı doğru okudu: bey sürgünü öldürmüş. Ama kopya aslından farklı; kimi seni sahtecilikle suçluyor.",
+      "chronicle_en": "The city read your copy right: the lord killed the exile. But the copy differs from its original; some accuse you of forgery."
     },
     {
       "when": {},
       "set": "dag_aklandi",
-      "chronicle": "Şehir kopyanı doğru okudu: bey sürgünü öldürmüş. Kenar notun neden sırayı değiştirdiğini anlatıyor."
+      "chronicle": "Şehir kopyanı doğru okudu: bey sürgünü öldürmüş. Kenar notun neden sırayı değiştirdiğini anlatıyor.",
+      "chronicle_en": "The city read your copy right: the lord killed the exile. Your margin note explains why you changed the order."
     }
-  ]
+  ],
+  "title_en": "A document from the mountains",
+  "delivered_en": "The envoy took the copy to the city."
 }

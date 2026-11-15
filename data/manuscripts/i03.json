@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Ambarcı Sālwa",
-    "says_tr": "Ben Sālwa, şehrin ambarcısı. Senet davası yüzünden ambarın dibini kazdık; kurucuların annesinin mührü çıktı. Mahkeme eski yazıya daha çok inanıyor: istersen mührün adını eski hâliyle bırak. Bugün ona *sikhlos* diyoruz."
+    "says_tr": "Ben Sālwa, şehrin ambarcısı. Senet davası yüzünden ambarın dibini kazdık; kurucuların annesinin mührü çıktı. Mahkeme eski yazıya daha çok inanıyor: istersen mührün adını eski hâliyle bırak. Bugün ona *sikhlos* diyoruz.",
+    "name_en": "Sālwa the granary-keeper",
+    "says_en": "I am Sālwa, keeper of the city granary. The deed case made us dig to the bottom of the granary; the founders' mother's seal came up. The court trusts old script more: if you like, leave the seal's name in its old spelling. Today we call it *sikhlos*."
   },
   "old_text": "Mātērosyo sighlos. Grānosyo dhētos.",
   "heard": [
@@ -34,12 +36,16 @@
         ]
       },
       "set": "muhur_eski",
-      "chronicle": "Mührün adını eski yazımla bıraktın. Yaşlı yargıç mührü tanıdı; Sālwa'nın borç kaydı ciddiye alındı."
+      "chronicle": "Mührün adını eski yazımla bıraktın. Yaşlı yargıç mührü tanıdı; Sālwa'nın borç kaydı ciddiye alındı.",
+      "chronicle_en": "You left the seal's name in the old spelling. The old judge recognised it; Sālwa's debt record was taken seriously."
     },
     {
       "when": {},
       "set": "muhur_yeni",
-      "chronicle": "Mühür bugünün yazısıyla kopyalandı. Gençler okudu, yaşlı yargıç omuz silkti."
+      "chronicle": "Mühür bugünün yazısıyla kopyalandı. Gençler okudu, yaşlı yargıç omuz silkti.",
+      "chronicle_en": "The seal was copied in today's script. The young read it; the old judge shrugged."
     }
-  ]
+  ],
+  "title_en": "The seal in the granary",
+  "delivered_en": "Sālwa locked the seal in her chest: the founders' mother owed a debt of grain."
 }

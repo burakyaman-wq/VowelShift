@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Yaşlı rahip",
-    "says_tr": "Şehir kapısındaki barış yazısı yanmış; bir parçası kaldı. Eski yazıda önce barış, sonra bey yazılmış: 'barışı bey verir'. Bugün sıra bozulursa 'barış beyi verir' okunur."
+    "says_tr": "Şehir kapısındaki barış yazısı yanmış; bir parçası kaldı. Eski yazıda önce barış, sonra bey yazılmış: 'barışı bey verir'. Bugün sıra bozulursa 'barış beyi verir' okunur.",
+    "name_en": "The old priest",
+    "says_en": "The peace inscription on the city gate burned; one piece is left. In the old script peace was written first, then the lord: 'peace the lord gives'. If the order breaks today, it reads 'peace gives the lord'."
   },
   "old_text": "Pēkom rīgos dōneti.",
   "heard": [
@@ -32,16 +34,19 @@
         "order": "wrong"
       },
       "set": "baris_ters",
-      "chronicle": "Kapı 'barış beyi verir' diye okundu. Dağlılar bunu alay sandı."
+      "chronicle": "Kapı 'barış beyi verir' diye okundu. Dağlılar bunu alay sandı.",
+      "chronicle_en": "The gate was read as 'peace gives the lord'. The mountain folk took it for mockery."
     },
     {
       "when": {},
       "set": "baris_kapisi",
-      "chronicle": "Kapıda yeniden 'bey barış verir' yazıyor. Dağlı elçi kapının önünde durup uzun uzun baktı."
+      "chronicle": "Kapıda yeniden 'bey barış verir' yazıyor. Dağlı elçi kapının önünde durup uzun uzun baktı.",
+      "chronicle_en": "The gate says again 'the lord gives peace'. The mountain envoy stopped before it and looked for a long time."
     }
   ],
   "reading_key": [
     "rīgo",
     "pēko"
-  ]
+  ],
+  "title_en": "The peace gate"
 }

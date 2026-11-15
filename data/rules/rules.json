@@ -25,7 +25,9 @@
           "gh",
           "kh"
         ]
-      ]
+      ],
+      "name_en": "Hard consonants",
+      "note_en": "bh → ph, dh → th, gh → kh"
     },
     {
       "id": "R2",
@@ -42,7 +44,9 @@
           "eu",
           "ū"
         ]
-      ]
+      ],
+      "name_en": "Double vowels merge",
+      "note_en": "ei → ī, eu → ū"
     },
     {
       "id": "R3",
@@ -55,7 +59,9 @@
           "ē",
           "ī"
         ]
-      ]
+      ],
+      "name_en": "Long ē rises",
+      "note_en": "ē → ī"
     },
     {
       "id": "R4",
@@ -68,7 +74,9 @@
           "ā",
           "ē"
         ]
-      ]
+      ],
+      "name_en": "Long ā moves forward",
+      "note_en": "ā → ē"
     },
     {
       "id": "R5",
@@ -85,7 +93,9 @@
           "m$",
           ""
         ]
-      ]
+      ],
+      "name_en": "Final s and m fall",
+      "note_en": "-s → ∅, -m → ∅ (word-final)"
     },
     {
       "id": "R6",
@@ -106,7 +116,9 @@
           "g(?={FRONT})",
           "c"
         ]
-      ]
+      ],
+      "name_en": "Palatalisation",
+      "note_en": "kh → ş, k → ç, g → c (before e, i)"
     },
     {
       "id": "R7",
@@ -127,7 +139,9 @@
           "kw",
           "p"
         ]
-      ]
+      ],
+      "name_en": "Fricatives",
+      "note_en": "ph → f, th → t, kw → p"
     },
     {
       "id": "R8",
@@ -140,7 +154,9 @@
           "(?<={V}[^aeiouāēīōū])[oe]$",
           ""
         ]
-      ]
+      ],
+      "name_en": "Final vowel falls",
+      "note_en": "-o, -e → ∅ (after one consonant, word-final)"
     }
   ]
 }

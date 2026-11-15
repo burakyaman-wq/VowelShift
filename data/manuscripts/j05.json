@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Başrahibe",
-    "says_tr": "Tapınak duvarını yeniliyoruz. Eski kıtlık yazısı halkı korkutuyor; ben *thekhnos* kelimesinin kazınmasını istiyorum. Lūka'nın zamanında yazılmış."
+    "says_tr": "Tapınak duvarını yeniliyoruz. Eski kıtlık yazısı halkı korkutuyor; ben *thekhnos* kelimesinin kazınmasını istiyorum. Lūka'nın zamanında yazılmış.",
+    "name_en": "The high priestess",
+    "says_en": "We are renewing the temple wall. The old famine inscription frightens people; I want the word *thekhnos* scraped. It was written in Lūka's time."
   },
   "old_text": "Thekhnos pīstom edeti. Nēkes mereti.",
   "heard": [
@@ -34,19 +36,22 @@
         ]
       },
       "set": "kitlik_unutuldu",
-      "chronicle": "Duvarda artık kıtlık yok. Gençler o yılları hiç duymadan büyüyecek."
+      "chronicle": "Duvarda artık kıtlık yok. Gençler o yılları hiç duymadan büyüyecek.",
+      "chronicle_en": "The wall no longer mentions famine. The young will grow up never hearing of those years."
     },
     {
       "when": {
         "flag": "kitlik_kazindi"
       },
       "set": "kitlik_unutuldu",
-      "chronicle": "Duvar yenilendi; kıtlığın adı iki kuşaktır yok."
+      "chronicle": "Duvar yenilendi; kıtlığın adı iki kuşaktır yok.",
+      "chronicle_en": "The wall was renewed; the famine's name has been gone for two generations."
     },
     {
       "when": {},
       "set": "kitlik_hatirlandi",
-      "chronicle": "Kıtlık duvarda kaldı. Başrahibe söylendi ama ambarlar bu yıl erken dolduruldu."
+      "chronicle": "Kıtlık duvarda kaldı. Başrahibe söylendi ama ambarlar bu yıl erken dolduruldu.",
+      "chronicle_en": "The famine stayed on the wall. The high priestess grumbled, but the granaries were filled early this year."
     }
   ],
   "variants": [
@@ -55,7 +60,9 @@
         "flag": "kitlik_kazindi"
       },
       "old_text": "Pīstom edeti. Nēkes mereti.",
-      "says_tr": "Tapınak duvarını yeniliyoruz. Lūka'nın zamanında kıtlık zaten silinmiş; geriye 'ölüler öldü' kalmış. Bunu da yenile, ama bir şey ekleme."
+      "says_tr": "Tapınak duvarını yeniliyoruz. Lūka'nın zamanında kıtlık zaten silinmiş; geriye 'ölüler öldü' kalmış. Bunu da yenile, ama bir şey ekleme.",
+      "says_en": "We are renewing the temple wall. In Lūka's time the famine was already scraped; only 'the dead died' is left. Renew that too, but add nothing."
     }
-  ]
+  ],
+  "title_en": "Forgetting the famine"
 }

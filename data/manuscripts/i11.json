@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağlı çoban",
-    "says_tr": "Kopyan dağda okundu; bir tahta daha gönderdiler. Bu mektupta Mēros'un ışığı sönüyor. Senin adın da bu ışıktan gelir, Leuka. Ama bugün *lūkos* dersen dağda herkes 'kurt' anlar."
+    "says_tr": "Kopyan dağda okundu; bir tahta daha gönderdiler. Bu mektupta Mēros'un ışığı sönüyor. Senin adın da bu ışıktan gelir, Leuka. Ama bugün *lūkos* dersen dağda herkes 'kurt' anlar.",
+    "name_en": "A mountain shepherd",
+    "says_en": "Your copy was read in the mountains; they sent another board. In this letter Mēros's light goes out. Your name comes from that light too, Leuka. But say *lūkos* today and in the mountains everyone hears 'wolf'."
   },
   "old_text": "Bhrātēros grānom emeti. Leukos mereti.",
   "heard": [
@@ -34,7 +36,8 @@
         ]
       },
       "set": "isik_eski",
-      "chronicle": "'Işık' kelimesini eski yazımla bıraktın. Dağlılar mektubu yaşlılarına okuttu; Mēros'un umudunun söndüğünü anladılar."
+      "chronicle": "'Işık' kelimesini eski yazımla bıraktın. Dağlılar mektubu yaşlılarına okuttu; Mēros'un umudunun söndüğünü anladılar.",
+      "chronicle_en": "You left 'light' in the old spelling. The mountain folk had their elders read the letter; they understood that Mēros's hope went out."
     },
     {
       "when": {
@@ -44,12 +47,15 @@
         ]
       },
       "set": "isik_notlu",
-      "chronicle": "Kenara 'ışık' notunu düştün. Dağlılar Mēros'un umudunun söndüğünü anladı."
+      "chronicle": "Kenara 'ışık' notunu düştün. Dağlılar Mēros'un umudunun söndüğünü anladı.",
+      "chronicle_en": "You noted 'light' in the margin. The mountain folk understood that Mēros's hope went out."
     },
     {
       "when": {},
       "set": "kurt_soylentisi",
-      "chronicle": "Dağda mektup 'kurt öldü' diye okundu. Çobanlar şehirden gelen kurtları konuşuyor."
+      "chronicle": "Dağda mektup 'kurt öldü' diye okundu. Çobanlar şehirden gelen kurtları konuşuyor.",
+      "chronicle_en": "In the mountains the letter was read as 'the wolf died'. The shepherds talk about wolves from the city."
     }
-  ]
+  ],
+  "title_en": "Mēros's second letter"
 }

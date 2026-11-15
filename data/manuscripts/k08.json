@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Genç Melno",
-    "says_tr": "Dağlıların belgesini okudum. Şimdi Argos'un sürgün buyruğu kopyasını yan yana koymak istiyorum: 'dönerse ölür' diyor. İkisi aynı hikâyeyi anlatıyor olabilir mi? Arşivde adları ayrı tutan eski bir kopya varsa, kenar notun onu gösterebilir."
+    "says_tr": "Dağlıların belgesini okudum. Şimdi Argos'un sürgün buyruğu kopyasını yan yana koymak istiyorum: 'dönerse ölür' diyor. İkisi aynı hikâyeyi anlatıyor olabilir mi? Arşivde adları ayrı tutan eski bir kopya varsa, kenar notun onu gösterebilir.",
+    "name_en": "Young Melno",
+    "says_en": "I have read the mountain folk's document. Now I want to set Argos's copy of the exile decree beside it: 'if he returns, he dies'. Could the two tell the same story? If the archive holds an older copy that keeps the names apart, your margin note can point to it."
   },
   "old_text": "Mīros rīgos Mīrom ageti. Mīros nēkos. Mīros werteti. Mīros mereti.",
   "heard": [
@@ -36,7 +38,8 @@
         "flag": "ad_korundu"
       },
       "set": "melno_anladi",
-      "chronicle": "Melno, Leuka'nın adları ayrı tutan kopyasını buldu: sürgün dönmüş, bey onu öldürtmüş. 'Söylenti doğruymuş,' dedi, 'ama yanlış okumadan doğmuş.'"
+      "chronicle": "Melno, Leuka'nın adları ayrı tutan kopyasını buldu: sürgün dönmüş, bey onu öldürtmüş. 'Söylenti doğruymuş,' dedi, 'ama yanlış okumadan doğmuş.'",
+      "chronicle_en": "Melno found Leuka's copy that keeps the names apart: the exile came back and the lord had him killed. 'The rumour was true,' he said, 'but it was born of a misreading.'"
     },
     {
       "when": {
@@ -47,7 +50,8 @@
         "flag": "ad_korundu"
       },
       "set": "melno_anladi",
-      "chronicle": "Melno, Leuka'nın adları ayrı tutan kopyasını buldu: sürgün dönmüş, bey onu öldürtmüş. 'Söylenti doğruymuş,' dedi, 'ama yanlış okumadan doğmuş.'"
+      "chronicle": "Melno, Leuka'nın adları ayrı tutan kopyasını buldu: sürgün dönmüş, bey onu öldürtmüş. 'Söylenti doğruymuş,' dedi, 'ama yanlış okumadan doğmuş.'",
+      "chronicle_en": "Melno found Leuka's copy that keeps the names apart: the exile came back and the lord had him killed. 'The rumour was true,' he said, 'but it was born of a misreading.'"
     },
     {
       "when": {
@@ -57,7 +61,8 @@
         ]
       },
       "set": "melno_suphe",
-      "chronicle": "Kenar notun iki adı da yazıyor; arşivde onları ayıran eski bir kopya kalmamış. Melno 'bu adlar bir düğüm' dedi."
+      "chronicle": "Kenar notun iki adı da yazıyor; arşivde onları ayıran eski bir kopya kalmamış. Melno 'bu adlar bir düğüm' dedi.",
+      "chronicle_en": "Your margin note names both; no older copy in the archive tells them apart. Melno said: 'These names are a knot.'"
     },
     {
       "when": {
@@ -67,12 +72,15 @@
         ]
       },
       "set": "melno_suphe",
-      "chronicle": "Kenar notun iki adı da yazıyor; arşivde onları ayıran eski bir kopya kalmamış. Melno 'bu adlar bir düğüm' dedi."
+      "chronicle": "Kenar notun iki adı da yazıyor; arşivde onları ayıran eski bir kopya kalmamış. Melno 'bu adlar bir düğüm' dedi.",
+      "chronicle_en": "Your margin note names both; no older copy in the archive tells them apart. Melno said: 'These names are a knot.'"
     },
     {
       "when": {},
       "set": "melno_suphe",
-      "chronicle": "Melno buyruğu okudu ama kimin kimi sürdüğünü ayırt edemedi. 'Bu adlar bir düğüm,' dedi."
+      "chronicle": "Melno buyruğu okudu ama kimin kimi sürdüğünü ayırt edemedi. 'Bu adlar bir düğüm,' dedi.",
+      "chronicle_en": "Melno read the decree but could not tell who exiled whom. 'These names are a knot,' he said."
     }
-  ]
+  ],
+  "title_en": "The decree and the mountain document"
 }

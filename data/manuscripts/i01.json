@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Usta Dhēmos",
-    "says_tr": "Kapıya yazıhanenin adını yazdım, ama eski dille. Artık herkes *khrophos* diyor, *ghrobhos* demiyor. Bugünkü dille yeniden yaz, Leuka; ilk işin bu olsun."
+    "says_tr": "Kapıya yazıhanenin adını yazdım, ama eski dille. Artık herkes *khrophos* diyor, *ghrobhos* demiyor. Bugünkü dille yeniden yaz, Leuka; ilk işin bu olsun.",
+    "name_en": "Master Dhēmos",
+    "says_en": "I wrote the scriptorium's name on the door, but in the old tongue. Everyone says *khrophos* now, not *ghrobhos*. Write it again in today's words, Leuka; let this be your first job."
   },
   "old_text": "Ghrobhosyo domos.",
   "heard": [
@@ -23,5 +25,7 @@
     "eski": 0,
     "kazi": 0
   },
-  "delivered_tr": "Kapıya yeni yazı asıldı: Khrophosyo domos. Usta Dhēmos başını salladı."
+  "delivered_tr": "Kapıya yeni yazı asıldı: Khrophosyo domos. Usta Dhēmos başını salladı.",
+  "title_en": "The scriptorium door",
+  "delivered_en": "The new sign went up on the door: Khrophosyo domos. Master Dhēmos nodded."
 }

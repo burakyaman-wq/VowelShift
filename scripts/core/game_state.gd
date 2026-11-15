@@ -186,7 +186,7 @@ func shelve(doc: Manuscript, ev: Dictionary, marks: Dictionary) -> Dictionary:
 		for f in (sets if sets is Array else [sets]):
 			flags[String(f)] = true
 		if o.has("chronicle") and not told:
-			line = o["chronicle"]
+			line = Loc.pick(o, "chronicle")
 			told = true
 	if line != "":
 		chronicle.append({"doc": doc.id, "line": line})

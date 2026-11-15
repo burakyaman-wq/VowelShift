@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Usta Dhēmos",
-    "says_tr": "Bu sayfa benim son işim. Mührü sana bırakıyorum, Leuka. Bugün bana *Thēmos* diyorlar; ama adımı mezar taşına nasıl yazacağın senin bileceğin iş."
+    "says_tr": "Bu sayfa benim son işim. Mührü sana bırakıyorum, Leuka. Bugün bana *Thēmos* diyorlar; ama adımı mezar taşına nasıl yazacağın senin bileceğin iş.",
+    "name_en": "Master Dhēmos",
+    "says_en": "This page is my last work. I leave you the seal, Leuka. Today they call me *Thēmos*; how you write my name on my gravestone is your affair."
   },
   "old_text": "Dhēmos mereti. Sighlom ghrobhosyo dōneti.",
   "heard": [
@@ -35,12 +37,15 @@
         ]
       },
       "set": "usta_eski_ad",
-      "chronicle": "Ustanın adını eski yazımla bıraktın. Mezar taşında Dhēmos yazıyor; mühür artık sende. Gençler sana Lūka diyor."
+      "chronicle": "Ustanın adını eski yazımla bıraktın. Mezar taşında Dhēmos yazıyor; mühür artık sende. Gençler sana Lūka diyor.",
+      "chronicle_en": "You left your master's name in the old spelling. The gravestone says Dhēmos; the seal is yours now. The young call you Lūka."
     },
     {
       "when": {},
       "set": "usta_yeni_ad",
-      "chronicle": "Usta Thēmos öldü; mühür artık sende. Gençler sana artık Leuka değil, Lūka diyor."
+      "chronicle": "Usta Thēmos öldü; mühür artık sende. Gençler sana artık Leuka değil, Lūka diyor.",
+      "chronicle_en": "Master Thēmos died; the seal is yours now. The young no longer call you Leuka, but Lūka."
     }
-  ]
+  ],
+  "title_en": "The master's last page"
 }

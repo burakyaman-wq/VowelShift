@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Genç Melno",
-    "says_tr": "Ben Melno; Dhās'ın soyundanım. Dedemin dedesinin kelime listesinden bir satır yanmadan kaldı. Bugün *grēno*, *thīto* diyoruz. Ölü dili bugünküyle yan yana görmek istiyorum: istersen 'borç' kelimesini eski hâliyle bırak, ben karşılaştırırım."
+    "says_tr": "Ben Melno; Dhās'ın soyundanım. Dedemin dedesinin kelime listesinden bir satır yanmadan kaldı. Bugün *grēno*, *thīto* diyoruz. Ölü dili bugünküyle yan yana görmek istiyorum: istersen 'borç' kelimesini eski hâliyle bırak, ben karşılaştırırım.",
+    "name_en": "Young Melno",
+    "says_en": "I am Melno, of Dhās's line. One line of my great-grandfather's word list survived the fire. Today we say *grēno*, *thīto*. I want to see the dead tongue beside today's: leave the word 'debt' in its old form if you like, and I will compare."
   },
   "old_text": "Rīgos grēnom thītom emeti.",
   "heard": [
@@ -35,12 +37,15 @@
         ]
       },
       "set": "melno_eski",
-      "chronicle": "Melno satırı defterine geçirdi; 'borç' kelimesinin eski hâlinin altını çizdi. 'Ekler gitti,' dedi, 'ama izleri burada.'"
+      "chronicle": "Melno satırı defterine geçirdi; 'borç' kelimesinin eski hâlinin altını çizdi. 'Ekler gitti,' dedi, 'ama izleri burada.'",
+      "chronicle_en": "Melno copied the line into his notebook and underlined the old form of 'debt'. 'The endings are gone,' he said, 'but their traces are here.'"
     },
     {
       "when": {},
       "set": "melno_yeni",
-      "chronicle": "Melno satırı defterine geçirdi. 'Ekler gitti,' dedi, 'artık kim kime ne yaptı, nasıl bileceğiz?'"
+      "chronicle": "Melno satırı defterine geçirdi. 'Ekler gitti,' dedi, 'artık kim kime ne yaptı, nasıl bileceğiz?'",
+      "chronicle_en": "Melno copied the line into his notebook. 'The endings are gone,' he said. 'Now how will we know who did what to whom?'"
     }
-  ]
+  ],
+  "title_en": "Dhās's list"
 }

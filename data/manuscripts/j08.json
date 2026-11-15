@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Başrahibe",
-    "says_tr": "Tapınağın kapısında 'gerçek tanrınındır' yazıyor. Bugün gerçeğe *wēros* diyoruz. Yaşlılar sorun çıkarıyor: onlara göre bu kelime 'yalan' demek."
+    "says_tr": "Tapınağın kapısında 'gerçek tanrınındır' yazıyor. Bugün gerçeğe *wēros* diyoruz. Yaşlılar sorun çıkarıyor: onlara göre bu kelime 'yalan' demek.",
+    "name_en": "The high priestess",
+    "says_en": "The temple gate says 'truth is the god's'. Today we call truth *wēros*. The old make trouble: to them that word means 'lie'."
   },
   "old_text": "Wāros dīwosyo.",
   "heard": [
@@ -34,7 +36,8 @@
         ]
       },
       "set": "kapi_dogru",
-      "chronicle": "Kapının kenarında 'gerçek' notu var. Yaşlılar bile başını sallayıp geçti."
+      "chronicle": "Kapının kenarında 'gerçek' notu var. Yaşlılar bile başını sallayıp geçti.",
+      "chronicle_en": "The gate has a margin note: 'truth'. Even the old nod as they pass."
     },
     {
       "when": {
@@ -44,12 +47,15 @@
         ]
       },
       "set": "kapi_dogru",
-      "chronicle": "Kapıda eski kelime duruyor. Gençler okuyamıyor, yaşlılar memnun."
+      "chronicle": "Kapıda eski kelime duruyor. Gençler okuyamıyor, yaşlılar memnun.",
+      "chronicle_en": "The old word stays on the gate. The young cannot read it; the old are pleased."
     },
     {
       "when": {},
       "set": "kapi_yalan",
-      "chronicle": "Yaşlılar kapıyı 'yalan tanrınındır' diye okuyor. Çarşıda tapınakla alay eden bir şarkı dolaşıyor."
+      "chronicle": "Yaşlılar kapıyı 'yalan tanrınındır' diye okuyor. Çarşıda tapınakla alay eden bir şarkı dolaşıyor.",
+      "chronicle_en": "The old read the gate as 'the lie is the god's'. A song mocking the temple goes round the market."
     }
-  ]
+  ],
+  "title_en": "The temple gate"
 }

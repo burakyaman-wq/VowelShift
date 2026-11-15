@@ -23,6 +23,10 @@ const FULL := 5
 const TOOLS := ["not", "eski", "kazi"]
 const TOOL_NAMES := {"not": "Kenar notu", "eski": "Eski yazım", "kazi": "Kazı"}
 
+
+static func tool_name(t: String) -> String:
+	return Loc.t(TOOL_NAMES.get(t, t))
+
 static var _meanings := {}
 
 
@@ -186,7 +190,7 @@ static func gloss(ev: Dictionary) -> String:
 		if r["mark"] == "not":
 			out.append("%s: %s" % [r["new"], " / ".join(PackedStringArray(r["was"]))])
 	if ev.get("order", "") == "explained":
-		out.append("sırayı yeni dilin okuyuşuna göre kurdum")
+		out.append(Loc.t("sırayı yeni dilin okuyuşuna göre kurdum"))
 	return "; ".join(out)
 
 
@@ -200,6 +204,6 @@ static func _meet(a: Array, b: Array) -> bool:
 ## A word without its length marks, for alphabetical order.
 static func _plain(w: String) -> String:
 	var out := w.to_lower()
-	for k in {"ā": "a", "ē": "e", "ī": "i", "ō": "o", "ū": "u"}.keys():
-		out = out.replace(k, {"ā": "a", "ē": "e", "ī": "i", "ō": "o", "ū": "u"}[k])
+	for k in {Loc.t("ā"): "a", Loc.t("ē"): "e", Loc.t("ī"): "i", Loc.t("ō"): "o", Loc.t("ū"): "u"}.keys():
+		out = out.replace(k, {Loc.t("ā"): "a", Loc.t("ē"): "e", Loc.t("ī"): "i", Loc.t("ō"): "o", Loc.t("ū"): "u"}[k])
 	return out

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Yangın artığı",
-    "says_tr": "Argos'un defterinin cildinin içinden katlanmış bir sayfa çıktı: Lūka'nın koparıp sakladığı sayfa. Kurucu çağından kopyalanmış satırlar: dönen biri, duman, bir de gören bir kâtip."
+    "says_tr": "Argos'un defterinin cildinin içinden katlanmış bir sayfa çıktı: Lūka'nın koparıp sakladığı sayfa. Kurucu çağından kopyalanmış satırlar: dönen biri, duman, bir de gören bir kâtip.",
+    "name_en": "From the fire",
+    "says_en": "A folded page fell out of the binding of Argos's notebook: the page Lūka tore out and hid. Lines copied from the founders' time: someone returning, smoke, and a scribe who saw."
   },
   "old_text": "Mīros werteti. Rīgos thūmom wīdeti. Khrophos wīdeti.",
   "heard": [
@@ -35,12 +37,15 @@
         ]
       },
       "set": "sayfa_okundu",
-      "chronicle": "Lūka'nın sayfası okundu: Mēros dönmüş, bey dumanı görmüş, bir kâtip de görmüş. O kâtip ilk usta Dhēmos'tu. Yazıhane yüz elli yıldır bu sırrı saklıyormuş."
+      "chronicle": "Lūka'nın sayfası okundu: Mēros dönmüş, bey dumanı görmüş, bir kâtip de görmüş. O kâtip ilk usta Dhēmos'tu. Yazıhane yüz elli yıldır bu sırrı saklıyormuş.",
+      "chronicle_en": "Lūka's page was read: Mēros came back, the lord saw the smoke, and a scribe saw it too. That scribe was the first master, Dhēmos. The scriptorium had kept the secret for a hundred and fifty years."
     },
     {
       "when": {},
       "set": "sayfa_karisik",
-      "chronicle": "Sayfada 'bey öfkeyi gördü' okunuyor. Melno başını salladı: 'Doğru da olabilir.'"
+      "chronicle": "Sayfada 'bey öfkeyi gördü' okunuyor. Melno başını salladı: 'Doğru da olabilir.'",
+      "chronicle_en": "The page reads 'the lord saw wrath'. Melno nodded: 'That may be true as well.'"
     }
-  ]
+  ],
+  "title_en": "The torn page"
 }

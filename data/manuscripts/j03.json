@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Saray görevlisi",
-    "says_tr": "Genç bey dağlılarla barış istiyor; şehir kapısına yazılacak. Bugün barışa *pēkos* diyoruz. Ama yaşlılar eski dille okur; onların kulağında *pēkos* başka bir şey."
+    "says_tr": "Genç bey dağlılarla barış istiyor; şehir kapısına yazılacak. Bugün barışa *pēkos* diyoruz. Ama yaşlılar eski dille okur; onların kulağında *pēkos* başka bir şey.",
+    "name_en": "A palace official",
+    "says_en": "The young lord wants peace with the mountain folk; it will be written on the city gate. Today we call peace *pēkos*. But the old read with the old tongue; to their ears *pēkos* is something else."
   },
   "old_text": "Rēgos pākom dōneti.",
   "heard": [
@@ -34,12 +36,15 @@
         ]
       },
       "set": "baris_notlu",
-      "chronicle": "Kapıdaki yazının kenarında 'barış' notu var. Yaşlılar da doğru okudu; dağ tüccarları ilk kez şehre silahsız girdi."
+      "chronicle": "Kapıdaki yazının kenarında 'barış' notu var. Yaşlılar da doğru okudu; dağ tüccarları ilk kez şehre silahsız girdi.",
+      "chronicle_en": "The gate inscription has a margin note: 'peace'. Even the old read it right; mountain traders entered the city unarmed for the first time."
     },
     {
       "when": {},
       "set": "baris_savas",
-      "chronicle": "Yaşlılar kapıdaki yazıyı 'bey savaş verir' diye okudu. Dağda nöbet ateşleri yeniden yakıldı."
+      "chronicle": "Yaşlılar kapıdaki yazıyı 'bey savaş verir' diye okudu. Dağda nöbet ateşleri yeniden yakıldı.",
+      "chronicle_en": "The old read the gate as 'the lord gives war'. Watch fires were lit again on the mountain."
     }
-  ]
+  ],
+  "title_en": "The peace stone"
 }

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Bilgin Dhās",
-    "says_tr": "Lūka'nın kopyaladığı sürgün buyruğunu buldum. 'Dönerse ölür' diyor. Neden bir buyruk, sürülen birinin dönüşünü bu kadar önemser?"
+    "says_tr": "Lūka'nın kopyaladığı sürgün buyruğunu buldum. 'Dönerse ölür' diyor. Neden bir buyruk, sürülen birinin dönüşünü bu kadar önemser?",
+    "name_en": "Dhās the scholar",
+    "says_en": "I found the exile decree Lūka copied. It says 'if he returns, he dies'. Why would a decree care so much about an exile coming back?"
   },
   "old_text": "Mīros rēgos Mērom ageti. Mēros nākos. Mēros werteti. Mēros mereti.",
   "heard": [
@@ -35,7 +37,8 @@
         ]
       },
       "set": "buyruk_notlu",
-      "chronicle": "Dhās kopyayı okudu: sürgün, ölü değil. Ama 'dönerse ölür' satırının altını çizdi."
+      "chronicle": "Dhās kopyayı okudu: sürgün, ölü değil. Ama 'dönerse ölür' satırının altını çizdi.",
+      "chronicle_en": "Dhās read the copy: exiled, not dead. But he underlined 'if he returns, he dies'."
     },
     {
       "when": {
@@ -45,12 +48,14 @@
         ]
       },
       "set": "buyruk_notlu",
-      "chronicle": "Dhās eski kelimeyi tanıdı: sürgün. 'Dönerse ölür' satırının altını çizdi."
+      "chronicle": "Dhās eski kelimeyi tanıdı: sürgün. 'Dönerse ölür' satırının altını çizdi.",
+      "chronicle_en": "Dhās recognised the old word: exile. He underlined 'if he returns, he dies'."
     },
     {
       "when": {},
       "set": "buyruk_olu",
-      "chronicle": "Dhās'ın öğrencileri buyruğu 'ölü döner, ölü ölür' diye okudu. Çarşıdaki söylenti büyüdü."
+      "chronicle": "Dhās'ın öğrencileri buyruğu 'ölü döner, ölü ölür' diye okudu. Çarşıdaki söylenti büyüdü.",
+      "chronicle_en": "Dhās's students read the decree as 'the dead returns, the dead dies'. The market rumour grew."
     }
   ],
   "variants": [
@@ -59,7 +64,9 @@
         "flag": "meros_kazindi"
       },
       "old_text": "Mīros rēgos Mērom ageti. Nākos werteti. Nākos mereti.",
-      "says_tr": "Lūka'nın kopyaladığı sürgün buyruğunu buldum. Sürgünün adı kazınmış; geriye 'sürgün döner, sürgün ölür' kalmış. Kim için yazıldığını bilmeden kopyala."
+      "says_tr": "Lūka'nın kopyaladığı sürgün buyruğunu buldum. Sürgünün adı kazınmış; geriye 'sürgün döner, sürgün ölür' kalmış. Kim için yazıldığını bilmeden kopyala.",
+      "says_en": "I found the exile decree Lūka copied. The exile's name has been scraped; what is left is 'the exile returns, the exile dies'. Copy it without knowing whom it was written for."
     }
-  ]
+  ],
+  "title_en": "The copy of the exile decree"
 }

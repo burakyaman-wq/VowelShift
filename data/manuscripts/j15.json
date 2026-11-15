@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Yargıç",
-    "says_tr": "Dağlılar şehir dışındaki tarlanın kendilerinin olduğunu söylüyor; saray kendinin. Elimizde Lūka'nın sınır taşı kopyası var. Bugün iki ad da *Mīrosyo* okunuyor. Mahkeme kopyana göre karar verecek."
+    "says_tr": "Dağlılar şehir dışındaki tarlanın kendilerinin olduğunu söylüyor; saray kendinin. Elimizde Lūka'nın sınır taşı kopyası var. Bugün iki ad da *Mīrosyo* okunuyor. Mahkeme kopyana göre karar verecek.",
+    "name_en": "The judge",
+    "says_en": "The mountain folk say the field outside the city is theirs; the palace says it is its own. We have Lūka's copy of the boundary stone. Today both names read *Mīrosyo*. The court will decide by your copy."
   },
   "old_text": "Mīrosyo āgros. Mērosyo āgros. Akmos dīwosyo khewos.",
   "heard": [
@@ -30,7 +32,8 @@
         ]
       },
       "set": "tarla_daglilara",
-      "chronicle": "Kenar notun mahkemede okundu: tarlalardan biri sürgün kardeşindi. Yargıç tarlayı dağlılara verdi. Saray bunu unutmayacak; dağ yolunda ilk çatışmalar başladı."
+      "chronicle": "Kenar notun mahkemede okundu: tarlalardan biri sürgün kardeşindi. Yargıç tarlayı dağlılara verdi. Saray bunu unutmayacak; dağ yolunda ilk çatışmalar başladı.",
+      "chronicle_en": "Your margin note was read in court: one of the fields was the exiled brother's. The judge gave the field to the mountain folk. The palace will not forget; the first clashes began on the mountain road."
     },
     {
       "when": {
@@ -40,12 +43,14 @@
         ]
       },
       "set": "tarla_daglilara",
-      "chronicle": "Eski yazımla 'Mēros' okundu. Yargıç tarlayı dağlılara verdi. Saray bunu unutmayacak; dağ yolunda ilk çatışmalar başladı."
+      "chronicle": "Eski yazımla 'Mēros' okundu. Yargıç tarlayı dağlılara verdi. Saray bunu unutmayacak; dağ yolunda ilk çatışmalar başladı.",
+      "chronicle_en": "The old spelling read 'Mēros'. The judge gave the field to the mountain folk. The palace will not forget; the first clashes began on the mountain road."
     },
     {
       "when": {},
       "set": "tarla_saraya",
-      "chronicle": "Kopyada iki tarla da kurucunun. Yargıç tarlayı saraya verdi. Dağlılar mahkemeden çıkarken bir daha inmeyeceklerini söyledi; dağ yolunda ilk çatışmalar başladı."
+      "chronicle": "Kopyada iki tarla da kurucunun. Yargıç tarlayı saraya verdi. Dağlılar mahkemeden çıkarken bir daha inmeyeceklerini söyledi; dağ yolunda ilk çatışmalar başladı.",
+      "chronicle_en": "In the copy both fields are the founder's. The judge gave the field to the palace. Leaving the court, the mountain folk said they would never come down again; the first clashes began on the mountain road."
     }
   ],
   "variants": [
@@ -54,7 +59,9 @@
         "flag": "tarla_kazindi"
       },
       "old_text": "Mīrosyo āgros. Akmos dīwosyo khewos.",
-      "says_tr": "Dağlılar şehir dışındaki tarlanın kendilerinin olduğunu söylüyor; saray kendinin. Lūka'nın sınır taşı kopyasında tek tarla var. Mahkeme kopyana göre karar verecek."
+      "says_tr": "Dağlılar şehir dışındaki tarlanın kendilerinin olduğunu söylüyor; saray kendinin. Lūka'nın sınır taşı kopyasında tek tarla var. Mahkeme kopyana göre karar verecek.",
+      "says_en": "The mountain folk say the field outside the city is theirs; the palace says it is its own. Lūka's copy of the boundary stone names one field only. The court will decide by your copy."
     }
-  ]
+  ],
+  "title_en": "The boundary case"
 }

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Dağ tüccarları",
-    "says_tr": "Lūka'nın zamanında bir mektubumuzu kopyalamıştınız. Sarayda bir kopyası daha var dediler. Biz kendi kopyamızı yeniletmek istiyoruz; içinde *phrētīros* geçiyor."
+    "says_tr": "Lūka'nın zamanında bir mektubumuzu kopyalamıştınız. Sarayda bir kopyası daha var dediler. Biz kendi kopyamızı yeniletmek istiyoruz; içinde *phrētīros* geçiyor.",
+    "name_en": "Mountain traders",
+    "says_en": "In Lūka's time you copied a letter of ours. They say the palace has another copy. We want our own renewed; it has *phrētīros* in it."
   },
   "old_text": "Phrātēros grānom emeti. Lūkos mereti.",
   "heard": [
@@ -35,7 +37,8 @@
         ]
       },
       "set": "mektup_isik",
-      "chronicle": "Mektubun kenarında 'ışık' notu var. Dağlılar ilk kez şehrin bir kopyasına güvendi."
+      "chronicle": "Mektubun kenarında 'ışık' notu var. Dağlılar ilk kez şehrin bir kopyasına güvendi.",
+      "chronicle_en": "The letter has a margin note: 'light'. For the first time the mountain folk trust a city copy."
     },
     {
       "when": {
@@ -45,12 +48,14 @@
         ]
       },
       "set": "mektup_isik",
-      "chronicle": "Mektup eski yazımla yenilendi; dağın yaşlıları okudu."
+      "chronicle": "Mektup eski yazımla yenilendi; dağın yaşlıları okudu.",
+      "chronicle_en": "The letter was renewed in the old spelling; the mountain elders read it."
     },
     {
       "when": {},
       "set": "mektup_kurt",
-      "chronicle": "Mektup yine 'kurt öldü' diye okundu. Dağlılar artık şehirden kopya istemiyor."
+      "chronicle": "Mektup yine 'kurt öldü' diye okundu. Dağlılar artık şehirden kopya istemiyor.",
+      "chronicle_en": "Again the letter was read as 'the wolf died'. The mountain folk no longer ask the city for copies."
     }
   ],
   "variants": [
@@ -59,7 +64,9 @@
         "flag": "mektup_kazindi"
       },
       "old_text": "Grānom emeti. Lūkos mereti.",
-      "says_tr": "Sarayın kopyasını getirdik; bizimki kayboldu. İçinde 'kardeş' yok, ama atamızın mektubu bu. Kim tahılı aldı, okunmuyor."
+      "says_tr": "Sarayın kopyasını getirdik; bizimki kayboldu. İçinde 'kardeş' yok, ama atamızın mektubu bu. Kim tahılı aldı, okunmuyor.",
+      "says_en": "We brought the palace copy; ours is lost. 'Brother' is not in it, but it is our ancestor's letter. Who took the grain cannot be read."
     }
-  ]
+  ],
+  "title_en": "The mountain copy of the letter"
 }

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Lūka (kendin)",
-    "says_tr": "Ustanın defterinin son sayfası kurucu zamanından kalma; kimse görmeden kopyalamak istiyorum. Satırları kendi defterime geçireceğim, kenarına da kendi notumu düşeceğim."
+    "says_tr": "Ustanın defterinin son sayfası kurucu zamanından kalma; kimse görmeden kopyalamak istiyorum. Satırları kendi defterime geçireceğim, kenarına da kendi notumu düşeceğim.",
+    "name_en": "Lūka (yourself)",
+    "says_en": "The last page of my master's notebook dates from the founders' time; I want to copy it unseen. I will put the lines in my own notebook and add a note of my own in the margin."
   },
   "old_text": "Mēros werteti. Rēgos dhūmom weideti. Ghrobhos weideti.",
   "heard": [
@@ -24,7 +26,9 @@
     {
       "when": {},
       "set": "luka_sayfasi",
-      "chronicle": "Lūka sayfayı defterine geçirdi: Mēros bir gün dönmüş, bey dumanı görmüş, bir kâtip de görmüş. Sayfanın kenarına küçük bir işaret koydu."
+      "chronicle": "Lūka sayfayı defterine geçirdi: Mēros bir gün dönmüş, bey dumanı görmüş, bir kâtip de görmüş. Sayfanın kenarına küçük bir işaret koydu.",
+      "chronicle_en": "Lūka copied the page into her notebook: Mēros came back one day, the lord saw the smoke, and a scribe saw it too. She made a small mark in the margin."
     }
-  ]
+  ],
+  "title_en": "The master's notebook"
 }

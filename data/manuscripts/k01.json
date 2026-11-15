@@ -7,7 +7,9 @@
   "intro_tr": "Yüz yıl daha geçti. Dağ yolundaki çatışmalar savaşa döndü; savaş yazıhaneyi yaktı, eski hanedan düştü. Argos'un çırağının çırağı Nīka, yani sen, külleri süpürüyorsun. Sokakta kelime sonları düşüyor: kimse artık -s, -m demiyor.",
   "requester": {
     "name_tr": "Yeni düzenin vekili",
-    "says_tr": "Yazıhane yeniden açılacak. Kapı yazısı yanmış ama okunuyor. Bugünün diliyle yaz: biz artık *domo* diyoruz, *domos* değil."
+    "says_tr": "Yazıhane yeniden açılacak. Kapı yazısı yanmış ama okunuyor. Bugünün diliyle yaz: biz artık *domo* diyoruz, *domos* değil.",
+    "name_en": "Envoy of the new order",
+    "says_en": "The scriptorium will open again. The door sign is burnt but legible. Write it in today's words: we say *domo* now, not *domos*."
   },
   "old_text": "Khrophosyo domos.",
   "heard": [
@@ -23,5 +25,8 @@
     "eski": 0,
     "kazi": 0
   },
-  "delivered_tr": "Yanık kapıya yeni yazı asıldı. Vekil 'yazı yeni düzenin işidir,' dedi."
+  "delivered_tr": "Yanık kapıya yeni yazı asıldı. Vekil 'yazı yeni düzenin işidir,' dedi.",
+  "title_en": "The burnt door",
+  "intro_en": "A hundred more years passed. The clashes on the mountain road became a war; the war burned the scriptorium and the old dynasty fell. Nīka, apprentice of Argos's apprentice, is you, sweeping the ashes. In the street word endings are falling away: no one says -s or -m anymore.",
+  "delivered_en": "The new sign went up on the burnt door. The envoy said: 'Writing is the new order's business.'"
 }

@@ -47,9 +47,9 @@ func setup(kind: String, count: int, font: Font, era: int) -> void:
 	paper.set_patch_margin(SIDE_BOTTOM, 44)
 	paper.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(paper)
-	var title := _label(font, Copyist.TOOL_NAMES[kind], 20, Color("b33a29"))
+	var title := _label(font, Copyist.tool_name(kind), 20, Color("b33a29"))
 	title.position = Vector2(12, 10)
-	var blurb := _label(font, BLURB[kind], 16, Color("2a1b14"))
+	var blurb := _label(font, Loc.t(BLURB[kind]), 16, Color("2a1b14"))
 	blurb.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	blurb.custom_minimum_size = Vector2(SIZE.x - 24, 0)
 	blurb.position = Vector2(12, 44)

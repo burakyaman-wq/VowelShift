@@ -106,18 +106,18 @@ func show_row(r: Dictionary, inked: bool = false) -> void:
 			else:
 				shown = _red_letters(r["new"], Pairing.diff_marks(r["old"], r["new"])[1])
 	_word.text = shown + ("  [color=#7a6a5a][font_size=18]×%d[/font_size][/color]" % repeats if repeats > 1 else "")
-	_was.text = "değişmedi" if r["new"] == r["old"] else "eski: " + r["old"]
+	_was.text = Loc.t("değişmedi") if r["new"] == r["old"] else Loc.t("eski: ") + r["old"]
 	var issue := ""
 	if not r["in_dict"]:
-		issue = "sözlükte yok"
+		issue = Loc.t("sözlükte yok")
 	elif r["shifted"]:
-		issue = "anlamı kaydı"
+		issue = Loc.t("anlamı kaydı")
 	elif r["collision"]:
-		issue = "iki anlam"
+		issue = Loc.t("iki anlam")
 	elif not r.get("elder", []).is_empty():
-		issue = "yaşlılar başka okur"
-	_foot.text = MARK_TEXT.get(r["mark"], issue)
-	_flag.visible = r["mark"] == "" and issue != "" and issue != "sözlükte yok"
+		issue = Loc.t("yaşlılar başka okur")
+	_foot.text = Loc.t(MARK_TEXT[r["mark"]]) if MARK_TEXT.has(r["mark"]) else issue
+	_flag.visible = r["mark"] == "" and issue != "" and issue != Loc.t("sözlükte yok")
 	_ghost.text = ""
 	_foot.visible = true
 
@@ -125,7 +125,7 @@ func show_row(r: Dictionary, inked: bool = false) -> void:
 ## What the hovered sound card would make of this word ("" to clear);
 ## a form that is no word of the era is said so.
 func preview(form: String, is_word: bool = true, tag: String = "") -> void:
-	var note := " (yok)" if not is_word else (" (%s)" % tag if tag != "" else "")
+	var note := Loc.t(" (yok)") if not is_word else (" (%s)" % tag if tag != "" else "")
 	_ghost.text = ("→ " + form + note) if form != "" and form != row.get("new", "") else ""
 	_foot.visible = _ghost.text == ""
 

@@ -7,7 +7,9 @@
   "intro_tr": "",
   "requester": {
     "name_tr": "Tüccar Grēna",
-    "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızın defteri bu; annemin annesi yazdırmış. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım. Mahkeme eski yazıya daha çok güvenir; istersen *tahıl* kelimesini eski hâliyle bırak."
+    "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızın defteri bu; annemin annesi yazdırmış. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım. Mahkeme eski yazıya daha çok güvenir; istersen *tahıl* kelimesini eski hâliyle bırak.",
+    "name_en": "Grēna the merchant",
+    "says_en": "I am Grēna, Sālwa's granddaughter. This is our granary's ledger; my mother's mother had it written. Today we say *grēnos*, *thītos*. I need a copy. The court trusts old script more; if you like, leave the word *grain* in its old form."
   },
   "old_text": "Grānos mātērosyo. Thētos rēgosyo.",
   "heard": [
@@ -31,7 +33,8 @@
       "when": {
         "flag": "senet_notsuz"
       },
-      "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızı saray aldı, elimizde yalnız bu defter kaldı. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım; belki bir gün geri alırız. Mahkeme eski yazıya daha çok güvenir; istersen *tahıl* kelimesini eski hâliyle bırak."
+      "says_tr": "Ben Grēna, Sālwa'nın torunu. Ambarımızı saray aldı, elimizde yalnız bu defter kaldı. Bugün *grēnos*, *thītos* diyoruz. Kopyası lazım; belki bir gün geri alırız. Mahkeme eski yazıya daha çok güvenir; istersen *tahıl* kelimesini eski hâliyle bırak.",
+      "says_en": "I am Grēna, Sālwa's granddaughter. The palace took our granary; this ledger is all we have left. Today we say *grēnos*, *thītos*. I need a copy; maybe one day we will win it back. The court trusts old script more; if you like, leave the word *grain* in its old form."
     }
   ],
   "outcomes": [
@@ -43,12 +46,15 @@
         ]
       },
       "set": "defter_eski",
-      "chronicle": "Defterde 'tahıl' eski yazımla duruyor. Yaşlı yargıç Grēna'yı ciddiye aldı."
+      "chronicle": "Defterde 'tahıl' eski yazımla duruyor. Yaşlı yargıç Grēna'yı ciddiye aldı.",
+      "chronicle_en": "The ledger keeps 'grain' in the old spelling. The old judge took Grēna seriously."
     },
     {
       "when": {},
       "set": "defter_yeni",
-      "chronicle": "Grēna defteri sandığa koydu. 'Borç beyin,' dedi, 'ama tahıl annenindi.'"
+      "chronicle": "Grēna defteri sandığa koydu. 'Borç beyin,' dedi, 'ama tahıl annenindi.'",
+      "chronicle_en": "Grēna locked the ledger in her chest. 'The debt is the lord's,' she said, 'but the grain was the mother's.'"
     }
-  ]
+  ],
+  "title_en": "The granary ledger"
 }
